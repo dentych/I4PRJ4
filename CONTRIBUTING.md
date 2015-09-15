@@ -78,6 +78,12 @@ The messages can only be of a certain length (around 60 chars), so your messages
 If you want to commit and write a message in the console line, you can issue the *-m* option:  
 `git commit -am "This is a commit message"`
 
+If you are working with files that are NOT tracked by Git (i.e. a file you've just created), you have to add the file manually to be staged for commit. You do this with the `git add` command.
+
+Adding files:  
+`git add <filename>` - This will add the file to the "changes staged for commit" list. It can be used both for tracked and untracked files.  
+`git add .` - Will stage all modified files for commit.
+
 #### Push changes to remote repo
 
 Now it's time to push your changes to the remote repo for everyone else to see.
@@ -93,7 +99,13 @@ That's basically it. The more you do it, the better you get at it.
 
 This is a lookup list for the most used commands and their usage.
 
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Command  | Usage
+---- | ----
+git clone git@github.com:dentych/I4PRJ4.git  | Makes a new copy of the repository (clones it).
+git add . | Add all files (untracked and tracked) that have been modified to be committed.
+git add <filename> | Adds the specified file (or folder) to be committed.
+git commit | Opens the default editor for a commit message. When saving, the changes will be committed.
+git commit -a | Commits all modified files that are tracked by Git.
+git commit -am "Message" | Commits all modified files that are tracked by Git. Does NOT open the editor, but simply uses the "Message" as commit message.
+git push | Pushes the changes to the remote repo.
+git push origin <branch name> | Pushes the current branch to the remote (origin) branch with name *<branch name>*.
