@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:KasseApparat"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="900">
-    <Grid>
+    <Window.Resources>
+        <KasseApparat:ShoppingList x:Key="ShopList" />
+		<KasseApparat:ProductList x:Key="ProdList" />
+    </Window.Resources>
+	
+	<Grid>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="343*"></ColumnDefinition>

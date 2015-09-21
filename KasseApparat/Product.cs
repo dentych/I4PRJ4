@@ -11,14 +11,14 @@ namespace KasseApparat
         private string _name;
         private int _price;
         private string _id;
-        private int _ammount;
+        private int _amount;
 
-        public Product(string name, int price, string id)
+        public Product(string name, int price, string id, int amount = 1)
         {
             _name = name;
             _price = price;
             _id = id;
-            _ammount = 1;
+            _amount = amount;
         }
 
         public string Name
