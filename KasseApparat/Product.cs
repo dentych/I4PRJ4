@@ -36,10 +36,10 @@ namespace KasseApparat
             get { return _id; }
             set { _id = value; }
         }
-        public int Ammount
+        public int Amount
         {
-            get { return _ammount; }
-            set { _ammount = value; }
+            get { return _amount; }
+            set { _amount = value; }
         }
     }
 }

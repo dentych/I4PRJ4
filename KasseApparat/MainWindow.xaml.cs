@@ -23,6 +23,15 @@ namespace KasseApparat
         public MainWindow()
         {
             InitializeComponent();
+
+            
+        }
+
+        private void ButtonCash_Click(object sender, RoutedEventArgs e)
+        {
+            ShoppingList ShopList = (ShoppingList)this.FindResource("ShoppingList");
+            int totPrice = ShopList.TotalPrice();
+            MessageBox.Show("Total pris: " + totPrice);
         }
     }
 }

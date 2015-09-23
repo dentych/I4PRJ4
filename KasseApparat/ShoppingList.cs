@@ -9,7 +9,11 @@ namespace KasseApparat
 {
     class ShoppingList : ObservableCollection<Product>
     {
-        public ShoppingList() { }
+        public ShoppingList()
+        {
+            Add(new Product("Beer", 12, "00", 6));
+            Add(new Product("Chips", 20, "01"));
+        }
 
         public void add(Product product)
         {
@@ -27,15 +31,15 @@ namespace KasseApparat
             }
         }
 
-        public void ChangeAmmount(string name, int newAmt)
+        public int TotalPrice()
         {
-            foreach (var product in this)
+            int tot = 0;
+            foreach (var Vare in this)
             {
-                if (product.Name == name)
-                {
-                    product.Ammount = newAmt;
-                }
-            } 
+                tot += (Vare.Price * Vare.Amount);
+            }
+            return tot;
         }
+
     }
 }
