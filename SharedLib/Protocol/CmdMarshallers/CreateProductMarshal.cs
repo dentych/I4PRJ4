@@ -14,8 +14,8 @@ namespace SharedLib.Protocol.CmdMarshallers
         {
             CreateProductCmd ccmd = (CreateProductCmd)cmd;
             // implementer xml gejl
+            
             /*
-
             var sb = new StringBuilder();
             using (XmlWriter writer = XmlWriter.Create(sb))
             {
@@ -28,7 +28,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                 writer.WriteEndElement(); //Slutter Root
             }
             return sb.ToString();
-            */
+         */   
             throw new NotImplementedException();
         }
 
