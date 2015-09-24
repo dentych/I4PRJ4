@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace CentralServer
+namespace SharedLib.Protocol
 {
     /*
      * An expandable buffer of XML documents.
