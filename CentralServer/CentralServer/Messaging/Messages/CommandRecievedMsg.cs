@@ -1,4 +1,4 @@
-﻿using CentralServer.Protocol;
+﻿using SharedLib.Protocol;
 
 namespace CentralServer.Messaging.Messages
 {

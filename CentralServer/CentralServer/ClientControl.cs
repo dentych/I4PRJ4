@@ -1,6 +1,7 @@
 ﻿using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
 using CentralServer.Server;
+using SharedLib.Protocol;
 
 namespace CentralServer
 {
@@ -19,6 +20,7 @@ namespace CentralServer
 
         private MainControl _main;
         private SocketConnection _connection;
+        private Protocol _protocol = new Protocol();
         private long _sessionId;
 
 
@@ -72,11 +74,18 @@ namespace CentralServer
 
         private void HandleDataRecieved(DataRecievedMsg msg)
         {
+            _protocol.AddData(msg.Data);
+            
+            foreach(var cmd in _protocol.GetCommands())
+            {
+                var cmsg = new CommandRecievedMsg(_sessionId, cmd);
+                _main.Send(MainControl.E_COMMAND_RECIEVED, cmsg);
+            }
         }
 
         private void HandleSendCommand(SendCommandMsg msg)
         {
-            var cmd = msg.Command;
+            _connection.Send(_protocol.Encode(msg.Command));
         }
     }
 }

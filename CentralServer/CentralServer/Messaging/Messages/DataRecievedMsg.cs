@@ -1,5 +1,4 @@
-﻿using CentralServer.Protocol;
-
+﻿
 namespace CentralServer.Messaging.Messages
 {
     class DataRecievedMsg : Message
