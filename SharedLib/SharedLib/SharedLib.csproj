@@ -58,6 +58,7 @@
     <Compile Include="Protocol\IProtocolMarshal.cs" />
     <Compile Include="Protocol\Protocol.cs" />
     <Compile Include="Protocol\ProtocolMarshallers\XmlMarshal.cs" />
+    <Compile Include="Protocol\XmlBuffer.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
