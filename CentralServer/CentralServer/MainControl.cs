@@ -1,5 +1,6 @@
 ﻿using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
+using SharedLib.Protocol.Commands;
 
 namespace CentralServer
 {
@@ -52,31 +53,31 @@ namespace CentralServer
             var client = _sessions.GetClient(msg.SessionId);
             var cmd = msg.Command;
 
-            switch (cmd.Name)
+            switch (cmd.CmdName)
             {
                 case "GetCatalogue":
-                    OnGetCatalogue(client, (GetCatalogue)cmd);
+                    OnGetCatalogue(client, (GetCatalogueCmd)cmd);
                     break;
                 case "CreateProduct":
-                    OnCreateProduct(client, (CreateProduct)cmd);
+                    OnCreateProduct(client, (CreateProductCmd)cmd);
                     break;
                 case "RegisterPurchase":
-                    OnRegisterPurchase(client, (RegisterPurchase)cmd);
+                    OnRegisterPurchase(client, (RegisterPurchaseCmd)cmd);
                     break;
             }
         }
 
-        private void OnGetCatalogue(ClientControl client, GetCatalogue cmd)
+        private void OnGetCatalogue(ClientControl client, GetCatalogueCmd cmd)
         {
 
         }
 
-        private void OnCreateProduct(ClientControl client, CreateProduct cmd)
+        private void OnCreateProduct(ClientControl client, CreateProductCmd cmd)
         {
 
         }
 
-        private void OnRegisterPurchase(ClientControl client, RegisterPurchase cmd)
+        private void OnRegisterPurchase(ClientControl client, RegisterPurchaseCmd cmd)
         {
 
         }
