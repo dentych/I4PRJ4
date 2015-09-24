@@ -14,7 +14,7 @@ namespace SharedLib.Protocol
             // 2. Initier ICmdMarshal
             // 3. Kald ICmdMarshal.Encode(cmd). Returner hvad den returnerer!
 
-            return null;
+            return "Not yet implementet";
         }
 
         public Command Decode(string data)
