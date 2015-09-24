@@ -1,7 +1,8 @@
-﻿
+﻿using CentralServer.Threading;
+
 namespace CentralServer.Messaging
 {
-    public abstract class MessageThread : Threading.ThreadBase
+    public abstract class MessageThread : ThreadBase
     {
         private readonly MessageQueue _queue;
 

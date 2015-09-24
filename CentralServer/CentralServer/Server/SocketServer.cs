@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
-using CentralServer.Threading;
 using System.Net;
+using CentralServer.Threading;
 using CentralServer.Messaging.Messages;
 
 namespace CentralServer.Server
