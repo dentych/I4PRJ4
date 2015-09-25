@@ -21,7 +21,7 @@ namespace CentralServer.Server
 
         public void Send(string data)
         {
-            byte[] bytes = Encoding.ASCII.GetBytes(data);
+            byte[] bytes = Encoding.Unicode.GetBytes(data);
         }
 
         public void StartRecieving()
