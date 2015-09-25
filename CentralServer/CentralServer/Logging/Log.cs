@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace CentralServer.Logging
 {
     class Log
@@ -12,7 +13,9 @@ namespace CentralServer.Logging
 
         public void Write(string text)
         {
-            _logger.Write(text);
+            DateTime now = DateTime.Now;
+            var s = String.Format("[{0}] {1}", now, text);
+            _logger.Write(s);
         }
     }
 }

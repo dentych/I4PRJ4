@@ -2,7 +2,7 @@
 
 namespace CentralServer.Logging.Loggers
 {
-    class ConsoleLog : ILogger
+    class ConsoleLogger : ILogger
     {
         public void Write(string text)
         {
