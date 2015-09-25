@@ -2,11 +2,13 @@
 using System.Net;
 using CentralServer.Threading;
 using CentralServer.Messaging.Messages;
+using CentralServer.Logging;
 
 namespace CentralServer.Server
 {
     class SocketServer : ThreadBase
     {
+        private Log _log;
         private MainControl _main;
 
         private Socket _listener = new Socket(
@@ -14,8 +16,9 @@ namespace CentralServer.Server
             SocketType.Stream, ProtocolType.Tcp);
 
 
-        public SocketServer(MainControl main)
+        public SocketServer(Log log, MainControl main)
         {
+            _log = log;
             _main = main;
         }
 
@@ -35,7 +38,7 @@ namespace CentralServer.Server
         private void SpawnClient(Socket handle)
         {
             var client = new ClientControl(_main);
-            var connection = new SocketConnection(handle, client);
+            var connection = new SocketConnection(_log, handle, client);
             var msg = new ConnectionEstablishedMsg(connection);
 
             client.Start();
