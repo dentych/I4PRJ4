@@ -21,22 +21,13 @@ namespace CentralServer.Server
 
         protected override void Run()
         {
-            Bind();
-            Listen();
-        }
-
-        private void Bind()
-        {
             IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
             IPAddress ipAddress = ipHostInfo.AddressList[0];
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
 
             _listener.Bind(localEndPoint);
             _listener.Listen(100);
-        }
 
-        private void Listen()
-        {
             while (true)
                 SpawnClient(_listener.Accept());
         }
