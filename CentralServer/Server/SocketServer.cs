@@ -10,16 +10,18 @@ namespace CentralServer.Server
     {
         private Log _log;
         private MainControl _main;
+        private int _port;
 
         private Socket _listener = new Socket(
             AddressFamily.InterNetwork,
             SocketType.Stream, ProtocolType.Tcp);
 
 
-        public SocketServer(Log log, MainControl main)
+        public SocketServer(Log log, MainControl main, int port)
         {
             _log = log;
             _main = main;
+            _port = port;
         }
 
         protected override void Run()
@@ -31,13 +33,18 @@ namespace CentralServer.Server
             _listener.Bind(localEndPoint);
             _listener.Listen(100);
 
+            _log.Write(this, "Listening on port " + _port);
+
             while (true)
+            {
                 SpawnClient(_listener.Accept());
+                _log.Write(this, "Connection accepted");
+            }
         }
 
         private void SpawnClient(Socket handle)
         {
-            var client = new ClientControl(_main);
+            var client = new ClientControl(_log, _main);
             var connection = new SocketConnection(_log, handle, client);
             var msg = new ConnectionEstablishedMsg(connection);
 

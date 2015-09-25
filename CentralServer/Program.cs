@@ -8,9 +8,11 @@ namespace CentralServer
     {
         static void Main(string[] args)
         {
+            var port = 11000;
+
             var log = new Log(new ConsoleLogger());
             var main = new MainControl(log);
-            var server = new SocketServer(log, main);
+            var server = new SocketServer(log, main, port);
 
             main.Start();
             server.Start();

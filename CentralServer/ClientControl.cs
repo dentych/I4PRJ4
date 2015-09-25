@@ -1,4 +1,5 @@
-﻿using CentralServer.Messaging;
+﻿using CentralServer.Logging;
+using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
 using CentralServer.Server;
 using SharedLib.Protocol;
@@ -18,14 +19,16 @@ namespace CentralServer
         // Main control requests to send a command to client
         public const long E_SEND_COMMAND = 5;
 
+        private Log _log;
         private MainControl _main;
         private SocketConnection _connection;
         private Protocol _protocol = new Protocol();
         private long _sessionId;
 
 
-        public ClientControl(MainControl main)
+        public ClientControl(Log log, MainControl main)
         {
+            _log = log;
             _main = main;
         }
 
@@ -34,20 +37,29 @@ namespace CentralServer
             switch (id)
             {
                 case E_CONNECTION_ESTABLISHED:
+                    _log.Write(this, "Recieved E_CONNECTION_ESTABLISHED");
                     HandleConnectionEstablished((ConnectionEstablishedMsg)msg);
                     break;
                 case E_CONNECTION_CLOSED:
+                    _log.Write(this, "Recieved E_CONNECTION_CLOSED");
                     HandleConnectionClosed();
                     break;
                 case E_WELCOME:
+                    _log.Write(this, "Recieved WELCOME");
                     HandleWelcome((WelcomeMsg)msg);
                     break;
                 case E_DATA_RECIEVED:
+                    _log.Write(this, "Recieved E_DATA_RECIEVED");
                     HandleDataRecieved((DataRecievedMsg)msg);
                     break;
                 case E_SEND_COMMAND:
+                    _log.Write(this, "Recieved E_SEND_COMMAND");
                     HandleSendCommand((SendCommandMsg)msg);
                     break;
+                default:
+                    _log.Write(this, "Recieved unknown event ID: " + id);
+                    break;
+
             }
         }
 
