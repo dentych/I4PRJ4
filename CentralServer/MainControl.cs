@@ -28,13 +28,19 @@ namespace CentralServer
             switch (id)
             {
                 case E_REGISTER_CLIENT:
+                    _log.Write(this, "Recieved E_REGISTER_CLIENT");
                     HandleRegisterClient((RegisterClientMsg)msg);
                     break;
                 case E_UNREGISTER_CLIENT:
+                    _log.Write(this, "Recieved E_UNREGISTER_CLIENT");
                     HandleUnregisterClient((UnregisterClientMsg)msg);
                     break;
                 case E_COMMAND_RECIEVED:
+                    _log.Write(this, "Recieved E_COMMAND_RECIEVED");
                     HandleCommandReieved((CommandRecievedMsg)msg);
+                    break;
+                default:
+                    _log.Write(this, "Recieved unknown event ID: " + id);
                     break;
             }
         }
@@ -57,18 +63,21 @@ namespace CentralServer
 
         private void HandleCommandReieved(CommandRecievedMsg msg)
         {
-            var client = _sessions.GetClient(msg.SessionId);
             var cmd = msg.Command;
+            var client = _sessions.GetClient(msg.SessionId);
 
             switch (cmd.CmdName)
             {
                 case "GetCatalogue":
+                    _log.Write(this, "Recieved command: GetCatalogue");
                     OnGetCatalogue(client, (GetCatalogueCmd)cmd);
                     break;
                 case "CreateProduct":
+                    _log.Write(this, "Recieved command: CreateProduct");
                     OnCreateProduct(client, (CreateProductCmd)cmd);
                     break;
                 case "RegisterPurchase":
+                    _log.Write(this, "Recieved command: RegisterPurchase");
                     OnRegisterPurchase(client, (RegisterPurchaseCmd)cmd);
                     break;
             }

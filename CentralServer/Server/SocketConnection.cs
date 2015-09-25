@@ -8,11 +8,11 @@ namespace CentralServer.Server
 {
     class SocketConnection
     {
-        private const int _bufferSize = 512;
-        private byte[] _buffer = new byte[_bufferSize];
         private Log _log;
         private ClientControl _client;
         private Socket _handle;
+        private const int _bufferSize = 512;
+        private byte[] _buffer = new byte[_bufferSize];
 
 
         public SocketConnection(Log log, Socket handle, ClientControl client)
@@ -23,6 +23,7 @@ namespace CentralServer.Server
 
         public void Send(string data)
         {
+            _log.Write(this, "Sending data (" + data.Length + " characters)");
             byte[] bytes = Encoding.Unicode.GetBytes(data);
         }
 
@@ -43,6 +44,8 @@ namespace CentralServer.Server
 
             if (bytesRead > 0)
             {
+                _log.Write(this, "Data recieved");
+
                 var data = Encoding.Unicode.GetString(_buffer, 0, bytesRead);
                 var msg = new DataRecievedMsg(data);
                 _client.Send(ClientControl.E_DATA_RECIEVED, msg);
@@ -51,6 +54,7 @@ namespace CentralServer.Server
             }
             else
             {
+                _log.Write(this, "Read failed (0 bytes)");
                 HandleConnectionClosed();
             }
         }
