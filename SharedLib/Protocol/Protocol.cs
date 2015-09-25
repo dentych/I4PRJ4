@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharedLib.Protocol.ProtocolMarshallers;
 
 namespace SharedLib.Protocol
 {
@@ -26,5 +27,14 @@ namespace SharedLib.Protocol
         {
             return _marshaller.Encode(cmd);
         }
+        public Command Decode(string data)
+        {
+            return _marshaller.Decode(data);
+        }
+
+
+
+
+
     }
 }

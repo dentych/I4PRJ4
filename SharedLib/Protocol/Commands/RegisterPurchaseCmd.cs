@@ -9,20 +9,16 @@ namespace SharedLib.Protocol.Commands
 {
     public class RegisterPurchaseCmd: Command
     {
-        private readonly int _purchaseId;
-        public readonly List<PurchasedProduct> Products; 
-        public int PurchaseId { get{ return _purchaseId;}}
-
-        RegisterPurchaseCmd(int purchaseId, List<PurchasedProduct> products )
-        {
-            _purchaseId = purchaseId;
-            Products = products;
-        }
+        public readonly List<PurchasedProduct> Products 
+            = new List<PurchasedProduct>();
 
         RegisterPurchaseCmd(Purchase purchase)
         {
-            _purchaseId = purchase.PurchaseId;
-            Products = purchase.Products;
+            foreach (var prd in purchase.Products)
+            {
+                var copy = new PurchasedProduct(prd);
+                Products.Add(copy);
+            }
         }
     
     }

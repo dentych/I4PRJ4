@@ -9,12 +9,6 @@ namespace SharedLib.Protocol.Commands
 {
     public class CatalogueDetailsCmd: Command
     {
-        public readonly List<Product> Products;
-
-        CatalogueDetailsCmd(List<Product> products )
-        {
-            Products = products;
-        }
-
+        public readonly List<Product> Products = new List<Product>();
     }
 }

@@ -18,6 +18,14 @@ namespace SharedLib.Models
         {
         }
 
+        public PurchasedProduct(PurchasedProduct pp)
+        {
+            Quantity = pp.Quantity;
+            Name = pp.Name;
+            ProductNumber = pp.ProductNumber;
+            UnitPrice = pp.UnitPrice;
+        }
+
         public PurchasedProduct(Product product, uint quantity)
         {
             Name = product.Name;
