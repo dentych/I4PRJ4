@@ -1,7 +1,8 @@
-﻿using CentralServer.Messaging.Messages;
-using System;
+﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using CentralServer.Logging;
+using CentralServer.Messaging.Messages;
 
 namespace CentralServer.Server
 {
@@ -9,11 +10,12 @@ namespace CentralServer.Server
     {
         private const int _bufferSize = 512;
         private byte[] _buffer = new byte[_bufferSize];
+        private Log _log;
         private ClientControl _client;
         private Socket _handle;
 
 
-        public SocketConnection(Socket handle, ClientControl client)
+        public SocketConnection(Log log, Socket handle, ClientControl client)
         {
             _handle = handle;
             _client = client;

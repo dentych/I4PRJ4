@@ -13,8 +13,7 @@ namespace CentralServer.Logging
 
         public void Write(string text)
         {
-            DateTime now = DateTime.Now;
-            var s = String.Format("[{0}] {1}", now, text);
+            var s = String.Format("[{0}] {1}", DateTime.Now, text);
             _logger.Write(s);
         }
     }

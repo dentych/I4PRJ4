@@ -1,4 +1,5 @@
-﻿using CentralServer.Messaging;
+﻿using CentralServer.Logging;
+using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
 using SharedLib.Protocol.Commands;
 
@@ -13,8 +14,14 @@ namespace CentralServer
         // A command was recieved from a known client
         public const long E_COMMAND_RECIEVED = 3;
 
+        private Log _log;
         private SessionControl _sessions = new SessionControl();
 
+
+        public MainControl(Log log)
+        {
+            _log = log;
+        }
 
         protected override void Dispatch(long id, Message msg)
         {

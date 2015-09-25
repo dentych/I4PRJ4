@@ -9,8 +9,8 @@ namespace CentralServer
         static void Main(string[] args)
         {
             var log = new Log(new ConsoleLogger());
-            var main = new MainControl();
-            var server = new SocketServer(main);
+            var main = new MainControl(log);
+            var server = new SocketServer(log, main);
 
             main.Start();
             server.Start();
