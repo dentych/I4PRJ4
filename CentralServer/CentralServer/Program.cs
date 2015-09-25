@@ -8,7 +8,7 @@ namespace CentralServer
     {
         static void Main(string[] args)
         {
-            var log = new Log(new ConsoleLog());
+            var log = new Log(new ConsoleLogger());
             var main = new MainControl();
             var server = new SocketServer(main);
 

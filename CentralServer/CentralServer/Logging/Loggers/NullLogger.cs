@@ -3,7 +3,7 @@ using System;
 
 namespace CentralServer.Logging.Loggers
 {
-    class NullLog : ILogger
+    class NullLogger : ILogger
     {
         public void Write(string text)
         {
