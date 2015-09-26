@@ -33,5 +33,20 @@ namespace KasseApparat
             int totPrice = ShopList.TotalPrice();
             MessageBox.Show("Total pris: " + totPrice);
         }
+
+        private void ListBoxAntal(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ListBoxVare(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ListBoxPris(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
