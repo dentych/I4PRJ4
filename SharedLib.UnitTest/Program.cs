@@ -14,7 +14,7 @@ namespace SharedLib.UnitTest
     {
         static void Main(string[] args)
         {
-            /*
+            
             // Opret produkt
             var product = new Product()
             {
@@ -30,7 +30,7 @@ namespace SharedLib.UnitTest
             CreateProductMarshal cmarshal = new CreateProductMarshal();
             
             Console.WriteLine(cmarshal.Encode(cmd));
-            */
+            
         }
     }
 }

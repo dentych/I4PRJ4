@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SharedLib">
+      <HintPath>..\SharedLib\obj\Debug\SharedLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -69,6 +72,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OpretProdukt\IProduct.cs" />
+    <Compile Include="OpretProdukt\IProtocol.cs" />
+    <Compile Include="OpretProdukt\ManagerFactory.cs" />
+    <Compile Include="OpretProdukt\PrjProductManager.cs" />
+    <Compile Include="OpretProdukt\PrjProtocol.cs" />
+    <Compile Include="OpretProdukt\Product.cs" />
+    <Compile Include="OpretProdukt\ProductManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
