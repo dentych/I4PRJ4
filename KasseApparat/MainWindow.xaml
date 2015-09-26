@@ -40,15 +40,25 @@
                 <Label Content="Ant." Grid.Row="0" Grid.Column="0"/>
                 <Label Content="Vare" Grid.Row="0" Grid.Column="1"/>
                 <Label Content="Pris" Grid.Row="0" Grid.Column="2"/>
-
-                <ListBox Grid.Row="1" Grid.Column="0" Margin="5,3,0,0" 
+                <!--
+                <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+                    <ListView.View>
+                        <GridView/>
+                    </ListView.View>
+                </ListView>
+                -->
+                <ListBox x:Name="AntalBox" SelectionChanged="ListBoxAntal" Grid.Row="1" Grid.Column="0" Margin="5,3,0,0" 
                          ItemsSource="{Binding}" DisplayMemberPath="Amount"/>
-                <ListBox Grid.Row="1" Grid.Column="1" Margin="-1,3,0,0" 
+                <ListBox x:Name="VareBox" SelectionChanged="ListBoxVare" Grid.Row="1" Grid.Column="1" Margin="-1,3,0,0" 
                          ItemsSource="{Binding}" DisplayMemberPath="Name"/>
-                <ListBox Grid.Row="1" Grid.Column="2" Margin="-1,3,5,0"
-                         ItemsSource="{Binding}" DisplayMemberPath="Price"/>
+                <ListBox x:Name="PrisBox" SelectionChanged="ListBoxPris" Grid.Row="1" Grid.Column="2" Margin="-1,3,5,0"
+                         ItemsSource="{Binding}" DisplayMemberPath="PriceForAllWares"/>
                 <Label Content="Total" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,5,0"/>
-                <ListBox Grid.Row="2" Grid.Column="2" Margin="-1,-1,5,0"/>
+                <Border Grid.Column="2" Grid.Row="2" Margin="-1,-1,5,0" BorderThickness="1" BorderBrush="DarkGray">
+                    <TextBlock x:Name="TextBlockTotalPrice" Text="{Binding TotalWarePrice}" Margin="5"/>
+                </Border>
+                
+                
             </Grid>
 
         </GroupBox>

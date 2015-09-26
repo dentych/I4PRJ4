@@ -9,6 +9,8 @@ namespace KasseApparat
 {
     class ShoppingList : ObservableCollection<Product>
     {
+        private int _totalPrice;
+
         public ShoppingList()
         {
             Add(new Product("Beer", 12, "00", 6));
@@ -31,15 +33,16 @@ namespace KasseApparat
             }
         }
 
-        public int TotalPrice()
+        public int TotalWarePrice
         {
-            int tot = 0;
-            foreach (var Vare in this)
-            {
-                tot += (Vare.Price * Vare.Amount);
-            }
-            return tot;
+            get { return this.Sum(Vare => (Vare.Price * Vare.Amount)); }
+            private set { _totalPrice = value; }
+            //return this.Sum(Vare => (Vare.Price*Vare.Amount));
         }
 
+        public int TotalPrice()
+        {
+            return this.Sum(Vare => (Vare.Price*Vare.Amount));
+        }
     }
 }

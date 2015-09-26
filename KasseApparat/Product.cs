@@ -10,6 +10,7 @@ namespace KasseApparat
     {
         private string _name;
         private int _price;
+        private int _pricePerAmount;
         private string _id;
         private int _amount;
 
@@ -36,6 +37,13 @@ namespace KasseApparat
             get { return _id; }
             set { _id = value; }
         }
+
+        public int PriceForAllWares
+        {
+            get { return _price * _amount; }
+            private set { _pricePerAmount = value; }
+        }
+
         public int Amount
         {
             get { return _amount; }
