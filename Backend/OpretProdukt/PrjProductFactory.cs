@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Backend.OpretProdukt
 {
-    public class PrjProductManager : ProductManager
+    public class PrjProductFactory : ProductFactory
     {
         protected IProduct _myProduct;
         protected IProtocol _myProtocol;
 
-        public PrjProductManager()
+        public PrjProductFactory()
         {
             _myProtocol = MakeProtocol();
         }
@@ -47,7 +47,7 @@ namespace Backend.OpretProdukt
         {
             var myProduct = new PrjProduct();
             myProduct.name = propDictionary["Name"];
-            myProduct.price = int.Parse(propDictionary["Price"]);
+            myProduct.price = decimal.Parse(propDictionary["Price"]);
             myProduct.productnumber = propDictionary["ProductNumber"];
             return myProduct;
         }

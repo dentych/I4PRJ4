@@ -17,7 +17,7 @@ namespace Backend.OpretProdukt.Unit.Test
         public void justattest()
         {
             var factory = new ManagerFactory();
-            var ProjectManger = factory.MakeProductManager("Project");
+            var ProjectManger = factory.MakeProductFactory("Project");
             ProjectManger.AddProduct(new Dictionary<string, string>
             {
                 {"Name", "Bananer"},
