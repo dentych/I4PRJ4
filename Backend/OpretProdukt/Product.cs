@@ -8,17 +8,29 @@
 
 using System.Collections.Generic;
 using System.Globalization;
-using System.Windows.Markup;
 using SharedLib.Models;
 
 namespace Backend.OpretProdukt
 {
     public class PrjProduct : Product, IProduct
     {
-        public string name { set { Name = value; } get { return name; } }
-        public string productnumber { set { ProductNumber = value; } get { return productnumber; } }
-        public decimal price { set { Price = value; } get { return price; } }
+        public string name
+        {
+            set { Name = value; }
+            get { return name; }
+        }
 
+        public string productnumber
+        {
+            set { ProductNumber = value; }
+            get { return productnumber; }
+        }
+
+        public decimal price
+        {
+            set { Price = value; }
+            get { return price; }
+        }
 
 
         public Dictionary<string, string> GetData()

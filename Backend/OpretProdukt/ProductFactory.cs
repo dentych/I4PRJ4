@@ -10,17 +10,14 @@ using System.Collections.Generic;
 
 namespace Backend.OpretProdukt
 {
-    public abstract class ProductManager
+    public abstract class ProductFactory
     {
-        abstract public IProduct myProduct { get; set; }
-        abstract public IProtocol myProtocol { get; set; }
+        public abstract IProduct myProduct { get; set; }
+        public abstract IProtocol myProtocol { get; set; }
 
         public abstract bool AddProduct(Dictionary<string, string> propDictionary);
-
         protected abstract string EncodeProduct();
-
         protected abstract IProduct MakeProduct(Dictionary<string, string> propDictionary);
-
         protected abstract IProtocol MakeProtocol();
     }
 } //end ProductManager

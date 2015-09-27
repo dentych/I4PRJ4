@@ -6,9 +6,7 @@
 //  Original author: benla
 ///////////////////////////////////////////////////////////
 
-using System;
 using System.Collections.Generic;
-using System.Windows.Documents;
 
 namespace Backend.OpretProdukt
 {
@@ -20,13 +18,21 @@ namespace Backend.OpretProdukt
         public PrjProductManager()
         {
             _myProtocol = MakeProtocol();
-
         }
 
-        public override IProduct myProduct { get { return _myProduct; } set { _myProduct = value; } }
-        public override IProtocol myProtocol { get { return _myProtocol; } set { _myProtocol = value; } }
+        public override IProduct myProduct
+        {
+            get { return _myProduct; }
+            set { _myProduct = value; }
+        }
 
-        public override bool AddProduct(Dictionary<string,string> propDictionary)
+        public override IProtocol myProtocol
+        {
+            get { return _myProtocol; }
+            set { _myProtocol = value; }
+        }
+
+        public override bool AddProduct(Dictionary<string, string> propDictionary)
         {
             _myProduct = MakeProduct(propDictionary);
             return true;
@@ -34,12 +40,11 @@ namespace Backend.OpretProdukt
 
         protected override string EncodeProduct()
         {
-
             return _myProtocol.GetCmdString(_myProduct);
         }
 
-        protected override sealed IProduct MakeProduct(Dictionary<string, string> propDictionary){
-
+        protected override sealed IProduct MakeProduct(Dictionary<string, string> propDictionary)
+        {
             var myProduct = new PrjProduct();
             myProduct.name = propDictionary["Name"];
             myProduct.price = int.Parse(propDictionary["Price"]);
@@ -47,9 +52,9 @@ namespace Backend.OpretProdukt
             return myProduct;
         }
 
-        protected override sealed IProtocol MakeProtocol(){
+        protected override sealed IProtocol MakeProtocol()
+        {
             return new PrjProtocol();
         }
-
     }
-}//end PrjProductManager
+} //end PrjProductManager

@@ -10,6 +10,6 @@ namespace Backend.OpretProdukt
 {
     public interface IProtocol  {
 
-        string GetCmdString(IProduct IProduct);
+        string GetCmdString(IProduct product);
     }
 }//end IProtocol

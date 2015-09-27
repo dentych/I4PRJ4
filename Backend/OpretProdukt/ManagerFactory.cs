@@ -10,12 +10,12 @@ namespace Backend.OpretProdukt
 {
     public class ManagerFactory {
 
-        public ProductManager MakeProductManager(string type){
+        public ProductFactory MakeProductFactory(string type){
 
             switch (type)
             {
                 case "Project":
-                    return new PrjProductManager();
+                    return new PrjProductFactory();
                 default:
                     return null;
 
