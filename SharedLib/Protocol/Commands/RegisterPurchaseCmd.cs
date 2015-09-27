@@ -12,7 +12,7 @@ namespace SharedLib.Protocol.Commands
         public readonly List<PurchasedProduct> Products 
             = new List<PurchasedProduct>();
 
-        RegisterPurchaseCmd(Purchase purchase)
+        public RegisterPurchaseCmd(Purchase purchase)
         {
             foreach (var prd in purchase.Products)
             {

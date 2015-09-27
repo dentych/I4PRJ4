@@ -10,5 +10,23 @@ namespace SharedLib.Protocol.Commands
     public class CatalogueDetailsCmd: Command
     {
         public readonly List<Product> Products = new List<Product>();
+
+        public CatalogueDetailsCmd()
+        {
+        }
+
+        public CatalogueDetailsCmd(List<Product> products )
+        {
+            foreach (var prd in products)
+            {
+                var copy = new Product(prd);
+                Products.Add(copy);
+            }
+        }
     }
+
+        
+
+
+
 }

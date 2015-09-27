@@ -18,7 +18,7 @@ namespace SharedLib.Protocol.CmdMarshallers
             var ccmd = (CreateProductCmd)cmd;
 
             // Create XML
-            var sb = new StringBuilder(); // opret stringbuilder til at indføre xml data
+            var sb = new StringBuilder(); // Create stringbuilder to collect xml data
             using (XmlWriter writer = XmlWriter.Create(sb))
             {
                 writer.WriteStartElement("Command"); // Root
