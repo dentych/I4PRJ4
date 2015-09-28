@@ -1,0 +1,36 @@
+﻿<Window x:Class="Backend.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Backend"
+        mc:Ignorable="d"
+        Title="Administrationssystem - Opret produkt" Height="800" Width="1500" Background="#FFF0F0F0">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10" Grid.Row="1">
+            <Label Content="Opret produkt" Padding="0" FontSize="12pt"/>
+            <Label Content="Produktnavn"/>
+            <TextBox Name="textboxName"/>
+            <Label Content="Stregkode"/>
+            <TextBox Name="textboxBarcode"/>
+            <Label Content="Pris"/>
+            <TextBox Name="textboxPrice"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+            <Label Content="Hovedmenu" Padding="0" FontSize="12pt"/>
+            <Button Content="_Opret produkt" FontSize="10pt" Height="40" Margin="0, 10"/>
+            <Button Content="_Rediger produkt" FontSize="10pt" Height="40" Margin="0, 10"/>
+            <Button Content="_Slet produkt" FontSize="10pt" Height="40" Margin="0, 10"/>
+            <Button Content="_Luk administrationssystem" FontSize="10pt" Height="40" Margin="0, 10"/>
+        </StackPanel>
+    </Grid>
+</Window>
