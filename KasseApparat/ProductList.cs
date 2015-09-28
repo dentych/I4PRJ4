@@ -5,13 +5,19 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharedLib.Models;
 
 namespace KasseApparat
 {
     class ProductList : ObservableCollection<Product>
     {
+        private readonly IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
+
         public ProductList() { }
 
-        public void Update() { }
+        public void Update()
+        {
+            _db.GetProducts(this);
+        }
     }
 }
