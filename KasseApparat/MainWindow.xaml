@@ -42,11 +42,11 @@
                 <Label Content="Pris" Grid.Row="0" Grid.Column="2"/>
 
                 <ListBox Grid.Row="1" Grid.Column="0" Margin="5,3,0,0" 
-                         ItemsSource="{Binding}" DisplayMemberPath="Amount"/>
+                         ItemsSource="{Binding}" DisplayMemberPath="Quantity"/>
                 <ListBox Grid.Row="1" Grid.Column="1" Margin="-1,3,0,0" 
                          ItemsSource="{Binding}" DisplayMemberPath="Name"/>
                 <ListBox Grid.Row="1" Grid.Column="2" Margin="-1,3,5,0"
-                         ItemsSource="{Binding}" DisplayMemberPath="Price"/>
+                         ItemsSource="{Binding}" DisplayMemberPath="UnitPrice"/>
                 <Label Content="Total" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,5,0"/>
                 <ListBox Grid.Row="2" Grid.Column="2" Margin="-1,-1,5,0"/>
             </Grid>
