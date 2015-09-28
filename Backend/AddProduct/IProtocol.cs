@@ -13,8 +13,10 @@ using System.IO;
 using SharedLib.Models;
 
 
-
-public interface IProtocol  {
-
-	string ProductXMLParser(Product toParse);
-}//end IProtocol
+namespace Backend.AddProduct
+{
+    public interface IProtocol
+    {
+        string ProductXMLParser(Product toParse);
+    }//end IProtocol
+}

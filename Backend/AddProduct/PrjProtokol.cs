@@ -14,15 +14,16 @@ using SharedLib.Protocol;
 using SharedLib.Models;
 
 
+namespace Backend.AddProduct
+{
+    public class PrjProtokol : IProtocol
+    {
+        public string ProductXMLParser(Product toParse)
+        {
 
-public class PrjProtokol : IProtocol {
+            // something that returns a string;
+            return " ";
+        }
 
-	/// 
-	/// <param name="toParse"></param>
-	public string ProductXMLParser(Product toParse){
-
-        // something that returns a string;
-        return " ";
-	}
-
-}//end PrjProtokol
+    }//end PrjProtokol
+}

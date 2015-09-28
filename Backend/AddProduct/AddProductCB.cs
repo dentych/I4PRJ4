@@ -12,29 +12,46 @@ using System.Text;
 using System.IO;
 using SharedLib.Models;
 
+namespace Backend.AddProduct {
+    public class AddProductCB : IAddProduct {
+        IProtocol _protocol;
+        AddProductWindow _window;
+        string _error;
 
-public class AddProductCB : IAddProduct {
-    IProtocol _protocol;
-    AddProductWindow _window;
-
-    public AddProductCB(IProtocol protocol, AddProductWindow window){
-        _protocol = protocol;
-        _window = window;
-	}
+        public AddProductCB(IProtocol protocol, AddProductWindow window) {
+            _protocol = protocol;
+            _window = window;
+            LastError = null;
+        }
 
 
-	public bool CreateProduct(){
+        public bool CreateProduct() {
 
-		var myProduct = new Product;
-        myProduct.Name = " ";
-        myProduct.Price = 0;
-        myProduct.ProductNumber = " ";
+            var product = new Product();
+            product.Name = _window.textboxName.Text;
+            product.ProductNumber = _window.textboxBarcode.Text;
 
-        string cmdtoSend =_protocol.ProductXMLParser(myProduct);
+            // Convert textboxPrice to decimal number
+            try {
+                product.Price = decimal.Parse(_window.textboxPrice.Text);
+            }
+            catch (Exception e)
+            {
+                LastError = "Error converting price to number";
+            }
 
-        /* SOME SHIT ON SERVER */
+            string cmdtoSend = _protocol.ProductXMLParser(product);
 
-        return true;
-    }
+            /* SOME SHIT ON SERVER */
 
-}//end AddProductCB
+            return true;
+        }
+
+        public string LastError
+        {
+            private set { _error = value; }
+            get { return _error; }
+        }
+
+    }//end AddProductCB
+}

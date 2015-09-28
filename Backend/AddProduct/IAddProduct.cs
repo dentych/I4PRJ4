@@ -12,8 +12,12 @@ using System.Text;
 using System.IO;
 
 
+namespace Backend.AddProduct
+{
+    public interface IAddProduct
+    {
+        bool CreateProduct();
 
-public interface IAddProduct  {
-
-	bool CreateProduct();
-}//end IAddProduct
+        string LastError { get; }
+    }//end IAddProduct
+}
