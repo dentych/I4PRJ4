@@ -57,9 +57,9 @@
     <Compile Include="Messaging\Messages\CommandRecievedMsg.cs" />
     <Compile Include="Messaging\Messages\ConnectionEstablishedMsg.cs" />
     <Compile Include="Messaging\Messages\DataRecievedMsg.cs" />
-    <Compile Include="Messaging\Messages\RegisterClientMsg.cs" />
+    <Compile Include="Messaging\Messages\StartSessionMsg.cs" />
     <Compile Include="Messaging\Messages\SendCommandMsg.cs" />
-    <Compile Include="Messaging\Messages\UnregisterClientMsg.cs" />
+    <Compile Include="Messaging\Messages\StopSessionMsg.cs" />
     <Compile Include="Messaging\Messages\WelcomeMsg.cs" />
     <Compile Include="Messaging\MessageThread.cs" />
     <Compile Include="Program.cs" />
