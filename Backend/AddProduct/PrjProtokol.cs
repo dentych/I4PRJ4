@@ -8,11 +8,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using SharedLib.Protocol;
 using SharedLib.Models;
-
+using SharedLib.Protocol.Commands;
+using SharedLib.Protocol;
 
 namespace Backend.AddProduct
 {
@@ -20,9 +18,10 @@ namespace Backend.AddProduct
     {
         public string ProductXMLParser(Product toParse)
         {
+            var createProductCmd = new CreateProductCmd(toParse);
+            var protocol = new Protocol();
 
-            // something that returns a string;
-            return " ";
+            return protocol.Encode(createProductCmd);
         }
 
     }//end PrjProtokol
