@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Backend.AddProduct;
+using Backend.Communication;
+using SharedLib.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +22,17 @@ namespace Backend
     /// </summary>
     public partial class AddProductWindow : Window
     {
+        private IAddProduct backend;
+
         public AddProductWindow()
         {
             InitializeComponent();
+            backend = new AddProductCB(new PrjProtokol(), this);
+        }
+
+        private void SaveProduct(object sender, RoutedEventArgs e)
+        {
+            backend.CreateProduct();
         }
     }
 }
