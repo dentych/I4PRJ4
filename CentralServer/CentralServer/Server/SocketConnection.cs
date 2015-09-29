@@ -9,22 +9,30 @@ namespace CentralServer.Server
     class SocketConnection
     {
         private Log _log;
-        private ClientControl _client;
         private Socket _handle;
         private const int _bufferSize = 512;
         private byte[] _buffer = new byte[_bufferSize];
 
+        // Delegates
+        public delegate void DataRecievedHandler(string data);
+        public delegate void DisconnectedHandler();
 
-        public SocketConnection(Log log, Socket handle, ClientControl client)
+        // Events
+        public event DataRecievedHandler OnDataRecieved;
+        public event DisconnectedHandler OnDisconnect;
+
+
+        public SocketConnection(Log log, Socket handle)
         {
+            _log = log;
             _handle = handle;
-            _client = client;
         }
 
         public void Send(string data)
         {
             _log.Write(this, "Sending data (" + data.Length + " characters)");
             byte[] bytes = Encoding.Unicode.GetBytes(data);
+            _handle.Send(bytes);
         }
 
         public void StartRecieving()
@@ -40,16 +48,18 @@ namespace CentralServer.Server
 
         private void ReadCallback(IAsyncResult ar)
         {
-            int bytesRead = _handle.EndReceive(ar);
+            int bytesRead;
+
+            try
+            {
+                bytesRead = _handle.EndReceive(ar);
+            } catch (SocketException){
+                bytesRead = 0;
+            }
 
             if (bytesRead > 0)
             {
-                _log.Write(this, "Data recieved");
-
-                var data = Encoding.Unicode.GetString(_buffer, 0, bytesRead);
-                var msg = new DataRecievedMsg(data);
-                _client.Send(ClientControl.E_DATA_RECIEVED, msg);
-
+                HandleDataRecieved(_buffer, bytesRead);
                 BeginAsyncRead();
             }
             else
@@ -61,8 +71,16 @@ namespace CentralServer.Server
 
         private void HandleConnectionClosed()
         {
+            _log.Write(this, "Closing connection");
             _handle.Close();
-            _client.Send(ClientControl.E_CONNECTION_CLOSED);
+            OnDisconnect?.Invoke();
+        }
+
+        private void HandleDataRecieved(byte[] data, int length)
+        {
+            var dataStr = Encoding.Unicode.GetString(_buffer, 0, length);
+            _log.Write(this, "Data recieved: "+ dataStr);
+            OnDataRecieved?.Invoke(dataStr);
         }
     }
 }

@@ -7,12 +7,12 @@ namespace CentralServer.Messaging.Messages
      * Sender: SocketServer
      * Reciever: Controller
      */
-    class RegisterClientMsg : Message
+    class StartSessionMsg : Message
     {
         private ClientControl _client;
         public ClientControl Client { get { return _client; } }
 
-        public RegisterClientMsg(ClientControl client)
+        public StartSessionMsg(ClientControl client)
         {
             _client = client;
         }

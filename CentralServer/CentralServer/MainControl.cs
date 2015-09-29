@@ -8,9 +8,9 @@ namespace CentralServer
     class MainControl : MessageThread
     {
         // A new client requests to be registered
-        public const long E_REGISTER_CLIENT = 1;
+        public const long E_START_SESSION = 1;
         // A known clients requests to be unregistered
-        public const long E_UNREGISTER_CLIENT = 2;
+        public const long E_STOP_SESSION = 2;
         // A command was recieved from a known client
         public const long E_COMMAND_RECIEVED = 3;
 
@@ -27,13 +27,13 @@ namespace CentralServer
         {
             switch (id)
             {
-                case E_REGISTER_CLIENT:
-                    _log.Write(this, "Recieved E_REGISTER_CLIENT");
-                    HandleRegisterClient((RegisterClientMsg)msg);
+                case E_START_SESSION:
+                    _log.Write(this, "Recieved E_START_SESSION");
+                    HandleStartSession((StartSessionMsg)msg);
                     break;
-                case E_UNREGISTER_CLIENT:
-                    _log.Write(this, "Recieved E_UNREGISTER_CLIENT");
-                    HandleUnregisterClient((UnregisterClientMsg)msg);
+                case E_STOP_SESSION:
+                    _log.Write(this, "Recieved E_STOP_SESSION");
+                    HandleStopSession((StopSessionMsg)msg);
                     break;
                 case E_COMMAND_RECIEVED:
                     _log.Write(this, "Recieved E_COMMAND_RECIEVED");
@@ -45,15 +45,17 @@ namespace CentralServer
             }
         }
 
-        private void HandleRegisterClient(RegisterClientMsg msg)
+        private void HandleStartSession(StartSessionMsg msg)
         {
             var client = msg.Client;
             var sessionId = _sessions.Register(client);
             var response = new WelcomeMsg(sessionId);
             client.Send(ClientControl.E_WELCOME, response);
+
+            _log.Write(this, "New client registered. Session ID: " + sessionId);
         }
 
-        private void HandleUnregisterClient(UnregisterClientMsg msg)
+        private void HandleStopSession(StopSessionMsg msg)
         {
             _sessions.Unregister(msg.SessionId);
         }

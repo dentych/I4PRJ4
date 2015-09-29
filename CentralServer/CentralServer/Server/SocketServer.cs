@@ -14,7 +14,8 @@ namespace CentralServer.Server
 
         private Socket _listener = new Socket(
             AddressFamily.InterNetwork,
-            SocketType.Stream, ProtocolType.Tcp);
+            SocketType.Stream,
+            ProtocolType.Tcp);
 
 
         public SocketServer(Log log, MainControl main, int port)
@@ -33,7 +34,7 @@ namespace CentralServer.Server
             _listener.Bind(localEndPoint);
             _listener.Listen(100);
 
-            _log.Write(this, "Listening on port " + _port);
+            _log.Write(this, "Listening on " + localEndPoint);
 
             while (true)
             {
@@ -44,9 +45,9 @@ namespace CentralServer.Server
 
         private void SpawnClient(Socket handle)
         {
-            var client = new ClientControl(_log, _main);
-            var connection = new SocketConnection(_log, handle, client);
-            var msg = new ConnectionEstablishedMsg(connection);
+            var connection = new SocketConnection(_log, handle);
+            var client = new ClientControl(_log, connection, _main);
+            var msg = new ConnectionEstablishedMsg();
 
             client.Start();
             client.Send(ClientControl.E_CONNECTION_ESTABLISHED, msg);
