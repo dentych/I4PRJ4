@@ -32,7 +32,16 @@ namespace Backend
 
         private void SaveProduct(object sender, RoutedEventArgs e)
         {
-            backend.CreateProduct();
+            if (backend.CreateProduct())
+            {
+                MessageBox.Show("Produktet er oprettet!");
+            }
+            else
+            {
+                MessageBox.Show("Der skete en fejl under oprettelse af produktet!");
+            }
+
+            Close();
         }
     }
 }
