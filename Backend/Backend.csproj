@@ -73,6 +73,7 @@
     <Compile Include="AddProduct\IAddProduct.cs" />
     <Compile Include="AddProduct\IProtocol.cs" />
     <Compile Include="AddProduct\PrjProtokol.cs" />
+    <Compile Include="AddProduct\ProductGenerator.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

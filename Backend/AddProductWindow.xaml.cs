@@ -27,7 +27,7 @@ namespace Backend
         public AddProductWindow()
         {
             InitializeComponent();
-            backend = new AddProductCB(new PrjProtokol(), this);
+            backend = new AddProductCB(new PrjProtokol(), this, new Client("127.0.0.1",9000));
         }
 
         private void SaveProduct(object sender, RoutedEventArgs e)

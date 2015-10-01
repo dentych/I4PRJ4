@@ -8,34 +8,43 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.IO;
 using SharedLib.Models;
 using Backend.Communication;
 
 namespace Backend.AddProduct {
-    public class AddProductCB : IAddProduct {
+    public class AddProductCB : IAddProduct
+    {
         IProtocol _protocol;
-        AddProductWindow _window;
+        internal AddProductWindow _window;
         string _error;
 
         private string ip = "127.0.0.1";
         private int port = 9000;
+        public IProductGenerator _productGenerator;
+        private IClient _client;
 
-        public AddProductCB(IProtocol protocol, AddProductWindow window) {
+        public AddProductCB(IProtocol protocol, AddProductWindow window, IClient client) {
             _protocol = protocol;
             _window = window;
             LastError = null;
-        }
+            _client = client;
+            _productGenerator = new ProductGenerator(this);
 
+        }
 
         public bool CreateProduct() {
 
             // Create the product
-            var product = GenerateProduct();
+            var product = _productGenerator.GenerateProduct();
 
-            if (product == null)
+
+
+            if (product.Name == "" || product.Price <= 0 || product.ProductNumber == "")
             {
+                LastError = "Enter correct product details.";
                 return false;
             }
 
@@ -43,32 +52,16 @@ namespace Backend.AddProduct {
             string cmdtoSend = _protocol.ProductXMLParser(product);
 
             // New client to use to send data to central server
-            var client = new Client(ip, port);
+          
 
             // Send the XML data
-            client.Send(cmdtoSend);
+            if (!_client.Send(cmdtoSend))
+            {
+                LastError = "Connection Error";
+                return false;
+            }
 
             return true;
-        }
-
-        private Product GenerateProduct()
-        {
-            var product = new Product();
-            product.Name = _window.textboxName.Text;
-            product.ProductNumber = _window.textboxBarcode.Text;
-
-            // Convert textboxPrice to decimal number
-            try
-            {
-                product.Price = decimal.Parse(_window.textboxPrice.Text);
-            }
-            catch (Exception e)
-            {
-                LastError = "Error converting price to number";
-                return null;
-            }
-
-            return product;
         }
 
         public string LastError

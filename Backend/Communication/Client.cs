@@ -9,6 +9,7 @@ namespace Backend.Communication
     {
         public string Ip { get; private set; }
         public int Port { get; private set; }
+        public TcpClient client;
 
         public Client(string ip, int port)
         {
@@ -18,7 +19,7 @@ namespace Backend.Communication
 
         public bool Send(string data)
         {
-            var client = Connect();
+            client = Connect();
             var stream = client.GetStream();
 
             try {
@@ -43,9 +44,7 @@ namespace Backend.Communication
 
         private TcpClient Connect()
         {
-            var client = new TcpClient(Ip, Port);
-
-            return client;
+            return new TcpClient(Ip, Port);
         }
     }
 }
