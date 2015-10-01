@@ -9,9 +9,10 @@ using SharedLib.Models;
 
 namespace KasseApparat
 {
-    class ProductList : ObservableCollection<Product>
+    public class ProductList : ObservableCollection<Product>
     {
-        private readonly IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
+        private IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
+        public IDBcontrol Db { set { _db = value; }}
 
         public ProductList() { }
 
