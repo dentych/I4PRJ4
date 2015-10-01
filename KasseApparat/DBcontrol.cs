@@ -35,11 +35,25 @@ namespace KasseApparat
             p3.ProductId = 2;
             p3.ProductNumber = "2";
 
+            Product p4 = new Product();
+            p4.Name = "Rum";
+            p4.Price = 99;
+            p4.ProductId = 3;
+            p4.ProductNumber = "3";
+
+            Product p5 = new Product();
+            p5.Name = "Morgan og Cola";
+            p5.Price = 49;
+            p5.ProductId = 4;
+            p5.ProductNumber = "4";
+
             List<Product> PL = new List<Product>();
 
             PL.Add(p1);
             PL.Add(p2);
             PL.Add(p3);
+            PL.Add(p4);
+            PL.Add(p5);
 
             return PL;
         }

@@ -29,9 +29,8 @@ namespace KasseApparat
 
         private void ButtonCash_Click(object sender, RoutedEventArgs e)
         {
-            ShoppingList ShopList = (ShoppingList)this.FindResource("ShoppingList");
-            int totPrice = ShopList.TotalPrice();
-            MessageBox.Show("Total pris: " + totPrice);
+            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
+            MessageBox.Show("Total pris: " + shopList.TotalPrice());
         }
     }
 }
