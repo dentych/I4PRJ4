@@ -8,12 +8,12 @@ using SharedLib.Models;
 
 namespace KasseApparat
 {
-    interface IDBcontrol
+    public interface IDBcontrol
     {
         List<Product> GetProducts();
     }
 
-    class FakeDBcontrol : IDBcontrol
+    public class FakeDBcontrol : IDBcontrol
     {
         public List<Product> GetProducts()
         {
