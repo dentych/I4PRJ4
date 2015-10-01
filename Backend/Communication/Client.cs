@@ -30,12 +30,15 @@ namespace Backend.Communication
         public bool Send(string data)
         {
             var client = Connect();
+            if (client == null)
+            {
+                return false;
+            }
             var stream = client.GetStream();
 
             try
             {
                 var toSend = Encoding.ASCII.GetBytes(data);
-
                 stream.Write(toSend, 0, toSend.Length);
             }
 
@@ -54,10 +57,18 @@ namespace Backend.Communication
 
         private TcpClient Connect()
         {
-            
-            var client = new TcpClient(Ip, Port);
 
-            return client;
+            try
+            {
+                var client = new TcpClient(Ip, Port);
+
+                return client;
+            }
+            catch (System.Net.Sockets.SocketException)
+            {
+                return null;
+            }
+           
         }
     }
 }

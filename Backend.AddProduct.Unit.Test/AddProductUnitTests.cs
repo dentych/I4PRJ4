@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
+using Backend.AddProduct;
 using Backend.Communication;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,7 +11,7 @@ using SharedLib.Models;
 using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
 
-namespace Backend.AddProduct.Unit.Test
+namespace Backend.Unit.Test
 {
     [TestFixture]
     public class AddProductCBTest
