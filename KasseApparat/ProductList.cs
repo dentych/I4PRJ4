@@ -17,7 +17,8 @@ namespace KasseApparat
 
         public void Update()
         {
-            _db.GetProducts(this);
+            List<Product> pl = _db.GetProducts();
+            foreach (var prod in pl) Add(prod);
         }
     }
 }
