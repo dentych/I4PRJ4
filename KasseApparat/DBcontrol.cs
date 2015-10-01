@@ -10,12 +10,12 @@ namespace KasseApparat
 {
     interface IDBcontrol
     {
-        void GetProducts(ProductList sl);
+        List<Product> GetProducts();
     }
 
     class FakeDBcontrol : IDBcontrol
     {
-        public void GetProducts(ProductList pl)
+        public List<Product> GetProducts()
         {
             Product p1 = new Product();
             p1.Name = "Beer";
@@ -35,16 +35,23 @@ namespace KasseApparat
             p3.ProductId = 2;
             p3.ProductNumber = "2";
 
-            pl.Add(p1);
-            pl.Add(p2);
-            pl.Add(p3);
+            List<Product> PL = new List<Product>();
+
+            PL.Add(p1);
+            PL.Add(p2);
+            PL.Add(p3);
+
+            return PL;
         }
     }
 
     class DBcontrol : IDBcontrol
     {
-        public void GetProducts(ProductList pl)
+        public List<Product> GetProducts()
         {
+
+            List<Product> PL = new List<Product>();
+            return PL;
         }
     }
 
