@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
 
 namespace Backend.Communication
@@ -12,6 +13,16 @@ namespace Backend.Communication
 
         public Client(string ip, int port)
         {
+            if (port < 1 || port > 65535)
+            {
+                throw new ArgumentException("Bad port");
+            }
+            IPAddress address;
+            if (!IPAddress.TryParse(ip, out address))
+            {
+                throw new ArgumentException("Bad IP");
+            }
+
             Ip = ip;
             Port = port;
         }
@@ -19,17 +30,20 @@ namespace Backend.Communication
         public bool Send(string data)
         {
             var client = Connect();
+            if (client == null)
+            {
+                return false;
+            }
             var stream = client.GetStream();
 
-            try {
+            try
+            {
                 var toSend = Encoding.ASCII.GetBytes(data);
-
                 stream.Write(toSend, 0, toSend.Length);
             }
+
             catch(Exception e)
             {
-                // Lel. Later we maek error page
-                Console.WriteLine(e.Message);
                 return false;
             }
             finally
@@ -43,9 +57,18 @@ namespace Backend.Communication
 
         private TcpClient Connect()
         {
-            var client = new TcpClient(Ip, Port);
 
-            return client;
+            try
+            {
+                var client = new TcpClient(Ip, Port);
+
+                return client;
+            }
+            catch (System.Net.Sockets.SocketException)
+            {
+                return null;
+            }
+           
         }
     }
 }
