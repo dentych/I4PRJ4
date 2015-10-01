@@ -28,26 +28,9 @@ namespace KasseApparat
             Add(new PurchasedProduct(p2, 1));
         }
 
-        public void Remove(string name)
-        {
-            foreach (var product in this)
-            {
-                if (product.Name == name)
-                {
-                    Remove(product);
-                }
-            }
-        }
-
         public int TotalPrice()
         {
-            int tot = 0;
-            foreach (var Vare in this)
-            {
-                tot += (int)Vare.TotalPrice;
-            }
-            return tot;
+            return this.Sum(vare => (int) vare.TotalPrice);
         }
-
     }
 }
