@@ -171,6 +171,14 @@ namespace Backend.AddProduct.Unit.Test
             _uut = new Client("93.184.216.34", -1);
         }
 
+        [Test]
+        public void LOL_SetPortLow_ExpectException() // I CANNOT MAKEN SHIT FAIL
+        {
+            _uut = new Client("93.184.216.34", 9000);
+            Assert.False(_uut.Send("\n\r"));
+
+        }
+
 
     }
 }

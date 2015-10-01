@@ -42,7 +42,7 @@ namespace Backend.AddProduct {
 
 
 
-            if (product.Name == "" || product.Price <= 0 || product.ProductNumber == "")
+            if (product.Name == "" || product.Price < 0 || product.ProductNumber == "")
             {
                 LastError = "Enter correct product details.";
                 return false;
