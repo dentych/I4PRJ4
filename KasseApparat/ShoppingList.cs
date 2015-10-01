@@ -4,22 +4,28 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharedLib.Models;
 
 namespace KasseApparat
 {
-    class ShoppingList : ObservableCollection<Product>
+    class ShoppingList : ObservableCollection<PurchasedProduct>
     {
-        private int _totalPrice;
-
         public ShoppingList()
         {
-            Add(new Product("Beer", 12, "00", 6));
-            Add(new Product("Chips", 20, "01"));
-        }
+            Product p1 = new Product();
+            p1.Name = "Beer";
+            p1.Price = 12;
+            p1.ProductId = 0;
+            p1.ProductNumber = "0";
 
-        public void add(Product product)
-        {
-            Add(product);
+            Product p2 = new Product();
+            p2.Name = "Chips";
+            p2.Price = 20;
+            p2.ProductId = 1;
+            p2.ProductNumber = "1";
+
+            Add(new PurchasedProduct(p1, 6));
+            Add(new PurchasedProduct(p2, 1));
         }
 
         public void Remove(string name)
@@ -33,16 +39,14 @@ namespace KasseApparat
             }
         }
 
-        public int TotalWarePrice
+        public int TotalWarePrice()
         {
-            get { return this.Sum(Vare => (Vare.Price * Vare.Amount)); }
-            private set { _totalPrice = value; }
-            //return this.Sum(Vare => (Vare.Price*Vare.Amount));
-        }
-
-        public int TotalPrice()
-        {
-            return this.Sum(Vare => (Vare.Price*Vare.Amount));
+            int tot = 0;
+            foreach (var Vare in this)
+            {
+                tot += (int)Vare.TotalPrice;
+            }
+            return tot;
         }
     }
 }

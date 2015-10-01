@@ -1,29 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Resources;
+using System.Xml;
+using SharedLib.Protocol.CmdMarshallers;
 
-namespace SharedLib.Protocol
+namespace SharedLib.Protocol.ProtocolMarshallers
 {
-    public class XmlMarshal: IProtocolMarshal
+    public class XmlMarshal : IProtocolMarshal
     {
         public string Encode(Command cmd)
         {
-            // 1. Ud fra cmd.CmdName, find en ICmdMarshal
-            // 2. Initier ICmdMarshal
-            // 3. Kald ICmdMarshal.Encode(cmd). Returner hvad den returnerer!
+            // Add postfix "Cmd" to command name
+            string fullname = cmd.CmdName.ToString() + "Marshal";
 
-            return "Not yet implementet";
+            // Searches for a class with the specific name
+            Type mytype = Type.GetType("SharedLib.Protocol.CmdMarshallers." + fullname);
+
+            // if class doesnt exist, throws exception
+            if (mytype == null)
+            {
+                throw new Exception("Command " + fullname + " not found");
+            }
+
+            // Creates an instance of the specific marshal class needed to encode
+            var temp = Activator.CreateInstance(mytype);
+
+            // Casts the interface of the marshals to the variable to use the properties generically
+            var cmdtype = (ICmdMarshal)temp;
+
+            // return the encoded xml string from the specific instance
+            return cmdtype.Encode(cmd);
         }
 
         public Command Decode(string data)
         {
-            // 1: Ud fra data, find kommando navn!
-            // 2. Ud fra kommando navn fundet, find ICmdMarshal
-            // 3. Initier ICmdMarshal
-            // 4: Kald ICmdMarshal.Decode(data). Returner hvad den returnerer!
-            return null;
+            string cmdName;
+
+            // Create XmlReader to find commandName
+            using (XmlReader reader = XmlReader.Create(new StringReader(data)))
+            {
+                reader.ReadToFollowing("Command"); // Read from <Command> node (root in this case)
+                cmdName = reader["Name"]; // Sets the attribute name from Command into cmdName
+            }
+            // Adds postfix "Marshal" to commandName
+            cmdName = cmdName + "Marshal";
+
+            // Searches for a class with the specific name
+            Type mytype = Type.GetType("SharedLib.Protocol.CmdMarshallers." + cmdName);
+
+            // if class doesnt exist, throws exception
+            if (mytype == null)
+            {
+                throw new Exception("Command " + cmdName + " not found");
+            }
+
+            // Creates an instance of the specific marshal class needed to encode
+            var temp = Activator.CreateInstance(mytype);
+
+            // Casts the interface of the marshals to the variable to use the properties generically
+            var cmdtype = (ICmdMarshal)temp;
+
+            // Return the decoded ICmd from the xml string
+            return cmdtype.Decode(data);
         }
     }
 }

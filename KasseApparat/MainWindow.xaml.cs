@@ -30,23 +30,38 @@ namespace KasseApparat
         private void ButtonCash_Click(object sender, RoutedEventArgs e)
         {
             ShoppingList ShopList = (ShoppingList)this.FindResource("ShoppingList");
-            int totPrice = ShopList.TotalPrice();
+            int totPrice = ShopList.TotalWarePrice();
             MessageBox.Show("Total pris: " + totPrice);
         }
 
-        private void ListBoxAntal(object sender, RoutedEventArgs e)
+        private void ButtonOneDZero_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonUpClick(object sender, RoutedEventArgs e)
         {
             
         }
 
-        private void ListBoxVare(object sender, RoutedEventArgs e)
+        private void ButtonDownClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ButtonMoreClick(object sender, RoutedEventArgs e)
         {
             
         }
 
-        private void ListBoxPris(object sender, RoutedEventArgs e)
+        private void ButtonLessClick(object sender, RoutedEventArgs e)
         {
-            
+            var 
+        }
+
+        private void ButtonDeleteClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

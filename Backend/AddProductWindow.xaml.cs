@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Backend.AddProduct;
+using Backend.Communication;
+using SharedLib.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,25 +13,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Backend
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddProductWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddProductWindow : Window
     {
-        public MainWindow()
+        private IAddProduct backend;
+
+        public AddProductWindow()
         {
             InitializeComponent();
+            backend = new AddProductCB(new PrjProtokol(), this);
         }
 
-        public void CreateProduct(object sender, RoutedEventArgs e)
+        private void SaveProduct(object sender, RoutedEventArgs e)
         {
-            var window = new AddProductWindow();
-            window.ShowDialog();
+            backend.CreateProduct();
         }
     }
 }

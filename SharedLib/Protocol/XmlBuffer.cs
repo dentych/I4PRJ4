@@ -10,7 +10,7 @@ namespace SharedLib.Protocol
      */
     class XmlBuffer
     {
-        private static string DocumentEnd = "</command>";
+        private static string DocumentEnd = "</Command>";
         private StringBuilder _buffer = new StringBuilder();
 
         public void AddData(string data)
