@@ -6,17 +6,12 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using SharedLib.Models;
-
 
 namespace Backend.AddProduct
 {
     public interface IProtocol
     {
         string ProductXMLParser(Product toParse);
-    }//end IProtocol
+    } //end IProtocol
 }

@@ -41,12 +41,22 @@ namespace Backend.AddProduct {
             var product = _productGenerator.GenerateProduct();
 
 
-
-            if (product.Name == "" || product.Price < 0 || product.ProductNumber == "")
+            try
+            {
+                if (product.Name == "" || product.Price < 0 || product.ProductNumber == "")
+                {
+                    LastError = "Enter correct product details.";
+                    Error.StdErr(LastError);
+                    return false;
+                }
+            }
+            catch (NullReferenceException)
             {
                 LastError = "Enter correct product details.";
+                Error.StdErr(LastError);
                 return false;
             }
+         
 
             // Generate XML from product
             string cmdtoSend = _protocol.ProductXMLParser(product);
@@ -58,6 +68,7 @@ namespace Backend.AddProduct {
             if (!_client.Send(cmdtoSend))
             {
                 LastError = "Connection Error";
+                Error.StdErr(LastError);
                 return false;
             }
 

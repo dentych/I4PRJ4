@@ -30,7 +30,7 @@ namespace Backend.AddProduct
             }
             catch (Exception e)
             {
-                //LastError = "Error converting price to number";
+                Error.StdErr("Error handling price.");
                 return null;
             }
 

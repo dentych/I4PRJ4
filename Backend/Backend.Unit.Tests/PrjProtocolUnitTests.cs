@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Backend.AddProduct;
+﻿using Backend.AddProduct;
 using NUnit.Framework;
 using SharedLib.Models;
 
@@ -12,7 +7,6 @@ namespace Backend.Unit.Tests
     [TestFixture]
     public class PrjProtocolUnitTests
     {
-
         [Test]
         public void ProductXMLParser_RealProdcuct_ExpectCorrectString()
         {
@@ -23,12 +17,9 @@ namespace Backend.Unit.Tests
 
             var uut = new PrjProtokol();
 
-            Assert.That(uut.ProductXMLParser(testProduct), Is.EqualTo("<?xml version=\"1.0\" encoding=\"utf-16\"?><Command Name=\"CreateProduct\"><Product Name=\"Test\" ProductNumber=\"ABC123\" Price=\"10\" /></Command>"));
-
-
-
+            Assert.That(uut.ProductXMLParser(testProduct),
+                Is.EqualTo(
+                    "<?xml version=\"1.0\" encoding=\"utf-16\"?><Command Name=\"CreateProduct\"><Product Name=\"Test\" ProductNumber=\"ABC123\" Price=\"10\" /></Command>"));
         }
-
-
     }
 }
