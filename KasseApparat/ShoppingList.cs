@@ -59,7 +59,7 @@ namespace KasseApparat
         }
 #endregion
 
-#region
+#region MoreButton
         ICommand _ButtonMoreClick;
         public ICommand MoreCommand { get { return _ButtonMoreClick ?? (_ButtonMoreClick = new RelayCommand(MoreCommandExecute, MoreCommandCanExecute)); } }
 
@@ -71,11 +71,14 @@ namespace KasseApparat
 
         bool MoreCommandCanExecute()
         {
-            return true;
+            if (CurrentIndex < 0)
+                return false;
+            else
+                return true;
         }
 #endregion
 
-#region
+#region LessButton
         ICommand _ButtonLessClick;
         public ICommand LessCommand { get { return _ButtonLessClick ?? (_ButtonLessClick = new RelayCommand(LessCommandExecute, LessCommandCanExecute)); } }
 
@@ -93,7 +96,46 @@ namespace KasseApparat
 
         bool LessCommandCanExecute()
         {
-            return true;
+            if (CurrentIndex < 0)
+                return false;
+            else
+                return true;
+        }
+#endregion
+
+#region PrevButton
+        ICommand _PrevCommand;
+        public ICommand PrevCommand { get { return _PrevCommand ?? (_PrevCommand = new RelayCommand(PrevCommandExecute, PrevCommandCanExecute)); } }
+
+        void PrevCommandExecute()
+        {
+            CurrentIndex--;
+        }
+
+        bool PrevCommandCanExecute()
+        {
+            if (CurrentIndex < 1)
+                return false;
+            else
+                return true;
+        }
+#endregion
+
+#region NextButton
+        ICommand _NextCommand;
+        public ICommand NextCommand { get { return _NextCommand ?? (_NextCommand = new RelayCommand(NextCommandExecute, NextCommandCanExecute)); } }
+
+        void NextCommandExecute()
+        {
+            CurrentIndex++;
+        }
+
+        bool NextCommandCanExecute()
+        {
+            if (CurrentIndex < (Count - 1))
+                return true;
+            else
+                return false;
         }
 #endregion
     }
