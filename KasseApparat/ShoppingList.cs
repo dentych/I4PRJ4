@@ -6,6 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MvvmFoundation.Wpf;
 using SharedLib.Models;
 
 namespace KasseApparat
@@ -54,6 +56,44 @@ namespace KasseApparat
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
+        }
+#endregion
+
+#region
+        ICommand _ButtonMoreClick;
+        public ICommand MoreCommand { get { return _ButtonMoreClick ?? (_ButtonMoreClick = new RelayCommand(MoreCommandExecute, MoreCommandCanExecute)); } }
+
+        private void MoreCommandExecute()
+        {
+            if (CurrentIndex != -1)
+                this[CurrentIndex].Quantity++;
+        }
+
+        bool MoreCommandCanExecute()
+        {
+            return true;
+        }
+#endregion
+
+#region
+        ICommand _ButtonLessClick;
+        public ICommand LessCommand { get { return _ButtonLessClick ?? (_ButtonLessClick = new RelayCommand(LessCommandExecute, LessCommandCanExecute)); } }
+
+        private void LessCommandExecute()
+        {
+            if (CurrentIndex == -1) return;
+
+            if (this[CurrentIndex].Quantity - 1 == 0)
+            {
+                RemoveAt(CurrentIndex);
+                return;
+            }
+            this[CurrentIndex].Quantity--;
+        }
+
+        bool LessCommandCanExecute()
+        {
+            return true;
         }
 #endregion
     }
