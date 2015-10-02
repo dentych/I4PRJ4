@@ -23,36 +23,72 @@
 
         <GroupBox Grid.Column="1" DataContext="{StaticResource ShoppingList}" x:Name="Sale" 
                   Header="Salg" Margin="9.8,10,8,10.4" BorderThickness="2">
-            <Grid Margin="0,0,0.4,0.2">
+            <Grid Margin="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="11*"/>
                     <ColumnDefinition Width="39*"/>
                     <ColumnDefinition Width="14*"/>
 
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="27*"></RowDefinition>
                     <RowDefinition Height="294*"></RowDefinition>
                     <RowDefinition Height="26*"></RowDefinition>
                     <RowDefinition Height="25*"/>
                     <RowDefinition Height="54*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="Ant." Grid.Row="0" Grid.Column="0"/>
-                <Label Content="Vare" Grid.Row="0" Grid.Column="1"/>
-                <Label Content="Pris" Grid.Row="0" Grid.Column="2"/>
 
-                <ListBox Grid.Row="1" Grid.Column="0" Margin="5,3,0,0" 
-                         ItemsSource="{Binding}" DisplayMemberPath="Quantity"/>
-                <ListBox Grid.Row="1" Grid.Column="1" Margin="-1,3,0,0" 
-                         ItemsSource="{Binding}" DisplayMemberPath="Name"/>
-                <ListBox Grid.Row="1" Grid.Column="2" Margin="-1,3,5,0"
-                         ItemsSource="{Binding}" DisplayMemberPath="UnitPrice"/>
+
+                <ListBox x:Name="ListBoxShoppingList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" 
+                         ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="4" Height="20" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="TextBlockQuantity" Grid.Column="0" Text="{Binding Quantity}"
+                                           TextAlignment="Left" Margin="5,0,0,0"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="Bold"
+                                           TextAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding TotalPrice}"
+                                           TextAlignment="Right" Margin="0,0,5,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+
                 <Label Content="Total" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,5,0"/>
-                <ListBox Grid.Row="2" Grid.Column="2" Margin="-1,-1,5,0"/>
+                <Border Grid.Column="2" Grid.Row="2" Margin="-1,-1,5,0" BorderThickness="1" BorderBrush="DarkGray">
+                    <TextBlock x:Name="TextBlockTotalPrice" Text="{Binding TotalWarePrice}" Margin="5"/>
+                </Border>
+
+                <Grid Margin="5" Grid.Row="3" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Click="ButtonUpClick" Content="V" Margin="2" Grid.Column="0" FontSize="10" RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <Button Click="ButtonDownClick" Content="V" Margin="2" Grid.Column="1" FontSize="10"/>
+                    <RepeatButton Click="ButtonMoreClick" Content="+" Margin="2" Grid.Column="2" FontSize="10"/>
+                    <RepeatButton Click="ButtonLessClick" Content="-" Margin="2" Grid.Column="3" FontSize="10"/>
+                    <Button Click="ButtonDeleteClick" Content="Delete" Margin="2" Grid.Column="4" FontSize="10"/>
+                </Grid> 
             </Grid>
-
         </GroupBox>
-
         <GroupBox Grid.Column="2" x:Name="InputPrice" Header="Inputs" Margin="9.8,10,8,10.4" BorderThickness="2">
             <Grid Margin="0,10,-2.8,3.2">
                 <Grid.ColumnDefinitions>
@@ -82,7 +118,7 @@
                 <Button x:Name="ButtonEight" Content="8" Grid.Row="3" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"/>
                 <Button x:Name="ButtonNine" Content="9" Grid.Row="3" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"/>
                 <Button x:Name="ButtonZero" Content="0" Grid.Row="4" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"/>
-                <Button x:Name="ButtonOneDZero" Content="00" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"/>
+                <Button x:Name="ButtonOneDZero" Content="00" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20" Click="ButtonOneDZero_Click"/>
                 <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"/>
                 <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,7,6.6,7" Click="ButtonCash_Click"/>
                 <Button x:Name="ButtonCard" Content="Kort" Grid.Row="6" Grid.Column="1" Margin="7.4,7,7,7"/>
