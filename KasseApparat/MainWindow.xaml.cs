@@ -29,9 +29,8 @@ namespace KasseApparat
 
         private void ButtonCash_Click(object sender, RoutedEventArgs e)
         {
-            ShoppingList ShopList = (ShoppingList)this.FindResource("ShoppingList");
-            int totPrice = ShopList.TotalWarePrice();
-            MessageBox.Show("Total pris: " + totPrice);
+            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
+            MessageBox.Show("Total pris: " + shopList.TotalWarePrice());
         }
 
         private void ButtonOneDZero_Click(object sender, RoutedEventArgs e)
@@ -51,17 +50,39 @@ namespace KasseApparat
 
         private void ButtonMoreClick(object sender, RoutedEventArgs e)
         {
-            
+            if (ListBoxShoppingList.SelectedIndex != -1)
+            {
+                ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
+                shopList[ListBoxShoppingList.SelectedIndex].Quantity++;
+                ListBoxShoppingList.Items.Refresh();
+
+                //Så den ikke inkrementerer for hurtigt
+                System.Threading.Thread.Sleep(100);
+            }
         }
 
         private void ButtonLessClick(object sender, RoutedEventArgs e)
         {
-            var 
+            if (ListBoxShoppingList.SelectedIndex == -1) return; 
+                var shopList = (ShoppingList) this.FindResource("ShoppingList");
+                var index = ListBoxShoppingList.SelectedIndex;
+
+                if (shopList[index].Quantity-1 == 0)
+                {
+                    shopList.RemoveAt(index);
+                    return;
+                }
+
+                shopList[index].Quantity--;
+                ListBoxShoppingList.Items.Refresh();
+
+                //Så den ikke dekrementerer for hurtigt
+                System.Threading.Thread.Sleep(100);
         }
 
         private void ButtonDeleteClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
