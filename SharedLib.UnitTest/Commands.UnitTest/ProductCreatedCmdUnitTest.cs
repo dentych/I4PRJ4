@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NSubstitute;
 using NUnit.Framework;
 using SharedLib.Models;
 using SharedLib.Protocol.Commands;
@@ -11,10 +10,10 @@ using SharedLib.Protocol.Commands;
 namespace SharedLib.UnitTest.Commands.UnitTest
 {
     [TestFixture]
-    class CreateProductCmdUnitTest
+    class ProductCreatedCmdUnitTest
     {
         Product product;
-        CreateProductCmd cmd;
+        ProductCreatedCmd cmd;
 
         [SetUp]
         public void SetUp()
@@ -27,7 +26,7 @@ namespace SharedLib.UnitTest.Commands.UnitTest
                 ProductNumber = "15"
             };
 
-            cmd = new CreateProductCmd("Appelsin","15",10);
+            cmd = new ProductCreatedCmd("Appelsin", "15", 10,50);
         }
 
         [TearDown]
@@ -38,46 +37,59 @@ namespace SharedLib.UnitTest.Commands.UnitTest
         }
 
         [Test]
-        public void CreateProductCmd_byAttributesTestName()
+        public void ProductCreatedCmd_byAttributesTestName()
         {
             Assert.That(product.Name.Equals(cmd.Name));
         }
 
         [Test]
-        public void CreateProductCmd_byAttributesTestProductNumber()
+        public void ProductCreatedCmd_byAttributesTestProductNumber()
         {
             Assert.That(product.ProductNumber.Equals(cmd.ProductNumber));
         }
 
         [Test]
-        public void CreateProductCmd_byAttributesTestPrice()
+        public void ProductCreatedCmd_byAttributesTestPrice()
         {
             Assert.That(product.Price.Equals(cmd.Price));
         }
 
+        [Test]
+        public void ProductCreatedCmd_byAttributesTestProductId()
+        {
+            Assert.That(product.ProductId.Equals(cmd.ProductId));
+        }
 
         [Test]
-        public void CreateProductCmd_byProductTestName()
+        public void ProductCreatedCmd_byProductTestName()
         {
-            var cmd = new CreateProductCmd(product);
+            var cmd = new ProductCreatedCmd(product);
 
             Assert.That(product.Name.Equals(cmd.Name));
         }
 
         [Test]
-        public void CreateProductCmd_byProductTestProductNumber()
+        public void ProductCreatedCmd_byProductTestProductNumber()
         {
-            var cmd = new CreateProductCmd(product);
+            var cmd = new ProductCreatedCmd(product);
 
             Assert.That(product.ProductNumber.Equals(cmd.ProductNumber));
         }
 
         [Test]
-        public void CreateProductCmd_byProductTestPrice()
+        public void ProductCreatedCmd_byProductTestPrice()
         {
-            var cmd = new CreateProductCmd(product);
+            var cmd = new ProductCreatedCmd(product);
 
             Assert.That(product.Price.Equals(cmd.Price));
+        }
+
+        [Test]
+        public void ProductCreatedCmd_byProductTestProductId()
+        {
+            var cmd = new ProductCreatedCmd(product);
+
+            Assert.That(product.ProductId.Equals(cmd.ProductId));
         }
     }
 }

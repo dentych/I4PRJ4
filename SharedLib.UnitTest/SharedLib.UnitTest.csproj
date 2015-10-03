@@ -52,7 +52,11 @@
     <Compile Include="CmdMarshallers.UnitTest\GetCatalogueMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\ProductCreatedMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\RegisterPurchaseMarshalUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\CatalogueDetailsCmdUnitTest.cs" />
     <Compile Include="Commands.UnitTest\CreateProductCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductCreatedCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\RegisterPurchaseCmdUnitTest.cs" />
+    <Compile Include="CommandUnitTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProtocolUnitTest.cs" />

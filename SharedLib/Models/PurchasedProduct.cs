@@ -14,9 +14,12 @@ namespace SharedLib.Models
         public string ProductNumber { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get { return Quantity*UnitPrice; } }
-        // Database test
+
+        // **** Only relevant for database ****
         public int PurchaseId { get; set; }
         public virtual Purchase Purchase { get; set; }
+        //*************************************
+
         public PurchasedProduct()
         {
         }
