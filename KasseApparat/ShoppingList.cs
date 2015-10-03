@@ -12,7 +12,7 @@ using SharedLib.Models;
 
 namespace KasseApparat
 {
-    class ShoppingList : ObservableCollection<PurchasedProduct>
+    public class ShoppingList : ObservableCollection<PurchasedProduct>
     {
         public ShoppingList()
         {
@@ -30,6 +30,7 @@ namespace KasseApparat
 
             Add(new PurchasedProduct(p1, 6));
             Add(new PurchasedProduct(p2, 1));
+
         }
 
         public int TotalPrice()
