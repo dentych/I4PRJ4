@@ -13,7 +13,8 @@ namespace SharedLib.Protocol.Commands
         private readonly string _productNumber;
         private readonly decimal _price;
 
-        public string Name { get { return _name; } }
+        public string Name { get { return _name; }}
+
         public string ProductNumber { get { return _productNumber; } }
         public decimal Price { get { return _price; } }
 

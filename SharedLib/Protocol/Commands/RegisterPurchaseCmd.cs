@@ -14,7 +14,7 @@ namespace SharedLib.Protocol.Commands
 
         public RegisterPurchaseCmd(Purchase purchase)
         {
-            foreach (var prd in purchase.Products)
+            foreach (var prd in purchase.PurchasedProducts)
             {
                 var copy = new PurchasedProduct(prd);
                 Products.Add(copy);

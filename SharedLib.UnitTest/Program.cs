@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,8 @@ namespace SharedLib.UnitTest
     class Program
     {
         static void Main(string[] args)
-        {
-            /*
+        {/*
+            
             // Opret produkt
             var product = new Product()
             {
@@ -31,16 +32,18 @@ namespace SharedLib.UnitTest
                 ProductNumber = "60",
                 Quantity = 10,
                 UnitPrice = 5
+
             };
 
             // Opret Purchase
             var purchase = new Purchase();
+            purchase.PurchasedProducts = new List<PurchasedProduct>();
 
-            purchase.Products.Add(pproduct);
-            purchase.Products.Add(pproduct);
-            purchase.Products.Add(pproduct);
-            purchase.Products.Add(pproduct);
-
+            purchase.PurchasedProducts.Add(pproduct);
+            purchase.PurchasedProducts.Add(pproduct);
+            purchase.PurchasedProducts.Add(pproduct);
+            purchase.PurchasedProducts.Add(pproduct);
+            
             // Opret Commands
             var cmd = new CreateProductCmd(product);
             var prcmd = new ProductCreatedCmd(product);

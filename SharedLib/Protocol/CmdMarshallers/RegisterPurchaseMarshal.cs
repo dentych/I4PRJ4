@@ -50,6 +50,7 @@ namespace SharedLib.Protocol.CmdMarshallers
         {
             // Create new Purchase
             var purchase = new Purchase();
+            purchase.PurchasedProducts = new List<PurchasedProduct>();
 
             // Create XmlReader to read xml string into product
             using (XmlReader reader = XmlReader.Create(new StringReader(data)))
@@ -65,7 +66,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                         pproduct.UnitPrice = Convert.ToDecimal(reader["UnitPrice"]); // Inserts the value of the attribute name "UnitPrice" into the purchasedProduct object
                         pproduct.Quantity = Convert.ToUInt32(reader["Quantity"]); // Inserts the value of the attribute name "Quantity" into the purchasedProduct object
 
-                        purchase.Products.Add(pproduct); // Add the newly created purchasedProduct to the purchasedProductlist
+                        purchase.PurchasedProducts.Add(pproduct); // Add the newly created purchasedProduct to the purchasedProductlist
                     } // end if
                 } // end of read
             }

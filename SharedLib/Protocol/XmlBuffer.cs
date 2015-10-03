@@ -8,7 +8,7 @@ namespace SharedLib.Protocol
      * The buffer takes a stream of XML-documents and seperates
      * documents. Recognizes end of documents by "</command>".
      */
-    class XmlBuffer
+    public class XmlBuffer
     {
         private static string DocumentEnd = "</Command>";
         private StringBuilder _buffer = new StringBuilder();
