@@ -38,7 +38,7 @@ namespace KasseApparat
             get { return this.Sum(vare => (int) vare.TotalPrice); }
         }
 
-        #region Index
+#region Index
         private int _currentIndex;
         public int CurrentIndex
         {
@@ -59,9 +59,9 @@ namespace KasseApparat
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        #endregion
+#endregion
 
-        #region MoreButton
+#region MoreButton
         ICommand _ButtonMoreClick;
         public ICommand MoreCommand { get { return _ButtonMoreClick ?? (_ButtonMoreClick = new RelayCommand(MoreCommandExecute, MoreCommandCanExecute)); } }
 
