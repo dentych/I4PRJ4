@@ -31,7 +31,7 @@ namespace KasseApparat.UnitTest
         [Test]
         public void TotalPrice_GetTotalPrice_Expect70()
         {
-            Assert.That(uut.TotalPrice(), Is.EqualTo(70));
+            Assert.That(uut.TotalPrice, Is.EqualTo(70));
         }
 
         [Test]
