@@ -12,7 +12,7 @@ using SharedLib.Models;
 
 namespace KasseApparat
 {
-    public class ShoppingList : ObservableCollection<PurchasedProduct>
+    public class ShoppingList : ObservableCollection<PurchasedProduct>, INotifyPropertyChanged
     {
         public ShoppingList()
         {
@@ -33,12 +33,12 @@ namespace KasseApparat
 
         }
 
-        public int TotalPrice()
+        public int TotalPrice
         {
-            return this.Sum(vare => (int) vare.TotalPrice);
+            get { return this.Sum(vare => (int) vare.TotalPrice); }
         }
 
-#region Index
+        #region Index
         private int _currentIndex;
         public int CurrentIndex
         {
@@ -49,25 +49,28 @@ namespace KasseApparat
                 Notify();
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
-        protected void Notify([CallerMemberName]string propName = null)
+        private void Notify([CallerMemberName] string propertyName = null)
         {
-            if (this.PropertyChanged != null)
+            var handler = PropertyChanged;
+            if (handler != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-#endregion
+        #endregion
 
-#region MoreButton
+        #region MoreButton
         ICommand _ButtonMoreClick;
         public ICommand MoreCommand { get { return _ButtonMoreClick ?? (_ButtonMoreClick = new RelayCommand(MoreCommandExecute, MoreCommandCanExecute)); } }
 
         private void MoreCommandExecute()
         {
-            if (CurrentIndex != -1)
-                this[CurrentIndex].Quantity++;
+            if (CurrentIndex == -1) return;
+
+            this[CurrentIndex].Quantity++;
+            Notify("TotalPrice");
         }
 
         bool MoreCommandCanExecute()
@@ -90,9 +93,11 @@ namespace KasseApparat
             if (this[CurrentIndex].Quantity - 1 == 0)
             {
                 RemoveAt(CurrentIndex);
+                Notify("TotalPrice");
                 return;
             }
             this[CurrentIndex].Quantity--;
+            Notify("TotalPrice");
         }
 
         bool LessCommandCanExecute()
