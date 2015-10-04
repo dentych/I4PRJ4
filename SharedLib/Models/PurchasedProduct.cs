@@ -1,18 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SharedLib.Models
 {
-    public class PurchasedProduct
+    public class PurchasedProduct : INotifyPropertyChanged
     {
-        public uint Quantity { get; set; }
-        public string Name { get; set; }
-        public string ProductNumber { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal TotalPrice { get { return Quantity*UnitPrice; } }
+        private uint _quantity;
+        private decimal _unitPrice;
+
+        public uint Quantity
+        {
+            get { return _quantity; }
+            set
+            {
+                _quantity = value;
+                Notify("Quantity");
+                Notify("TotalPrice");
+            }
+        }
+
+        public string Name
+        {
+            get; set;
+        }
+
+        public string ProductNumber
+        {
+            get; set;
+        }
+
+        public decimal UnitPrice
+        {
+            get
+            {
+                return _unitPrice;
+            }
+            set
+            {
+                _unitPrice = value;
+                Notify("UnitPrice");
+            }
+        }
+
+        public decimal TotalPrice
+        {
+            get { return Quantity*UnitPrice; }
+        }
 
         public PurchasedProduct()
         {
@@ -32,6 +70,17 @@ namespace SharedLib.Models
             ProductNumber = product.ProductNumber;
             UnitPrice = product.Price;
             Quantity = quantity;
+        }
+
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+        private void Notify([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

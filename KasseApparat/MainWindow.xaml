@@ -38,7 +38,8 @@
 
 
                 <ListBox x:Name="ListBoxShoppingList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" 
-                         ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" >
+                         ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" SelectedIndex="{Binding CurrentIndex}"
+                         IsSynchronizedWithCurrentItem="True">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="4" Height="20" HorizontalAlignment="Stretch">
@@ -47,11 +48,17 @@
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock x:Name="TextBlockQuantity" Grid.Column="0" Text="{Binding Quantity}"
-                                           TextAlignment="Left" Margin="5,0,0,0"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="Bold"
+                                <TextBlock x:Name="TextBlockQuantity" 
+                                           Grid.Column="0" 
+                                           Text="{Binding Quantity}"
+                                           TextAlignment="Left" 
+                                           Margin="5,0,0,0"/>
+                                <TextBlock Grid.Column="1" 
+                                           Text="{Binding Name}" 
+                                           FontWeight="Bold"
                                            TextAlignment="Center"/>
-                                <TextBlock Grid.Column="2" Text="{Binding TotalPrice}"
+                                <TextBlock Grid.Column="2" 
+                                           Text="{Binding TotalPrice}"
                                            TextAlignment="Right" Margin="0,0,5,0"/>
                             </Grid>
                         </DataTemplate>
@@ -61,7 +68,7 @@
 
                 <Label Content="Total" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,5,0"/>
                 <Border Grid.Column="1" Grid.Row="1" Margin="-1,-1,10,0" BorderThickness="1" BorderBrush="DarkGray">
-                    <TextBlock x:Name="TextBlockTotalPrice" Text="{Binding TotalPrice}" Margin="5"/>
+                    <TextBlock x:Name="TextBlockTotalPrice" Text="{Binding Path=TotalPrice}"  Margin="5"/>
                 </Border>
 
                 <Grid Margin="5" Grid.Row="3" Grid.ColumnSpan="2">
@@ -83,8 +90,8 @@
                         </Button.RenderTransform>
                     </Button>
                     <Button Click="ButtonDownClick" Content="V" Margin="2" Grid.Column="1" FontSize="10"/>
-                    <RepeatButton Click="ButtonMoreClick" Content="+" Margin="2" Grid.Column="2" FontSize="10"/>
-                    <RepeatButton Click="ButtonLessClick" Content="-" Margin="2" Grid.Column="3" FontSize="10"/>
+                    <RepeatButton Command="{Binding MoreCommand}" Content="+" Margin="2" Grid.Column="2" FontSize="10"/>
+                    <RepeatButton Command="{Binding LessCommand}" Content="-" Margin="2" Grid.Column="3" FontSize="10"/>
                     <Button Click="ButtonDeleteClick" Content="Delete" Margin="2" Grid.Column="4" FontSize="10"/>
                 </Grid> 
             </Grid>
