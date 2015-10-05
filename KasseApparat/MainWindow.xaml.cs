@@ -37,52 +37,5 @@ namespace KasseApparat
         {
 
         }
-
-        private void ButtonUpClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void ButtonDownClick(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ButtonMoreClick(object sender, RoutedEventArgs e)
-        {
-            if (ListBoxShoppingList.SelectedIndex != -1)
-            {
-                ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
-                shopList[ListBoxShoppingList.SelectedIndex].Quantity++;
-                ListBoxShoppingList.Items.Refresh();
-
-                //Så den ikke inkrementerer for hurtigt
-                System.Threading.Thread.Sleep(100);
-            }
-        }
-
-        private void ButtonLessClick(object sender, RoutedEventArgs e)
-        {
-            if (ListBoxShoppingList.SelectedIndex == -1) return; 
-                var shopList = (ShoppingList) this.FindResource("ShoppingList");
-                var index = ListBoxShoppingList.SelectedIndex;
-
-                if (shopList[index].Quantity-1 == 0)
-                {
-                    shopList.RemoveAt(index);
-                    return;
-                }
-
-                shopList[index].Quantity--;
-                ListBoxShoppingList.Items.Refresh();
-
-                //Så den ikke dekrementerer for hurtigt
-                System.Threading.Thread.Sleep(100);
-        }
-
-        private void ButtonDeleteClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }
