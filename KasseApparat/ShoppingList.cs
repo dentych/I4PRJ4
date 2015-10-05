@@ -144,5 +144,21 @@ namespace KasseApparat
                 return false;
         }
 #endregion
+
+#region Delete
+        ICommand _ButtonDeleteClick;
+        public ICommand DeleteCommand { get { return _ButtonDeleteClick ?? (_ButtonDeleteClick = new RelayCommand(DeleteCommandExecute, DeleteCommandCanExecute)); } }
+
+        private void DeleteCommandExecute()
+        {
+            RemoveAt(CurrentIndex);
+        }
+
+        bool DeleteCommandCanExecute()
+        {
+            if (CurrentIndex < 0) return false;
+            else return true;
+        }
+#endregion
     }
 }
