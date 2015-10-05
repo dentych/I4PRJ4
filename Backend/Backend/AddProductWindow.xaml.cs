@@ -32,19 +32,44 @@ namespace Backend
 
         private void SaveProduct(object sender, RoutedEventArgs e)
         {
-            var data = new Dictionary<string, string>
+
+            List<TextBox> boxes = new List<TextBox>
             {
-                ["NAME"] = this.textboxName.ToString(),
-                ["PRICE"] = textboxPrice.ToString(),
-                ["BARCODE"] = textboxBarcode.ToString()
+                textboxName,
+                textboxBarcode,
+                textboxPrice
             };
+            bool valid = true;
+
+            foreach (var box in boxes)
+            {
+                if (string.IsNullOrWhiteSpace(box.Text))
+                {
+                    box.Background = new SolidColorBrush(Color.FromRgb(229, 177, 177));
+                    valid = false;
+                }
+                else box.Background = Brushes.White;
+            }
 
 
-            MessageBox.Show(backend.CreateProduct(data)
-                ? "Produktet er oprettet!"
-                : "Der skete en fejl under oprettelse af produktet!");
+            if (valid)
+            {
+                var data = new Dictionary<string, string>
+                {
+                    ["NAME"] = this.textboxName.ToString(),
+                    ["PRICE"] = textboxPrice.ToString(),
+                    ["BARCODE"] = textboxBarcode.ToString()
+                };
 
-            Close();
+
+                MessageBox.Show(backend.CreateProduct(data)
+                    ? "Produktet er oprettet!"
+                    : "Der skete en fejl under oprettelse af produktet!");
+                Close();
+
+            }
+
+            
         }
 
         private void textboxPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
