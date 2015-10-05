@@ -17,52 +17,45 @@ using Backend.Communication;
 namespace Backend.AddProduct {
     public class AddProductCB : IAddProduct
     {
-        IProtocol _protocol;
-        internal AddProductWindow _window;
+        readonly IProtocol _protocol;
         string _error;
 
-        private string ip = "127.0.0.1";
-        private int port = 9000;
-        public IProductGenerator _productGenerator;
+        public IProductGenerator ProductGenerator;
         private IClient _client;
 
-        public AddProductCB(IProtocol protocol, AddProductWindow window, IClient client) {
+
+
+        public AddProductCB(IProtocol protocol, IClient client)
+        {
             _protocol = protocol;
-            _window = window;
             LastError = null;
+            ProductGenerator = new ProductGenerator();
             _client = client;
-            _productGenerator = new ProductGenerator(this);
 
         }
 
-        public bool CreateProduct() {
+        public bool CreateProduct(Dictionary<string, string> data)
+        {
 
             // Create the product
-            var product = _productGenerator.GenerateProduct();
+            var product = ProductGenerator.GenerateProduct(data);
+            
 
-
-            try
-            {
-                if (product.Name == "" || product.Price < 0 || product.ProductNumber == "")
-                {
-                    LastError = "Enter correct product details.";
-                    Error.StdErr(LastError);
-                    return false;
-                }
-            }
-            catch (NullReferenceException)
+            if (product.Name == "" || product.Price < 0 || product.ProductNumber == "")
             {
                 LastError = "Enter correct product details.";
                 Error.StdErr(LastError);
                 return false;
             }
+
          
 
             // Generate XML from product
             string cmdtoSend = _protocol.ProductXMLParser(product);
 
             // New client to use to send data to central server
-          
+            
+
 
             // Send the XML data
             if (!_client.Send(cmdtoSend))
@@ -71,8 +64,8 @@ namespace Backend.AddProduct {
                 Error.StdErr(LastError);
                 return false;
             }
-
             return true;
+
         }
 
         public string LastError

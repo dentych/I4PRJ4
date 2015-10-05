@@ -27,21 +27,32 @@ namespace Backend
         public AddProductWindow()
         {
             InitializeComponent();
-            backend = new AddProductCB(new PrjProtokol(), this, new Client("127.0.0.1",9000));
+            backend = new AddProductCB(new PrjProtokol(), new Client("127.0.0.1",9000));
         }
 
         private void SaveProduct(object sender, RoutedEventArgs e)
         {
-            if (backend.CreateProduct())
+            var data = new Dictionary<string, string>
             {
-                MessageBox.Show("Produktet er oprettet!");
-            }
-            else
-            {
-                MessageBox.Show("Der skete en fejl under oprettelse af produktet!");
-            }
+                ["NAME"] = this.textboxName.ToString(),
+                ["PRICE"] = textboxPrice.ToString(),
+                ["BARCODE"] = textboxBarcode.ToString()
+            };
+
+
+            MessageBox.Show(backend.CreateProduct(data)
+                ? "Produktet er oprettet!"
+                : "Der skete en fejl under oprettelse af produktet!");
 
             Close();
+        }
+
+        private void textboxPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ",")
+            {
+                    e.Handled = true;
+            }
         }
     }
 }

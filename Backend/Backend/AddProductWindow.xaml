@@ -19,11 +19,11 @@
         <StackPanel Margin="10" Grid.Row="1">
             <Label Content="Opret produkt" Padding="0" FontSize="12pt"/>
             <Label Content="Produktnavn"/>
-            <TextBox Name="textboxName"/>
+            <TextBox Name="textboxName" MaxLength="75"/>
             <Label Content="Stregkode"/>
-            <TextBox Name="textboxBarcode"/>
+            <TextBox Name="textboxBarcode" MaxLength="75"/>
             <Label Content="Pris"/>
-            <TextBox Name="textboxPrice"/>
+            <TextBox Name="textboxPrice" PreviewTextInput="textboxPrice_PreviewTextInput" MaxLength="20"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
             <Label Content="Hovedmenu" Padding="0" FontSize="12pt"/>
