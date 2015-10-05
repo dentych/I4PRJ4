@@ -10,17 +10,94 @@
         <local:ProductList x:Key="ProductList" />
         <local:ShoppingList x:Key="ShoppingList" />
     </Window.Resources>
-	
-	<Grid>
 
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="343*"></ColumnDefinition>
             <ColumnDefinition Width="289*"></ColumnDefinition>
             <ColumnDefinition Width="262*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <GroupBox Grid.Column="0" DataContext="{StaticResource ProductList}" x:Name="Products" 
-                  Header="Produkter" Margin="10,10,10.2,10.4" BorderThickness="2"/>
+                  Header="Produkter" Margin="10,10,10.2,10.4" BorderThickness="2">
+            <Grid Margin="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*"></RowDefinition>
+                    <RowDefinition Height="334*"/>
+                    <RowDefinition Height="55*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="0,0,0.4,0.6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="154*"></ColumnDefinition>
+                        <ColumnDefinition Width="93*"/>
+                        <ColumnDefinition Width="18*"/>
+                        <ColumnDefinition Width="24*"></ColumnDefinition>
+                        <ColumnDefinition Width="14*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" 
+                           HorizontalAlignment="Right"
+                           Content="Page" Width="35"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2"
+                           Text="2"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" Height="16" Margin="5.6,7,6,6.8" Width="6" />
+                    <Label Grid.Row="0" Grid.Column="3"
+                           Content="of"
+                           HorizontalAlignment="Center" Margin="1,0,2,-0.2" Width="21"/>
+                    <TextBlock Grid.Row="0" Grid.Column="4"
+                               Text="2"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Margin="4,7,3.4,6.8" Width="7"/>
+                </Grid>
+                <Grid Margin="0,25,0.4,5" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0"
+                            Margin="5"></Button>
+                    <Button Grid.Row="0" Grid.Column="1"
+                            Margin="5"></Button>
+                    <Button Grid.Row="0" Grid.Column="2"
+                            Margin="5"></Button>
+                    <Button Grid.Row="1" Grid.Column="0"
+                            Margin="5"></Button>
+                    <Button Grid.Row="1" Grid.Column="1"
+                            Margin="5"></Button>
+                    <Button Grid.Row="1" Grid.Column="2"
+                            Margin="5"></Button>
+                    <Button Grid.Row="2" Grid.Column="0"
+                            Margin="5"></Button>
+                    <Button Grid.Row="2" Grid.Column="1"
+                            Margin="5"></Button>
+                    <Button Grid.Row="2" Grid.Column="2"
+                            Margin="5"></Button>
+                    <Button Grid.Row="3" Grid.Column="0"
+                            Margin="5"></Button>
+                    <Button Grid.Row="3" Grid.Column="1"
+                            Margin="5"></Button>
+                    <Button Grid.Row="3" Grid.Column="2"
+                            Margin="5"></Button>
 
+                </Grid>
+                <Grid Grid.Row="2" Margin="0,0,0.4,0.2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0"
+                            Margin="5"
+                            Content="Previous Page"></Button>
+                    <Button Grid.Row="0" Grid.Column="1"
+                            Content="Next Page" Margin="5"></Button>
+                </Grid>
+            </Grid>
+        </GroupBox>
         <GroupBox Grid.Column="1" DataContext="{StaticResource ShoppingList}" x:Name="Sale" 
                   Header="Salg" Margin="9.8,10,8,10.4" BorderThickness="2">
             <Grid Margin="4">
@@ -93,7 +170,7 @@
                     <RepeatButton Command="{Binding MoreCommand}" Content="+" Margin="2" Grid.Column="2" FontSize="10"/>
                     <RepeatButton Command="{Binding LessCommand}" Content="-" Margin="2" Grid.Column="3" FontSize="10"/>
                     <Button Click="ButtonDeleteClick" Content="Delete" Margin="2" Grid.Column="4" FontSize="10"/>
-                </Grid> 
+                </Grid>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Column="2" x:Name="InputPrice" Header="Inputs" Margin="9.8,10,8,10.4" BorderThickness="2">
