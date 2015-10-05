@@ -17,5 +17,10 @@ namespace Backend
             var window = new AddProductWindow();
             window.ShowDialog();
         }
+
+        private void CloseMainWindowClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

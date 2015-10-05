@@ -27,21 +27,62 @@ namespace Backend
         public AddProductWindow()
         {
             InitializeComponent();
-            backend = new AddProductCB(new PrjProtokol(), this, new Client("127.0.0.1",9000));
+            backend = new AddProductCB(new PrjProtokol(), new Client("127.0.0.1",9000));
         }
 
         private void SaveProduct(object sender, RoutedEventArgs e)
         {
-            if (backend.CreateProduct())
+
+            List<TextBox> boxes = new List<TextBox>
             {
-                MessageBox.Show("Produktet er oprettet!");
-            }
-            else
+                textboxName,
+                textboxBarcode,
+                textboxPrice
+            };
+            bool valid = true;
+
+            foreach (var box in boxes)
             {
-                MessageBox.Show("Der skete en fejl under oprettelse af produktet!");
+                if (string.IsNullOrWhiteSpace(box.Text))
+                {
+                    box.Background = new SolidColorBrush(Color.FromRgb(229, 177, 177));
+                    valid = false;
+                }
+                else box.Background = Brushes.White;
             }
 
-            Close();
+
+            if (valid)
+            {
+                var data = new Dictionary<string, string>
+                {
+                    ["NAME"] = this.textboxName.Text.ToString(),
+                    ["PRICE"] = textboxPrice.Text.ToString(),
+                    ["BARCODE"] = textboxBarcode.Text.ToString()
+                };
+
+
+                MessageBox.Show(backend.CreateProduct(data)
+                    ? "Produktet er oprettet!"
+                    : "Der skete en fejl under oprettelse af produktet!");
+                Close();
+
+            }
+
+            
+        }
+
+        private void textboxPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ",")
+            {
+                    e.Handled = true;
+            }
+        }
+
+        private void Annuller(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

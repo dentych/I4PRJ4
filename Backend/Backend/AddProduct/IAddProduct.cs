@@ -6,11 +6,13 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
+using System.Collections.Generic;
+
 namespace Backend.AddProduct
 {
     public interface IAddProduct
     {
         string LastError { get; }
-        bool CreateProduct();
+        bool CreateProduct(Dictionary<string, string> data);
     } //end IAddProduct
 }

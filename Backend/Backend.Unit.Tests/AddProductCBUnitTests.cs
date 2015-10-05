@@ -1,87 +1,131 @@
-﻿using Backend.AddProduct;
+﻿using System;
+using System.Collections.Generic;
+using Backend.AddProduct;
 using Backend.Communication;
+using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using NSubstitute;
 using NUnit.Framework;
 using SharedLib.Models;
+using Product = SharedLib.Models.Product;
 
 namespace Backend.Unit.Tests
 {
     [TestFixture]
     public class AddProductCBUnitTests
     {
+        private IProductGenerator productGenerator;
+        private IClient client;
+        private IProtocol protokol;
+        private AddProductCB uut;
+
         [SetUp]
         public void Setup()
         {
-            _client = Substitute.For<IClient>();
-            _protocol = Substitute.For<IProtocol>();
-            _generator = Substitute.For<IProductGenerator>();
-
-
-            _uut = new AddProductCB(_protocol, Window, _client);
-            _uut._productGenerator = _generator;
+            productGenerator = Substitute.For<IProductGenerator>();
+            client = Substitute.For<IClient>();
+            protokol = Substitute.For<IProtocol>();
+            uut = new AddProductCB(protokol,client);
         }
 
-        private IClient _client;
-        private IProtocol _protocol;
-        private IProductGenerator _generator;
-
-        private AddProductCB _uut;
-
-        public AddProductWindow Window { get; set; }
-
-        [Test]
-        public void CreateProduct_BadProduct_ExpectFalseAndLastError()
-        {
-            var fakeProduct = new Product();
-            fakeProduct.Price = -150;
-            _generator.GenerateProduct().Returns(fakeProduct);
-            _uut.CreateProduct();
-            Assert.That(_uut.LastError, Is.EqualTo("Enter correct product details."));
-        }
 
 
         [Test]
-        public void CreateProduct_CorrectData_expectCallToClient()
+        public void CreateProduct_GoodData_ExpectCallToProtocol()
         {
-            var fakeProduct = new Product();
-            fakeProduct.Name = "Test";
-            fakeProduct.Price = 5;
-            fakeProduct.ProductNumber = "1234";
 
+            var fakedata = new Dictionary<string, string>
+            {
+                ["NAME"] = "Test",
+                ["PRICE"] = "100",
+                ["BARCODE"] = "TEST100"
+            };
 
-            _generator.GenerateProduct().Returns(fakeProduct);
-            _protocol.ProductXMLParser(fakeProduct).Returns("TestXML");
-            _uut.CreateProduct();
-            _client.Received().Send("TestXML");
+            uut.CreateProduct(fakedata);
+            protokol.Received(1).ProductXMLParser(Arg.Any<Product>());
+
         }
 
         [Test]
-        public void CreateProduct_CorrectData_ExpectTrue()
+        public void CreateProduct_ClientReturnsFalse_ExpectError()
         {
-            var fakeProduct = new Product();
-            fakeProduct.Name = "Test";
-            fakeProduct.Price = 5;
-            fakeProduct.ProductNumber = "1234";
 
+            var fakedata = new Dictionary<string, string>
+            {
+                ["NAME"] = "Test",
+                ["PRICE"] = "100",
+                ["BARCODE"] = "TEST100"
+            };
+            client.Send(Arg.Any<string>()).Returns(false);
 
-            _generator.GenerateProduct().Returns(fakeProduct);
-            _protocol.ProductXMLParser(fakeProduct).Returns("TestXML");
-            _client.Send("TestXML").Returns(true);
-            Assert.True(_uut.CreateProduct());
+            Assert.False(uut.CreateProduct(fakedata));
+
         }
 
         [Test]
-        public void CreateProduct_WithNullProduct_expectFalse()
+        public void CreateProduct_GoodData_ExpectCallToClient()
         {
-            var fakeProduct = new Product();
-            _generator.GenerateProduct().Returns(fakeProduct);
-            Assert.False(_uut.CreateProduct());
+
+            var fakedata = new Dictionary<string, string>
+            {
+                ["NAME"] = "Test",
+                ["PRICE"] = "100",
+                ["BARCODE"] = "TEST100"
+            };
+            client.Send(Arg.Any<string>()).Returns(true);
+
+            uut.CreateProduct(fakedata);
+            client.Received(1).Send(Arg.Any<string>());
+
         }
+
+        [Test]
+        public void CreateProduct_BadPrice_ExpectError()
+        {
+
+            var fakedata = new Dictionary<string, string>
+            {
+                ["NAME"] = "Test",
+                ["PRICE"] = "-5",
+                ["BARCODE"] = "TEST100"
+            };
+
+            uut.CreateProduct(fakedata);
+            Assert.That(uut.LastError,Is.EqualTo("Enter correct product details."));
+        }
+
+        [Test]
+        public void CreateProduct_BadName_ExpectError()
+        {
+
+            var fakedata = new Dictionary<string, string>
+            {
+                ["NAME"] = "",
+                ["PRICE"] = "110",
+                ["BARCODE"] = "TEST100"
+            };
+
+            uut.CreateProduct(fakedata);
+            Assert.That(uut.LastError, Is.EqualTo("Enter correct product details."));
+        }
+
+        [Test]
+        public void CreateProduct_Badbarcode_ExpectError()
+        {
+
+            var fakedata = new Dictionary<string, string>
+            {
+                ["NAME"] = "Test",
+                ["PRICE"] = "110",
+                ["BARCODE"] = ""
+            };
+
+            uut.CreateProduct(fakedata);
+            Assert.That(uut.LastError, Is.EqualTo("Enter correct product details."));
+        }
+
+
+
+
     }
 
-    [TestFixture]
-    public class GenerateProductTests
-    {
-        // DEN ER PROBLEMATISK....
-    }
 }

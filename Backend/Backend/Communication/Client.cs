@@ -42,7 +42,7 @@ namespace Backend.Communication
                 stream.Write(toSend, 0, toSend.Length);
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
                 Error.StdErr("Error in connecting to server.");
                 return false;

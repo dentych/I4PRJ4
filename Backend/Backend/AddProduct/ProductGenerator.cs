@@ -1,40 +1,25 @@
 using System;
+using System.Collections.Generic;
 using SharedLib.Models;
 
 namespace Backend.AddProduct
 {
     public interface IProductGenerator
     {
-        Product GenerateProduct();
+        Product GenerateProduct(Dictionary<string,string> data);
     }
 
     public class ProductGenerator : IProductGenerator
     {
-        private AddProductCB _addProductCb;
-
-        public ProductGenerator(AddProductCB addProductCb)
-        {
-            _addProductCb = addProductCb;
-        }
-
-        public Product GenerateProduct()
+        public Product GenerateProduct(Dictionary<string,string> data)
         {
             var product = new Product();
-            product.Name = _addProductCb._window.textboxName.Text;
-            product.ProductNumber = _addProductCb._window.textboxBarcode.Text;
-
-            // Convert textboxPrice to decimal number
-            try
-            {
-                product.Price = decimal.Parse(_addProductCb._window.textboxPrice.Text);
-            }
-            catch (Exception e)
-            {
-                Error.StdErr("Error handling price.");
-                return null;
-            }
+            product.Name = data["NAME"];
+            product.ProductNumber = data["BARCODE"];
+            product.Price = Decimal.Parse(data["PRICE"]);
 
             return product;
         }
+
     }
 }
