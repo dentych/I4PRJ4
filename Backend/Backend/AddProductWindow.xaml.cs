@@ -54,5 +54,10 @@ namespace Backend
                     e.Handled = true;
             }
         }
+
+        private void Annuller(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
