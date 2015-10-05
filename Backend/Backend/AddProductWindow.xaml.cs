@@ -56,9 +56,9 @@ namespace Backend
             {
                 var data = new Dictionary<string, string>
                 {
-                    ["NAME"] = this.textboxName.ToString(),
-                    ["PRICE"] = textboxPrice.ToString(),
-                    ["BARCODE"] = textboxBarcode.ToString()
+                    ["NAME"] = this.textboxName.Text.ToString(),
+                    ["PRICE"] = textboxPrice.Text.ToString(),
+                    ["BARCODE"] = textboxBarcode.Text.ToString()
                 };
 
 
