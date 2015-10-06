@@ -165,6 +165,7 @@ namespace KasseApparat
         private void DeleteCommandExecute()
         {
             RemoveAt(CurrentIndex);
+            Notify("TotalPrice");
         }
 
         bool DeleteCommandCanExecute()
