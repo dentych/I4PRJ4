@@ -11,7 +11,7 @@ namespace Backend
     {
         public static void StdErr(string err)
         {
-            MessageBox.Show(err);
+            MessageBox.Show(err, "Error",MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
