@@ -39,10 +39,10 @@
                     <TextBlock Grid.Row="0" Grid.Column="2"
                            Text="{Binding CurrentPages}"
                            VerticalAlignment="Center"
-                           HorizontalAlignment="Center" Height="16" Margin="5.6,7,6,6.8" Width="6" />
+                           HorizontalAlignment="Center"/>
                     <Label Grid.Row="0" Grid.Column="3"
                            Content="of"
-                           HorizontalAlignment="Center" Margin="1,0,2,-0.2" Width="21"/>
+                           HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="0" Grid.Column="4"
                                Text="{Binding TotalPages}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -118,7 +118,7 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Path=productButton1Name}"></Label>
+                                   Content="{Binding Path=productButton4Name}"></Label>
                             <Label Grid.Row="1" 
                                    Content="{Binding productButton4Pris}"
                                    HorizontalAlignment="Right"></Label>
@@ -262,9 +262,11 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="0"
                             Margin="5"
-                            Content="Previous Page"></Button>
+                            Content="Previous Page"
+                            Command="{Binding ButtonPrevCommand}"></Button>
                     <Button Grid.Row="0" Grid.Column="1"
-                            Content="Next Page" Margin="5"></Button>
+                            Content="Next Page" Margin="5"
+                            Command="{Binding ButtonNextCommand}"></Button>
                 </Grid>
             </Grid>
         </GroupBox>

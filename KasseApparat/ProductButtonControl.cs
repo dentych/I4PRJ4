@@ -208,7 +208,10 @@ namespace KasseApparat
             private set { _totalPages = value; }
         }
 
-        public int CurrentPages => _currentPage;
+        public int CurrentPages
+        {
+            get { return _currentPage; }
+        }
 
         #endregion
 
@@ -486,6 +489,34 @@ namespace KasseApparat
         bool Button12CommandCanExecute()
         {
             if (_products[11].Price == 0) return false;
+            else return true;
+        }
+
+        ICommand _ButtonPrevClick;
+        public ICommand ButtonPrevCommand { get { return _ButtonPrevClick ?? (_ButtonPrevClick = new RelayCommand(ButtonPrevCommandExecute, ButtonPrevCommandCanExecute)); } }
+
+        private void ButtonPrevCommandExecute()
+        {
+            
+        }
+
+        bool ButtonPrevCommandCanExecute()
+        {
+            if (_currentPage == 1) return false;
+            else return true;
+        }
+
+        ICommand _ButtonNextClick;
+        public ICommand ButtonNextCommand { get { return _ButtonNextClick ?? (_Button12Click = new RelayCommand(ButtonNextCommandExecute, ButtonNextCommandCanExecute)); } }
+
+        private void ButtonNextCommandExecute()
+        {
+            
+        }
+
+        bool ButtonNextCommandCanExecute()
+        {
+            if (_currentPage == _totalPages) return false;
             else return true;
         }
         #endregion
