@@ -10,7 +10,7 @@ namespace KasseApparat
 {
     public interface IConnection
     {
-        void Send();
+        void Send(string data);
         void Receive();
     }
 
@@ -37,7 +37,7 @@ namespace KasseApparat
             Port = port;
         }
 
-        public void Send()
+        public void Send(string data)
         {
             var client = Connect();
             if (client == null) return;
@@ -46,11 +46,12 @@ namespace KasseApparat
 
             try
             {
-
+                var send = Encoding.ASCII.GetBytes(data);
+                stream.Write(send, 0, send.Length);
             }
             catch (Exception)
             {
-                
+                throw new System.ArgumentException("Error Sending");
             }
             finally
             {
@@ -72,7 +73,7 @@ namespace KasseApparat
             }
             catch (Exception)
             {
-
+                throw new System.ArgumentException("Error Receiving");
             }
             finally
             {

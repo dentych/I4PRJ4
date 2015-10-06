@@ -17,21 +17,7 @@ namespace KasseApparat
     {
         public ShoppingList()
         {
-            Product p1 = new Product();
-            p1.Name = "Beer";
-            p1.Price = 12;
-            p1.ProductId = 0;
-            p1.ProductNumber = "0";
-
-            Product p2 = new Product();
-            p2.Name = "Chips";
-            p2.Price = 20;
-            p2.ProductId = 1;
-            p2.ProductNumber = "1";
-
-            Add(new PurchasedProduct(p1, 6));
-            Add(new PurchasedProduct(p2, 1));
-
+            
         }
 
         public void AddItem(PurchasedProduct product)
