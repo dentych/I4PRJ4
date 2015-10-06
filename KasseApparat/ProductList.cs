@@ -14,7 +14,10 @@ namespace KasseApparat
         private IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
         public IDBcontrol Db { set { _db = value; }}
 
-        public ProductList() { }
+        public ProductList()
+        {
+            Update();
+        }
 
         public void Update()
         {

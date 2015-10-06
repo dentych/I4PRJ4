@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -31,6 +32,18 @@ namespace KasseApparat
             Add(new PurchasedProduct(p1, 6));
             Add(new PurchasedProduct(p2, 1));
 
+        }
+
+        public void AddItem(PurchasedProduct product)
+        {
+            Add(product);
+            Notify("TotalPrice");
+        }
+
+        public void IncrementQuantity(int index)
+        {
+            this[index].Quantity++;
+            Notify("TotalPrice");
         }
 
         public int TotalPrice
@@ -159,6 +172,7 @@ namespace KasseApparat
             if (CurrentIndex < 0) return false;
             else return true;
         }
-#endregion
+        #endregion
+
     }
 }

@@ -23,7 +23,7 @@ namespace KasseApparat
         public MainWindow()
         {
             InitializeComponent();
-
+            //var productButton = new ProductButtonControl();
             
         }
 
