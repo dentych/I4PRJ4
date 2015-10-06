@@ -42,5 +42,16 @@ namespace KasseApparat.UnitTest
 
             Assert.That(uut[uut.CurrentIndex].Quantity, Is.EqualTo(6));
         }
+
+        [Test]
+        public void AddItem_Add3rdItem_ExpectJuice()
+        {
+            var prod = new Product();
+            prod.Name = "Juice";
+
+            uut.AddItem(new PurchasedProduct(prod, 5));
+
+            Assert.That(uut[2].Name, Is.EqualTo("Juice"));
+        }
     }
 }
