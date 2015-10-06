@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="900">
     <Window.Resources>
-        <local:ProductList x:Key="ProductList" />
+        <local:ProductButtonControl x:Key="ProductButtonControl" />
         <local:ShoppingList x:Key="ShoppingList" />
     </Window.Resources>
 
@@ -17,7 +17,7 @@
             <ColumnDefinition Width="289*"></ColumnDefinition>
             <ColumnDefinition Width="262*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0" DataContext="{StaticResource ProductList}" x:Name="Products" 
+        <GroupBox Grid.Column="0" DataContext="{StaticResource ProductButtonControl}" x:Name="Products" 
                   Header="Produkter" Margin="10,10,10.2,10.4" BorderThickness="2">
             <Grid Margin="4">
                 <Grid.RowDefinitions>
@@ -37,15 +37,15 @@
                            HorizontalAlignment="Right"
                            Content="Page" Width="35"/>
                     <TextBlock Grid.Row="0" Grid.Column="2"
-                           Text="2"
+                           Text="{Binding CurrentPages}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" Height="16" Margin="5.6,7,6,6.8" Width="6" />
                     <Label Grid.Row="0" Grid.Column="3"
                            Content="of"
                            HorizontalAlignment="Center" Margin="1,0,2,-0.2" Width="21"/>
                     <TextBlock Grid.Row="0" Grid.Column="4"
-                               Text="2"
-                               HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Margin="4,7,3.4,6.8" Width="7"/>
+                               Text="{Binding TotalPages}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
                 <Grid Margin="0,25,0.4,5" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
@@ -60,29 +60,199 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="0"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton1"
+                            Command="{Binding Button1Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton1Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton1Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+
+                    </Button>
                     <Button Grid.Row="0" Grid.Column="1"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton2"
+                            Command="{Binding Button2Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton2Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton2Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="0" Grid.Column="2"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton3"
+                            Command="{Binding Button3Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton3Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton3Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="1" Grid.Column="0"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton4"
+                            Command="{Binding Button4Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding Path=productButton1Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton4Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="1" Grid.Column="1"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton5"
+                            Command="{Binding Button5Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Text="{Binding productButton5Name}"
+                                       TextWrapping="WrapWithOverflow"/>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton5Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="1" Grid.Column="2"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton6"
+                            Command="{Binding Button6Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton6Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton6Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="2" Grid.Column="0"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton7"
+                            Command="{Binding Button7Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton7Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton7Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="2" Grid.Column="1"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton8"
+                            Command="{Binding Button8Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton8Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton8Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="2" Grid.Column="2"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton9"
+                            Command="{Binding Button9Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton9Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton9Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="3" Grid.Column="0"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton10"
+                            Command="{Binding Button10Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton10Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton10Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="3" Grid.Column="1"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton11"
+                            Command="{Binding Button11Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton11Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton11Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
                     <Button Grid.Row="3" Grid.Column="2"
-                            Margin="5"></Button>
+                            Margin="5"
+                            x:Name="ProductButton12"
+                            Command="{Binding Button12Command}">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="{Binding productButton12Name}"></Label>
+                            <Label Grid.Row="1" 
+                                   Content="{Binding productButton12Pris}"
+                                   HorizontalAlignment="Right"></Label>
+                        </Grid>
+                    </Button>
 
                 </Grid>
                 <Grid Grid.Row="2" Margin="0,0,0.4,0.2" >
