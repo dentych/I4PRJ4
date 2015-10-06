@@ -20,7 +20,12 @@ namespace Backend
 
         private void CloseMainWindowClick(object sender, RoutedEventArgs e)
         {
-            Close();
+            MessageBoxResult result = MessageBox.Show("Er du nu HELT FUCKING sikker?", "Advarsel", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Close();
+            }
+            
         }
     }
 }
