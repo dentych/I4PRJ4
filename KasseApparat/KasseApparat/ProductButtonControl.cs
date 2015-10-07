@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using SharedLib.Models;
 using System.Windows.Input;
 using MvvmFoundation.Wpf;
 using System.Windows;
+using KasseApparat.Annotations;
 
 namespace KasseApparat
 {
-    public class ProductButtonControl
+    public class ProductButtonControl : INotifyPropertyChanged
     {
 #region attributes
         public enum PageChange
@@ -25,17 +28,17 @@ namespace KasseApparat
         private int _totalPages = 0;
         private int _currentPage = 1;
         private readonly ProductList _productList;
-        private List<Product> _products;
+        private List<List<Product>> _PageList;
+        private List<Product> _products; 
         private ShoppingList _shopList;
 #endregion
 
         public ProductButtonControl()
         {
             _productList = new ProductList();
+            _PageList = new List<List<Product>>();
             _products = new List<Product>();
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
-
-            
 
             Update();
         }
@@ -43,52 +46,66 @@ namespace KasseApparat
         public void Update()
         {
             _productList.Update();
-            SetButtons(1, PageChange.Currentpage);
             CalculateTotalpage();
+            createPageList();
+            SetButtons(1, PageChange.Currentpage);
+            
+        }
+
+        void createPageList()
+        {
+            _PageList.Clear();
+
+            int pages = 0;
+            int i = 0;
+
+            while (pages < _totalPages)
+            {
+                _PageList.Add(new List<Product>());
+
+                for (int index = i; i < (index+12); i++)
+                {
+                    if (_productList.Count > i)
+                    {
+                        _PageList[pages].Add(_productList[i]);
+                    }
+                    else
+                    {
+                        _PageList[pages].Add(new Product());
+                    }
+                }
+                
+                pages++;
+            }
         }
 
         void CalculateTotalpage()
         {
             if ((_productList.Count%12) == 0)
             {
-                TotalPages = _productList.Count/12;
+                _totalPages = _productList.Count/12;
             }
             else
             {
-                TotalPages = (_productList.Count/12)+1;
+                _totalPages = (_productList.Count/12)+1;
             }
         }
 
         public void SetButtons(int page, PageChange Change)
         {
-            int pageIndex;
-
             if (Change == PageChange.Nextpage)
             {
-                pageIndex = (page)*12;
+                _products = _PageList[page];
                 _currentPage++;
             }
             else if (Change == PageChange.Currentpage)
             {
-                pageIndex = (page - 1)*12;
+                _products = _PageList[page - 1];
             }
             else
             {
-
-                pageIndex = (page - 2)*12;
+                _products = _PageList[page - 2];
                 _currentPage--;
-            }
-
-            for (int i = pageIndex; i < pageIndex+12; i++)
-            {
-                if (_productList.Count > i)
-                {
-                    _products.Add(_productList[i]);
-                }
-                else
-                {
-                    _products.Add(new Product());
-                }
             }
         }
 
@@ -106,7 +123,44 @@ namespace KasseApparat
             }
         }
 
-#region Properties
+        #region Commands
+        ICommand _ButtonPrevClick;
+        public ICommand PrevCommand { get { return _ButtonPrevClick ?? (_ButtonPrevClick = new RelayCommand(PrevCommandExecute, PrevCommandCanExecute)); } }
+
+        private void PrevCommandExecute()
+        {
+            SetButtons(_currentPage, PageChange.Prevpage);
+            Notify(string.Empty);
+        }
+
+        bool PrevCommandCanExecute()
+        {
+            if (_currentPage == 1)
+                return false;
+            else
+                return true;
+        }
+
+        ICommand _ButtonNextClick;
+        public ICommand NextCommand { get { return _ButtonNextClick ?? (_ButtonNextClick = new RelayCommand(NextCommandExecute, NextCommandCanExecute)); } }
+
+        private void NextCommandExecute()
+        {
+            SetButtons(_currentPage, PageChange.Nextpage);
+            Notify(string.Empty);
+        }
+
+        bool NextCommandCanExecute()
+        {
+            if (_currentPage == _totalPages)
+                return false;
+            else
+                return true;
+        }
+
+        #endregion
+
+        #region Properties
 
         public string productButton1Name
         {
@@ -240,7 +294,18 @@ namespace KasseApparat
             get { return _currentPage; }
         }
 
+
         #endregion
 
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+        private void Notify([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }
