@@ -11,7 +11,6 @@ using SharedLib.Models;
 using System.Windows.Input;
 using MvvmFoundation.Wpf;
 using System.Windows;
-using KasseApparat.Annotations;
 
 namespace KasseApparat
 {
@@ -65,14 +64,7 @@ namespace KasseApparat
 
                 for (int index = i; i < (index+12); i++)
                 {
-                    if (_productList.Count > i)
-                    {
-                        _PageList[pages].Add(_productList[i]);
-                    }
-                    else
-                    {
-                        _PageList[pages].Add(new Product());
-                    }
+                    _PageList[pages].Add(_productList.Count > i ? _productList[i] : new Product());
                 }
                 
                 pages++;
@@ -123,7 +115,7 @@ namespace KasseApparat
             }
         }
 
-        #region Commands
+#region Commands
         ICommand _ButtonPrevClick;
         public ICommand PrevCommand { get { return _ButtonPrevClick ?? (_ButtonPrevClick = new RelayCommand(PrevCommandExecute, PrevCommandCanExecute)); } }
 
@@ -158,9 +150,9 @@ namespace KasseApparat
                 return true;
         }
 
-        #endregion
+#endregion
 
-        #region Properties
+#region Properties
 
         public string productButton1Name
         {
@@ -294,8 +286,7 @@ namespace KasseApparat
             get { return _currentPage; }
         }
 
-
-        #endregion
+#endregion
 
         public new event PropertyChangedEventHandler PropertyChanged;
 
