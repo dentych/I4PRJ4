@@ -107,6 +107,66 @@ namespace KasseApparat
             p15.ProductId = 14;
             p15.ProductNumber = "14";
 
+            Product p16 = new Product();
+            p16.Name = "Malange";
+            p16.Price = 52;
+            p16.ProductId = 15;
+            p16.ProductNumber = "15";
+
+            Product p17 = new Product();
+            p17.Name = "Pana Cotta";
+            p17.Price = 20;
+            p17.ProductId = 16;
+            p17.ProductNumber = "16";
+
+            Product p18 = new Product();
+            p18.Name = "Saffron";
+            p18.Price = 79;
+            p18.ProductId = 17;
+            p18.ProductNumber = "17";
+
+            Product p19 = new Product();
+            p19.Name = "Mælk";
+            p19.Price = 4;
+            p19.ProductId = 18;
+            p19.ProductNumber = "18";
+
+            Product p20 = new Product();
+            p20.Name = "Durum rulle";
+            p20.Price = 39;
+            p20.ProductId = 19;
+            p20.ProductNumber = "19";
+
+            Product p21 = new Product();
+            p21.Name = "Aged Whisky";
+            p21.Price = 299;
+            p21.ProductId = 20;
+            p21.ProductNumber = "20";
+
+            Product p22 = new Product();
+            p22.Name = "Lasagne";
+            p22.Price = 34;
+            p22.ProductId = 21;
+            p22.ProductNumber = "21";
+
+            Product p23 = new Product();
+            p23.Name = "Sprite";
+            p23.Price = 12;
+            p23.ProductId = 22;
+            p23.ProductNumber = "22";
+
+            Product p24 = new Product();
+            p24.Name = "Peas";
+            p24.Price = 24;
+            p24.ProductId = 23;
+            p24.ProductNumber = "23";
+
+            Product p25 = new Product();
+            p25.Name = "Kaffe";
+            p25.Price = 55;
+            p25.ProductId = 24;
+            p25.ProductNumber = "24";
+
             List<Product> PL = new List<Product>();
 
             PL.Add(p1);
@@ -124,6 +184,16 @@ namespace KasseApparat
             PL.Add(p13);
             PL.Add(p14);
             PL.Add(p15);
+            PL.Add(p16);
+            PL.Add(p17);
+            PL.Add(p18);
+            PL.Add(p19);
+            PL.Add(p20);
+            PL.Add(p21);
+            PL.Add(p22);
+            PL.Add(p23);
+            PL.Add(p24);
+            PL.Add(p25);
 
             return PL;
         }
