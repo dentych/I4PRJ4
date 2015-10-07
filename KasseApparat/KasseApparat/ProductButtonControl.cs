@@ -11,6 +11,7 @@ using SharedLib.Models;
 using System.Windows.Input;
 using MvvmFoundation.Wpf;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace KasseApparat
 {
@@ -64,7 +65,14 @@ namespace KasseApparat
 
                 for (int index = i; i < (index+12); i++)
                 {
-                    _PageList[pages].Add(_productList.Count > i ? _productList[i] : new Product());
+                    if (_productList.Count > i)
+                    {
+                        _PageList[pages].Add(_productList[i]);
+                    }
+                    else
+                    {
+                        _PageList[pages].Add(new Product());
+                    }
                 }
                 
                 pages++;
@@ -150,128 +158,333 @@ namespace KasseApparat
                 return true;
         }
 
+
+
 #endregion
 
 #region Properties
 
         public string productButton1Name
         {
-            get { return _products[0].Name; }
+            get
+            {
+                return _products[0].Name;
+            }
         }
 
         public string productButton1Pris
         {
-            get { return _products[0].Price + " kr."; }
+            get
+            {
+                if (_products[0].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton01.IsEnabled = true;
+                    return _products[0].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton01.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton2Name
         {
-            get { return _products[1].Name; }
+            get
+            {
+                return _products[1].Name; 
+                
+            }
         }
 
         public string productButton2Pris
         {
-            get { return _products[1].Price + " kr."; }
+            get
+            {
+                if (_products[1].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton02.IsEnabled = true;
+                    return _products[1].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton02.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton3Name
         {
-            get { return _products[2].Name; }
+            get
+            {
+                return _products[2].Name; 
+                
+            }
         }
 
         public string productButton3Pris
         {
-            get { return _products[2].Price + " kr."; }
+            get
+            {
+                if (_products[2].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton03.IsEnabled = true;
+                    return _products[2].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton03.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton4Name
         {
-            get { return _products[3].Name; }
+            get
+            {
+                return _products[3].Name; 
+                
+            }
         }
 
         public string productButton4Pris
         {
-            get { return _products[3].Price + " kr."; }
+            get
+            {
+                if (_products[3].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton04.IsEnabled = true;
+                    return _products[3].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton04.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton5Name
         {
-            get { return _products[4].Name; }
+            get
+            {
+                return _products[4].Name; 
+                
+            }
         }
 
         public string productButton5Pris
         {
-            get { return _products[4].Price + " kr."; }
+            get
+            {
+                if (_products[4].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton05.IsEnabled = true;
+                    return _products[4].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton05.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton6Name
         {
-            get { return _products[5].Name; }
+            get
+            {
+                return _products[5].Name; 
+                
+            }
         }
 
         public string productButton6Pris
         {
-            get { return _products[5].Price + " kr."; }
+            get
+            {
+                if (_products[5].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton06.IsEnabled = true;
+                    return _products[5].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton06.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton7Name
         {
-            get { return _products[6].Name; }
+            get
+            {
+                return _products[6].Name; 
+                
+            }
         }
 
         public string productButton7Pris
         {
-            get { return _products[6].Price + " kr."; }
+            get
+            {
+                if (_products[6].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton07.IsEnabled = true;
+                    return _products[6].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton07.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton8Name
         {
-            get { return _products[7].Name; }
+            get
+            {
+                return _products[7].Name; 
+                
+            }
         }
 
         public string productButton8Pris
         {
-            get { return _products[7].Price + " kr."; }
+            get
+            {
+                if (_products[7].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton08.IsEnabled = true;
+                    return _products[7].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton08.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton9Name
         {
-            get { return _products[8].Name; }
+            get
+            {
+                return _products[8].Name; 
+                
+            }
         }
 
         public string productButton9Pris
         {
-            get { return _products[8].Price + " kr."; }
+            get
+            {
+                if (_products[8].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton09.IsEnabled = true;
+                    return _products[8].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton09.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton10Name
         {
-            get { return _products[9].Name; }
+            get
+            {
+                return _products[9].Name; 
+                
+            }
         }
 
         public string productButton10Pris
         {
-            get { return _products[9].Price + " kr."; }
+            get
+            {
+                if (_products[9].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton10.IsEnabled = true;
+                    return _products[9].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton10.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton11Name
         {
-            get { return _products[10].Name; }
+            get
+            {
+                return _products[10].Name; 
+                
+            }
         }
 
         public string productButton11Pris
         {
-            get { return _products[10].Price + " kr."; }
+            get
+            {
+                if (_products[10].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton11.IsEnabled = true;
+                    return _products[10].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton11.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
         public string productButton12Name
         {
-            get { return _products[11].Name; }
+            get
+            {
+                return _products[11].Name;
+                
+            }
         }
 
         public string productButton12Pris
         {
-            get { return _products[11].Price + " kr."; }
+            get
+            {
+                if (_products[11].Name != null)
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton12.IsEnabled = true;
+                    return _products[11].Price + "kr. ";
+                }
+                else
+                {
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).ProductButton12.IsEnabled = false;
+                    return "";
+                }
+
+            }
         }
 
 
