@@ -58,7 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddProductWindow.xaml">
+    <Page Include="AddProduct\Views\AddProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -66,14 +66,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddProductWindow.xaml.cs">
+    <Compile Include="AddProduct\Views\AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddProduct\AddProductCB.cs" />
-    <Compile Include="AddProduct\IAddProduct.cs" />
-    <Compile Include="AddProduct\IProtocol.cs" />
-    <Compile Include="AddProduct\PrjProtokol.cs" />
-    <Compile Include="AddProduct\ProductGenerator.cs" />
+    <Compile Include="AddProduct\Models\BackendProduct.cs" />
+    <Compile Include="AddProduct\Brains\AddProductCB.cs" />
+    <Compile Include="AddProduct\ViewModels\AddProductViewModel.cs" />
+    <Compile Include="AddProduct\Brains\IAddProduct.cs" />
+    <Compile Include="AddProduct\Brains\IProtocol.cs" />
+    <Compile Include="AddProduct\Brains\PrjProtokol.cs" />
+    <Compile Include="AddProduct\Commands\ProductAddCommand.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

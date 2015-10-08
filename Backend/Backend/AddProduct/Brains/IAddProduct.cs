@@ -7,12 +7,14 @@
 ///////////////////////////////////////////////////////////
 
 using System.Collections.Generic;
+using Backend.AddProduct.Models;
+using SharedLib.Models;
 
 namespace Backend.AddProduct
 {
     public interface IAddProduct
     {
         string LastError { get; }
-        bool CreateProduct(Dictionary<string, string> data);
+        bool CreateProduct(BackendProduct Product);
     } //end IAddProduct
 }

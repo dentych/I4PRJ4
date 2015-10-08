@@ -6,13 +6,11 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
-using System;
-using System.Collections.Generic;
 using SharedLib.Models;
-using SharedLib.Protocol.Commands;
 using SharedLib.Protocol;
+using SharedLib.Protocol.Commands;
 
-namespace Backend.AddProduct
+namespace Backend.AddProduct.Brains
 {
     public class PrjProtokol : IProtocol
     {
@@ -23,6 +21,5 @@ namespace Backend.AddProduct
 
             return protocol.Encode(createProductCmd);
         }
-
-    }//end PrjProtokol
+    } //end PrjProtokol
 }

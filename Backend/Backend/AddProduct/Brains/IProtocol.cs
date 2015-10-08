@@ -8,7 +8,7 @@
 
 using SharedLib.Models;
 
-namespace Backend.AddProduct
+namespace Backend.AddProduct.Brains
 {
     public interface IProtocol
     {

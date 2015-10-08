@@ -6,55 +6,40 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.IO;
-using SharedLib.Models;
+using Backend.AddProduct.Models;
 using Backend.Communication;
 
-namespace Backend.AddProduct {
+namespace Backend.AddProduct.Brains
+{
     public class AddProductCB : IAddProduct
     {
-        readonly IProtocol _protocol;
-        string _error;
-
-        public IProductGenerator ProductGenerator;
-        private IClient _client;
-
+        private readonly IClient _client;
+        private readonly IProtocol _protocol;
 
 
         public AddProductCB(IProtocol protocol, IClient client)
         {
             _protocol = protocol;
             LastError = null;
-            ProductGenerator = new ProductGenerator();
             _client = client;
-
         }
 
-        public bool CreateProduct(Dictionary<string, string> data)
+        public bool CreateProduct(BackendProduct Product)
         {
-
             // Create the product
-            var product = ProductGenerator.GenerateProduct(data);
-            
+            var product = Product;
 
-            if (product.Name == "" || product.Price < 0 || product.ProductNumber == "")
+
+            if (product.BName == "" || product.BPrice < 0 || product.BProductNumber == "")
             {
                 LastError = "Enter correct product details.";
                 Error.StdErr(LastError);
                 return false;
             }
 
-         
 
             // Generate XML from product
-            string cmdtoSend = _protocol.ProductXMLParser(product);
-
-            // New client to use to send data to central server
-            
+            var cmdtoSend = _protocol.ProductXMLParser(product);
 
 
             // Send the XML data
@@ -65,14 +50,8 @@ namespace Backend.AddProduct {
                 return false;
             }
             return true;
-
         }
 
-        public string LastError
-        {
-            private set { _error = value; }
-            get { return _error; }
-        }
-
-    }//end AddProductCB
+        public string LastError { private set; get; }
+    } //end AddProductCB
 }
