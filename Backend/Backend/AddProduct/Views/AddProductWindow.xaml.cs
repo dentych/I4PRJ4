@@ -18,7 +18,6 @@ namespace Backend
         {
             InitializeComponent();
             DataContext = new AddProductViewModel();
-            backend = new AddProductCB(new PrjProtokol(), new Client("127.0.0.1", 9000));
         }
 
 
