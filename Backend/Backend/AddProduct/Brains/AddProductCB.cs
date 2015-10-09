@@ -15,6 +15,7 @@ namespace Backend.AddProduct.Brains
     {
         private readonly IClient _client;
         private readonly IProtocol _protocol;
+        public  IError Error;
 
 
         public AddProductCB(IProtocol protocol, IClient client)
@@ -22,6 +23,7 @@ namespace Backend.AddProduct.Brains
             _protocol = protocol;
             LastError = null;
             _client = client;
+            Error = new Error();
         }
 
         public bool CreateProduct(BackendProduct Product)
