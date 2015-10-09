@@ -8,7 +8,7 @@ namespace Backend.Brains
         void StdErr(string someerror);
     }
 
-    class Error : IError
+    public class Error : IError
     {
         public void StdErr(string err)
         {

@@ -20,6 +20,7 @@ namespace Backend.Unit.Tests
         [ExpectedException(typeof (ArgumentException), ExpectedMessage = "Bad IP")]
         public void IP_SetBadIP_ExpectException() // I CANNOT MAKEN SHIT FAIL
         {
+
             var uut = new Client("1222222.111.222.336.588.85.55.444", 9000);
         }
 
@@ -55,11 +56,5 @@ namespace Backend.Unit.Tests
             Assert.True(_uut.Send("TEST"));
         }
 
-        [Test]
-        public void Send_ServerNoRespond_ExpectFalse() // I CANNOT MAKEN SHIT FAIL
-        {
-            _uut = new Client("93.184.216.34", 9000);
-            Assert.False(_uut.Send("\n\r"));
-        }
     }
 }

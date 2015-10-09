@@ -57,11 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddProductCBUnitTests.cs" />
+    <Compile Include="AddProductVMUnittest.cs" />
     <Compile Include="ClientUnitTests.cs" />
+    <Compile Include="MainWindowVMUnitTests.cs" />
     <Compile Include="PrjProtocolUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

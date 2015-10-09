@@ -17,13 +17,13 @@ namespace Backend.Communication
             IPAddress address;
             if (!IPAddress.TryParse(ip, out address))
             {
-                Error.StdErr("Bad IP");
                 throw new ArgumentException("Bad IP");
             }
 
             Ip = ip;
             Port = port;
         }
+
 
         public string Ip { get; }
         public int Port { get; }
