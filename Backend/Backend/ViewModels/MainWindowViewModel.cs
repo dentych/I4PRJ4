@@ -12,10 +12,14 @@ using Backend.Views;
 
 namespace Backend.ViewModels
 {
-    internal class MainWindowViewModel
+    public class MainWindowViewModel
     {
 
         #region Commands
+
+#if DEBUG
+        public bool IsCalled = false;
+#endif
 
         /* Add Product */
         ICommand _openAddProductWindowCommand;
@@ -26,11 +30,16 @@ namespace Backend.ViewModels
 
         private void NewAddProductWindow()
         {
-           var window = new AddProductWindow();
+#if DEBUG
+        IsCalled = true;
+#endif
+        var window = new AddProductWindow();
             window.ShowDialog();
+        
+
         }
 
-        #endregion
+#endregion
 
     }
 }
