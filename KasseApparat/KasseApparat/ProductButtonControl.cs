@@ -113,9 +113,7 @@ namespace KasseApparat
         {
             if (_shopList.Any(x => x.Name == _products[indexItem].Name))
             {
-                var purchasedProduct = _shopList.Where(x => x.Name == _products[indexItem].Name).Single();
-                int index = _shopList.IndexOf(purchasedProduct);
-                _shopList.IncrementQuantity(index);
+                _shopList.IncrementQuantity(_shopList.IndexOf(_shopList.Where(x => x.Name == _products[indexItem].Name).Single()));
             }
             else
             {
