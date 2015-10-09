@@ -18,6 +18,7 @@ namespace Backend.Unit.Tests
         private IClient client;
         private IProtocol protokol;
         private AddProductCB uut;
+        private IError err;
 
         [SetUp]
         public void Setup()
@@ -25,6 +26,8 @@ namespace Backend.Unit.Tests
             client = Substitute.For<IClient>();
             protokol = Substitute.For<IProtocol>();
             uut = new AddProductCB(protokol,client);
+            err = Substitute.For<IError>();
+            uut.Error = err;
         }
 
 
@@ -54,6 +57,20 @@ namespace Backend.Unit.Tests
             client.Send(Arg.Any<string>()).Returns(false);
 
             Assert.False(uut.CreateProduct(fakedata));
+        }
+
+        [Test]
+        public void CreateProduct_ClientReturnsFalse_ExpectErrorMsg()
+        {
+
+            var fakedata = new BackendProduct();
+            fakedata.BName = "Name";
+            fakedata.BPrice = 100;
+            fakedata.BProductNumber = "1124TEST";
+            client.Send(Arg.Any<string>()).Returns(false);
+
+            uut.CreateProduct(fakedata);
+            err.Received(1).StdErr("Connection Error");
 
         }
 
@@ -83,7 +100,8 @@ namespace Backend.Unit.Tests
             fakedata.BProductNumber = "1124TEST";
 
             uut.CreateProduct(fakedata);
-            Assert.That(uut.LastError,Is.EqualTo("Enter correct product details."));
+            err.Received(1).StdErr("Enter correct product details.");
+
         }
 
         [Test]
@@ -96,7 +114,8 @@ namespace Backend.Unit.Tests
             fakedata.BProductNumber = "1124TEST";
 
             uut.CreateProduct(fakedata);
-            Assert.That(uut.LastError, Is.EqualTo("Enter correct product details."));
+            err.Received(1).StdErr("Enter correct product details.");
+
         }
 
         [Test]
@@ -109,7 +128,7 @@ namespace Backend.Unit.Tests
             fakedata.BProductNumber = "";
 
             uut.CreateProduct(fakedata);
-            Assert.That(uut.LastError, Is.EqualTo("Enter correct product details."));
+            err.Received(1).StdErr("Enter correct product details.");
         }
 
 

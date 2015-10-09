@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ComponentModel.Design;
+using System.Windows.Input;
 using Backend.Brains;
 using Backend.Communication;
 using Backend.Dependencies;
@@ -37,8 +39,19 @@ namespace Backend.ViewModels
 
         private void AddProduct()
         {
-            var ap = new AddProductCB(new PrjProtokol(), new Client("127.0.0.1", 9000));
-            ap.CreateProduct(Product);
+            try
+            {
+                var ap = new AddProductCB(new PrjProtokol(), new Client("127.0.0.1", 9000));
+                ap.CreateProduct(Product);
+
+            }
+            catch (Exception e)
+            {
+
+                var err = new Error();
+                err.StdErr("Error " + e);
+            }
+
         }
 
         #endregion
