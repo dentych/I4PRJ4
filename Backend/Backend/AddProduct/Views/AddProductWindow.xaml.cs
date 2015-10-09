@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Backend.AddProduct;
 using Backend.AddProduct.Brains;
 using Backend.AddProduct.ViewModels;
 using Backend.Communication;
@@ -12,13 +11,25 @@ namespace Backend
     /// </summary>
     public partial class AddProductWindow
     {
-        private IAddProduct backend;
-
+    
         public AddProductWindow()
         {
             InitializeComponent();
             DataContext = new AddProductViewModel();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         /* Validate input */
