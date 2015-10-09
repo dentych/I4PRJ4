@@ -1,5 +1,4 @@
-﻿using Backend.AddProduct;
-using Backend.AddProduct.Brains;
+﻿using Backend.Brains;
 using NUnit.Framework;
 using SharedLib.Models;
 

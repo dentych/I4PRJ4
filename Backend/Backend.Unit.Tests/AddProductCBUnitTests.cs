@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Backend.AddProduct;
-using Backend.AddProduct.Brains;
-using Backend.AddProduct.Models;
+using Backend.Brains;
 using Backend.Communication;
+using Backend.Models;
 using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using NSubstitute;
 using NUnit.Framework;

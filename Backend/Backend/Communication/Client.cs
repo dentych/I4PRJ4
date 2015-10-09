@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using Backend.AddProduct.Brains;
+using Backend.Brains;
 
 namespace Backend.Communication
 {
