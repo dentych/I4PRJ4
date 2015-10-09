@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using Backend.Brains;
 
 namespace Backend.Communication
 {
@@ -26,6 +27,7 @@ namespace Backend.Communication
 
         public string Ip { get; }
         public int Port { get; }
+        public IError Error = new Error();
 
         public bool Send(string data)
         {
