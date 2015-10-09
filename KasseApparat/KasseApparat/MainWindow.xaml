@@ -1,6 +1,7 @@
 ﻿<Window x:Class="KasseApparat.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:jakob="wuygdwuy"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KasseApparat"
@@ -62,6 +63,7 @@
                     <Button Grid.Row="0" Grid.Column="0"
                             Margin="5"
                             x:Name="ProductButton01"
+                            Tag="0"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -79,6 +81,7 @@
                     <Button Grid.Row="0" Grid.Column="1"
                             Margin="5"
                             x:Name="ProductButton02"
+                            Tag="1"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -95,6 +98,7 @@
                     <Button Grid.Row="0" Grid.Column="2"
                             Margin="5"
                             x:Name="ProductButton03"
+                            Tag="2"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -111,6 +115,7 @@
                     <Button Grid.Row="1" Grid.Column="0"
                             Margin="5"
                             x:Name="ProductButton04"
+                            Tag="3"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -126,6 +131,7 @@
                     </Button>
                     <Button Grid.Row="1" Grid.Column="1"
                             Margin="5"
+                            Tag="4"
                             x:Name="ProductButton05"
                             Click="ButtonProductClick">
                         <Grid >
@@ -135,15 +141,17 @@
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0"
                                        Text="{Binding productButton5Name}"
+                                       TextAlignment="Center"
                                        TextWrapping="WrapWithOverflow"/>
                             <Label Grid.Row="1" 
                                    Content="{Binding productButton5Pris}"
-                                   HorizontalAlignment="Right"></Label>
+                                   HorizontalAlignment="Center"></Label>
                         </Grid>
                     </Button>
                     <Button Grid.Row="1" Grid.Column="2"
                             Margin="5"
                             x:Name="ProductButton06"
+                            Tag="5"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -160,6 +168,7 @@
                     <Button Grid.Row="2" Grid.Column="0"
                             Margin="5"
                             x:Name="ProductButton07"
+                            Tag="6"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -176,6 +185,7 @@
                     <Button Grid.Row="2" Grid.Column="1"
                             Margin="5"
                             x:Name="ProductButton08"
+                            Tag="7"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -192,6 +202,7 @@
                     <Button Grid.Row="2" Grid.Column="2"
                             Margin="5"
                             x:Name="ProductButton09"
+                            Tag="8"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -208,6 +219,7 @@
                     <Button Grid.Row="3" Grid.Column="0"
                             Margin="5"
                             x:Name="ProductButton10"
+                            Tag="9"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -224,6 +236,7 @@
                     <Button Grid.Row="3" Grid.Column="1"
                             Margin="5"
                             x:Name="ProductButton11"
+                            Tag="10"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -240,6 +253,7 @@
                     <Button Grid.Row="3" Grid.Column="2"
                             Margin="5"
                             x:Name="ProductButton12"
+                            Tag="11"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>

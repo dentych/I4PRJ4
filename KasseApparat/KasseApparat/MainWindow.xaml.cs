@@ -43,16 +43,8 @@ namespace KasseApparat
         {
             Button buttonName = (Button)e.OriginalSource;
             ProductButtonControl ProdControl = (ProductButtonControl) this.FindResource("ProductButtonControl");
-            string a = buttonName.Name;
-            string b = string.Empty;
-
-            for (int i = 0; i < a.Length; i++)
-            {
-                if (Char.IsDigit(a[i]))
-                    b += a[i];
-            }
-
-            ProdControl.addItem(int.Parse(b)-1);
+            
+            ProdControl.addItem(int.Parse(buttonName.Tag.ToString()));
         }
     }
 }
