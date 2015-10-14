@@ -380,18 +380,29 @@
                 <Border Margin="7,7,6.6,6" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="LightGray">
                     <TextBlock Background="White" x:Name="Display"  />
                 </Border>
-                <Button x:Name="ButtonOne" Content="1" Grid.Row="1" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"/>
-                <Button x:Name="ButtonTwo" Content="2" Grid.Row="1" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"/>
-                <Button x:Name="ButtonThree" Content="3" Grid.Row="1" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"/>
-                <Button x:Name="ButtonFour" Content="4" Grid.Row="2" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"/>
-                <Button x:Name="ButtonFive" Content="5" Grid.Row="2" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"/>
-                <Button x:Name="ButtonSix" Content="6" Grid.Row="2" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"/>
-                <Button x:Name="ButtonSeven" Content="7" Grid.Row="3" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"/>
-                <Button x:Name="ButtonEight" Content="8" Grid.Row="3" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"/>
-                <Button x:Name="ButtonNine" Content="9" Grid.Row="3" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"/>
-                <Button x:Name="ButtonZero" Content="0" Grid.Row="4" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"/>
-                <Button x:Name="ButtonOneDZero" Content="00" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20" Click="ButtonOneDZero_Click"/>
-                <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"/>
+                <Button x:Name="ButtonOne" Content="1" Grid.Row="1" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonTwo" Content="2" Grid.Row="1" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonThree" Content="3" Grid.Row="1" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonFour" Content="4" Grid.Row="2" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonFive" Content="5" Grid.Row="2" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonSix" Content="6" Grid.Row="2" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonSeven" Content="7" Grid.Row="3" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonEight" Content="8" Grid.Row="3" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonNine" Content="9" Grid.Row="3" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonZero" Content="0" Grid.Row="4" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
+                        Click="ButtonNr_Click"/>
+                <Button x:Name="ButtonOneDZero" Content="00" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"/>
+                <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
+                        Click="ButtonClr_Click"/>
                 <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,7,6.6,7" Click="ButtonCash_Click"/>
                 <Button x:Name="ButtonCard" Content="Kort" Grid.Row="6" Grid.Column="1" Margin="7.4,7,7,7"/>
                 <Button x:Name="ButtonAnulate" Grid.Row="6" Grid.Column="2" Margin="7,7,6.6,7">
