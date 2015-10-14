@@ -28,16 +28,27 @@ namespace KasseApparat
             
         }
 
+#region Inputs
         private void ButtonCash_Click(object sender, RoutedEventArgs e)
         {
             ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
-            MessageBox.Show("Total pris: " + shopList.TotalPrice);
+            MessageBox.Show("Total pris: " + shopList.TotalPrice 
+                + "\nBetalt: " + Display.Text
+                + "\nDifference: " + (shopList.TotalPrice - Convert.ToDouble(Display.Text)));
         }
 
-        private void ButtonOneDZero_Click(object sender, RoutedEventArgs e)
+        private void ButtonNr_Click(object sender, RoutedEventArgs e)
         {
-
+            Button button = (Button)e.OriginalSource;
+            Display.Text += button.Content;
         }
+
+        private void ButtonClr_Click(object sender, RoutedEventArgs e)
+        {
+            Display.Text = "";
+        }
+
+#endregion
 
         private void ButtonProductClick(object sender, RoutedEventArgs e)
         {
