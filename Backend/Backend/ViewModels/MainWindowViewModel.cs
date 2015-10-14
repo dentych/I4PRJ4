@@ -9,11 +9,20 @@ using Backend.Brains;
 using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Views;
+using Backend.Models;
 
 namespace Backend.ViewModels
 {
     public class MainWindowViewModel
     {
+        #region Properties
+        private BackendProductList _productList = new BackendProductList();
+
+        public BackendProductList ProductList
+        {
+            get { return _productList; }
+        }
+        #endregion
 
         #region Commands
 
@@ -31,15 +40,15 @@ namespace Backend.ViewModels
         private void NewAddProductWindow()
         {
 #if DEBUG
-        IsCalled = true;
+            IsCalled = true;
 #endif
-        var window = new AddProductWindow();
+            var window = new AddProductWindow();
             window.ShowDialog();
-        
+
 
         }
 
-#endregion
+        #endregion
 
     }
 }

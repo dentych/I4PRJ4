@@ -35,7 +35,17 @@
         <!-- Column 1 -->
         <Grid Grid.Row="1" Grid.Column="1" Margin="10">
             <Label Content="Produkter" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12pt"/>
-            <TextBox Margin="0, 30, 0, 0"/>
+            <ListView Margin="0, 30, 0, 0" ItemsSource="{Binding ProductList}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Navn" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Pris" DisplayMemberBinding="{Binding Price, StringFormat={}{0} kr}"/>
+                            <GridViewColumn Header="Stregkode" DisplayMemberBinding="{Binding ProductNumber}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
         <!-- Column 2 -->
