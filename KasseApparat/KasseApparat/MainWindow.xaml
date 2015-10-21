@@ -10,6 +10,8 @@
     <Window.Resources>
         <local:ProductButtonControl x:Key="ProductButtonControl" />
         <local:ShoppingList x:Key="ShoppingList" />
+
+        
     </Window.Resources>
 
     <Grid>
@@ -64,6 +66,7 @@
                             Margin="5"
                             x:Name="ProductButton01"
                             Tag="0"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -71,17 +74,17 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding productButton1Name}"></Label>
+                                   Content="{Binding Products[0].Name}"></Label>
                             <Label Grid.Row="1" 
                                    Content="{Binding productButton1Pris}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
-
                     </Button>
                     <Button Grid.Row="0" Grid.Column="1"
                             Margin="5"
                             x:Name="ProductButton02"
                             Tag="1"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -99,6 +102,7 @@
                             Margin="5"
                             x:Name="ProductButton03"
                             Tag="2"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -116,6 +120,7 @@
                             Margin="5"
                             x:Name="ProductButton04"
                             Tag="3"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -133,6 +138,7 @@
                             Margin="5"
                             Tag="4"
                             x:Name="ProductButton05"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -152,6 +158,7 @@
                             Margin="5"
                             x:Name="ProductButton06"
                             Tag="5"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -169,6 +176,7 @@
                             Margin="5"
                             x:Name="ProductButton07"
                             Tag="6"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -186,6 +194,7 @@
                             Margin="5"
                             x:Name="ProductButton08"
                             Tag="7"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -193,7 +202,8 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding productButton8Name}"></Label>
+                                   Content="{Binding productButton8Name}"
+                                   Name="Label7"></Label>
                             <Label Grid.Row="1" 
                                    Content="{Binding productButton8Pris}"
                                    HorizontalAlignment="Right"></Label>
@@ -203,6 +213,7 @@
                             Margin="5"
                             x:Name="ProductButton09"
                             Tag="8"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -220,6 +231,7 @@
                             Margin="5"
                             x:Name="ProductButton10"
                             Tag="9"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -237,6 +249,7 @@
                             Margin="5"
                             x:Name="ProductButton11"
                             Tag="10"
+                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -254,6 +267,7 @@
                             Margin="5"
                             x:Name="ProductButton12"
                             Tag="11"
+                            IsEnabled="{Binding Products[11].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>

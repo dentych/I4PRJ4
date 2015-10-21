@@ -29,7 +29,7 @@ namespace KasseApparat
         private int _currentPage = 1;
         private readonly ProductList _productList;
         private List<List<Product>> _PageList;
-        private List<Product> _products; 
+        private ProductButtonList _products; 
         private ShoppingList _shopList;
 #endregion
 
@@ -37,7 +37,7 @@ namespace KasseApparat
         {
             _productList = new ProductList();
             _PageList = new List<List<Product>>();
-            _products = new List<Product>();
+            _products = new ProductButtonList();
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
 
             Update();
@@ -95,16 +95,16 @@ namespace KasseApparat
         {
             if (Change == PageChange.Nextpage)
             {
-                _products = _PageList[page];
+                _products = new ProductButtonList(_PageList[page]);
                 _currentPage++;
             }
             else if (Change == PageChange.Currentpage)
             {
-                _products = _PageList[page - 1];
+                _products = new ProductButtonList(_PageList[page - 1]);
             }
             else
             {
-                _products = _PageList[page - 2];
+                _products = new ProductButtonList(_PageList[page - 2]);
                 _currentPage--;
             }
         }
@@ -117,7 +117,7 @@ namespace KasseApparat
             }
             else
             {
-                _shopList.AddItem(new PurchasedProduct(_products[indexItem], 1));
+                _shopList.AddItem(new PurchasedProduct(_PageList[CurrentPages-1][indexItem], 1));
             }
         }
 
@@ -145,6 +145,7 @@ namespace KasseApparat
         private void NextCommandExecute()
         {
             SetButtons(_currentPage, PageChange.Nextpage);
+            
             Notify(string.Empty);
         }
 
@@ -161,6 +162,12 @@ namespace KasseApparat
 #endregion
 
 #region Properties
+
+        public ProductButtonList Products
+        {
+            get { return _products; }
+        }
+
 
         public string productButton1Name
         {
