@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using NUnit.Framework;
 using SharedLib.Models;
 
@@ -52,6 +53,14 @@ namespace KasseApparat.UnitTest
             uut.AddItem(new PurchasedProduct(prod, 5));
 
             Assert.That(uut[2].Name, Is.EqualTo("Juice"));
+        }
+
+        [Test]
+        public void IncrementQuantity_Add1_Expect6()
+        {
+            uut.IncrementQuantity(0);
+
+            Assert.That(uut[0].Quantity, Is.EqualTo(6));
         }
     }
 }
