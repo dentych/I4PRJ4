@@ -16,9 +16,7 @@ namespace KasseApparat
     public class ShoppingList : ObservableCollection<PurchasedProduct>, INotifyPropertyChanged
     {
         public ShoppingList()
-        {
-            
-        }
+        {}
 
         public void AddItem(PurchasedProduct product)
         {
@@ -31,10 +29,20 @@ namespace KasseApparat
             this[index].Quantity++;
             Notify("TotalPrice");
         }
-
+        
         public int TotalPrice
         {
             get { return this.Sum(vare => (int) vare.TotalPrice); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void Notify([CallerMemberName] string propertyName = "")
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
 #region Index
@@ -48,16 +56,7 @@ namespace KasseApparat
                 Notify();
             }
         }
-        public new event PropertyChangedEventHandler PropertyChanged;
-
-        private void Notify([CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+        
 #endregion
 
 #region MoreButton
