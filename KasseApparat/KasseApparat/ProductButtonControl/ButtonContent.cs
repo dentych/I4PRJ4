@@ -11,9 +11,25 @@ namespace KasseApparat
         private string _name;
         private string _price;
 
+        public ButtonContent(Product p)
+        {
+            if (!string.IsNullOrEmpty(p.Name))
+            {
+                Name = p.Name;
+                Price = p.Price + " kr.";
+            }
+            else
+            {
+                this.Name = string.Empty;
+                this.Price = string.Empty;
+            }
+
+            Product = p;
+        }
+
         public ButtonContent(string name, string price)
         {
-            if (name != null)
+            if (!string.IsNullOrEmpty(name))
             {
                 this.Name = name;
                 this.Price = price + " kr.";
@@ -23,12 +39,11 @@ namespace KasseApparat
                 this.Name = string.Empty;
                 this.Price = string.Empty;
             }
-            
         }
 
         public bool ButtonIsEnabled
         {
-            get { return false; }
+            get { return !(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Price)); }
         }
 
         public string Price
@@ -40,15 +55,28 @@ namespace KasseApparat
             }
             get
             {
-                Notify(string.Empty);
                 return _price;
             }
-            
         }
 
-        public string Name;
+        public string Name
+        {
+            set
+            {
+                _name = value;
+                Notify(string.Empty);
+            }
+            get
+            {
+                return _name;
+            }
+        }
 
-        public new event PropertyChangedEventHandler PropertyChanged;
+        public Product Product;
+
+        
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void Notify([CallerMemberName] string propertyName = null)
         {

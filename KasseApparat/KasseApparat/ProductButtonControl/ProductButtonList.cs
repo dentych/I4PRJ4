@@ -8,7 +8,10 @@ namespace KasseApparat
 {
     public class ProductButtonList : ObservableCollection<ButtonContent>
     {
-        public ProductButtonList() { }
+        public ProductButtonList()
+        {
+            
+        }
 
         public ProductButtonList(List<Product> p)
         {
