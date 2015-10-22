@@ -14,7 +14,7 @@ namespace Backend.ViewModels
             Err = new Error();
 
 
-            IAP = new AddProductCB(new PrjProtokol(), new Client("127.0.0.1", 9000));
+            IAP = new AddProductCB(new PrjProtokol(), new Client());
                 // Der skal nogle settings til her..
         }
 

@@ -1,8 +1,13 @@
-﻿using SharedLib.Models;
+﻿using Backend.Brains;
+using Backend.Communication;
+using SharedLib.Models;
+using SharedLib.Protocol;
+using SharedLib.Protocol.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,19 +25,38 @@ namespace Backend.Models
         }
         #endregion
 
-        public BackendProductList()
+        public void GetCatalogue()
         {
-            Product product;
+            
+            // Get necessary objects
+            var getCatCmd = new GetCatalogueCmd();
+            var protocol = new Protocol();
 
-            for (int i = 0; i < 10; i++)
+            // Convert get catalogue command to XML
+            string toSend = protocol.Encode(getCatCmd);
+
+            // Connect
+            var client = new Client();
+            if (!client.Connect())
             {
-                product = new Product();
-                product.Name = "Product #" + i.ToString();
-                product.Price = i * 2;
-                product.ProductNumber = "PRODUCT" + i.ToString();
-
-                Add(product);
+                return;
             }
+
+            // Send WE WANT CATALOGUE
+            client.Send(toSend);
+
+            // Receive the catalogue
+            string receive = client.Receive();
+
+            // Close connection, because we no longer need it
+            client.Disconnect();
+
+            // Create a catalogue details command with the product list
+            var catalogue = new CatalogueDetailsCmd();
+            catalogue = protocol.Decode(receive) as CatalogueDetailsCmd;
+
+            // Add the products from catalogue details command to the BackendProductList.
+            catalogue.Products.ForEach(Add);
         }
     }
 }
