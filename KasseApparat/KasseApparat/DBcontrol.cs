@@ -5,6 +5,8 @@ using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using SharedLib.Models;
+using SharedLib.Protocol;
+using SharedLib.Protocol.Commands;
 
 namespace KasseApparat
 {
@@ -202,6 +204,7 @@ namespace KasseApparat
     class DBcontrol : IDBcontrol
     {
         public IConnection Connection = null;
+        public Protocol protocol = new Protocol();
 
         public DBcontrol(IConnection conn)
         {
@@ -210,8 +213,11 @@ namespace KasseApparat
 
         public List<Product> GetProducts()
         {
-            List<Product> PL = new List<Product>();
-            return PL;
+            Connection.Send(protocol.Encode(new GetCatalogueCmd()));
+
+            var cmd = (CatalogueDetailsCmd)protocol.Decode(Connection.Receive());
+
+            return cmd.Products;
         }
     }
 
