@@ -11,7 +11,8 @@ namespace KasseApparat
     public interface IConnection
     {
         void Send(string data);
-        void Receive();
+        string Receive();
+        void Disconnect();
     }
 
     /*--------------------------------------------------------------------------------------------*/
@@ -20,6 +21,7 @@ namespace KasseApparat
     {
         public string Ip;
         public int Port;
+        private TcpClient client = null;
 
         public Connection(string ip, int port)
         {
@@ -35,11 +37,11 @@ namespace KasseApparat
 
             Ip = ip;
             Port = port;
+            client = new TcpClient(Ip, Port);
         }
 
         public void Send(string data)
         {
-            var client = Connect();
             if (client == null) return;
 
             var stream = client.GetStream();
@@ -56,20 +58,21 @@ namespace KasseApparat
             finally
             {
                 stream.Close();
-                client.Close();
             }
         }
 
-        public void Receive()
+        public string Receive()
         {
-            var client = Connect();
-            if (client == null) return;
+            if (client == null) return "";
 
+            string returndata;
             var stream = client.GetStream();
 
             try
             {
-
+                byte[] bytes = new byte[client.ReceiveBufferSize];
+                stream.Read(bytes, 0, (int)client.ReceiveBufferSize);
+                returndata = Encoding.UTF8.GetString(bytes);
             }
             catch (Exception)
             {
@@ -78,21 +81,13 @@ namespace KasseApparat
             finally
             {
                 stream.Close();
-                client.Close();
             }
+            return returndata;
         }
 
-        private TcpClient Connect()
+        public void Disconnect()
         {
-            try
-            {
-                var client = new TcpClient(Ip, Port);
-                return client;
-            }
-            catch (SocketException)
-            {
-                return null;
-            }
+            client.Close();
         }
     }
 }
