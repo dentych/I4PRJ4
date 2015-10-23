@@ -48,7 +48,7 @@ namespace KasseApparat
 
             try
             {
-                var send = Encoding.ASCII.GetBytes(data);
+                var send = Encoding.Unicode.GetBytes(data);
                 stream.Write(send, 0, send.Length);
             }
             catch (Exception)
@@ -72,7 +72,7 @@ namespace KasseApparat
             {
                 byte[] bytes = new byte[client.ReceiveBufferSize];
                 stream.Read(bytes, 0, (int)client.ReceiveBufferSize);
-                returndata = Encoding.UTF8.GetString(bytes);
+                returndata = Encoding.Unicode.GetString(bytes);
             }
             catch (Exception)
             {

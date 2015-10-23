@@ -30,7 +30,7 @@ namespace CentralServer.Server
 
         public void Send(string data)
         {
-            _log.Write(this, "Sending data (" + data.Length + " characters)");
+            _log.Write(this, "Sending data (" + data.Length + " characters): " + data);
             byte[] bytes = Encoding.Unicode.GetBytes(data);
             _handle.Send(bytes);
         }
@@ -43,7 +43,15 @@ namespace CentralServer.Server
         private void BeginAsyncRead()
         {
             var callback = new AsyncCallback(ReadCallback);
-            _handle.BeginReceive(_buffer, 0, _bufferSize, 0, callback, null);
+            try
+            {
+                _handle.BeginReceive(_buffer, 0, _bufferSize, 0, callback, null);
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine("ERROR: " + e.ErrorCode);
+                throw e;
+            }
         }
 
         private void ReadCallback(IAsyncResult ar)

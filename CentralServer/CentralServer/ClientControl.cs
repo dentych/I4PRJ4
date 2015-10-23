@@ -57,13 +57,13 @@ namespace CentralServer
 
         private void HandleConnectionEstablished()
         {
-            _connection.Send("Welcome");
             var registerMsg = new StartSessionMsg(this);
             _main.Send(MainControl.E_START_SESSION, registerMsg);
         }
 
         private void HandleConnectionClosed()
         {
+            _log.Write(this, "HandleConnectionClosed");
             var unregisterMsg = new StopSessionMsg(_sessionId);
             _main.Send(MainControl.E_STOP_SESSION, unregisterMsg);
             _connection = null;
@@ -72,7 +72,7 @@ namespace CentralServer
 
         private void HandleDataRecieved(string data)
         {
-            _connection.Send(data);
+            _log.Write(this, "HandleDataRecieved");
             _protocol.AddData(data);
 
             foreach (var cmd in _protocol.GetCommands())

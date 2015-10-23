@@ -1,7 +1,12 @@
 ﻿using CentralServer.Logging;
 using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
+using ServerDatabase;
+using SharedLib.Models;
 using SharedLib.Protocol.Commands;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CentralServer
 {
@@ -67,19 +72,17 @@ namespace CentralServer
         {
             var cmd = msg.Command;
             var client = _sessions.GetClient(msg.SessionId);
+            _log.Write(this, "Recieved command: " + cmd.CmdName);
 
             switch (cmd.CmdName)
             {
                 case "GetCatalogue":
-                    _log.Write(this, "Recieved command: GetCatalogue");
                     OnGetCatalogue(client, (GetCatalogueCmd)cmd);
                     break;
                 case "CreateProduct":
-                    _log.Write(this, "Recieved command: CreateProduct");
                     OnCreateProduct(client, (CreateProductCmd)cmd);
                     break;
                 case "RegisterPurchase":
-                    _log.Write(this, "Recieved command: RegisterPurchase");
                     OnRegisterPurchase(client, (RegisterPurchaseCmd)cmd);
                     break;
             }
@@ -87,7 +90,20 @@ namespace CentralServer
 
         private void OnGetCatalogue(ClientControl client, GetCatalogueCmd cmd)
         {
+            var catalogueCmd = new CatalogueDetailsCmd();
+            Console.WriteLine("NAME: " + catalogueCmd.CmdName);
 
+            using (var db = new DatabaseContext())
+            {
+                var query = from p in db.Products
+                            select p;
+
+                foreach (var product in query)
+                    catalogueCmd.Products.Add(product);
+            }
+
+            var response = new SendCommandMsg(catalogueCmd);
+            client.Send(ClientControl.E_SEND_COMMAND, response);
         }
 
         private void OnCreateProduct(ClientControl client, CreateProductCmd cmd)
