@@ -15,7 +15,7 @@ namespace Backend.Communication
 
         public Client()
         {
-            ip = "192.168.245.1";
+            ip = "127.0.0.1";
             port = 11000;
         }
         public IError Error = new Error();

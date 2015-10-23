@@ -55,10 +55,7 @@ namespace KasseApparat
             {
                 throw new System.ArgumentException("Error Sending");
             }
-            finally
-            {
-                stream.Close();
-            }
+
         }
 
         public string Receive()
@@ -82,10 +79,7 @@ namespace KasseApparat
             {
                 return null;
             }
-            finally
-            {
-                stream.Close();
-            }
+
         }
 
         public void Connect()
