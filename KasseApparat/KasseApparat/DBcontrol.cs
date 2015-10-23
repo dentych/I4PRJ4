@@ -201,7 +201,7 @@ namespace KasseApparat
         }
     }
 
-    class DBcontrol : IDBcontrol
+    public class DBcontrol : IDBcontrol
     {
         public IConnection Connection = null;
         public Protocol protocol = new Protocol();

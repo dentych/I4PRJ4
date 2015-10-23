@@ -12,6 +12,7 @@ namespace KasseApparat
     public class ProductList : ObservableCollection<Product>
     {
         private IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
+        //private IDBcontrol _db = new DBcontrol(new Connection(string ip, int port));
         public IDBcontrol Db { set { _db = value; }}
 
         public ProductList()
