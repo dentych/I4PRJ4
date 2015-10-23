@@ -12,8 +12,11 @@ namespace SharedLib.Protocol
      */
     public class XmlBuffer
     {
-        private static string DocumentEnd = "</Command>";
         private StringBuilder _buffer = new StringBuilder();
+        private static Regex _cmdEndPattern = new Regex(
+                @"(</Command>|<Command\s+Name="".*""\s*/>)+",
+                RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
 
         public void AddData(string data)
         {
@@ -23,13 +26,12 @@ namespace SharedLib.Protocol
         public IEnumerable<string> GetDocuments()
         {
             var data = _buffer.ToString();
-            int pos;
+            int length;
             
-            while((pos = NextCmdLength(data)) != -1)
+            while((length = NextCmdLength(data)) != -1)
             {
-                var endsAt = pos;
-                var doc = data.Substring(0, endsAt);
-                data = data.Substring(endsAt);
+                var doc = data.Substring(0, length);
+                data = data.Substring(length);
                 yield return doc;
             }
 
@@ -39,22 +41,10 @@ namespace SharedLib.Protocol
 
         private int NextCmdLength(string buffer)
         {
-            var pos = buffer.IndexOf(DocumentEnd);
-            if (pos != -1)
-                return pos;
+            var match = _cmdEndPattern.Match(buffer);
 
-            Regex rx = new Regex(@"<Command Name="".*"" />",
-                RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-            MatchCollection matches = rx.Matches(buffer);
-
-            if (matches.Count > 0)
-            {
-                var match = matches[0].ToString();
-                var length = match.Length;
-                var p = buffer.IndexOf(match);
-                return p + length;
-            }
+            if(match.Value != String.Empty)
+                return match.Index + match.Length;
 
             return -1;
         }

@@ -27,14 +27,10 @@ namespace SharedLib.Protocol
         {
             return _marshaller.Encode(cmd);
         }
+
         public Command Decode(string data)
         {
             return _marshaller.Decode(data);
         }
-
-
-
-
-
     }
 }
