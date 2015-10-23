@@ -62,6 +62,7 @@
     <Compile Include="ProtocolUnitTest.cs" />
     <Compile Include="wrongCmd.cs" />
     <Compile Include="ProtocolMarshallers\XmlMarshalUnitTest.cs" />
+    <Compile Include="XmlBufferUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
