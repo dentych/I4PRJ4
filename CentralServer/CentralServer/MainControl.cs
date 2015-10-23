@@ -59,6 +59,7 @@ namespace CentralServer
             var client = msg.Client;
             var sessionId = _sessions.Register(client);
             var response = new WelcomeMsg(sessionId);
+
             client.Send(ClientControl.E_WELCOME, response);
 
             _log.Write("MainControl", Log.DEBUG,
@@ -96,6 +97,9 @@ namespace CentralServer
 
         private void OnGetCatalogue(ClientControl client, GetCatalogueCmd cmd)
         {
+            _log.Write("MainControl", Log.NOTICE,
+                       "Client recieving catalogue details");
+
             var catalogueCmd = new CatalogueDetailsCmd();
 
             using (var db = new DatabaseContext())
@@ -111,12 +115,15 @@ namespace CentralServer
 
         private void OnCreateProduct(ClientControl client, CreateProductCmd cmd)
         {
+            _log.Write("MainControl", Log.NOTICE,
+                       "Client creating a new product");
 
         }
 
         private void OnRegisterPurchase(ClientControl client, RegisterPurchaseCmd cmd)
         {
-
+            _log.Write("MainControl", Log.NOTICE,
+                       "Client registering a new purchase");
         }
     }
 }

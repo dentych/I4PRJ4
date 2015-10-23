@@ -3,6 +3,7 @@ using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
 using CentralServer.Server;
 using SharedLib.Protocol;
+using System;
 
 namespace CentralServer
 {
@@ -38,18 +39,15 @@ namespace CentralServer
             switch (id)
             {
                 case E_CONNECTION_ESTABLISHED:
-                    _log.Write("ClientControl", Log.DEBUG,
-                               "Recieved E_CONNECTION_ESTABLISHED");
+                    _log.Write("ClientControl", Log.DEBUG, "Recieved E_CONNECTION_ESTABLISHED");
                     HandleConnectionEstablished();
                     break;
                 case E_WELCOME:
-                    _log.Write("ClientControl", Log.DEBUG,
-                               "Recieved WELCOME");
+                    _log.Write("ClientControl", Log.DEBUG, "Recieved E_WELCOME");
                     HandleWelcome((WelcomeMsg)msg);
                     break;
                 case E_SEND_COMMAND:
-                    _log.Write("ClientControl", Log.DEBUG,
-                               "Recieved E_SEND_COMMAND");
+                    _log.Write("ClientControl", Log.DEBUG, "Recieved E_SEND_COMMAND");
                     HandleSendCommand((SendCommandMsg)msg);
                     break;
                 default:
@@ -61,30 +59,44 @@ namespace CentralServer
 
         private void HandleConnectionEstablished()
         {
+            _log.Write("ClientControl", Log.NOTICE, "Connection accepted");
+
             var registerMsg = new StartSessionMsg(this);
             _main.Send(MainControl.E_START_SESSION, registerMsg);
         }
 
         private void HandleConnectionClosed()
         {
-            _log.Write("ClientControl", Log.DEBUG,
-                       "HandleConnectionClosed");
+            _log.Write("ClientControl", Log.NOTICE, "Connection closed");
+
             var unregisterMsg = new StopSessionMsg(_sessionId);
             _main.Send(MainControl.E_STOP_SESSION, unregisterMsg);
+
             _connection = null;
             Abort();
         }
 
         private void HandleDataRecieved(string data)
         {
-            _log.Write("ClientControl", Log.DEBUG,
-                       "HandleDataRecieved");
+            _log.Write("ClientControl", Log.DEBUG, "Parsing data");
+
             _protocol.AddData(data);
 
-            foreach (var cmd in _protocol.GetCommands())
+            try
             {
-                var cmsg = new CommandRecievedMsg(_sessionId, cmd);
-                _main.Send(MainControl.E_COMMAND_RECIEVED, cmsg);
+                var commands = _protocol.GetCommands();
+
+                foreach (var cmd in commands)
+                {
+                    var cmsg = new CommandRecievedMsg(_sessionId, cmd);
+                    _main.Send(MainControl.E_COMMAND_RECIEVED, cmsg);
+                }
+            }
+            catch (Exception e)
+            {
+                _log.Write("ClientControl", Log.ERROR, 
+                           "Could not parse data: " + data);
+                throw e;
             }
         }
 
