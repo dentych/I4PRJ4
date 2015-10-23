@@ -12,6 +12,7 @@ namespace KasseApparat
     {
         void Send(string data);
         string Receive();
+        void Connect();
         void Disconnect();
     }
 
@@ -37,7 +38,6 @@ namespace KasseApparat
 
             Ip = ip;
             Port = port;
-            client = new TcpClient(Ip, Port);
         }
 
         public void Send(string data)
@@ -89,6 +89,11 @@ namespace KasseApparat
             {
                 return null;
             }
+        }
+
+        public void Connect()
+        {
+            client = new TcpClient(Ip, Port);
         }
 
         public void Disconnect()
