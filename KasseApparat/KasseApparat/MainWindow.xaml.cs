@@ -32,9 +32,10 @@ namespace KasseApparat
         private void ButtonCash_Click(object sender, RoutedEventArgs e)
         {
             ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
-            MessageBox.Show("Total pris: " + shopList.TotalPrice 
-                + "\nBetalt: " + Display.Text
-                + "\nDifference: " + (shopList.TotalPrice - Convert.ToDouble(Display.Text)));
+            if (Display.Text.ToString() != "")
+                MessageBox.Show("Total pris: " + shopList.TotalPrice 
+                    + "\nBetalt: " + Display.Text
+                    + "\nDifference: " + (shopList.TotalPrice - Convert.ToDouble(Display.Text)));
         }
 
         private void ButtonNr_Click(object sender, RoutedEventArgs e)
