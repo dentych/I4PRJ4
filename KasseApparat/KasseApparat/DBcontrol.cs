@@ -211,6 +211,7 @@ namespace KasseApparat
         public List<Product> GetProducts()
         {
             List<Product> PL = new List<Product>();
+
             return PL;
         }
     }

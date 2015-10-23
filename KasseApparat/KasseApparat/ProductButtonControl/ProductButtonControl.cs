@@ -24,7 +24,6 @@ namespace KasseApparat
         private int _currentPage = 1;
         private readonly ProductList _productList;
         private List<ProductButtonList> _PageList;
-        private ProductButtonList _products; 
         private ShoppingList _shopList;
 #endregion
 
@@ -37,13 +36,18 @@ namespace KasseApparat
             Update();
         }
 
+        //Updates the productbuttons, with the products contained in the database
         public void Update()
         {
             _productList.Update();
             CalculateTotalpage();
             CreatePageList();
+
+            //Notifying for new changes
+            Notify(string.Empty);
         }
 
+        //Creates Pagelist
         void CreatePageList()
         {
             _PageList.Clear();
@@ -136,7 +140,7 @@ namespace KasseApparat
 
 #region Properties
 
-        public ProductButtonList Products
+        public ProductButtonList CurrentButtonPage
         {
             get { return _PageList[_currentPage-1]; }
         }

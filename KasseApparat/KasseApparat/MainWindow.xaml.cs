@@ -57,5 +57,12 @@ namespace KasseApparat
             
             ProdControl.addItem(int.Parse(buttonName.Tag.ToString()));
         }
+
+        private void ButtonRefreshClick(object sender, RoutedEventArgs e)
+        {
+            ProductButtonControl ProdControl = (ProductButtonControl)this.FindResource("ProductButtonControl");
+
+            ProdControl.Update();
+        }
     }
 }
