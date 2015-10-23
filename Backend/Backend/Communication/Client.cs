@@ -15,8 +15,8 @@ namespace Backend.Communication
 
         public Client()
         {
-            ip = "127.0.0.1";
-            port = 9000;
+            ip = "192.168.245.1";
+            port = 11000;
         }
         public IError Error = new Error();
 
@@ -58,7 +58,7 @@ namespace Backend.Communication
 
             try
             {
-                var toSend = Encoding.ASCII.GetBytes(data);
+                var toSend = Encoding.Unicode.GetBytes(data);
                 stream.Write(toSend, 0, toSend.Length);
             }
 
@@ -81,16 +81,17 @@ namespace Backend.Communication
 
                 byte[] read;
                 int actualRead;
-                do
-                {
+                //do
+                //{
                     int size = client.ReceiveBufferSize;
+                size = 1024;
                     read = new byte[size];
                     actualRead = stream.Read(read, 0, read.Length);
 
-                    string readToString = Encoding.ASCII.GetString(read, 0, actualRead);
+                    string readToString = Encoding.Unicode.GetString(read, 0, actualRead);
                     sb.Append(readToString);
 
-                } while (actualRead > 0);
+                //} while (actualRead > 0);
 
                 return sb.ToString();
             }

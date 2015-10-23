@@ -1,4 +1,5 @@
-﻿using CentralServer.Messaging;
+﻿using CentralServer.Logging;
+using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
 using CentralServer.Server;
 using SharedLib.Protocol;
@@ -9,24 +10,27 @@ namespace CentralServer
     {
         // Socket connection has been established
         public const long E_CONNECTION_ESTABLISHED = 1;
-        // Socket connection has been closed by client
-        public const long E_CONNECTION_CLOSED = 2;
         // Client has been registered
-        public const long E_WELCOME = 3;
+        public const long E_WELCOME = 2;
         // Recieved (raw) data from socket connection
-        public const long E_DATA_RECIEVED = 4;
+        public const long E_DATA_RECIEVED = 3;
         // Main control requests to send a command to client
-        public const long E_SEND_COMMAND = 5;
+        public const long E_SEND_COMMAND = 4;
 
+        private Log _log;
         private MainControl _main;
         private SocketConnection _connection;
         private Protocol _protocol = new Protocol();
         private long _sessionId;
 
 
-        public ClientControl(MainControl main)
+        public ClientControl(Log log, SocketConnection conn, MainControl main)
         {
+            _log = log;
             _main = main;
+            _connection = conn;
+            _connection.OnDataRecieved += HandleDataRecieved;
+            _connection.OnDisconnect += HandleConnectionClosed;
         }
 
         protected override void Dispatch(long id, Message msg)
@@ -34,53 +38,54 @@ namespace CentralServer
             switch (id)
             {
                 case E_CONNECTION_ESTABLISHED:
-                    HandleConnectionEstablished((ConnectionEstablishedMsg)msg);
-                    break;
-                case E_CONNECTION_CLOSED:
-                    HandleConnectionClosed();
+                    _log.Write(this, "Recieved E_CONNECTION_ESTABLISHED");
+                    HandleConnectionEstablished();
                     break;
                 case E_WELCOME:
+                    _log.Write(this, "Recieved WELCOME");
                     HandleWelcome((WelcomeMsg)msg);
                     break;
-                case E_DATA_RECIEVED:
-                    HandleDataRecieved((DataRecievedMsg)msg);
-                    break;
                 case E_SEND_COMMAND:
+                    _log.Write(this, "Recieved E_SEND_COMMAND");
                     HandleSendCommand((SendCommandMsg)msg);
+                    break;
+                default:
+                    _log.Write(this, "Recieved unknown event ID: " + id);
                     break;
             }
         }
 
-        private void HandleConnectionEstablished(ConnectionEstablishedMsg msg)
+        private void HandleConnectionEstablished()
         {
-            _connection = msg.Connection;
-            var registerMsg = new RegisterClientMsg(this);
-            _main.Send(MainControl.E_REGISTER_CLIENT, registerMsg);
+            var registerMsg = new StartSessionMsg(this);
+            _main.Send(MainControl.E_START_SESSION, registerMsg);
         }
 
         private void HandleConnectionClosed()
         {
-            var unregisterMsg = new UnregisterClientMsg(_sessionId);
-            _main.Send(MainControl.E_UNREGISTER_CLIENT, unregisterMsg);
+            _log.Write(this, "HandleConnectionClosed");
+            var unregisterMsg = new StopSessionMsg(_sessionId);
+            _main.Send(MainControl.E_STOP_SESSION, unregisterMsg);
             _connection = null;
             Abort();
+        }
+
+        private void HandleDataRecieved(string data)
+        {
+            _log.Write(this, "HandleDataRecieved");
+            _protocol.AddData(data);
+
+            foreach (var cmd in _protocol.GetCommands())
+            {
+                var cmsg = new CommandRecievedMsg(_sessionId, cmd);
+                _main.Send(MainControl.E_COMMAND_RECIEVED, cmsg);
+            }
         }
 
         private void HandleWelcome(WelcomeMsg msg)
         {
             _sessionId = msg.SessionId;
             _connection.StartRecieving();
-        }
-
-        private void HandleDataRecieved(DataRecievedMsg msg)
-        {
-            _protocol.AddData(msg.Data);
-            
-            foreach(var cmd in _protocol.GetCommands())
-            {
-                var cmsg = new CommandRecievedMsg(_sessionId, cmd);
-                _main.Send(MainControl.E_COMMAND_RECIEVED, cmsg);
-            }
         }
 
         private void HandleSendCommand(SendCommandMsg msg)
