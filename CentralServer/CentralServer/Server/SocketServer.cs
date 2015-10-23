@@ -27,19 +27,19 @@ namespace CentralServer.Server
 
         protected override void Run()
         {
-            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
+            IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, _port);
 
             _listener.Bind(localEndPoint);
             _listener.Listen(100);
 
-            _log.Write(this, "Listening on " + localEndPoint);
+            _log.Write("SocketServer", Log.NOTICE,
+                       "Listening on port " + _port);
 
             while (true)
             {
                 SpawnClient(_listener.Accept());
-                _log.Write(this, "Connection accepted");
+                _log.Write("SocketServer", Log.NOTICE,
+                           "Connection accepted");
             }
         }
 

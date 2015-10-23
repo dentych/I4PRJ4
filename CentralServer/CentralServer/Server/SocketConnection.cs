@@ -30,7 +30,8 @@ namespace CentralServer.Server
 
         public void Send(string data)
         {
-            _log.Write(this, "Sending data (" + data.Length + " characters): " + data);
+            _log.Write("SocketConnection", Log.DEBUG,
+                       "Sending data (" + data.Length + " characters): " + data);
             byte[] bytes = Encoding.Unicode.GetBytes(data);
             _handle.Send(bytes);
         }
@@ -49,7 +50,8 @@ namespace CentralServer.Server
             }
             catch (SocketException e)
             {
-                Console.WriteLine("ERROR: " + e.ErrorCode);
+                _log.Write("SocketConnection", Log.ERROR,
+                           "BeginAsyncRead error code: " + e.ErrorCode);
                 throw e;
             }
         }
@@ -72,14 +74,16 @@ namespace CentralServer.Server
             }
             else
             {
-                _log.Write(this, "Read failed (0 bytes)");
+                _log.Write("SocketConnection", Log.DEBUG,
+                           "Read failed (0 bytes)");
                 HandleConnectionClosed();
             }
         }
 
         private void HandleConnectionClosed()
         {
-            _log.Write(this, "Closing connection");
+            _log.Write("SocketConnection", Log.NOTICE,
+                       "Connection closed");
             _handle.Close();
             OnDisconnect?.Invoke();
         }
@@ -87,7 +91,8 @@ namespace CentralServer.Server
         private void HandleDataRecieved(byte[] data, int length)
         {
             var dataStr = Encoding.Unicode.GetString(_buffer, 0, length);
-            _log.Write(this, "Data recieved: "+ dataStr);
+            _log.Write("SocketConnection", Log.DEBUG,
+                       "Data recieved: " + dataStr);
             OnDataRecieved?.Invoke(dataStr);
         }
     }
