@@ -3,35 +3,53 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Backend.Brains;
+using System.Collections.Generic;
 
 namespace Backend.Communication
 {
     public class Client : IClient
     {
-        public Client(string ip, int port)
-        {
-            if (port < 1 || port > 65535)
-            {
-                throw new ArgumentException("Bad port");
-            }
-            IPAddress address;
-            if (!IPAddress.TryParse(ip, out address))
-            {
-                throw new ArgumentException("Bad IP");
-            }
+        private TcpClient client = null;
+        private string ip;
+        private int port;
 
-            Ip = ip;
-            Port = port;
+        public Client()
+        {
+            ip = "127.0.0.1";
+            port = 9000;
+        }
+        public IError Error = new Error();
+
+        public bool Connect()
+        {
+            try
+            {
+                client = new TcpClient(ip, port);
+
+                return true;
+            }
+            catch (SocketException)
+            {
+                return false;
+            }
         }
 
+        public bool Disconnect()
+        {
+            try
+            {
+                client.Close();
 
-        public string Ip { get; }
-        public int Port { get; }
-        public IError Error = new Error();
+                return true;
+            }
+            catch (SocketException)
+            {
+                return false;
+            }
+        }
 
         public bool Send(string data)
         {
-            var client = Connect();
             if (client == null)
             {
                 return false;
@@ -49,22 +67,32 @@ namespace Backend.Communication
                 Error.StdErr("Error in connecting to server.");
                 return false;
             }
-            finally
-            {
-                stream.Close();
-                client.Close();
-            }
 
             return true;
         }
 
-        private TcpClient Connect()
+        public string Receive()
         {
             try
             {
-                var client = new TcpClient(Ip, Port);
+                var stream = client.GetStream();
 
-                return client;
+                var sb = new StringBuilder();
+
+                byte[] read;
+                int actualRead;
+                do
+                {
+                    int size = client.ReceiveBufferSize;
+                    read = new byte[size];
+                    actualRead = stream.Read(read, 0, read.Length);
+
+                    string readToString = Encoding.ASCII.GetString(read, 0, actualRead);
+                    sb.Append(readToString);
+
+                } while (actualRead > 0);
+
+                return sb.ToString();
             }
             catch (SocketException)
             {

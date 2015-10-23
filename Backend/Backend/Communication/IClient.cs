@@ -2,9 +2,9 @@
 {
     public interface IClient
     {
-        string Ip { get; }
-        int Port { get; }
-
+        bool Connect();
+        bool Disconnect();
         bool Send(string data);
+        string Receive();
     }
 }

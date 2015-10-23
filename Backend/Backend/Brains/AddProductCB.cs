@@ -43,14 +43,24 @@ namespace Backend.Brains
             // Generate XML from product
             var cmdtoSend = _protocol.ProductXMLParser(product);
 
+            // Connect to server
+            if (!_client.Connect())
+            {
+                LastError = "Conenction error";
+                Error.StdErr(LastError);
+                return false;
+            }
 
             // Send the XML data
             if (!_client.Send(cmdtoSend))
             {
-                LastError = "Connection Error";
+                LastError = "Sending error";
                 Error.StdErr(LastError);
                 return false;
             }
+
+            _client.Disconnect();
+
             return true;
         }
 

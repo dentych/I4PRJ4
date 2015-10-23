@@ -14,6 +14,5 @@ namespace Backend.Brains
         {
             MessageBox.Show(err, "Error",MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
     }
 }

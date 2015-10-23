@@ -10,10 +10,8 @@ namespace Backend.Views
     {
         public MainWindow()
         {
-
-            DataContext = new MainWindowViewModel();
-
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
 
         public void CreateProduct(object sender, RoutedEventArgs e)
