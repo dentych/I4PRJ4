@@ -4,24 +4,24 @@ namespace CentralServer.Logging
 {
     class Log
     {
+        public const int DEBUG = 0;
+        public const int NOTICE = 1;
+        public const int WARNING = 2;
+        public const int ERROR = 3;
+
         private ILogger _logger;
+        private int _level;
 
-
-        public Log(ILogger logger)
+        public Log(ILogger logger, int level = NOTICE)
         {
             _logger = logger;
+            _level = level;
         }
 
-        public void Write(object sender, string text)
+        public void Write(string sender, int category, string text)
         {
-            Write(sender.GetType().Name, text);
-        }
-
-        public void Write(string sender, string text)
-        {
-            var timestamp = DateTime.Now;
-            var s = String.Format("[{0}] ({1}): {2}", timestamp, sender, text);
-            _logger.Write(s);
+            if (category >= _level)
+                _logger.Write(sender, category, text, DateTime.Now.ToString());
         }
     }
 }

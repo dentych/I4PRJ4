@@ -2,7 +2,7 @@
 
 namespace CentralServer.Logging.Loggers
 {
-    class ConsoleLogger : ILogger
+    class ConsoleColorLogger : ILogger
     {
         private object mutex = new Object();
 

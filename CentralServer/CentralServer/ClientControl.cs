@@ -38,19 +38,23 @@ namespace CentralServer
             switch (id)
             {
                 case E_CONNECTION_ESTABLISHED:
-                    _log.Write(this, "Recieved E_CONNECTION_ESTABLISHED");
+                    _log.Write("ClientControl", Log.DEBUG,
+                               "Recieved E_CONNECTION_ESTABLISHED");
                     HandleConnectionEstablished();
                     break;
                 case E_WELCOME:
-                    _log.Write(this, "Recieved WELCOME");
+                    _log.Write("ClientControl", Log.DEBUG,
+                               "Recieved WELCOME");
                     HandleWelcome((WelcomeMsg)msg);
                     break;
                 case E_SEND_COMMAND:
-                    _log.Write(this, "Recieved E_SEND_COMMAND");
+                    _log.Write("ClientControl", Log.DEBUG,
+                               "Recieved E_SEND_COMMAND");
                     HandleSendCommand((SendCommandMsg)msg);
                     break;
                 default:
-                    _log.Write(this, "Recieved unknown event ID: " + id);
+                    _log.Write("ClientControl", Log.DEBUG,
+                               "Recieved unknown event ID: " + id);
                     break;
             }
         }
@@ -63,7 +67,8 @@ namespace CentralServer
 
         private void HandleConnectionClosed()
         {
-            _log.Write(this, "HandleConnectionClosed");
+            _log.Write("ClientControl", Log.DEBUG,
+                       "HandleConnectionClosed");
             var unregisterMsg = new StopSessionMsg(_sessionId);
             _main.Send(MainControl.E_STOP_SESSION, unregisterMsg);
             _connection = null;
@@ -72,7 +77,8 @@ namespace CentralServer
 
         private void HandleDataRecieved(string data)
         {
-            _log.Write(this, "HandleDataRecieved");
+            _log.Write("ClientControl", Log.DEBUG,
+                       "HandleDataRecieved");
             _protocol.AddData(data);
 
             foreach (var cmd in _protocol.GetCommands())

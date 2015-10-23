@@ -8,9 +8,10 @@ namespace CentralServer
     {
         static void Main(string[] args)
         {
-            var log = new Log(new ConsoleLogger());
+            var log = new Log(new ConsoleColorLogger(), Log.DEBUG);
 
-            log.Write("Main", "Initiating");
+            LogCheck(log);
+            log.Write("Main", Log.NOTICE, "Initiating");
 
             var main = new MainControl(log);
             var server = new SocketServer(log, main, GetServerPort(args));
@@ -25,6 +26,14 @@ namespace CentralServer
         private static int GetServerPort(string[] args)
         {
             return 11000;
+        }
+
+        private static void LogCheck(Log log)
+        {
+            log.Write("LogCheck", Log.ERROR, "Category: ERROR");
+            log.Write("LogCheck", Log.WARNING, "Category: WARNING");
+            log.Write("LogCheck", Log.NOTICE, "Category: NOTICE");
+            log.Write("LogCheck", Log.DEBUG, "Category: DEBUG");
         }
     }
 }

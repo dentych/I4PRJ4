@@ -32,12 +32,14 @@ namespace CentralServer.Server
             _listener.Bind(localEndPoint);
             _listener.Listen(100);
 
-            _log.Write(this, "Listening on port " + _port);
+            _log.Write("SocketServer", Log.NOTICE,
+                       "Listening on port " + _port);
 
             while (true)
             {
                 SpawnClient(_listener.Accept());
-                _log.Write(this, "Connection accepted");
+                _log.Write("SocketServer", Log.NOTICE,
+                           "Connection accepted");
             }
         }
 

@@ -8,6 +8,6 @@ namespace CentralServer.Logging
 {
     interface ILogger
     {
-        void Write(string text);
+        void Write(string sender, int category, string text, string timestamp);
     }
 }

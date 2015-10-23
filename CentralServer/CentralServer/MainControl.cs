@@ -33,19 +33,23 @@ namespace CentralServer
             switch (id)
             {
                 case E_START_SESSION:
-                    _log.Write(this, "Recieved E_START_SESSION");
+                    _log.Write("MainControl", Log.DEBUG,
+                               "Recieved E_START_SESSION");
                     HandleStartSession((StartSessionMsg)msg);
                     break;
                 case E_STOP_SESSION:
-                    _log.Write(this, "Recieved E_STOP_SESSION");
+                    _log.Write("MainControl", Log.DEBUG,
+                               "Recieved E_STOP_SESSION");
                     HandleStopSession((StopSessionMsg)msg);
                     break;
                 case E_COMMAND_RECIEVED:
-                    _log.Write(this, "Recieved E_COMMAND_RECIEVED");
+                    _log.Write("MainControl", Log.DEBUG,
+                               "Recieved E_COMMAND_RECIEVED");
                     HandleCommandReieved((CommandRecievedMsg)msg);
                     break;
                 default:
-                    _log.Write(this, "Recieved unknown event ID: " + id);
+                    _log.Write("MainControl", Log.DEBUG,
+                               "Recieved unknown event ID: " + id);
                     break;
             }
         }
@@ -57,7 +61,8 @@ namespace CentralServer
             var response = new WelcomeMsg(sessionId);
             client.Send(ClientControl.E_WELCOME, response);
 
-            _log.Write(this, "New client registered. Session ID: " + sessionId);
+            _log.Write("MainControl", Log.DEBUG,
+                       "New client registered. Session ID: " + sessionId);
         }
 
         private void HandleStopSession(StopSessionMsg msg)
@@ -72,7 +77,8 @@ namespace CentralServer
         {
             var cmd = msg.Command;
             var client = _sessions.GetClient(msg.SessionId);
-            _log.Write(this, "Recieved command: " + cmd.CmdName);
+            _log.Write("MainControl", Log.DEBUG,
+                       "Recieved command: " + cmd.CmdName);
 
             switch (cmd.CmdName)
             {
@@ -91,13 +97,10 @@ namespace CentralServer
         private void OnGetCatalogue(ClientControl client, GetCatalogueCmd cmd)
         {
             var catalogueCmd = new CatalogueDetailsCmd();
-            Console.WriteLine("NAME: " + catalogueCmd.CmdName);
 
             using (var db = new DatabaseContext())
             {
-                var query = from p in db.Products
-                            select p;
-
+                var query = from p in db.Products select p;
                 foreach (var product in query)
                     catalogueCmd.Products.Add(product);
             }
