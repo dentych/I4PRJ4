@@ -18,7 +18,7 @@
             <ColumnDefinition Width="289*"></ColumnDefinition>
             <ColumnDefinition Width="262*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0" DataContext="{StaticResource ProductButtonControl}" x:Name="Products" 
+        <GroupBox Grid.Column="0" DataContext="{StaticResource ProductButtonControl}" x:Name="CurrentButtonPage" 
                   Header="Produkter" Margin="10,10,10.2,10.4" BorderThickness="2">
             <Grid Margin="4">
                 <Grid.RowDefinitions>
@@ -34,6 +34,9 @@
                         <ColumnDefinition Width="24*"></ColumnDefinition>
                         <ColumnDefinition Width="14*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
+                    <Button Margin="5" 
+                            Content="Refresh"
+                            Click="ButtonRefreshClick"></Button>
                     <Label Grid.Row="0" Grid.Column="1" 
                            HorizontalAlignment="Right"
                            Content="Page" Width="35"/>
@@ -64,7 +67,7 @@
                             Margin="5"
                             x:Name="ProductButton01"
                             Tag="0"
-                            IsEnabled="{Binding Products[0].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[0].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -72,9 +75,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[0].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[0].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[0].Price}"
+                                   Content="{Binding CurrentButtonPage[0].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -82,7 +85,7 @@
                             Margin="5"
                             x:Name="ProductButton02"
                             Tag="1"
-                            IsEnabled="{Binding Products[1].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[1].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -90,9 +93,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[1].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[1].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[1].Price}"
+                                   Content="{Binding CurrentButtonPage[1].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -100,7 +103,7 @@
                             Margin="5"
                             x:Name="ProductButton03"
                             Tag="2"
-                            IsEnabled="{Binding Products[2].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[2].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -108,9 +111,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[2].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[2].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[2].Price}"
+                                   Content="{Binding CurrentButtonPage[2].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -118,7 +121,7 @@
                             Margin="5"
                             x:Name="ProductButton04"
                             Tag="3"
-                            IsEnabled="{Binding Products[3].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[3].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -126,9 +129,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[3].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[3].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[3].Price}"
+                                   Content="{Binding CurrentButtonPage[3].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -136,7 +139,7 @@
                             Margin="5"
                             Tag="4"
                             x:Name="ProductButton05"
-                            IsEnabled="{Binding Products[4].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[4].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -144,11 +147,11 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0"
-                                       Text="{Binding Products[4].Name}"
+                                       Text="{Binding CurrentButtonPage[4].Name}"
                                        TextAlignment="Center"
                                        TextWrapping="WrapWithOverflow"/>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[4].Price}"
+                                   Content="{Binding CurrentButtonPage[4].Price}"
                                    HorizontalAlignment="Center"></Label>
                         </Grid>
                     </Button>
@@ -156,7 +159,7 @@
                             Margin="5"
                             x:Name="ProductButton06"
                             Tag="5"
-                            IsEnabled="{Binding Products[5].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[5].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -164,9 +167,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[5].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[5].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[5].Price}"
+                                   Content="{Binding CurrentButtonPage[5].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -174,7 +177,7 @@
                             Margin="5"
                             x:Name="ProductButton07"
                             Tag="6"
-                            IsEnabled="{Binding Products[6].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[6].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -182,9 +185,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[6].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[6].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[6].Price}"
+                                   Content="{Binding CurrentButtonPage[6].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -192,7 +195,7 @@
                             Margin="5"
                             x:Name="ProductButton08"
                             Tag="7"
-                            IsEnabled="{Binding Products[7].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[7].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -200,10 +203,10 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[7].Name}"
+                                   Content="{Binding CurrentButtonPage[7].Name}"
                                    Name="Label7"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[7].Price}"
+                                   Content="{Binding CurrentButtonPage[7].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -211,7 +214,7 @@
                             Margin="5"
                             x:Name="ProductButton09"
                             Tag="8"
-                            IsEnabled="{Binding Products[8].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[8].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -219,9 +222,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[8].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[8].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[8].Price}"
+                                   Content="{Binding CurrentButtonPage[8].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -229,7 +232,7 @@
                             Margin="5"
                             x:Name="ProductButton10"
                             Tag="9"
-                            IsEnabled="{Binding Products[9].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[9].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -237,9 +240,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[9].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[9].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[9].Price}"
+                                   Content="{Binding CurrentButtonPage[9].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -247,7 +250,7 @@
                             Margin="5"
                             x:Name="ProductButton11"
                             Tag="10"
-                            IsEnabled="{Binding Products[10].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[10].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -255,9 +258,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[10].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[10].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[10].Price}"
+                                   Content="{Binding CurrentButtonPage[10].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
@@ -265,7 +268,7 @@
                             Margin="5"
                             x:Name="ProductButton12"
                             Tag="11"
-                            IsEnabled="{Binding Products[11].ButtonIsEnabled}"
+                            IsEnabled="{Binding CurrentButtonPage[11].ButtonIsEnabled}"
                             Click="ButtonProductClick">
                         <Grid >
                             <Grid.RowDefinitions>
@@ -273,9 +276,9 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   Content="{Binding Products[11].Name}"></Label>
+                                   Content="{Binding CurrentButtonPage[11].Name}"></Label>
                             <Label Grid.Row="1" 
-                                   Content="{Binding Products[11].Price}"
+                                   Content="{Binding CurrentButtonPage[11].Price}"
                                    HorizontalAlignment="Right"></Label>
                         </Grid>
                     </Button>
