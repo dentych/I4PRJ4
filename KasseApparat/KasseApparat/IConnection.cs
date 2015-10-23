@@ -63,26 +63,32 @@ namespace KasseApparat
 
         public string Receive()
         {
-            if (client == null) return "";
-
-            string returndata;
-            var stream = client.GetStream();
-
             try
             {
-                byte[] bytes = new byte[client.ReceiveBufferSize];
-                stream.Read(bytes, 0, (int)client.ReceiveBufferSize);
-                returndata = Encoding.Unicode.GetString(bytes);
+                var stream = client.GetStream();
+
+                var sb = new StringBuilder();
+
+                byte[] read;
+                int actualRead;
+                //do
+                //{
+                int size = client.ReceiveBufferSize;
+                size = 1024;
+                read = new byte[size];
+                actualRead = stream.Read(read, 0, read.Length);
+
+                string readToString = Encoding.Unicode.GetString(read, 0, actualRead);
+                sb.Append(readToString);
+
+                //} while (actualRead > 0);
+
+                return sb.ToString();
             }
-            catch (Exception)
+            catch (SocketException)
             {
-                throw new System.ArgumentException("Error Receiving");
+                return null;
             }
-            finally
-            {
-                stream.Close();
-            }
-            return returndata;
         }
 
         public void Disconnect()
