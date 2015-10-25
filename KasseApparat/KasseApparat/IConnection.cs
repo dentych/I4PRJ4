@@ -20,9 +20,10 @@ namespace KasseApparat
 
     public class Connection : IConnection
     {
-        public string Ip;
-        public int Port;
+        private string Ip;
+        private int Port;
         private TcpClient client = null;
+        private NetworkStream stream = null;
 
         public Connection(string ip, int port)
         {
@@ -43,9 +44,7 @@ namespace KasseApparat
         public void Send(string data)
         {
             if (client == null) return;
-
-            var stream = client.GetStream();
-
+            
             try
             {
                 var send = Encoding.Unicode.GetBytes(data);
@@ -53,14 +52,14 @@ namespace KasseApparat
             }
             catch (Exception)
             {
-                throw new System.ArgumentException("Error Sending");
+                return;
             }
 
         }
 
         public string Receive()
         {
-            var stream = client.GetStream();
+            if (client == null) return null;
             
             try
             {
@@ -75,7 +74,7 @@ namespace KasseApparat
 
                 return sb.ToString();
             }
-            catch (SocketException)
+            catch (Exception)
             {
                 return null;
             }
@@ -85,10 +84,12 @@ namespace KasseApparat
         public void Connect()
         {
             client = new TcpClient(Ip, Port);
+            stream = client.GetStream();
         }
 
         public void Disconnect()
         {
+            stream.Close();
             client.Close();
         }
     }
