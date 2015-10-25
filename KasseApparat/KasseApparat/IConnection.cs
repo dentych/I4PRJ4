@@ -43,12 +43,12 @@ namespace KasseApparat
 
         public void Send(string data)
         {
-            if (client == null) return;
+            if (client == null || stream == null) return;
             
             try
             {
-                var send = Encoding.Unicode.GetBytes(data);
-                stream.Write(send, 0, send.Length);
+                byte[] sendMsg = Encoding.Unicode.GetBytes(data);
+                stream.Write(sendMsg, 0, sendMsg.Length);
             }
             catch (Exception)
             {
@@ -59,26 +59,20 @@ namespace KasseApparat
 
         public string Receive()
         {
-            if (client == null) return null;
+            if (client == null || stream == null) return null;
             
+            byte[] recMsg = new byte[1024];
+
             try
-            {
-                var sb = new StringBuilder();
-                int actualRead;
-                byte[] read = new byte[client.ReceiveBufferSize];
-                
-                actualRead = stream.Read(read, 0, read.Length);
-
-                string readToString = Encoding.Unicode.GetString(read, 0, actualRead);
-                sb.Append(readToString);
-
-                return sb.ToString();
+            {               
+                stream.Read(recMsg, 0, recMsg.Length); 
             }
             catch (Exception)
             {
                 return null;
             }
 
+            return Encoding.Unicode.GetString(recMsg);
         }
 
         public void Connect()

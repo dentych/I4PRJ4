@@ -214,13 +214,13 @@ namespace KasseApparat
         public List<Product> GetProducts()
         {
             Connection.Connect();
-            Connection.Send(protocol.Encode(new GetCatalogueCmd()));
 
+            Connection.Send(protocol.Encode(new GetCatalogueCmd()));
             var cmd = (CatalogueDetailsCmd)protocol.Decode(Connection.Receive());
+
             Connection.Disconnect();
 
             return cmd.Products;
-
         }
     }
 
