@@ -51,16 +51,6 @@ namespace Backend.Models
             }
         }
 
-        private BackendProductCategory _category;
-        public BackendProductCategory Category
-        {
-            get { return _category; }
-            set
-            {
-                _category = value;
-                OnPropertyChanged("Category");
-            }
-        }
 
         #region INotifyPropertyChanged Members
 

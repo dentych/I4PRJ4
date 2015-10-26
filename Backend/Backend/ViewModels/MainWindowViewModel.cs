@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows.Controls;
+using System.Windows.Input;
 using Backend.Dependencies;
 using Backend.Views;
 using Backend.Models;
@@ -13,12 +14,11 @@ namespace Backend.ViewModels
         }
 
         #region Properties
-        private BackendProductList _productList = new BackendProductList();
 
-        public BackendProductList ProductList
-        {
-            get { return _productList; }
-        }
+        public BackendProductList ProductList { get; } = new BackendProductList();
+        public BackendProductCategoryList CategoryList { get; } = new BackendProductCategoryList();
+
+
         #endregion
 
         #region Commands

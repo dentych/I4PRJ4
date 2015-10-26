@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Backend.Annotations;
+using SharedLib.Models;
 
 namespace Backend.Models
 {
@@ -22,6 +23,8 @@ namespace Backend.Models
                 OnPropertyChanged("Name");
             }
         }
+
+        public List<Product> Products; 
 
         public event PropertyChangedEventHandler PropertyChanged;
 

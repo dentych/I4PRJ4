@@ -25,6 +25,24 @@ namespace Backend.Models
         }
         #endregion
 
+        // For debug onlyyyy, making fake products and categories
+        public BackendProductList()
+        {
+            // For hver kategori i backendproductcategorilist
+                // Smid produkter ind i den sliste vha getProductsByCateogires
+
+            for (int i = 0; i < 10; i++)
+            {
+                BackendProduct tmpProduct = new BackendProduct()
+                {
+                    BName = "Name " + i,
+                    BPrice = i*7/2,
+                    BProductNumber = "ABC" + i,
+                };
+                Add(tmpProduct);
+            }
+        }
+
         public void GetCatalogue()
         {
             
