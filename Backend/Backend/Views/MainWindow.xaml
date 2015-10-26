@@ -20,7 +20,8 @@
 
         <!-- Column 0 -->
         <Menu Grid.ColumnSpan="3">
-            <MenuItem Header="Filer">
+            <MenuItem Header="_Filer">
+                <MenuItem Header="_Indstillinger" Command="{Binding OpenSettingsDialog}"/>
                 <MenuItem Header="Exit"/>
             </MenuItem>
             <MenuItem Header="Something"/>
