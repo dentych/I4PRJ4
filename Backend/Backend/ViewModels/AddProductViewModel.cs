@@ -8,16 +8,17 @@ namespace Backend.ViewModels
 {
     public class AddProductViewModel
     {
-        public AddProductViewModel()
+        public AddProductViewModel(BackendProductCategoryList cat)
         {
             Product = new BackendProduct();
             Err = new Error();
-
+            Categories = cat;
 
             IAP = new AddProductCB(new PrjProtokol(), new Client());
                 // Der skal nogle settings til her..
         }
 
+        public BackendProductCategoryList Categories { get; set; }
         public BackendProduct Product { get; set; }
         public IAddProduct IAP { get; set; }
         public IError Err {set; get; }

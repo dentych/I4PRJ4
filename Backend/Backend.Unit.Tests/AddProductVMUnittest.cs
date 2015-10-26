@@ -22,7 +22,7 @@ namespace Backend.Unit.Tests
         [SetUp]
         public void Setup()
         {
-            _uut = new AddProductViewModel();
+            //_uut = new AddProductViewModel();
             _product = new BackendProduct();
             _IAP = Substitute.For<IAddProduct>();
             _Err = Substitute.For<IError>();

@@ -37,7 +37,7 @@ namespace Backend.ViewModels
 
         private void NewAddProductWindow()
         {
-            var window = new AddProductWindow();
+            var window = new AddProductWindow(Categories);
             window.ShowDialog();
         }
 
