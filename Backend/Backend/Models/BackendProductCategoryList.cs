@@ -1,25 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using SharedLib.Models;
 
 namespace Backend.Models
 {
-    public class BackendProductCategoryList : ObservableCollection<BackendProductCategory>
+    public class BackendProductCategoryList : ObservableCollection<BackendProductCategory>, INotifyPropertyChanged
     {
-        public int CurrentIndex { get; set; } = -1;
-
-        public BackendProductCategoryList()
+        private int _currentIndex = 0;
+        public int CurrentIndex
         {
-
-            // Load alle produkter
-            for (int i = 0; i < 10; i++)
+            get { return _currentIndex; }
+            set
             {
-                Add(new BackendProductCategory() {Name = "Category " + (i+1)});
+                _currentIndex = value;
+                CurrentProductList = this[_currentIndex].Products;
+                Notify();
             }
         }
 
+        private List<Product> _currentProductList;
+        public List<Product> CurrentProductList
+        {
+            get { return _currentProductList; }
+            set
+            {
+
+                _currentProductList = value;
+                Notify();
+            }
+        }
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void Notify([CallerMemberName]string propName = null)
+        {
+            if (this.PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
     }
 }

@@ -1,22 +1,53 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Backend.Dependencies;
-using Backend.Views;
 using Backend.Models;
+using Backend.Views;
+using SharedLib.Models;
 
 namespace Backend.ViewModels
 {
     public class MainWindowViewModel
     {
+
         public MainWindowViewModel()
         {
-            ProductList.GetCatalogue();
+            //ProductList.GetCatalogue();
+
+
+            /* Opret fake produkter */
+            for (var i = 0; i < 10; i++)
+            {
+                var newCategory = new BackendProductCategory
+                {
+                    Name = "Category " + (i + 1),
+                    Products = new List<Product>()
+                };
+                for (var x = 0; x < 10; x++)
+                {
+                    var tmpProduct = new BackendProduct
+                    {
+                        BName = "Name " + i,
+                        BPrice = (7*x)/2,
+                        BProductNumber = "ABC" + i
+                    };
+                    newCategory.Products.Add(tmpProduct);
+                }
+                Categories.Add(newCategory);
+            }
+
+            
         }
 
         #region Properties
 
-        public BackendProductList ProductList { get; } = new BackendProductList();
-        public BackendProductCategoryList CategoryList { get; } = new BackendProductCategoryList();
+        
+        public BackendProductCategoryList Categories { get; } = new BackendProductCategoryList();
+        public List<Product> ProductList { get; set; } = new List<Product>();
+
+
 
 
         #endregion
@@ -24,14 +55,19 @@ namespace Backend.ViewModels
         #region Commands
 
 #if DEBUG
-        public bool IsCalled = false;
+        public bool IsCalled;
 #endif
 
         /* Add Product */
-        ICommand _openAddProductWindowCommand;
+        private ICommand _openAddProductWindowCommand;
+
         public ICommand OpenAddProductWindowCommand
         {
-            get { return _openAddProductWindowCommand ?? (_openAddProductWindowCommand = new RelayCommand(NewAddProductWindow)); }
+            get
+            {
+                return _openAddProductWindowCommand ??
+                       (_openAddProductWindowCommand = new RelayCommand(NewAddProductWindow));
+            }
         }
 
         private void NewAddProductWindow()
@@ -41,11 +77,8 @@ namespace Backend.ViewModels
 #endif
             var window = new AddProductWindow();
             window.ShowDialog();
-
-
         }
 
         #endregion
-
     }
 }

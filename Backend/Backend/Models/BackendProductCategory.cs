@@ -20,18 +20,20 @@ namespace Backend.Models
             set
             {
                 _name = value;
-                OnPropertyChanged("Name");
+                Notify("Name");
             }
         }
 
-        public List<Product> Products; 
+        public List<Product> Products { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void Notify([CallerMemberName]string propName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (this.PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
     }
 }
