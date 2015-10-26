@@ -26,27 +26,23 @@ namespace SharedLib.Protocol
         public IEnumerable<string> GetDocuments()
         {
             var data = _buffer.ToString();
-            int length;
-            
-            while((length = NextCmdLength(data)) != -1)
+
+            while (true)
             {
-                var doc = data.Substring(0, length);
-                data = data.Substring(length);
+                var match = _cmdEndPattern.Match(data);
+
+                if (match.Value == String.Empty)
+                    break;
+
+                var docLength = match.Index + match.Length;
+                var doc = data.Substring(0, docLength);
+                data = data.Substring(docLength);
+
                 yield return doc;
             }
 
             _buffer.Clear();
             _buffer.Append(data);
-        }
-
-        private int NextCmdLength(string buffer)
-        {
-            var match = _cmdEndPattern.Match(buffer);
-
-            if(match.Value != String.Empty)
-                return match.Index + match.Length;
-
-            return -1;
         }
     }
 }
