@@ -13,6 +13,11 @@ namespace Backend.Models
 {
     public class BackendProductCategoryList : ObservableCollection<BackendProductCategory>, INotifyPropertyChanged
     {
+        public void Bootstrapper()
+        {
+            CurrentProductList = this[0].Products;
+        }
+
         private int _currentIndex = 0;
         public int CurrentIndex
         {

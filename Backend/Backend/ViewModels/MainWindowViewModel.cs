@@ -38,14 +38,13 @@ namespace Backend.ViewModels
                 Categories.Add(newCategory);
             }
 
-            
+            Categories.Bootstrapper();
         }
 
         #region Properties
 
         
         public BackendProductCategoryList Categories { get; } = new BackendProductCategoryList();
-        public List<Product> ProductList { get; set; } = new List<Product>();
 
 
 
