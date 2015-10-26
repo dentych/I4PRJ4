@@ -27,6 +27,9 @@
             
             <Label Content="Pris"/>
             <TextBox Name="textboxPrice" PreviewTextInput="textboxPrice_PreviewTextInput" MaxLength="20" Text="{Binding Product.StringBPrice, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Kategori"/>
+            <ComboBox Name="ComboboxCategory" />
             
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">

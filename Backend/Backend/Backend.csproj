@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Fakegenerator\FakeMaker.cs" />
     <Compile Include="Models\BackendProduct.cs" />
     <Compile Include="Models\BackendProductCategory.cs" />
     <Compile Include="Models\BackendProductCategoryList.cs" />
