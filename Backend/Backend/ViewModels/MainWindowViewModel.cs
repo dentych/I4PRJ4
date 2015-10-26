@@ -45,6 +45,19 @@ namespace Backend.ViewModels
 
         }
 
+        /* Settings dialog */
+        ICommand _openSettingsDialog;
+        public ICommand OpenSettingsDialog
+        {
+            get { return _openSettingsDialog ?? (_openSettingsDialog = new RelayCommand(OpenSettingsDialogWindow)); }
+        }
+
+        private void OpenSettingsDialogWindow()
+        {
+            var dialog = new SettingsDialog();
+            dialog.ShowDialog();
+        }
+
         #endregion
 
     }
