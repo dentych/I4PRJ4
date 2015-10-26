@@ -1,7 +1,8 @@
 ﻿using System.Windows.Input;
 using Backend.Dependencies;
-using Backend.Views;
+using Backend.Fakegenerator;
 using Backend.Models;
+using Backend.Views;
 
 namespace Backend.ViewModels
 {
@@ -9,43 +10,37 @@ namespace Backend.ViewModels
     {
         public MainWindowViewModel()
         {
-            ProductList.GetCatalogue();
+            Categories = faker.Make();
+            Categories.Bootstrapper();
         }
 
         #region Properties
-        private BackendProductList _productList = new BackendProductList();
 
-        public BackendProductList ProductList
-        {
-            get { return _productList; }
-        }
+        public BackendProductCategoryList Categories { get; }
+        private readonly FakeMaker faker = new FakeMaker(); // Debug only
+
         #endregion
 
         #region Commands
 
-#if DEBUG
-        public bool IsCalled = false;
-#endif
-
         /* Add Product */
-        ICommand _openAddProductWindowCommand;
+        private ICommand _openAddProductWindowCommand;
+
         public ICommand OpenAddProductWindowCommand
         {
-            get { return _openAddProductWindowCommand ?? (_openAddProductWindowCommand = new RelayCommand(NewAddProductWindow)); }
+            get
+            {
+                return _openAddProductWindowCommand ??
+                       (_openAddProductWindowCommand = new RelayCommand(NewAddProductWindow));
+            }
         }
 
         private void NewAddProductWindow()
         {
-#if DEBUG
-            IsCalled = true;
-#endif
-            var window = new AddProductWindow();
+            var window = new AddProductWindow(Categories);
             window.ShowDialog();
-
-
         }
 
         #endregion
-
     }
 }

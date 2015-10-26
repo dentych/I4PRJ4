@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Backend.Models;
 using Backend.ViewModels;
 
 namespace Backend.Views
@@ -10,12 +11,14 @@ namespace Backend.Views
     public partial class AddProductWindow
     {
     
-        public AddProductWindow()
+        public AddProductWindow(BackendProductCategoryList cat)
         {
             InitializeComponent();
-            DataContext = new AddProductViewModel();
+            DataContext = new AddProductViewModel(cat);
         }
 
+
+        
 
         /* VALIDER */
         private void textboxPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)

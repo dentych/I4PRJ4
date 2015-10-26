@@ -51,6 +51,7 @@ namespace Backend.Models
             }
         }
 
+
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;

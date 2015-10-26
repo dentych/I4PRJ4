@@ -14,12 +14,6 @@ namespace Backend.Views
             DataContext = new MainWindowViewModel();
         }
 
-        public void CreateProduct(object sender, RoutedEventArgs e)
-        {
-            var window = new AddProductWindow();
-            window.ShowDialog();
-        }
-
         private void CloseMainWindowClick(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("Er du nu HELT sikker?", "Advarsel", MessageBoxButton.YesNo,

@@ -29,19 +29,20 @@
         <!-- Column 0 -->
         <Grid Grid.Row="1" Margin="10">
             <Label Content="Produktkategorier" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12pt"/>
-            <ListBox Margin="0, 30, 0, 0"/>
+            <ListBox Margin="0, 30, 0, 0" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedIndex="{Binding Categories.CurrentIndex, Mode=TwoWay}"/>
         </Grid>
 
         <!-- Column 1 -->
         <Grid Grid.Row="1" Grid.Column="1" Margin="10">
             <Label Content="Produkter" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12pt"/>
-            <ListView Margin="0, 30, 0, 0" ItemsSource="{Binding ProductList}">
+            <ListView Margin="0, 30, 0, 0" ItemsSource="{Binding Categories.CurrentProductList}" >
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
                             <GridViewColumn Header="Navn" DisplayMemberBinding="{Binding Name}"/>
                             <GridViewColumn Header="Pris" DisplayMemberBinding="{Binding Price, StringFormat={}{0} kr}"/>
                             <GridViewColumn Header="Stregkode" DisplayMemberBinding="{Binding ProductNumber}"/>
+                            <!-- <GridViewColumn Header="Cat" DisplayMemberBinding="{Binding Category.Name}"/> -->
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
