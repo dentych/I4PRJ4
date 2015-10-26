@@ -15,7 +15,10 @@ namespace Backend.Models
     {
         public void Bootstrapper()
         {
-            CurrentProductList = this[0].Products;
+            if (this[0].Products != null)
+            {
+                CurrentProductList = this[0].Products;
+            }
         }
 
         private int _currentIndex = 0;
@@ -43,14 +46,13 @@ namespace Backend.Models
         }
 
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        protected override event PropertyChangedEventHandler PropertyChanged;
 
         protected void Notify([CallerMemberName]string propName = null)
         {
             if (this.PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
             }
         }
     }
