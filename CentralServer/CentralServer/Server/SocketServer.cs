@@ -36,15 +36,14 @@ namespace CentralServer.Server
                        "Listening on port " + _port);
 
             while (true)
-            {
                 SpawnClient(_listener.Accept());
-                _log.Write("SocketServer", Log.NOTICE,
-                           "Connection accepted");
-            }
         }
 
         private void SpawnClient(Socket handle)
         {
+            _log.Write("SocketServer", Log.DEBUG,
+                       "Spawning new socket client");
+
             var connection = new SocketConnection(_log, handle);
             var client = new ClientControl(_log, connection, _main);
             var msg = new ConnectionEstablishedMsg();

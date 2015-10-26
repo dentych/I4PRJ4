@@ -74,26 +74,23 @@ namespace CentralServer.Server
             }
             else
             {
-                _log.Write("SocketConnection", Log.DEBUG,
-                           "Read failed (0 bytes)");
+                _log.Write("SocketConnection", Log.DEBUG, "Read failed (0 bytes)");
                 HandleConnectionClosed();
             }
-        }
-
-        private void HandleConnectionClosed()
-        {
-            _log.Write("SocketConnection", Log.NOTICE,
-                       "Connection closed");
-            _handle.Close();
-            OnDisconnect?.Invoke();
         }
 
         private void HandleDataRecieved(byte[] data, int length)
         {
             var dataStr = Encoding.Unicode.GetString(_buffer, 0, length);
-            _log.Write("SocketConnection", Log.DEBUG,
-                       "Data recieved: " + dataStr);
+            _log.Write("SocketConnection", Log.DEBUG, "Data recieved: " + dataStr);
             OnDataRecieved?.Invoke(dataStr);
+        }
+
+        private void HandleConnectionClosed()
+        {
+            _log.Write("SocketConnection", Log.DEBUG, "Closing connection");
+            _handle.Close();
+            OnDisconnect?.Invoke();
         }
     }
 }
