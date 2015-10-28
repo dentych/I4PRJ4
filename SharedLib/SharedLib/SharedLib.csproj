@@ -45,12 +45,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\CmdMarshallers\CatalogueDetailsMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\CreateProductMarshal.cs" />
+    <Compile Include="Protocol\CmdMarshallers\DeleteProductMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\GetCatalogueMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\ProductCreatedMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\RegisterPurchaseMarshal.cs" />
     <Compile Include="Protocol\Command.cs" />
     <Compile Include="Protocol\Commands\CatalogueDetailsCmd.cs" />
     <Compile Include="Protocol\Commands\CreateProductCmd.cs" />
+    <Compile Include="Protocol\Commands\DeleteProductCmd.cs" />
     <Compile Include="Protocol\Commands\GetCatalogueCmd.cs" />
     <Compile Include="Protocol\Commands\ProductCreatedCmd.cs" />
     <Compile Include="Protocol\Commands\RegisterPurchaseCmd.cs" />

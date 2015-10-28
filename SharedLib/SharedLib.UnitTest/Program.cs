@@ -14,8 +14,8 @@ namespace SharedLib.UnitTest
     class Program
     {
         static void Main(string[] args)
-        {/*
-            
+        {
+            /*
             // Opret produkt
             var product = new Product()
             {
@@ -50,6 +50,7 @@ namespace SharedLib.UnitTest
             var gcmd = new GetCatalogueCmd();
             var cdcmd = new CatalogueDetailsCmd();
             var rpcmd = new RegisterPurchaseCmd(purchase);
+            var dcmd = new DeleteProductCmd(product);
 
             cdcmd.Products.Add(product);
             cdcmd.Products.Add(product);
@@ -69,6 +70,7 @@ namespace SharedLib.UnitTest
             GetCatalogueMarshal gcmarshal = new GetCatalogueMarshal();
             CatalogueDetailsMarshal cdmarshal = new CatalogueDetailsMarshal();
             RegisterPurchaseMarshal rpmarshal = new RegisterPurchaseMarshal();
+            DeleteProductMarshal dmarshal = new DeleteProductMarshal();
 
             // Create protocol instance
             Protocol.Protocol proto = new Protocol.Protocol();
@@ -80,6 +82,7 @@ namespace SharedLib.UnitTest
             string xml4 = gcmarshal.Encode(gcmd);
             string xml5 = cdmarshal.Encode(cdcmd);
             string xml6 = rpmarshal.Encode(rpcmd);
+            string xml7 = dmarshal.Encode(dcmd);
 
             // Decode from each
             var ccmd2 = (CreateProductCmd)cmarshal.Decode(xml);
@@ -88,6 +91,7 @@ namespace SharedLib.UnitTest
             var test4 = (GetCatalogueCmd) gcmarshal.Decode(xml4);
             var test5 = (CatalogueDetailsCmd) cdmarshal.Decode(xml5);
             var test6 = (RegisterPurchaseCmd) rpmarshal.Decode(xml6);
+            var test7 = (DeleteProductCmd) dmarshal.Decode(xml7);
 
             // Write first test of encode and decode from specific marshal
             Console.WriteLine(xml);
@@ -138,8 +142,13 @@ namespace SharedLib.UnitTest
             Console.WriteLine(test6.Products.ElementAt(1).Name);
             Console.WriteLine(test6.Products.ElementAt(2).Name);
             Console.WriteLine(test6.Products.ElementAt(3).Name);
-            */
-
+            
+            // 7th test DeleteProductCmd
+            Console.WriteLine(xml7);
+            Console.WriteLine("");
+            Console.WriteLine(test7.CmdName);
+            Console.WriteLine("");
+        */
         }
     }
 }
