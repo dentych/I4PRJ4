@@ -1,8 +1,8 @@
-﻿using System;
-using SharedLib.Protocol;
+﻿using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
 using SharedLib.Threading;
 using System.Collections.Concurrent;
+using SharedLib.Protocol.ProtocolMarshallers;
 
 namespace SharedLib.Sockets
 {
@@ -18,8 +18,12 @@ namespace SharedLib.Sockets
         public event CatalogueDetailsHandler OnCatalogueDetails;
 
         private ISocketConnection _conn;
-        private Protocol.Protocol _protocol = new Protocol.Protocol(); // FIXME: Namespace? WTF?
-        private readonly BlockingCollection<string> _stringBuffer = new BlockingCollection<string>();
+        private IProtocolMarshal _marshal = new XmlMarshal();
+        private IProtocolBuffer _buffer = new XmlBuffer();
+
+        // Enables asyncronous socket reading.
+        // Is used to implement cross-thread producer-consumer problem.
+        private readonly BlockingCollection<string> _readBuffer = new BlockingCollection<string>();
 
 
         public CommandListener(ISocketConnection conn)
@@ -32,17 +36,21 @@ namespace SharedLib.Sockets
         {
             while (true)
             {
-                var s = _stringBuffer.Take(); // Blocking when empty
-                _protocol.AddData(s);
+                var s = _readBuffer.Take(); // Blocking when empty
 
-                foreach (var cmd in _protocol.GetCommands())
+                _buffer.AddData(s);
+
+                foreach (var doc in _buffer.GetDocuments())
+                {
+                    var cmd = _marshal.Decode(doc);
                     HandleCommandRecieved(cmd);
+                }
             }
         }
 
         private void HandleDataRecieved(string data)
         {
-            _stringBuffer.Add(data);
+            _readBuffer.Add(data);
         }
 
         private void HandleCommandRecieved(Command cmd)

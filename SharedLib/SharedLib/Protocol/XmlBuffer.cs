@@ -10,7 +10,7 @@ namespace SharedLib.Protocol
      * The buffer takes a stream of XML-documents and seperates
      * documents. Recognizes end of documents by "</command>".
      */
-    public class XmlBuffer
+    public class XmlBuffer : IProtocolBuffer
     {
         private StringBuilder _buffer = new StringBuilder();
         private static Regex _cmdEndPattern = new Regex(
