@@ -23,10 +23,12 @@ namespace SharedLib.Protocol.Commands
                 Products.Add(copy);
             }
         }
+
+        public Catalogue GetCatalogue()
+        {
+            var catalogue = new Catalogue();
+            catalogue.Products.AddRange(Products);
+            return catalogue;
+        }
     }
-
-        
-
-
-
 }
