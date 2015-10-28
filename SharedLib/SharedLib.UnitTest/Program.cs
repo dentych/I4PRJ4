@@ -51,6 +51,7 @@ namespace SharedLib.UnitTest
             var cdcmd = new CatalogueDetailsCmd();
             var rpcmd = new RegisterPurchaseCmd(purchase);
             var dcmd = new DeleteProductCmd(product);
+            var pdcmd = new ProductDeletedCmd(product);
 
             cdcmd.Products.Add(product);
             cdcmd.Products.Add(product);
@@ -71,6 +72,7 @@ namespace SharedLib.UnitTest
             CatalogueDetailsMarshal cdmarshal = new CatalogueDetailsMarshal();
             RegisterPurchaseMarshal rpmarshal = new RegisterPurchaseMarshal();
             DeleteProductMarshal dmarshal = new DeleteProductMarshal();
+            ProductDeletedMarshal pdmarshal = new ProductDeletedMarshal();
 
             // Create protocol instance
             Protocol.Protocol proto = new Protocol.Protocol();
@@ -83,6 +85,7 @@ namespace SharedLib.UnitTest
             string xml5 = cdmarshal.Encode(cdcmd);
             string xml6 = rpmarshal.Encode(rpcmd);
             string xml7 = dmarshal.Encode(dcmd);
+            string xml8 = pdmarshal.Encode(pdcmd);
 
             // Decode from each
             var ccmd2 = (CreateProductCmd)cmarshal.Decode(xml);
@@ -92,6 +95,7 @@ namespace SharedLib.UnitTest
             var test5 = (CatalogueDetailsCmd) cdmarshal.Decode(xml5);
             var test6 = (RegisterPurchaseCmd) rpmarshal.Decode(xml6);
             var test7 = (DeleteProductCmd) dmarshal.Decode(xml7);
+            var test8 = (ProductDeletedCmd) pdmarshal.Decode(xml8);
 
             // Write first test of encode and decode from specific marshal
             Console.WriteLine(xml);
@@ -147,6 +151,12 @@ namespace SharedLib.UnitTest
             Console.WriteLine(xml7);
             Console.WriteLine("");
             Console.WriteLine(test7.CmdName);
+            Console.WriteLine("");
+
+            // 8th test ProductDeletedCmd
+            Console.WriteLine(xml8);
+            Console.WriteLine("");
+            Console.WriteLine(test8.CmdName);
             Console.WriteLine("");
         */
         }
