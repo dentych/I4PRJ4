@@ -46,7 +46,7 @@ namespace KasseApparat
         }
 
 #region Index
-        private int _currentIndex;
+        private int _currentIndex = 0;
         public int CurrentIndex
         {
             get { return _currentIndex; }
@@ -65,8 +65,6 @@ namespace KasseApparat
 
         private void MoreCommandExecute()
         {
-            if (CurrentIndex == -1) return;
-
             this[CurrentIndex].Quantity++;
             Notify("TotalPrice");
         }
@@ -86,8 +84,6 @@ namespace KasseApparat
 
         private void LessCommandExecute()
         {
-            if (CurrentIndex == -1) return;
-
             if (this[CurrentIndex].Quantity - 1 == 0)
             {
                 RemoveAt(CurrentIndex);
