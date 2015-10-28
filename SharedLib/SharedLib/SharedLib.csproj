@@ -39,10 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messaging\Message.cs" />
-    <Compile Include="Messaging\MessageQueue.cs" />
-    <Compile Include="Messaging\Messages\DataRecievedMsg.cs" />
-    <Compile Include="Messaging\MessageThread.cs" />
     <Compile Include="Models\Catalogue.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Purchase.cs" />
