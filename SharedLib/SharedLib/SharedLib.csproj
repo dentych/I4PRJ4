@@ -61,7 +61,7 @@
     <Compile Include="Protocol\ProtocolMarshallers\XmlMarshal.cs" />
     <Compile Include="Protocol\XmlBuffer.cs" />
     <Compile Include="Sockets\SocketConnection.cs" />
-    <Compile Include="Sockets\SocketMsgReceiver.cs" />
+    <Compile Include="Sockets\CommandListener.cs" />
     <Compile Include="Threading\ThreadBase.cs" />
   </ItemGroup>
   <ItemGroup />

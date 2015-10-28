@@ -6,22 +6,23 @@ using System.Collections.Concurrent;
 
 namespace SharedLib.Sockets
 {
-    public class SocketMsgReceiver : ThreadBase
-    {
-        public delegate void CommandRecievedHandler(Command cmd);
-        public delegate void ProductCreatedHandler(ProductCreatedCmd cmd);
-        public delegate void CatalogueDetailsHandler(CatalogueDetailsCmd cmd);
+    public delegate void CommandRecievedHandler(Command cmd);
+    public delegate void ProductCreatedHandler(ProductCreatedCmd cmd);
+    public delegate void CatalogueDetailsHandler(CatalogueDetailsCmd cmd);
 
+
+    public class CommandListener : ThreadBase
+    {
         public event CommandRecievedHandler OnCommandRecieved;
         public event ProductCreatedHandler OnProductCreated;
         public event CatalogueDetailsHandler OnCatalogueDetails;
 
-        private SocketConnection _conn;
+        private ISocketConnection _conn;
         private Protocol.Protocol _protocol = new Protocol.Protocol(); // FIXME: Namespace? WTF?
         private readonly BlockingCollection<string> _stringBuffer = new BlockingCollection<string>();
 
 
-        public SocketMsgReceiver(SocketConnection conn)
+        public CommandListener(ISocketConnection conn)
         {
             _conn = conn;
             _conn.OnDataRecieved += HandleDataRecieved;
@@ -56,8 +57,6 @@ namespace SharedLib.Sockets
                 case "CatalogueDetails":
                     OnCatalogueDetails?.Invoke((CatalogueDetailsCmd)cmd);
                     break;
-                default:
-                    throw new Exception("Can not handle command: " + cmd.CmdName);
             }
         }
     }
