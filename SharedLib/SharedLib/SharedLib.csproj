@@ -59,6 +59,7 @@
     <Compile Include="Protocol\Commands\ProductDeletedCmd.cs" />
     <Compile Include="Protocol\Commands\RegisterPurchaseCmd.cs" />
     <Compile Include="Protocol\ICmdMarshal.cs" />
+    <Compile Include="Protocol\IProtocol.cs" />
     <Compile Include="Protocol\IProtocolMarshal.cs" />
     <Compile Include="Protocol\Protocol.cs" />
     <Compile Include="Protocol\ProtocolMarshallers\XmlMarshal.cs" />
