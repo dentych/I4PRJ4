@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Backend.ViewModels;
-using NSubstitute;
-using NUnit.Framework;
-using static NSubstitute.Substitute;
-
-namespace Backend.Unit.Tests
-{
+﻿namespace Backend.Unit.Tests.ViewModels
+{ /* 
     [TestFixture]
     class MainWindowVmUnitTests
     {
@@ -23,7 +12,7 @@ namespace Backend.Unit.Tests
             _uut = new MainWindowViewModel();
         }
 
-        /* 
+       
          * Lortet åbner rent faktisk vinduet, og man skal trykke på Anuller...
         [Test]
         [RequiresSTAAttribute]
@@ -32,6 +21,6 @@ namespace Backend.Unit.Tests
             _uut.OpenAddProductWindowCommand.Execute(null);
             Assert.True(_uut.IsCalled);
         }
-        */ 
-    }
+        
+    }*/ 
 }

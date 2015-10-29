@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Backend.Brains;
+﻿using Backend.Brains;
 using Backend.Communication;
 using Backend.Models;
-using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using NSubstitute;
 using NUnit.Framework;
-using SharedLib.Models;
 using Product = SharedLib.Models.Product;
 
-namespace Backend.Unit.Tests
+namespace Backend.Unit.Tests.Brains
 {
     [TestFixture]
     public class AddProductCBUnitTests
@@ -70,7 +66,7 @@ namespace Backend.Unit.Tests
             client.Send(Arg.Any<string>()).Returns(false);
 
             uut.CreateProduct(fakedata);
-            err.Received(1).StdErr("Connection Error");
+            err.Received(1).StdErr("Conenction error");
 
         }
 
@@ -83,6 +79,7 @@ namespace Backend.Unit.Tests
             fakedata.BPrice = 100;
             fakedata.BProductNumber = "1124TEST";
 
+            client.Connect().Returns(true);
             client.Send(Arg.Any<string>()).Returns(true);
 
             uut.CreateProduct(fakedata);
@@ -101,10 +98,9 @@ namespace Backend.Unit.Tests
 
             uut.CreateProduct(fakedata);
             err.Received(1).StdErr("Enter correct product details.");
-
         }
 
-        [Test]
+       [Test]
         public void CreateProduct_BadName_ExpectError()
         {
 
@@ -131,9 +127,23 @@ namespace Backend.Unit.Tests
             err.Received(1).StdErr("Enter correct product details.");
         }
 
+        [Test]
+        public void CreateProduct_ClientReturnsFalse_ExpectFalse()
+        {
 
+            var fakedata = new BackendProduct();
+            fakedata.BName = "Name";
+            fakedata.BPrice = 100;
+            fakedata.BProductNumber = "1124TEST";
 
+            client.Connect().Returns(true);
+            client.Send(Arg.Any<string>()).Returns(false);
 
+            Assert.False(uut.CreateProduct(fakedata));
+        }
+        /* 
+
+        */
     }
     
 }
