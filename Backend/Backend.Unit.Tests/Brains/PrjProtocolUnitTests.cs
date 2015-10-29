@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using SharedLib.Models;
 
-namespace Backend.Unit.Tests
+namespace Backend.Unit.Tests.Brains
 {
     [TestFixture]
     public class PrjProtocolUnitTests

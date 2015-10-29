@@ -1,9 +1,5 @@
-﻿using System;
-using Backend.Communication;
-using NUnit.Framework;
-
-namespace Backend.Unit.Tests
-{
+﻿namespace Backend.Unit.Tests.Brains
+{/*
     [TestFixture]
     public class ClientUnitTests
     {
@@ -30,5 +26,5 @@ namespace Backend.Unit.Tests
             Assert.True(_uut.Send("TEST"));
         }
 
-    }
+    }*/
 }
