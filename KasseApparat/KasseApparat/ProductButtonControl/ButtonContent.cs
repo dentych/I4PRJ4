@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows;
 using System.Runtime.CompilerServices;
 using SharedLib.Models;
+using MvvmFoundation.Wpf;
+using System.Linq;
+using System.Windows.Input;
 
 namespace KasseApparat
 {
@@ -10,9 +14,12 @@ namespace KasseApparat
     {
         private string _name;
         private string _price;
+        ShoppingList _shopList;
 
         public ButtonContent(Product p)
         {
+            _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
+
             if (!string.IsNullOrEmpty(p.Name))
             {
                 Name = p.Name;
@@ -39,11 +46,6 @@ namespace KasseApparat
                 this.Name = string.Empty;
                 this.Price = string.Empty;
             }
-        }
-
-        public bool ButtonIsEnabled
-        {
-            get { return !(string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Price)); }
         }
 
         public string Price
@@ -74,7 +76,33 @@ namespace KasseApparat
 
         public Product Product;
 
-        
+        ICommand _AddCommand;
+        public ICommand AddCommand { get { return _AddCommand ?? (_AddCommand = new RelayCommand(AddCommandExecute, AddCommandCanExecute)); } }
+
+        void AddCommandExecute()
+        {
+
+            //This functionality must be moved to shoppinglist. Belong Here It Does Not
+            if (_shopList.Any(x => x.Name == Name))
+            {
+                //Retrieve index of existing item.
+                int index = _shopList.IndexOf(_shopList.Where(x => x.Name == Name).Single());
+                //Increment item in shoppinglist
+                _shopList.IncrementQuantity(index);
+            }
+            else
+            {
+                _shopList.AddItem(new PurchasedProduct(Product, 1));
+            }
+        }
+
+        bool AddCommandCanExecute()
+        {
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Price))
+                return false;
+            else
+                return true;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
