@@ -26,16 +26,16 @@
             <TextBox Name="textboxBarcode" MaxLength="75" Text="{Binding ProductToEdit.ProductNumber}"/>
 
             <Label Content="Pris"/>
-            <TextBox Name="textboxPrice"  MaxLength="20" Text="{Binding ProductToEdit.Price, Mode=OneWay}"/>
+            <TextBox Name="textboxPrice" PreviewTextInput="textboxPrice_PreviewTextInput" MaxLength="20" Text="{Binding ProductToEdit.Price}"/>
 
             <Label Content="Kategori"/>
-            <ComboBox Name="ComboboxCategory" ItemsSource="{Binding CatList, Mode=OneWay}" DisplayMemberPath="Name" SelectedIndex="0"/>
+            <ComboBox Name="ComboboxCategory" ItemsSource="{Binding Categories, Mode=OneWay}" DisplayMemberPath="Name" SelectedIndex="{Binding currentCatIndex}"/>
 
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
             <Label Content="Hovedmenu" Padding="0" FontSize="12pt"/>
             <Button Content="_Gem" FontSize="10pt" Height="40" Margin="0, 10"/>
-            <Button Content="_Annuller" FontSize="10pt" Height="40" Margin="0, 10" />
+            <Button Content="_Annuller" FontSize="10pt" Height="40" Margin="0, 10" Click="Annuller"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -11,10 +11,10 @@ namespace Backend.Views
     public partial class AddProductWindow
     {
     
-        public AddProductWindow(BackendProductCategoryList cat)
+        public AddProductWindow()
         {
             InitializeComponent();
-            DataContext = new AddProductViewModel(cat);
+            DataContext = new AddProductViewModel();
         }
 
 

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Backend.ViewModels;
 
 namespace Backend.Views
 {
@@ -21,7 +22,22 @@ namespace Backend.Views
     {
         public EditProductWindow()
         {
+            DataContext = new EditProductViewModel();
             InitializeComponent();
+        }
+
+        private void textboxPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ",")
+            {
+                e.Handled = true;
+            }
+        }
+
+        /* LUK LORTET */
+        private void Annuller(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
