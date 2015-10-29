@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using Backend.Dependencies;
 using Backend.Fakegenerator;
 using Backend.Models;
@@ -22,6 +23,7 @@ namespace Backend.ViewModels
         #region Properties
 
         public BackendProductCategoryList Categories { get; }
+        public int ProductIndex { get; set; } = 0;
         public readonly IEventAggregator Aggregator;
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
 
@@ -57,7 +59,7 @@ namespace Backend.ViewModels
                 cats = Categories,
                 currentCatIndex = Categories.CurrentIndex,
                 CurrentCategory = Categories[Categories.CurrentIndex],
-                product = Categories.CurrentProductList[0] // FIXME: Skal tage markeret produkt.
+                product = Categories.CurrentProductList[ProductIndex] // FIXME: Skal tage markeret produkt.
             };
 
             Aggregator.GetEvent<NewEditProductData>().Publish(details);
