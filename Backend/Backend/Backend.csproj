@@ -62,8 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\EventAggregator.cs" />
-    <Compile Include="Models\Events\CategoryListUpdated.cs" />
+    <Compile Include="Models\Events\EditProductParameters.cs" />
+    <Compile Include="Models\Events\EventAggregator.cs" />
+    <Compile Include="Models\Events\Events.cs" />
     <Compile Include="Views\SettingsDialog.xaml.cs">
       <DependentUpon>SettingsDialog.xaml</DependentUpon>
     </Compile>
