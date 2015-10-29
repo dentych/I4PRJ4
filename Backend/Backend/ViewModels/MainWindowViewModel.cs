@@ -1,8 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using Backend.Dependencies;
 using Backend.Fakegenerator;
 using Backend.Models;
 using Backend.Views;
+using Prism.Events;
 
 namespace Backend.ViewModels
 {
@@ -12,16 +14,25 @@ namespace Backend.ViewModels
         {
             Categories = faker.Make();
             Categories.Bootstrapper();
+            Aggregator = SingleEventAggregator.Aggregator;
+            Aggregator.GetEvent<Models.Events.AddProductWindowLoaded>().Subscribe(AddProductWindowLoaded,true);
+           
         }
 
         #region Properties
 
         public BackendProductCategoryList Categories { get; }
+        public readonly IEventAggregator Aggregator;
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
+
 
         #endregion
 
         #region Commands
+
+
+
+
 
         /* Add Product */
         private ICommand _openAddProductWindowCommand;
@@ -37,8 +48,14 @@ namespace Backend.ViewModels
 
         private void NewAddProductWindow()
         {
-            var window = new AddProductWindow(Categories);
+            var window = new AddProductWindow();
             window.ShowDialog();
+        }
+
+        public void AddProductWindowLoaded(bool b)
+        {
+            Aggregator.GetEvent<Models.Events.CategoryListUpdated>().Publish(Categories);
+
         }
 
         /* Settings dialog */
