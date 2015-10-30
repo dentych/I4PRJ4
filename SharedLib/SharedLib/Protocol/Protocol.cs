@@ -7,7 +7,7 @@ using SharedLib.Protocol.ProtocolMarshallers;
 
 namespace SharedLib.Protocol
 {
-    public class Protocol
+    public class Protocol: IProtocol
     {
         private IProtocolMarshal _marshaller = new XmlMarshal();
         private XmlBuffer _buffer = new XmlBuffer();
