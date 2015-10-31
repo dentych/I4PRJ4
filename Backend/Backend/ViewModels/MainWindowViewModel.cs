@@ -17,6 +17,8 @@ namespace Backend.ViewModels
             Categories.Bootstrapper();
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddProductWindowLoaded, true);
+            Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);
+            Aggregator.GetEvent<EditCategoryWindowLoaded>().Subscribe(EditCategoryLoaded, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
         }
 
@@ -50,6 +52,16 @@ namespace Backend.ViewModels
         public void AddProductWindowLoaded(bool b)
         {
             Aggregator.GetEvent<CategoryListUpdated>().Publish(Categories);
+        }
+
+        public void AddCategoryLoaded(bool b)
+        {
+            Aggregator.GetEvent<CategoryListUpdated>().Publish(Categories);
+        }
+
+        public void EditCategoryLoaded(bool b)
+        {
+            Aggregator.GetEvent<NewEditCategoryData>().Publish(Categories[Categories.CurrentIndex].Name);
         }
 
         public void EditProductWindowLoaded(bool b)
@@ -94,10 +106,33 @@ namespace Backend.ViewModels
         }
 
 
+        private ICommand _openAddCategoryWindowCommand;
+
+        public ICommand OpenAddCategoryWindowCommand
+        {
+            get
+            {
+                return _openAddCategoryWindowCommand ??
+                       (_openAddCategoryWindowCommand = new RelayCommand(OpenAddCategoryDialogWindow));
+            }
+        }
+
+
+        private ICommand _openEditCategoryWindowCommand;
+
+        public ICommand OpenEditCategoryWindowCommand
+        {
+            get
+            {
+                return _openEditCategoryWindowCommand ??
+                       (_openEditCategoryWindowCommand = new RelayCommand(OpenEditCategoryDialogWindow));
+            }
+        }
+
         /* Settings dialog */
         private ICommand _openSettingsDialog;
 
-        public ICommand OpenSettingsDialog
+        private ICommand OpenSettingsDialog
         {
             get { return _openSettingsDialog ?? (_openSettingsDialog = new RelayCommand(OpenSettingsDialogWindow)); }
         }
@@ -105,6 +140,18 @@ namespace Backend.ViewModels
         private void OpenSettingsDialogWindow()
         {
             var dialog = new SettingsDialog();
+            dialog.ShowDialog();
+        }
+
+        private void OpenAddCategoryDialogWindow()
+        {
+            var dialog = new AddCategoryWindow();
+            dialog.ShowDialog();
+        }
+
+        private void OpenEditCategoryDialogWindow()
+        {
+            var dialog = new EditCategoryWindow();
             dialog.ShowDialog();
         }
 
