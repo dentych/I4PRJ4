@@ -62,12 +62,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Brains\AddCategory.cs" />
     <Compile Include="Models\Events\EditProductParameters.cs" />
     <Compile Include="Models\Events\EventAggregator.cs" />
     <Compile Include="Models\Events\Events.cs" />
+    <Compile Include="ViewModels\AddCategoryViewModel.cs" />
+    <Compile Include="Brains\IAddCategory.cs" />
+    <Compile Include="Views\AddCategoryWindow.xaml.cs">
+      <DependentUpon>AddCategoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsDialog.xaml.cs">
       <DependentUpon>SettingsDialog.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddCategoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

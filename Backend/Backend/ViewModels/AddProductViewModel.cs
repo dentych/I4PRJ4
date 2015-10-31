@@ -13,6 +13,10 @@ namespace Backend.ViewModels
     public class AddProductViewModel
     {
         public IEventAggregator Aggregator;
+        public BackendProductCategoryList Categories { get; set; }
+        public BackendProduct Product { get; set; }
+        public IAddProduct IAP { get; set; }
+        public IError Err { set; get; }
 
         public AddProductViewModel()
         {
@@ -28,10 +32,7 @@ namespace Backend.ViewModels
         }
 
 
-        public BackendProductCategoryList Categories { get; set; }
-        public BackendProduct Product { get; set; }
-        public IAddProduct IAP { get; set; }
-        public IError Err { set; get; }
+
 
         public bool Valid()
         {

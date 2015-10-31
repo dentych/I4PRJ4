@@ -10,7 +10,9 @@ namespace Backend.Models.Events
     public class CategoryListUpdated : PubSubEvent<BackendProductCategoryList>{ }
     public class NewEditProductData : PubSubEvent<EditProductParameters> { }
 
+
     public class AddProductWindowLoaded : PubSubEvent<bool> { }
+    public class AddCategoryWindowLoaded : PubSubEvent<bool> { }
     public class EditProductWindowLoaded : PubSubEvent<bool> { }
 
 }
