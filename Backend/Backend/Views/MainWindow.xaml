@@ -22,7 +22,7 @@
         <Menu Grid.ColumnSpan="3">
             <MenuItem Header="_Filer">
                 <MenuItem Header="_Indstillinger" Command="{Binding OpenSettingsDialog}"/>
-                <MenuItem Header="Exit" Command="{Binding CloseMainWindowCommand}"/>
+                <MenuItem Header="_Afslut" Command="{Binding CloseMainWindowCommand}"/>
             </MenuItem>
             <MenuItem Header="Something"/>
         </Menu>
