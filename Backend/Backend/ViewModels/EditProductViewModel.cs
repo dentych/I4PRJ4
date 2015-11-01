@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Backend.Brains;
+using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Events;
@@ -19,6 +21,7 @@ namespace Backend.ViewModels
     {
         public IEventAggregator Aggregator;
         public Product ProductToEdit { get; set; }
+        public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
         public BackendProductCategory ProductCategory { get; set; }
         public BackendProduct EditedProduct { get; set; } = new BackendProduct();
         public BackendProductCategoryList Categories { get; set; }
@@ -59,8 +62,7 @@ namespace Backend.ViewModels
 
         private void SaveProduct()
         {
-            // Save the product
-            MessageBox.Show("Test");
+            Handler.EditProduct(EditedProduct);
         }
 
         private void NewProductCategory()

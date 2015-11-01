@@ -6,19 +6,22 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Backend.Communication;
 using Backend.Models;
 
 namespace Backend.Brains
 {
-    public class AddProductCB : IAddProduct
+    public class ModelHandler : IModelHandler
     {
         private readonly IClient _client;
         private readonly IProtocol _protocol;
         public  IError Error;
 
 
-        public AddProductCB(IProtocol protocol, IClient client)
+        public ModelHandler(IProtocol protocol, IClient client)
         {
             _protocol = protocol;
             LastError = null;
@@ -31,8 +34,7 @@ namespace Backend.Brains
             // Create the product
             var product = Product;
 
-
-            if (product.BName == "" || product.BPrice < 0 || product.BProductNumber == "")
+            if (string.IsNullOrWhiteSpace(product.BName)|| product.BPrice < 0 || string.IsNullOrWhiteSpace(product.BProductNumber))
             {
                 LastError = "Enter correct product details.";
                 Error.StdErr(LastError);
@@ -64,6 +66,36 @@ namespace Backend.Brains
             return true;
         }
 
+        public bool EditProduct(BackendProduct product)
+        {
+            Error.StdErr("No implemented LOL");
+            return true;
+        }
+
+        public bool DeleteProduct(BackendProduct product)
+        {
+            Error.StdErr("No implemented LOL");
+            return true;
+        }
+
+        public bool EditCategory(BackendProductCategory category)
+        {
+            Error.StdErr("No implemented LOL");
+            return true;
+        }
+
+        public bool AddCategory(BackendProductCategory category)
+        {
+            Error.StdErr("No implemented LOL");
+            return true;
+        }
+
+        public bool DeleteCategory(BackendProductCategory category)
+        {
+            Error.StdErr("No implemented LOL");
+            return true;
+        }
+        
         public string LastError { private set; get; }
     } //end AddProductCB
 }
