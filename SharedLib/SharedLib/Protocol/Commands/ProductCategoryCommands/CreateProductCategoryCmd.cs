@@ -31,7 +31,7 @@ namespace SharedLib.Protocol.Commands.ProductCategoryCommands
             {
                 var copy = new Product(prd);
                 Products.Add(copy);
-            };
+            }
         }
     
     }

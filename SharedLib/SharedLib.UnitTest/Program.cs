@@ -63,6 +63,7 @@ namespace SharedLib.UnitTest
             var dcmd = new DeleteProductCmd(product);
             var pdcmd = new ProductDeletedCmd(product);
             var pccmd = new CreateProductCategoryCmd("Frugt",productList);
+            var tcmd = new ProductCategoryCreatedCmd("Mere Frugt", 5, productList);
 
             cdcmd.Products.Add(product);
             cdcmd.Products.Add(product);
@@ -85,6 +86,7 @@ namespace SharedLib.UnitTest
             DeleteProductMarshal dmarshal = new DeleteProductMarshal();
             ProductDeletedMarshal pdmarshal = new ProductDeletedMarshal();
             CreateProductCategoryMarshal cpcmarshal = new CreateProductCategoryMarshal();
+            ProductCategoryCreatedMarshal tcmarshal = new ProductCategoryCreatedMarshal();
 
             // Create protocol instance
             Protocol.Protocol proto = new Protocol.Protocol();
@@ -99,6 +101,7 @@ namespace SharedLib.UnitTest
             string xml7 = dmarshal.Encode(dcmd);
             string xml8 = pdmarshal.Encode(pdcmd);
             string xml9 = cpcmarshal.Encode(pccmd);
+            string xml10 = tcmarshal.Encode(tcmd);
 
             // Decode from each
             var ccmd2 = (CreateProductCmd)cmarshal.Decode(xml);
@@ -110,6 +113,7 @@ namespace SharedLib.UnitTest
             var test7 = (DeleteProductCmd) dmarshal.Decode(xml7);
             var test8 = (ProductDeletedCmd) pdmarshal.Decode(xml8);
             var test9 = (CreateProductCategoryCmd) cpcmarshal.Decode(xml9);
+            var test10 = (ProductCategoryCreatedCmd) tcmarshal.Decode(xml10);
 
             // Write first test of encode and decode from specific marshal
             Console.WriteLine(xml);
@@ -178,7 +182,13 @@ namespace SharedLib.UnitTest
             Console.WriteLine("");
             Console.WriteLine(test9.Name);
             Console.WriteLine("");
-              */          
+            
+            // 10th test ProductCategoryCreated
+            Console.WriteLine(xml10);
+            Console.WriteLine("");
+            Console.WriteLine(test10.ProducCategoryId);
+            Console.WriteLine("");
+            */
         }
     }
 }
