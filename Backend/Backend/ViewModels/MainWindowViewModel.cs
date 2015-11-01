@@ -152,6 +152,14 @@ namespace Backend.ViewModels
             get { return _deleteProductCommand ?? (_deleteProductCommand = new RelayCommand(DeleteProductDialog)); }
         }
 
+        /* Close main window */
+        private ICommand _closeMainWindowCommand;
+
+        public ICommand CloseMainWindowCommand
+        {
+            get { return _closeMainWindowCommand ?? (_closeMainWindowCommand = new RelayCommand(CloseMainWindow)); }
+        }
+
         private void OpenSettingsDialogWindow()
         {
             var dialog = new SettingsDialog();
@@ -183,6 +191,15 @@ namespace Backend.ViewModels
             }
         }
 
+        private void CloseMainWindow()
+        {
+            var result = MessageBox.Show("Er du nu HELT sikker?", "Advarsel", MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.MainWindow.Close();
+            }
+        }
         #endregion
     }
 }
