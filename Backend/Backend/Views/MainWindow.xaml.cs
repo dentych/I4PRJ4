@@ -13,15 +13,5 @@ namespace Backend.Views
             InitializeComponent();
             DataContext = new MainWindowViewModel();
         }
-
-        private void CloseMainWindowClick(object sender, RoutedEventArgs e)
-        {
-            var result = MessageBox.Show("Er du nu HELT sikker?", "Advarsel", MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                Close();
-            }
-        }
     }
 }
