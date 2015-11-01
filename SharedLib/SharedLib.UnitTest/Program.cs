@@ -68,6 +68,8 @@ namespace SharedLib.UnitTest
             var tcmd = new ProductCategoryCreatedCmd("Mere Frugt", 5, productList);
             var dpCcmd = new DeleteProductCategoryCmd(productCategory);
             var pCdcmd = new ProductCategoryDeletedCmd(productCategory);
+            var ecmd = new EditProductCategoryCmd("Frugt igen", 6, productList);
+            var pCecmd = new ProductCategoryEditedCmd("Frugt igen igen", 7, productList);
 
 
             cdcmd.Products.Add(product);
@@ -93,6 +95,8 @@ namespace SharedLib.UnitTest
             ProductCategoryCreatedMarshal tcmarshal = new ProductCategoryCreatedMarshal();
             DeleteProductCategoryMarshal dpCmarshal = new DeleteProductCategoryMarshal();
             ProductCategoryDeletedMarshal pCdmarshal = new ProductCategoryDeletedMarshal();
+            EditProductCategoryMarshal epCmarshal = new EditProductCategoryMarshal();
+            ProductCategoryEditedMarshal PCemarshal = new ProductCategoryEditedMarshal();
 
             // Create protocol instance
             Protocol.Protocol proto = new Protocol.Protocol();
@@ -110,6 +114,8 @@ namespace SharedLib.UnitTest
             string xml10 = tcmarshal.Encode(tcmd);
             string xml11 = dpCmarshal.Encode(dpCcmd);
             string xml12 = pCdmarshal.Encode(pCdcmd);
+            string xml13 = epCmarshal.Encode(ecmd);
+            string xml14 = PCemarshal.Encode(pCecmd);
 
             // Decode from each
             var ccmd2 = (CreateProductCmd)cmarshal.Decode(xml);
@@ -124,6 +130,8 @@ namespace SharedLib.UnitTest
             var test10 = (ProductCategoryCreatedCmd) tcmarshal.Decode(xml10);
             var test11 = (DeleteProductCategoryCmd) dpCmarshal.Decode(xml11);
             var test12 = (ProductCategoryDeletedCmd) pCdmarshal.Decode(xml12);
+            var test13 = (EditProductCategoryCmd) epCmarshal.Decode(xml13);
+            var test14 = (ProductCategoryEditedCmd) PCemarshal.Decode(xml14);
 
             // Write first test of encode and decode from specific marshal
             Console.WriteLine(xml);
@@ -205,10 +213,22 @@ namespace SharedLib.UnitTest
             Console.WriteLine(test11.ProductCategoryId);
             Console.WriteLine("");
 
-            // 10th test ProductCategoryDeleted
+            // 12th test ProductCategoryDeleted
             Console.WriteLine(xml12);
             Console.WriteLine("");
             Console.WriteLine(test12.ProductCategoryId);
+            Console.WriteLine("");
+
+            // 13th test ProductCategoryDeleted
+            Console.WriteLine(xml13);
+            Console.WriteLine("");
+            Console.WriteLine(test13.Products.ElementAt(2).Name);
+            Console.WriteLine("");
+
+            // 14th test ProductCategoryDeleted
+            Console.WriteLine(xml14);
+            Console.WriteLine("");
+            Console.WriteLine(test14.Name);
             Console.WriteLine("");
             */
         }
