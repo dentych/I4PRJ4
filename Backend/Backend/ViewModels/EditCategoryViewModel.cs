@@ -22,17 +22,20 @@ namespace Backend.ViewModels
         public BackendProductCategoryList Categories { get; set; }
         public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
         public string Oldname { get; set; }
+        public int Oldid { get; set; }
 
         public EditCategoryViewModel()
         {
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditCategoryData>().Subscribe(SetCategoryData, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Publish(true);
+            ProductCategoryEdited.ProductCategoryId = Oldid;
         }
 
-        public void SetCategoryData(string s)
+        public void SetCategoryData(EditCategoryParms p)
         {
-            Oldname = s;
+            Oldname = p.Name;
+            Oldid = p.Id;
         }
 
 

@@ -32,6 +32,7 @@ namespace Backend.ViewModels
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditProductData>().Subscribe(ProductDataToEdit, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Publish(true);
+            EditedProduct.ProductId = ProductToEdit.ProductId;
 
         }
 

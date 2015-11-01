@@ -29,10 +29,9 @@ namespace Backend.Brains
             Error = new Error();
         }
 
-        public bool CreateProduct(BackendProduct Product)
+        public bool CreateProduct(BackendProduct product)
         {
-            // Create the product
-            var product = Product;
+
 
             if (string.IsNullOrWhiteSpace(product.BName)|| product.BPrice < 0 || string.IsNullOrWhiteSpace(product.BProductNumber))
             {
@@ -68,33 +67,54 @@ namespace Backend.Brains
 
         public bool EditProduct(BackendProduct product)
         {
+            // Generate XML from Category
+            var cmdtoSend = _protocol.EditProductXMLParser(product);
+            //TODO: Send data to server
+
             Error.StdErr("No implemented LOL");
             return true;
         }
 
         public bool DeleteProduct(BackendProduct product)
         {
+
+            // Generate XML from Category
+            var cmdtoSend = _protocol.DeleteProductXMLParser(product);
+            //TODO: Send data to server
+
             Error.StdErr("No implemented LOL");
             return true;
         }
 
         public bool EditCategory(BackendProductCategory category)
         {
+
+            // Generate XML from Category
+            var cmdtoSend = _protocol.EditCategoryXMLParser(category);
+            //TODO: Send data to server
+
             Error.StdErr("No implemented LOL");
             return true;
         }
 
         public bool AddCategory(BackendProductCategory category)
         {
+            // Generate XML from Category
+            var cmdtoSend = _protocol.CategoryXMLParser(category);
+            //TODO: Send data to server
+
             Error.StdErr("No implemented LOL");
             return true;
         }
 
         public bool DeleteCategory(BackendProductCategory category)
         {
+            var cmdtosend = _protocol.DeleteCategoryXMLParser(category);
+            //TODO: Send data to server
             Error.StdErr("No implemented LOL");
             return true;
         }
+
         
         public string LastError { private set; get; }
     } //end AddProductCB
