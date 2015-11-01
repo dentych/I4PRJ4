@@ -11,7 +11,8 @@ namespace SharedLib.Models
     {
         public string Name { get; set; }
         public int ProductCategoryId { get; set; }
-        public List<Product> Products;
+
+        public List<Product> Products = new List<Product>();
 
         public ProductCategory()
         {
@@ -19,7 +20,11 @@ namespace SharedLib.Models
 
         public ProductCategory(List<Product> products)
         {
-            Products = products;
+            foreach (var prd in products)
+            {
+                var copy = new Product(prd);
+                Products.Add(copy);
+            }
         }
     }
 }

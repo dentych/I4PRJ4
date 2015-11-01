@@ -49,6 +49,12 @@
     <Compile Include="Protocol\CmdMarshallers\DeleteProductMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\EditProductMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\GetCatalogueMarshal.cs" />
+    <Compile Include="Protocol\CmdMarshallers\ProductCategoryMarshallers\EditProductCategoryMarshal.cs" />
+    <Compile Include="Protocol\CmdMarshallers\ProductCategoryMarshallers\CreateProductCategoryMarshal.cs" />
+    <Compile Include="Protocol\CmdMarshallers\ProductCategoryMarshallers\DeleteProductCategoryMarshal.cs" />
+    <Compile Include="Protocol\CmdMarshallers\ProductCategoryMarshallers\ProductCategoryEditedMarshal.cs" />
+    <Compile Include="Protocol\CmdMarshallers\ProductCategoryMarshallers\ProductCategoryCreatedMarshal.cs" />
+    <Compile Include="Protocol\CmdMarshallers\ProductCategoryMarshallers\ProductCategoryDeletedMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\ProductCreatedMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\ProductDeletedMarshal.cs" />
     <Compile Include="Protocol\CmdMarshallers\ProductEditedMarshal.cs" />
@@ -59,6 +65,12 @@
     <Compile Include="Protocol\Commands\DeleteProductCmd.cs" />
     <Compile Include="Protocol\Commands\EditProductCmd.cs" />
     <Compile Include="Protocol\Commands\GetCatalogueCmd.cs" />
+    <Compile Include="Protocol\Commands\ProductCategoryCommands\EditProductCategoryCmd.cs" />
+    <Compile Include="Protocol\Commands\ProductCategoryCommands\CreateProductCategoryCmd.cs" />
+    <Compile Include="Protocol\Commands\ProductCategoryCommands\DeleteProductCategoryCmd.cs" />
+    <Compile Include="Protocol\Commands\ProductCategoryCommands\ProductCategoryEditedCmd.cs" />
+    <Compile Include="Protocol\Commands\ProductCategoryCommands\ProductCategoryCreatedCmd.cs" />
+    <Compile Include="Protocol\Commands\ProductCategoryCommands\ProductCategoryDeletedCmd.cs" />
     <Compile Include="Protocol\Commands\ProductCreatedCmd.cs" />
     <Compile Include="Protocol\Commands\ProductDeletedCmd.cs" />
     <Compile Include="Protocol\Commands\ProductEditedCmd.cs" />
