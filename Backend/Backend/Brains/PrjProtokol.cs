@@ -43,7 +43,7 @@ namespace Backend.Brains
             return LocalProtocol.Encode(new DeleteProductCategoryCmd(toParse));
         }
 
-        public string DeleteProductXMLParser(BackendProduct toParse)
+        public string DeleteProductXMLParser(Product toParse)
         {
             return LocalProtocol.Encode(new DeleteProductCmd(toParse));
         }

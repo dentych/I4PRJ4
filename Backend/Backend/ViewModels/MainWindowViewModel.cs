@@ -6,6 +6,9 @@ using Backend.Models;
 using Backend.Models.Events;
 using Backend.Views;
 using Prism.Events;
+using SharedLib.Models;
+using Backend.Brains;
+using Backend.Communication;
 
 namespace Backend.ViewModels
 {
@@ -28,6 +31,7 @@ namespace Backend.ViewModels
         public int ProductIndex { get; set; } = 0;
         public readonly IEventAggregator Aggregator;
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
+        private IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
 
         #endregion
 
@@ -108,7 +112,7 @@ namespace Backend.ViewModels
             }
         }
 
-
+        /* Add category */
         private ICommand _openAddCategoryWindowCommand;
 
         public ICommand OpenAddCategoryWindowCommand
@@ -120,7 +124,7 @@ namespace Backend.ViewModels
             }
         }
 
-
+        /* Edit category */
         private ICommand _openEditCategoryWindowCommand;
 
         public ICommand OpenEditCategoryWindowCommand
@@ -140,6 +144,14 @@ namespace Backend.ViewModels
             get { return _openSettingsDialog ?? (_openSettingsDialog = new RelayCommand(OpenSettingsDialogWindow)); }
         }
 
+        /* Delete product */
+        private ICommand _deleteProductCommand;
+
+        public ICommand DeleteProductCommand
+        {
+            get { return _deleteProductCommand ?? (_deleteProductCommand = new RelayCommand(DeleteProductDialog)); }
+        }
+
         private void OpenSettingsDialogWindow()
         {
             var dialog = new SettingsDialog();
@@ -156,6 +168,19 @@ namespace Backend.ViewModels
         {
             var dialog = new EditCategoryWindow();
             dialog.ShowDialog();
+        }
+
+        private void DeleteProductDialog()
+        {
+            Product current = Categories.CurrentProductList[ProductIndex];
+
+            // New message box
+            var result = MessageBox.Show("Vil du slette det valgte produkt?", "Slet af produkt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                modelHandler.DeleteProduct(Categories.CurrentProductList[ProductIndex]);
+            }
         }
 
         #endregion

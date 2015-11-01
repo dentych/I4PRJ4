@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Backend.Communication;
 using Backend.Models;
+using SharedLib.Models;
 
 namespace Backend.Brains
 {
@@ -75,7 +76,7 @@ namespace Backend.Brains
             return true;
         }
 
-        public bool DeleteProduct(BackendProduct product)
+        public bool DeleteProduct(Product product)
         {
 
             // Generate XML from Category

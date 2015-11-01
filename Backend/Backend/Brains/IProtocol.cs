@@ -18,7 +18,7 @@ namespace Backend.Brains
         string EditProductXMLParser(BackendProduct toParse);
         string EditCategoryXMLParser(BackendProductCategory toParse);
         string DeleteCategoryXMLParser(BackendProductCategory toParse);
-        string DeleteProductXMLParser(BackendProduct toParse);
+        string DeleteProductXMLParser(Product toParse);
         string GetCatalougXMLParser();
     } //end IProtocol
 }

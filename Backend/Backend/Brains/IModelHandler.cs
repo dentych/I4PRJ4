@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////
 
 using Backend.Models;
+using SharedLib.Models;
 
 namespace Backend.Brains
 {
@@ -16,7 +17,7 @@ namespace Backend.Brains
 #region Products
         bool CreateProduct(BackendProduct product);
         bool EditProduct(BackendProduct product);
-        bool DeleteProduct(BackendProduct product);
+        bool DeleteProduct(Product product);
         #endregion
 #region Categories
         bool EditCategory(BackendProductCategory category);
