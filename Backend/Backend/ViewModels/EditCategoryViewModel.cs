@@ -29,13 +29,13 @@ namespace Backend.ViewModels
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditCategoryData>().Subscribe(SetCategoryData, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Publish(true);
-            ProductCategoryEdited.ProductCategoryId = Oldid;
+            ProductCategoryEdited.ProductCategoryId = OldId;
         }
 
         public void SetCategoryData(EditCategoryParms p)
         {
-            Oldname = p.Name;
-            Oldid = p.Id;
+            OldName = p.Name;
+            OldId = p.Id;
         }
 
 
@@ -49,7 +49,7 @@ namespace Backend.ViewModels
 
         private bool Valid()
         {
-            if (Oldname != "")
+            if (OldName != "")
                 return true;
             return false;
         }
