@@ -21,8 +21,8 @@ namespace Backend.ViewModels
         public BackendProductCategory ProductCategoryEdited { get; set; } = new BackendProductCategory();
         public BackendProductCategoryList Categories { get; set; }
         public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
-        public string Oldname { get; set; }
-        public int Oldid { get; set; }
+        public string OldName { get; set; }
+        public int OldId { get; set; }
 
         public EditCategoryViewModel()
         {
