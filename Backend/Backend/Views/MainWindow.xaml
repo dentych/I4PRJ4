@@ -30,13 +30,26 @@
         <!-- Column 0 -->
         <Grid Grid.Row="1" Margin="10">
             <Label Content="Produktkategorier" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12pt"/>
-            <ListBox Margin="0, 30, 0, 0" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedIndex="{Binding Categories.CurrentIndex, Mode=TwoWay}"/>
+            <ListBox Margin="0, 30, 0, 0" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedIndex="{Binding Categories.CurrentIndex, Mode=TwoWay}">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Slet" Command="{Binding DeleteProductCommand}"/>
+                        <MenuItem Header="Rediger" Command="{Binding OpenEditCategoryWindowCommand}"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
         </Grid>
 
         <!-- Column 1 -->
         <Grid Grid.Row="1" Grid.Column="1" Margin="10">
             <Label Content="Produkter" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12pt"/>
             <ListView Margin="0, 30, 0, 0" ItemsSource="{Binding Categories.CurrentProductList}" SelectedIndex="{Binding ProductIndex}" SelectionMode="Single">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Slet" Command="{Binding DeleteProductCommand}"/>
+                        <MenuItem Header="Rediger" Command="{Binding OpenEditProductWindowCommand}"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
