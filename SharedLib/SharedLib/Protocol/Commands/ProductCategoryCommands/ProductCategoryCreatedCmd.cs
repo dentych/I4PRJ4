@@ -14,7 +14,7 @@ namespace SharedLib.Protocol.Commands.ProductCategoryCommands
         public readonly List<Product> Products = new List<Product>(); 
 
         public string Name { get { return _name; }}
-        public int ProducCategoryId { get { return _productCategoryId; } }
+        public int ProductCategoryId { get { return _productCategoryId; } }
 
         public ProductCategoryCreatedCmd(ProductCategory productCategory)
         {

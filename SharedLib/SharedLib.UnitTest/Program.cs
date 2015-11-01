@@ -53,7 +53,9 @@ namespace SharedLib.UnitTest
             productList.Add(product);
             productList.Add(product);
             productList.Add(product);
-            
+
+            ProductCategory productCategory = new ProductCategory(productList) {Name = "Frugt", ProductCategoryId = 5};
+
             // Opret Commands
             var cmd = new CreateProductCmd(product);
             var prcmd = new ProductCreatedCmd(product);
@@ -64,6 +66,9 @@ namespace SharedLib.UnitTest
             var pdcmd = new ProductDeletedCmd(product);
             var pccmd = new CreateProductCategoryCmd("Frugt",productList);
             var tcmd = new ProductCategoryCreatedCmd("Mere Frugt", 5, productList);
+            var dpCcmd = new DeleteProductCategoryCmd(productCategory);
+            var pCdcmd = new ProductCategoryDeletedCmd(productCategory);
+
 
             cdcmd.Products.Add(product);
             cdcmd.Products.Add(product);
@@ -76,7 +81,6 @@ namespace SharedLib.UnitTest
             cdcmd.Products.Add(product);
             cdcmd.Products.Add(product); // 10
 
-
             // Create specific marshal
             CreateProductMarshal cmarshal = new CreateProductMarshal();
             ProductCreatedMarshal pmarshal = new ProductCreatedMarshal();
@@ -87,6 +91,8 @@ namespace SharedLib.UnitTest
             ProductDeletedMarshal pdmarshal = new ProductDeletedMarshal();
             CreateProductCategoryMarshal cpcmarshal = new CreateProductCategoryMarshal();
             ProductCategoryCreatedMarshal tcmarshal = new ProductCategoryCreatedMarshal();
+            DeleteProductCategoryMarshal dpCmarshal = new DeleteProductCategoryMarshal();
+            ProductCategoryDeletedMarshal pCdmarshal = new ProductCategoryDeletedMarshal();
 
             // Create protocol instance
             Protocol.Protocol proto = new Protocol.Protocol();
@@ -102,6 +108,8 @@ namespace SharedLib.UnitTest
             string xml8 = pdmarshal.Encode(pdcmd);
             string xml9 = cpcmarshal.Encode(pccmd);
             string xml10 = tcmarshal.Encode(tcmd);
+            string xml11 = dpCmarshal.Encode(dpCcmd);
+            string xml12 = pCdmarshal.Encode(pCdcmd);
 
             // Decode from each
             var ccmd2 = (CreateProductCmd)cmarshal.Decode(xml);
@@ -114,6 +122,8 @@ namespace SharedLib.UnitTest
             var test8 = (ProductDeletedCmd) pdmarshal.Decode(xml8);
             var test9 = (CreateProductCategoryCmd) cpcmarshal.Decode(xml9);
             var test10 = (ProductCategoryCreatedCmd) tcmarshal.Decode(xml10);
+            var test11 = (DeleteProductCategoryCmd) dpCmarshal.Decode(xml11);
+            var test12 = (ProductCategoryDeletedCmd) pCdmarshal.Decode(xml12);
 
             // Write first test of encode and decode from specific marshal
             Console.WriteLine(xml);
@@ -186,7 +196,19 @@ namespace SharedLib.UnitTest
             // 10th test ProductCategoryCreated
             Console.WriteLine(xml10);
             Console.WriteLine("");
-            Console.WriteLine(test10.ProducCategoryId);
+            Console.WriteLine(test10.ProductCategoryId);
+            Console.WriteLine("");
+
+            // 11th test DeleteProductCategory
+            Console.WriteLine(xml11);
+            Console.WriteLine("");
+            Console.WriteLine(test11.ProductCategoryId);
+            Console.WriteLine("");
+
+            // 10th test ProductCategoryDeleted
+            Console.WriteLine(xml12);
+            Console.WriteLine("");
+            Console.WriteLine(test12.ProductCategoryId);
             Console.WriteLine("");
             */
         }
