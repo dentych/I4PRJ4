@@ -62,12 +62,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Brains\AddCategory.cs" />
     <Compile Include="Models\Events\EditProductParameters.cs" />
     <Compile Include="Models\Events\EventAggregator.cs" />
     <Compile Include="Models\Events\Events.cs" />
     <Compile Include="ViewModels\AddCategoryViewModel.cs" />
-    <Compile Include="Brains\IAddCategory.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />
     <Compile Include="Views\AddCategoryWindow.xaml.cs">
       <DependentUpon>AddCategoryWindow.xaml</DependentUpon>
@@ -109,9 +107,9 @@
     <Compile Include="Views\AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Brains\AddProductCB.cs" />
+    <Compile Include="Brains\ModelHandler.cs" />
     <Compile Include="ViewModels\AddProductViewModel.cs" />
-    <Compile Include="Brains\IAddProduct.cs" />
+    <Compile Include="Brains\IModelHandler.cs" />
     <Compile Include="Brains\IProtocol.cs" />
     <Compile Include="Brains\PrjProtokol.cs" />
     <Compile Include="App.xaml.cs">

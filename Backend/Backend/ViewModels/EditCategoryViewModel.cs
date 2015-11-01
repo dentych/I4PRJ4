@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Backend.Brains;
+using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Events;
@@ -18,6 +20,7 @@ namespace Backend.ViewModels
         public IEventAggregator Aggregator;
         public BackendProductCategory ProductCategoryEdited { get; set; } = new BackendProductCategory();
         public BackendProductCategoryList Categories { get; set; }
+        public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
         public string Oldname { get; set; }
 
         public EditCategoryViewModel()
@@ -50,8 +53,7 @@ namespace Backend.ViewModels
 
         private void SaveCategory()
         {
-            //TODO: Implement missing savemethod
-            MessageBox.Show("Category saved");
+            Handler.EditCategory(ProductCategoryEdited); // Burde måske også have OldName med?
         }
         #endregion
     }
