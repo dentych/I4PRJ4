@@ -9,7 +9,7 @@ namespace Backend.Models.Events
 {
     public class CategoryListUpdated : PubSubEvent<BackendProductCategoryList>{ }
     public class NewEditProductData : PubSubEvent<EditProductParameters> { }
-    public class NewEditCategoryData : PubSubEvent<string> { }
+    public class NewEditCategoryData : PubSubEvent<EditCategoryParms> { }
 
 
 
