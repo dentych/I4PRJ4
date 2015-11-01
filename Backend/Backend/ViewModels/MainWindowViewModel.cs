@@ -61,7 +61,7 @@ namespace Backend.ViewModels
 
         public void EditCategoryLoaded(bool b)
         {
-            Aggregator.GetEvent<NewEditCategoryData>().Publish(Categories[Categories.CurrentIndex].Name);
+            Aggregator.GetEvent<NewEditCategoryData>().Publish(Categories[Categories.CurrentIndex].BName);
         }
 
         public void EditProductWindowLoaded(bool b)

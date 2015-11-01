@@ -14,7 +14,7 @@ namespace Backend.Fakegenerator
             {
                 var newCategory = new BackendProductCategory
                 {
-                    Name = "Category " + (i + 1),
+                    BName = "Category " + (i + 1),
                     Products = new List<Product>()
                 };
                 for (var x = 0; x < 10; x++)
