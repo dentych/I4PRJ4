@@ -149,7 +149,7 @@ namespace Backend.ViewModels
 
         public ICommand DeleteProductCommand
         {
-            get { return _deleteProductCommand ?? (_deleteProductCommand = new RelayCommand(DeleteProductDialog)); }
+            get { return _deleteProductCommand ?? (_deleteProductCommand = new RelayCommand(DeleteProductDialog, () => ProductIndex >= 0)); }
         }
 
         /* Close main window */
@@ -180,15 +180,24 @@ namespace Backend.ViewModels
 
         private void DeleteProductDialog()
         {
-            Product current = Categories.CurrentProductList[ProductIndex];
-
-            // New message box
-            var result = MessageBox.Show("Vil du slette det valgte produkt?", "Slet af produkt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            if (result == MessageBoxResult.Yes)
+            if (ProductIndex > 0)
             {
-                modelHandler.DeleteProduct(Categories.CurrentProductList[ProductIndex]);
+                // New message box
+                var result = MessageBox.Show("Vil du slette det valgte produkt?", "Slet af produkt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    if (ProductIndex >= 0)
+                    {
+                        modelHandler.DeleteProduct(Categories.CurrentProductList[ProductIndex]);
+                    }
+                }
             }
+            else
+            {
+                MessageBox.Show("Intet produkt valgt.", "Slet af produkt", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            
         }
 
         private void CloseMainWindow()
