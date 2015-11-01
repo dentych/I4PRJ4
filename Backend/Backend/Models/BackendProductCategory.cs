@@ -10,21 +10,20 @@ using SharedLib.Models;
 
 namespace Backend.Models
 {
-    public class BackendProductCategory : INotifyPropertyChanged
+   
+    public class BackendProductCategory : ProductCategory, INotifyPropertyChanged
     {
-        private string _name;
 
-        public string Name
+        public string BName
         {
-            get { return _name; }
+            get { return Name; }
             set
             {
-                _name = value;
+                Name = value;
                 Notify("Name");
             }
         }
 
-        public List<Product> Products { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

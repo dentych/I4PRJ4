@@ -31,7 +31,7 @@ namespace Backend.ViewModels
         
         public bool Valid()
         {
-            return !string.IsNullOrEmpty(Category.Name);
+            return !string.IsNullOrEmpty(Category.BName);
         }
 
         public void CategoryListUpdated(BackendProductCategoryList updatedList)
@@ -56,7 +56,7 @@ namespace Backend.ViewModels
 
             foreach (var oldcat in Categories)
             {
-                if (oldcat.Name == Category.Name)
+                if (oldcat.BName == Category.BName)
                 {
                     alreadyexist = true;
                 }
