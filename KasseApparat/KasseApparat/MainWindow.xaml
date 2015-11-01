@@ -189,7 +189,7 @@
                             Margin="5"
                             x:Name="ProductButton08"
                             Tag="7"
-                            Command="{Binding CurrentButtonPage[8].AddCommand}">
+                            Command="{Binding CurrentButtonPage[7].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"></RowDefinition>
@@ -207,7 +207,7 @@
                             Margin="5"
                             x:Name="ProductButton09"
                             Tag="8"
-                            Command="{Binding CurrentButtonPage[9].AddCommand}">
+                            Command="{Binding CurrentButtonPage[8].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"></RowDefinition>

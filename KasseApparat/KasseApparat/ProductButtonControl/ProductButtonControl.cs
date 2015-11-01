@@ -24,14 +24,13 @@ namespace KasseApparat
         private int _currentPage = 1;
         private readonly ProductList _productList;
         private List<ProductButtonList> _PageList;
-        private ShoppingList _shopList;
+
 #endregion
 
         public ProductButtonControl()
         {
             _productList = new ProductList();
             _PageList = new List<ProductButtonList>();
-            _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
 
             Update();
         }
@@ -40,7 +39,6 @@ namespace KasseApparat
         public void Update()
         {
             _productList.Update();
-            CalculateTotalpage();
             CreatePageList();
 
             //Notifying for new changes
@@ -55,7 +53,11 @@ namespace KasseApparat
             int pages = 0;
             int i = 0;
 
-            while (pages < _totalPages)
+            int totalPage = (_productList.Count%12) == 0
+                ? _totalPages = _productList.Count/12
+                : _totalPages = (_productList.Count/12) + 1;
+
+            while (pages < totalPage)
             {
                 _PageList.Add(new ProductButtonList());
 
@@ -72,30 +74,6 @@ namespace KasseApparat
                 }
                 
                 pages++;
-            }
-        }
-
-        void CalculateTotalpage()
-        {
-            if ((_productList.Count%12) == 0)
-            {
-                _totalPages = _productList.Count/12;
-            }
-            else
-            {
-                _totalPages = (_productList.Count/12)+1;
-            }
-        }
-
-        public void addItem(int indexItem)
-        {
-            if (_shopList.Any(x => x.Name == _PageList[_currentPage-1][indexItem].Name))
-            {
-                _shopList.IncrementQuantity(_shopList.IndexOf(_shopList.Where(x => x.Name == _PageList[_currentPage - 1][indexItem].Name).Single()));
-            }
-            else
-            {
-                _shopList.AddItem(new PurchasedProduct(_PageList[CurrentPages-1][indexItem].Product, 1));
             }
         }
 
@@ -128,7 +106,7 @@ namespace KasseApparat
 
         bool NextCommandCanExecute()
         {
-            if (_currentPage == _totalPages)
+            if (_currentPage == TotalPages)
                 return false;
             else
                 return true;
@@ -147,8 +125,7 @@ namespace KasseApparat
 
         public int TotalPages
         {
-            get { return _totalPages; }
-            private set { _totalPages = value; }
+            get { return _PageList.Count; }
         }
 
         public int CurrentPages

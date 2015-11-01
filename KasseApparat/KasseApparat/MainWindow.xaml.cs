@@ -51,14 +51,6 @@ namespace KasseApparat
 
 #endregion
 
-        private void ButtonProductClick(object sender, RoutedEventArgs e)
-        {
-            Button buttonName = (Button)e.OriginalSource;
-            ProductButtonControl ProdControl = (ProductButtonControl) this.FindResource("ProductButtonControl");
-            
-            ProdControl.addItem(int.Parse(buttonName.Tag.ToString()));
-        }
-
         private void ButtonRefreshClick(object sender, RoutedEventArgs e)
         {
             ProductButtonControl ProdControl = (ProductButtonControl)this.FindResource("ProductButtonControl");
