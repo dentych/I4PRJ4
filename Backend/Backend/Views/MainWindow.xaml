@@ -36,7 +36,7 @@
         <!-- Column 1 -->
         <Grid Grid.Row="1" Grid.Column="1" Margin="10">
             <Label Content="Produkter" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12pt"/>
-            <ListView Margin="0, 30, 0, 0" ItemsSource="{Binding Categories.CurrentProductList}" SelectedIndex="{Binding ProductIndex}">
+            <ListView Margin="0, 30, 0, 0" ItemsSource="{Binding Categories.CurrentProductList}" SelectedIndex="{Binding ProductIndex}" SelectionMode="Single">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
