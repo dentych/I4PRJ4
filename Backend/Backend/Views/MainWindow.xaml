@@ -62,7 +62,7 @@
                 <StackPanel Grid.Row="0" Margin="10">
                 <Button Content="_Opret produkt" FontSize="10pt" Height="40" Margin="0, 10" Command="{Binding OpenAddProductWindowCommand}"/>
                 <Button Content="_Rediger produkt" FontSize="10pt" Height="40" Margin="0, 10" Command="{Binding OpenEditProductWindowCommand}"/>
-                <Button Content="_Slet produkt" FontSize="10pt" Height="40" Margin="0, 10"/>
+                <Button Content="_Slet produkt" FontSize="10pt" Height="40" Margin="0, 10" Command="{Binding DeleteProductCommand}"/>
             </StackPanel>
             </GroupBox>
             

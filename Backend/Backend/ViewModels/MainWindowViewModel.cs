@@ -6,6 +6,7 @@ using Backend.Models;
 using Backend.Models.Events;
 using Backend.Views;
 using Prism.Events;
+using SharedLib.Models;
 
 namespace Backend.ViewModels
 {
@@ -105,7 +106,7 @@ namespace Backend.ViewModels
             }
         }
 
-
+        /* Add category */
         private ICommand _openAddCategoryWindowCommand;
 
         public ICommand OpenAddCategoryWindowCommand
@@ -117,7 +118,7 @@ namespace Backend.ViewModels
             }
         }
 
-
+        /* Edit category */
         private ICommand _openEditCategoryWindowCommand;
 
         public ICommand OpenEditCategoryWindowCommand
@@ -137,6 +138,14 @@ namespace Backend.ViewModels
             get { return _openSettingsDialog ?? (_openSettingsDialog = new RelayCommand(OpenSettingsDialogWindow)); }
         }
 
+        /* Delete product */
+        private ICommand _deleteProductCommand;
+
+        public ICommand DeleteProductCommand
+        {
+            get { return _deleteProductCommand ?? (_deleteProductCommand = new RelayCommand(DeleteProductDialog)); }
+        }
+
         private void OpenSettingsDialogWindow()
         {
             var dialog = new SettingsDialog();
@@ -153,6 +162,24 @@ namespace Backend.ViewModels
         {
             var dialog = new EditCategoryWindow();
             dialog.ShowDialog();
+        }
+
+        private void DeleteProductDialog()
+        {
+            Product current = Categories.CurrentProductList[ProductIndex];
+
+            // New message box
+            var result = MessageBox.Show("Vil du slette det valgte produkt?", "Slet af produkt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    // Delete the product
+                    break;
+                default:
+                    // Nothing
+                    break;
+            }
         }
 
         #endregion
