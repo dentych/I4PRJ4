@@ -34,5 +34,16 @@ namespace SharedLib.Protocol.Commands
             _price = product.Price;
             _productId = product.ProductId;
         }
+
+        public Product GetProduct()
+        {
+            return new Product()
+            {
+                ProductId = ProductId,
+                Name = Name,
+                Price = Price,
+                ProductNumber = ProductNumber,
+            };
+        }
     }
 }

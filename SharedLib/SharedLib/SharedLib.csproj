@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Catalogue.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\Purchase.cs" />
@@ -77,10 +78,14 @@
     <Compile Include="Protocol\Commands\RegisterPurchaseCmd.cs" />
     <Compile Include="Protocol\ICmdMarshal.cs" />
     <Compile Include="Protocol\IProtocol.cs" />
+    <Compile Include="Protocol\IProtocolBuffer.cs" />
     <Compile Include="Protocol\IProtocolMarshal.cs" />
     <Compile Include="Protocol\Protocol.cs" />
     <Compile Include="Protocol\ProtocolMarshallers\XmlMarshal.cs" />
     <Compile Include="Protocol\XmlBuffer.cs" />
+    <Compile Include="Sockets\SocketConnection.cs" />
+    <Compile Include="Sockets\CommandListener.cs" />
+    <Compile Include="Threading\ThreadBase.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
