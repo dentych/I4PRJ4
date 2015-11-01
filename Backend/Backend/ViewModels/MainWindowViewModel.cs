@@ -139,7 +139,7 @@ namespace Backend.ViewModels
         /* Settings dialog */
         private ICommand _openSettingsDialog;
 
-        private ICommand OpenSettingsDialog
+        public ICommand OpenSettingsDialog
         {
             get { return _openSettingsDialog ?? (_openSettingsDialog = new RelayCommand(OpenSettingsDialogWindow)); }
         }
