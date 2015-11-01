@@ -149,7 +149,7 @@ namespace Backend.ViewModels
 
         public ICommand DeleteProductCommand
         {
-            get { return _deleteProductCommand ?? (_deleteProductCommand = new RelayCommand(DeleteProductDialog)); }
+            get { return _deleteProductCommand ?? (_deleteProductCommand = new RelayCommand(DeleteProductDialog, () => ProductIndex >= 0)); }
         }
 
         /* Close main window */
@@ -187,7 +187,7 @@ namespace Backend.ViewModels
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    if (ProductIndex > 0)
+                    if (ProductIndex >= 0)
                     {
                         modelHandler.DeleteProduct(Categories.CurrentProductList[ProductIndex]);
                     }
