@@ -16,7 +16,7 @@ namespace Backend.Brains
 {
     public class PrjProtokol : IProtocol
     {
-        public Protocol LocalProtocol { get; set; }
+        public Protocol LocalProtocol { get; set; } = new Protocol();
 
         public string ProductXMLParser(Product toParse)
         {
