@@ -82,18 +82,7 @@ namespace KasseApparat
         void AddCommandExecute()
         {
 
-            //This functionality must be moved to shoppinglist. Belong Here It Does Not
-            if (_shopList.Any(x => x.Name == Name))
-            {
-                //Retrieve index of existing item.
-                int index = _shopList.IndexOf(_shopList.Where(x => x.Name == Name).Single());
-                //Increment item in shoppinglist
-                _shopList.IncrementQuantity(index);
-            }
-            else
-            {
-                _shopList.AddItem(new PurchasedProduct(Product, 1));
-            }
+            _shopList.AddItem(Product);
         }
 
         bool AddCommandCanExecute()

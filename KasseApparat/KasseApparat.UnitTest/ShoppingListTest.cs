@@ -56,13 +56,13 @@ namespace KasseApparat.UnitTest
             Assert.That(uut[2].Name, Is.EqualTo("Juice"));
         }
 
-        [Test]
+        /*[Test]
         public void IncrementQuantity_Add1_Expect6()
         {
             uut.IncrementQuantity(0);
 
             Assert.That(uut[0].Quantity, Is.EqualTo(6));
-        }
+        }*/
 
         [Test]
         public void Notify_()

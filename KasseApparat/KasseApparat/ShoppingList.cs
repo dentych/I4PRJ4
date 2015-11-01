@@ -24,9 +24,18 @@ namespace KasseApparat
             Notify("TotalPrice");
         }
 
-        public void IncrementQuantity(int index)
+        public void AddItem(Product prod)
         {
-            this[index].Quantity++;
+            if (this.Any(x => x.Name == prod.Name))
+            {
+                int index = this.IndexOf(this.Single(x => x.Name == prod.Name));
+                //Increment item in shoppinglist
+                this[index].Quantity++;
+            }
+            else
+            {
+                this.Add(new PurchasedProduct(prod, 1));
+            }
             Notify("TotalPrice");
         }
         
@@ -106,7 +115,7 @@ namespace KasseApparat
 #region PrevButton
         ICommand _PrevCommand;
         public ICommand PrevCommand { get { return _PrevCommand ?? (_PrevCommand = new RelayCommand(PrevCommandExecute, PrevCommandCanExecute)); } }
-
+         
         void PrevCommandExecute()
         {
             CurrentIndex--;
