@@ -7,6 +7,8 @@ using Backend.Models.Events;
 using Backend.Views;
 using Prism.Events;
 using SharedLib.Models;
+using Backend.Brains;
+using Backend.Communication;
 
 namespace Backend.ViewModels
 {
@@ -29,6 +31,7 @@ namespace Backend.ViewModels
         public int ProductIndex { get; set; } = 0;
         public readonly IEventAggregator Aggregator;
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
+        private IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
 
         #endregion
 
@@ -174,14 +177,9 @@ namespace Backend.ViewModels
             // New message box
             var result = MessageBox.Show("Vil du slette det valgte produkt?", "Slet af produkt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-            switch (result)
+            if (result == MessageBoxResult.Yes)
             {
-                case MessageBoxResult.Yes:
-                    // Delete the product
-                    break;
-                default:
-                    // Nothing
-                    break;
+                modelHandler.DeleteProduct(Categories.CurrentProductList[ProductIndex]);
             }
         }
 
