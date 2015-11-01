@@ -15,14 +15,14 @@ namespace Backend.ViewModels
         public IEventAggregator Aggregator;
         public BackendProductCategoryList Categories { get; set; }
         public BackendProduct Product { get; set; }
-        public IAddProduct IAP { get; set; }
+        public IModelHandler ModelHandler { get; set; }
         public IError Err { set; get; }
 
         public AddProductViewModel()
         {
             Product = new BackendProduct();
             Err = new Error();
-            IAP = new AddProductCB(new PrjProtokol(), new Client());
+            ModelHandler = new ModelHandler(new PrjProtokol(), new Client());
             Aggregator = SingleEventAggregator.Aggregator;
 
             Aggregator.GetEvent<CategoryListUpdated>().Subscribe(CategoryListUpdated, true);
@@ -61,7 +61,7 @@ namespace Backend.ViewModels
 
         private void AddProduct()
         {
-            IAP.CreateProduct(Product);
+            ModelHandler.CreateProduct(Product);
         }
 
         #endregion

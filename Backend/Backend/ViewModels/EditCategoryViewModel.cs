@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Backend.Brains;
+using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Events;
@@ -18,18 +20,22 @@ namespace Backend.ViewModels
         public IEventAggregator Aggregator;
         public BackendProductCategory ProductCategoryEdited { get; set; } = new BackendProductCategory();
         public BackendProductCategoryList Categories { get; set; }
-        public string Oldname { get; set; }
+        public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
+        public string OldName { get; set; }
+        public int OldId { get; set; }
 
         public EditCategoryViewModel()
         {
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditCategoryData>().Subscribe(SetCategoryData, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Publish(true);
+            ProductCategoryEdited.ProductCategoryId = OldId;
         }
 
-        public void SetCategoryData(string s)
+        public void SetCategoryData(EditCategoryParms p)
         {
-            Oldname = s;
+            OldName = p.Name;
+            OldId = p.Id;
         }
 
 
@@ -43,15 +49,14 @@ namespace Backend.ViewModels
 
         private bool Valid()
         {
-            if (Oldname != "")
+            if (OldName != "")
                 return true;
             return false;
         }
 
         private void SaveCategory()
         {
-            //TODO: Implement missing savemethod
-            MessageBox.Show("Category saved");
+            Handler.EditCategory(ProductCategoryEdited); // Burde måske også have OldName med?
         }
         #endregion
     }

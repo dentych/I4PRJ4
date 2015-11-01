@@ -9,4 +9,11 @@ namespace Backend.Models.Events
         public BackendProductCategory CurrentCategory;
         public int currentCatIndex;
     }
+
+    public class EditCategoryParms
+    {
+        public string Name;
+        public int Id;
+    }
+
 }

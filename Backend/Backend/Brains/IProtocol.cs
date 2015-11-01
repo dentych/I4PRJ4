@@ -6,6 +6,7 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
+using Backend.Models;
 using SharedLib.Models;
 
 namespace Backend.Brains
@@ -13,5 +14,11 @@ namespace Backend.Brains
     public interface IProtocol
     {
         string ProductXMLParser(Product toParse);
+        string CategoryXMLParser(BackendProductCategory toParse);
+        string EditProductXMLParser(BackendProduct toParse);
+        string EditCategoryXMLParser(BackendProductCategory toParse);
+        string DeleteCategoryXMLParser(BackendProductCategory toParse);
+        string DeleteProductXMLParser(BackendProduct toParse);
+        string GetCatalougXMLParser();
     } //end IProtocol
 }
