@@ -163,6 +163,9 @@ namespace CentralServer
             Broadcast(new ProductCreatedCmd(product));
         }
 
+        /*
+         * Invoked when a clients wants to register a purchase
+         */
         private void OnRegisterPurchase(ClientControl client, RegisterPurchaseCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
