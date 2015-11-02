@@ -11,6 +11,9 @@ namespace CentralServer
         private long _lastSessionId = 0;
 
 
+        /*
+         * Retrieves next available (unique) Session ID
+         */
         private long GetNextSessionId()
         {
             while (_sessions.ContainsKey(++_lastSessionId));
@@ -18,6 +21,9 @@ namespace CentralServer
             return _lastSessionId;
         }
 
+        /*
+         * Registers a client. Clients must be unique.
+         */
         public long Register(ClientControl client)
         {
             if (_sessions.ContainsValue(client))
@@ -28,6 +34,9 @@ namespace CentralServer
             return sessionId;
         }
 
+        /*
+         * Unregisters a client
+         */
         public void Unregister(long sessionId)
         {
             if(!_sessions.ContainsKey(sessionId))
@@ -36,6 +45,9 @@ namespace CentralServer
             _sessions.Remove(sessionId);
         }
 
+        /*
+         * Retrieves a client by Session ID
+         */
         public ClientControl GetClient(long sessionId)
         {
             if (!_sessions.ContainsKey(sessionId))
@@ -44,6 +56,9 @@ namespace CentralServer
             return _sessions[sessionId];
         }
 
+        /*
+         * Iterate over all known clients
+         */
         public IEnumerable<ClientControl> GetClients()
         {
             foreach (var client in _sessions.Values)
