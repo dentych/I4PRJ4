@@ -3,6 +3,7 @@ using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
 using ServerDatabase;
 using SharedLib.Models;
+using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,8 @@ namespace CentralServer
         }
 
         /*
-         * Invoked when this thread recieves a new message
+         * Invoked when this thread recieves a new message.
+         * Messages propagate to specific event handlers.
          */
         protected override void Dispatch(long id, Message msg)
         {
@@ -59,7 +61,7 @@ namespace CentralServer
 
         /*
          * Invoked when MainControl accepts a client.
-         * 
+         * Register a new session and respond with Session ID to the client.
          */
         private void HandleStartSession(StartSessionMsg msg)
         {
@@ -73,21 +75,28 @@ namespace CentralServer
                        "New client registered. Session ID: " + sessionId);
         }
 
+        /*
+         * Invoked when a client has disconnected.
+         * In this case its session must be unregistered.
+         */
         private void HandleStopSession(StopSessionMsg msg)
         {
             _sessions.Unregister(msg.SessionId);
         }
 
 
-        // Handle commands recieved from clients
-
+        /*
+         * Invoked whenever a clients sends a command to the server.
+         */
         private void HandleCommandReieved(CommandRecievedMsg msg)
         {
             var cmd = msg.Command;
             var client = _sessions.GetClient(msg.SessionId);
+
             _log.Write("MainControl", Log.DEBUG,
                        "Recieved command: " + cmd.CmdName);
 
+            // Invoke the appropriate handler according to the command recieved
             switch (cmd.CmdName)
             {
                 case "GetCatalogue":
@@ -102,6 +111,10 @@ namespace CentralServer
             }
         }
 
+        /*
+         * A client requests to recieve the entire product catalogue.
+         * Respond with a CatalogueDetails command.
+         */
         private void OnGetCatalogue(ClientControl client, GetCatalogueCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -109,6 +122,7 @@ namespace CentralServer
 
             var catalogueCmd = new CatalogueDetailsCmd();
 
+            // Retrieve products from database
             using (var db = new DatabaseContext())
             {
                 var query = from p in db.Products select p;
@@ -116,34 +130,54 @@ namespace CentralServer
                     catalogueCmd.Products.Add(product);
             }
 
+            // Send response command
             var response = new SendCommandMsg(catalogueCmd);
             client.Send(ClientControl.E_SEND_COMMAND, response);
         }
 
+        /*
+         * A client requests to create a new product.
+         * Create the product in database and notify all connected clients.
+         */
         private void OnCreateProduct(ClientControl client, CreateProductCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
                        "Client creating a new product");
-            
+
+            // Create product
+            var product = new Product()
+            {
+                Name = cmd.Name,
+                ProductNumber = cmd.ProductNumber,
+                Price = cmd.Price,
+            };
+
+            // Write to database
             using (var db = new DatabaseContext())
             {
-                var product = new Product()
-                {
-                    Name = cmd.Name,
-                    ProductNumber = cmd.ProductNumber,
-                    Price = cmd.Price,
-                };
-
                 db.Products.Add(product);
                 db.SaveChanges();
             }
 
+            // Broadcast changes to all connected clients
+            Broadcast(new ProductCreatedCmd(product));
         }
 
         private void OnRegisterPurchase(ClientControl client, RegisterPurchaseCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
                        "Client registering a new purchase");
+        }
+
+        /*
+         * Broadcast a command to all connected clients
+         */
+        private void Broadcast(Command cmd)
+        {
+            var msg = new SendCommandMsg(cmd);
+
+            foreach (var c in _sessions.GetClients())
+                c.Send(ClientControl.E_SEND_COMMAND, msg);
         }
     }
 }
