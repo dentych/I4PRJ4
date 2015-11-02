@@ -43,5 +43,11 @@ namespace CentralServer
 
             return _sessions[sessionId];
         }
+
+        public IEnumerable<ClientControl> GetClients()
+        {
+            foreach (var client in _sessions.Values)
+                yield return client;
+        }
     }
 }
