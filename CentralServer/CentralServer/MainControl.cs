@@ -28,6 +28,9 @@ namespace CentralServer
             _log = log;
         }
 
+        /*
+         * Invoked when this thread recieves a new message
+         */
         protected override void Dispatch(long id, Message msg)
         {
             switch (id)
@@ -54,6 +57,10 @@ namespace CentralServer
             }
         }
 
+        /*
+         * Invoked when MainControl accepts a client.
+         * 
+         */
         private void HandleStartSession(StartSessionMsg msg)
         {
             var client = msg.Client;
@@ -117,6 +124,19 @@ namespace CentralServer
         {
             _log.Write("MainControl", Log.NOTICE,
                        "Client creating a new product");
+            
+            using (var db = new DatabaseContext())
+            {
+                var product = new Product()
+                {
+                    Name = cmd.Name,
+                    ProductNumber = cmd.ProductNumber,
+                    Price = cmd.Price,
+                };
+
+                db.Products.Add(product);
+                db.SaveChanges();
+            }
 
         }
 
