@@ -9,6 +9,7 @@ using Prism.Events;
 using SharedLib.Models;
 using Backend.Brains;
 using Backend.Communication;
+using SharedLib.Protocol.Commands;
 
 namespace Backend.ViewModels
 {
@@ -16,14 +17,36 @@ namespace Backend.ViewModels
     {
         public MainWindowViewModel()
         {
-            Categories = faker.Make();
+            Categories = faker.Make(); // TODO: REAL SHIT
             Categories.Bootstrapper();
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddProductWindowLoaded, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Subscribe(EditCategoryLoaded, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
+
+            LSC.Listener.OnProductCreated += ProductCreatedHandler;
+            LSC.Listener.OnCatalogueDetails += CatalogueDetailsHandler;
+
         }
+
+        #region DataReaders
+
+        public void ProductCreatedHandler(ProductCreatedCmd product)
+        {
+            this.Categories.GetListByCateogry("//product.Category").Add(product.GetProduct());
+        }
+
+        public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)
+        {
+            foreach (var category in cmd.Products) // NO IT IS PRODUCTCATEGORY)
+            {
+              //  this.Categories.Add(category);
+            }
+        }
+
+
+        #endregion
 
         #region Properties
 

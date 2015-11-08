@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Communication\LSC.cs" />
     <Compile Include="Models\Events\EditProductParameters.cs" />
     <Compile Include="Models\Events\EventAggregator.cs" />
     <Compile Include="Models\Events\Events.cs" />

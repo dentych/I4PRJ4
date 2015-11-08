@@ -33,6 +33,11 @@ namespace Backend.Models
             }
         }
 
+        public List<Product> GetListByCateogry(string category)
+        {
+            return new List<Product>();
+        } 
+
         private List<Product> _currentProductList;
         public List<Product> CurrentProductList
         {
