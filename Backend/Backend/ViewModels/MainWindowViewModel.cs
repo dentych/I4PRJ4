@@ -108,7 +108,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openEditProductWindowCommand ??
-                       (_openEditProductWindowCommand = new RelayCommand(NewEditProductWindow));
+                       (_openEditProductWindowCommand = new RelayCommand(NewEditProductWindow, () => ProductIndex >= 0));
             }
         }
 
