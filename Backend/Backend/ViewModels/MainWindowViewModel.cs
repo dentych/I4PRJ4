@@ -1,15 +1,14 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Backend.Brains;
+using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Fakegenerator;
 using Backend.Models;
 using Backend.Models.Events;
+using Backend.Models.SocketEvents;
 using Backend.Views;
 using Prism.Events;
-using SharedLib.Models;
-using Backend.Brains;
-using Backend.Communication;
-using SharedLib.Protocol.Commands;
 
 namespace Backend.ViewModels
 {
@@ -17,44 +16,28 @@ namespace Backend.ViewModels
     {
         public MainWindowViewModel()
         {
-            Categories = faker.Make(); // TODO: REAL SHIT
+            _ev = new SocketEventHandlers(Categories);
+            _ev.SubscribeCatalogueDetails();
+            _ev.SubscribeProductCreated();
+
+            Categories = faker.Make();
             Categories.Bootstrapper();
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddProductWindowLoaded, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Subscribe(EditCategoryLoaded, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
-
-            LSC.Listener.OnProductCreated += ProductCreatedHandler;
-            LSC.Listener.OnCatalogueDetails += CatalogueDetailsHandler;
-
         }
 
-        #region DataReaders
-
-        public void ProductCreatedHandler(ProductCreatedCmd product)
-        {
-            this.Categories.GetListByCateogry("//product.Category").Add(product.GetProduct());
-        }
-
-        public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)
-        {
-            foreach (var category in cmd.Products) // NO IT IS PRODUCTCATEGORY)
-            {
-              //  this.Categories.Add(category);
-            }
-        }
-
-
-        #endregion
 
         #region Properties
 
-        public BackendProductCategoryList Categories { get; }
+        public BackendProductCategoryList Categories { get; } = new BackendProductCategoryList();
         public int ProductIndex { get; set; } = 0;
         public readonly IEventAggregator Aggregator;
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
-        private IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
+        private readonly IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
+        private readonly ISocketEventHandlers _ev;
 
         #endregion
 
@@ -88,7 +71,7 @@ namespace Backend.ViewModels
 
         public void EditCategoryLoaded(bool b)
         {
-            EditCategoryParms p = new EditCategoryParms();
+            var p = new EditCategoryParms();
             p.Name = Categories[Categories.CurrentIndex].BName;
             p.Id = Categories[Categories.CurrentIndex].ProductCategoryId;
             Aggregator.GetEvent<NewEditCategoryData>().Publish(p);
@@ -172,7 +155,11 @@ namespace Backend.ViewModels
 
         public ICommand DeleteProductCommand
         {
-            get { return _deleteProductCommand ?? (_deleteProductCommand = new RelayCommand(DeleteProductDialog, () => ProductIndex >= 0)); }
+            get
+            {
+                return _deleteProductCommand ??
+                       (_deleteProductCommand = new RelayCommand(DeleteProductDialog, () => ProductIndex >= 0));
+            }
         }
 
         /* Close main window */
@@ -206,7 +193,8 @@ namespace Backend.ViewModels
             if (ProductIndex > 0)
             {
                 // New message box
-                var result = MessageBox.Show("Vil du slette det valgte produkt?", "Slet af produkt", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var result = MessageBox.Show("Vil du slette det valgte produkt?", "Slet af produkt",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -220,7 +208,6 @@ namespace Backend.ViewModels
             {
                 MessageBox.Show("Intet produkt valgt.", "Slet af produkt", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-            
         }
 
         private void CloseMainWindow()
@@ -232,6 +219,7 @@ namespace Backend.ViewModels
                 Application.Current.MainWindow.Close();
             }
         }
+
         #endregion
     }
 }
