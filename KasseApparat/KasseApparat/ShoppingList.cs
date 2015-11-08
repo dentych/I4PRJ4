@@ -35,6 +35,13 @@ namespace KasseApparat
             get { return this.Sum(vare => (int) vare.TotalPrice); }
         }
 
+        public void EndPurchase()
+        {
+            //Get connection
+            //send This
+        }
+
+#region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         void Notify([CallerMemberName] string propertyName = "")
         {
@@ -44,6 +51,7 @@ namespace KasseApparat
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+#endregion
 
 #region Index
         private int _currentIndex = 0;
