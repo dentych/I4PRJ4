@@ -13,6 +13,7 @@ namespace KasseApparat
     public interface IDBcontrol
     {
         List<Product> GetProducts();
+        void PurchaseDone(IList<PurchasedProduct> ShopList);
     }
 
     public class FakeDBcontrol : IDBcontrol
@@ -199,6 +200,9 @@ namespace KasseApparat
 
             return PL;
         }
+
+        public void PurchaseDone(IList<PurchasedProduct> ShopList)
+        {}
     }
 
     public class DBcontrol : IDBcontrol
@@ -221,6 +225,18 @@ namespace KasseApparat
             Connection.Disconnect();
 
             return cmd.Products;
+        }
+
+        public void PurchaseDone(IList<PurchasedProduct> ShopList)
+        {
+            Connection.Connect();
+
+            Purchase pc = new Purchase();
+            pc.PurchasedProducts = (List<PurchasedProduct>)ShopList;
+
+            Connection.Send(protocol.Encode(new RegisterPurchaseCmd(pc)));
+
+            Connection.Disconnect();
         }
     }
 

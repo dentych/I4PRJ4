@@ -35,6 +35,13 @@ namespace KasseApparat
             get { return this.Sum(vare => (int) vare.TotalPrice); }
         }
 
+        public void EndPurchase()
+        {
+            //Get connection
+            //send This
+        }
+
+#region PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         void Notify([CallerMemberName] string propertyName = "")
         {
@@ -44,9 +51,10 @@ namespace KasseApparat
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+#endregion
 
 #region Index
-        private int _currentIndex;
+        private int _currentIndex = 0;
         public int CurrentIndex
         {
             get { return _currentIndex; }
@@ -65,8 +73,6 @@ namespace KasseApparat
 
         private void MoreCommandExecute()
         {
-            if (CurrentIndex == -1) return;
-
             this[CurrentIndex].Quantity++;
             Notify("TotalPrice");
         }
@@ -86,8 +92,6 @@ namespace KasseApparat
 
         private void LessCommandExecute()
         {
-            if (CurrentIndex == -1) return;
-
             if (this[CurrentIndex].Quantity - 1 == 0)
             {
                 RemoveAt(CurrentIndex);

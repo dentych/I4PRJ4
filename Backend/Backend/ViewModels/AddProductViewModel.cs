@@ -1,27 +1,38 @@
-﻿using System.Windows.Input;
+﻿using System.Threading;
+using System.Windows;
+using System.Windows.Input;
 using Backend.Brains;
 using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
+using Backend.Models.Events;
+using Prism.Events;
 
 namespace Backend.ViewModels
 {
     public class AddProductViewModel
     {
-        public AddProductViewModel(BackendProductCategoryList cat)
+        public IEventAggregator Aggregator;
+        public BackendProductCategoryList Categories { get; set; }
+        public BackendProduct Product { get; set; }
+        public IModelHandler ModelHandler { get; set; }
+        public IError Err { set; get; }
+
+        public AddProductViewModel()
         {
             Product = new BackendProduct();
             Err = new Error();
-            Categories = cat;
+            ModelHandler = new ModelHandler(new PrjProtokol(), new Client());
+            Aggregator = SingleEventAggregator.Aggregator;
 
-            IAP = new AddProductCB(new PrjProtokol(), new Client());
-                // Der skal nogle settings til her..
+            Aggregator.GetEvent<CategoryListUpdated>().Subscribe(CategoryListUpdated, true);
+            Aggregator.GetEvent<AddProductWindowLoaded>().Publish(true);
+
+
         }
 
-        public BackendProductCategoryList Categories { get; set; }
-        public BackendProduct Product { get; set; }
-        public IAddProduct IAP { get; set; }
-        public IError Err {set; get; }
+
+
 
         public bool Valid()
         {
@@ -31,6 +42,11 @@ namespace Backend.ViewModels
                 return false;
             }
             return true;
+        }
+
+        public void CategoryListUpdated(BackendProductCategoryList updatedList)
+        {
+            Categories = updatedList;
         }
 
         #region Commands
@@ -45,7 +61,7 @@ namespace Backend.ViewModels
 
         private void AddProduct()
         {
-            IAP.CreateProduct(Product);
+            ModelHandler.CreateProduct(Product);
         }
 
         #endregion

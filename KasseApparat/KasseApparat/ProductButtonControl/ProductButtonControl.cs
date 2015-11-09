@@ -20,7 +20,7 @@ namespace KasseApparat
 #region attributes
 
 
-        private int _totalPages = 0;
+        private int _totalPages = 1;
         private int _currentPage = 1;
         private readonly ProductList _productList;
         private List<ProductButtonList> _PageList;

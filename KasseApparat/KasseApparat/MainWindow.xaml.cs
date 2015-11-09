@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SharedLib.Models;
 
 namespace KasseApparat
 {
@@ -33,9 +34,14 @@ namespace KasseApparat
         {
             ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
             if (Display.Text.ToString() != "")
-                MessageBox.Show("Total pris: " + shopList.TotalPrice 
-                    + "\nBetalt: " + Display.Text
-                    + "\nDifference: " + (shopList.TotalPrice - Convert.ToDouble(Display.Text)));
+            {
+                shopList.AddItem(new PurchasedProduct(new Product()
+                {
+                    Name = "Kontant",
+                    Price = -Convert.ToDecimal(Display.Text),
+                }, 1));
+                Display.Text = "";
+            }
         }
 
         private void ButtonNr_Click(object sender, RoutedEventArgs e)
