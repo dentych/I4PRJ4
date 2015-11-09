@@ -18,9 +18,6 @@ namespace KasseApparat
         private IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
         //private IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
 
-        public ShoppingList()
-        {}
-
         public void AddItem(PurchasedProduct product)
         {
             foreach (var prod in this)
@@ -171,7 +168,7 @@ namespace KasseApparat
             if (CurrentIndex < 0) return false;
             else return true;
         }
-        #endregion
+#endregion
 
     }
 }
