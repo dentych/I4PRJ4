@@ -8,11 +8,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using SharedLib.Models;
+using System.Threading;
 
 namespace Backend.Models
 {
     public class BackendProductCategoryList : ObservableCollection<BackendProductCategory>, INotifyPropertyChanged
     {
+        #region Properties & vars
+        private Mutex _mutex = new Mutex();
+
+        private List<Product> _currentProductList;
+        public List<Product> CurrentProductList
+        {
+            get { return _currentProductList; }
+            set
+            {
+                _currentProductList = value;
+                Notify();
+            }
+        }
+        #endregion
+
+        #region Methods
         public void Bootstrapper()
         {
             if (this[0].Products != null)
@@ -33,24 +50,39 @@ namespace Backend.Models
             }
         }
 
-        public List<Product> GetListByCateogry(string category)
+        public BackendProductCategory GetListByCateogry(int categoryId)
         {
-            return new List<Product>();
-        } 
-
-        private List<Product> _currentProductList;
-        public List<Product> CurrentProductList
-        {
-            get { return _currentProductList; }
-            set
+            for (int i = 0; i < Count; i++)
             {
-
-                _currentProductList = value;
-                Notify();
+                if (this[i].ProductCategoryId == categoryId)
+                {
+                    return this[i];
+                }
             }
+
+            return null;
         }
 
+        public new void Add(BackendProductCategory category)
+        {
+            _mutex.WaitOne();
 
+            base.Add(category);
+
+            _mutex.ReleaseMutex();
+        }
+
+        public new void RemoveAt(int index)
+        {
+            _mutex.WaitOne();
+
+            base.RemoveAt(index);
+
+            _mutex.ReleaseMutex();
+        }
+        #endregion
+
+        #region Events
         protected override event PropertyChangedEventHandler PropertyChanged;
 
         protected void Notify([CallerMemberName]string propName = null)
@@ -60,5 +92,6 @@ namespace Backend.Models
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
             }
         }
+        #endregion
     }
 }

@@ -9,8 +9,6 @@ namespace Backend.Models.SocketEvents
 {
     public interface ISocketEventHandlers
     {
-
-
         void ProductCreatedHandler(ProductCreatedCmd product);
         void ProductDeletedHandler(ProductDeletedCmd product);
         void ProductEditedHandler(ProductEditedCmd product);
@@ -30,8 +28,5 @@ namespace Backend.Models.SocketEvents
         void SubscribeProductCategoryCreated();
         void SubscribeProductCategoryDeleted();
         void SubscribeProductCategoryEdited();
-
-
-
     }
 }

@@ -29,7 +29,6 @@ namespace Backend.ViewModels
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
         }
 
-
         #region Properties
 
         public BackendProductCategoryList Categories { get; } = new BackendProductCategoryList();

@@ -2,29 +2,46 @@
 using Backend.Communication;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
+using SharedLib.Models;
+using System.Collections.Generic;
 
 namespace Backend.Models.SocketEvents
 {
     public class SocketEventHandlers : ISocketEventHandlers
     {
-        #region DataReaders
+        #region Properties and variables
+        private readonly BackendProductCategoryList _categories;
+        #endregion
 
+        #region Constructor
         public SocketEventHandlers(BackendProductCategoryList cat)
         {
-            this._categories = cat;
+            _categories = cat;
 
         }
+        #endregion
 
-        private readonly BackendProductCategoryList _categories;
-
+        #region DataReaders
         public void ProductCreatedHandler(ProductCreatedCmd product)
         {
-            this._categories.GetListByCateogry("//product.Category").Add(product.GetProduct());
+            // TODO: Insert relevant ID from product, when implemented in SharedLib.
+            //_categories.GetListByCateogry()
+            //_categories.GetListByCateogry(1)
         }
 
         public void ProductDeletedHandler(ProductDeletedCmd product)
         {
-            this._categories
+            BackendProductCategory category = _categories.GetListByCateogry(1);
+
+            for (int i = 0; i < category.Products.Count; i++)
+            {
+                if (category.Products[i].ProductId == product.ProductId)
+                {
+                    category.RemoveProductAt(i);
+                    break;
+                }
+            }
+
         }
 
         public void ProductEditedHandler(ProductEditedCmd product)
