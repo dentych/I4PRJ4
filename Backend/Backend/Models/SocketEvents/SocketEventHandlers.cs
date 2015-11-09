@@ -42,7 +42,7 @@ namespace Backend.Models.SocketEvents
                     break;
                 }
             }
-        }
+        } 
 
         public void ProductEditedHandler(ProductEditedCmd cmd)
         {

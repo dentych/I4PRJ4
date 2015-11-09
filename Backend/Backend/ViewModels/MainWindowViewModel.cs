@@ -75,6 +75,7 @@ namespace Backend.ViewModels
             var p = new EditCategoryParms();
             p.Name = Categories[Categories.CurrentIndex].BName;
             p.Id = Categories[Categories.CurrentIndex].ProductCategoryId;
+            p.cats = Categories;
             Aggregator.GetEvent<NewEditCategoryData>().Publish(p);
         }
 
@@ -85,7 +86,7 @@ namespace Backend.ViewModels
                 cats = Categories,
                 currentCatIndex = Categories.CurrentIndex,
                 CurrentCategory = Categories[Categories.CurrentIndex],
-                product = Categories.CurrentProductList[ProductIndex] // FIXME: Skal tage markeret produkt.
+                product = Categories.CurrentProductList[ProductIndex] //TODO: Skal tage markeret produkt. I think is fixed
             };
 
             Aggregator.GetEvent<NewEditProductData>().Publish(details);
