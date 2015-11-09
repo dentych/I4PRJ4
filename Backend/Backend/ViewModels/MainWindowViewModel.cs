@@ -9,6 +9,8 @@ using Backend.Models.Events;
 using Backend.Models.SocketEvents;
 using Backend.Views;
 using Prism.Events;
+using SharedLib.Models;
+using System.Collections.Generic;
 
 namespace Backend.ViewModels
 {
@@ -220,6 +222,22 @@ namespace Backend.ViewModels
             }
         }
 
+        #endregion
+
+        #region FOR TESTING PLS REMOVE
+        // TEST COMMAND
+        private ICommand _testCommand;
+        public ICommand TestCommand
+        {
+            get { return _testCommand ?? (_testCommand = new RelayCommand(TestCommandHandle)); }
+        }
+
+        private void TestCommandHandle()
+        {
+            Categories.CurrentProductList[0].Name = "Bonjy";
+            Categories.UpdateCurrentProducts();
+        }
+        // TEST COMMAND SLUT
         #endregion
     }
 }

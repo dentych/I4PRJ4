@@ -80,6 +80,13 @@ namespace Backend.Models
 
             _mutex.ReleaseMutex();
         }
+
+        public void UpdateCurrentProducts()
+        {
+            List<Product> tmp = CurrentProductList;
+            CurrentProductList = null;
+            CurrentProductList = tmp;
+        }
         #endregion
 
         #region Events
