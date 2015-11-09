@@ -3,7 +3,6 @@ using Backend.Communication;
 using SharedLib.Models;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
-using SharedLib.Models;
 using System.Collections.Generic;
 
 namespace Backend.Models.SocketEvents
@@ -18,7 +17,6 @@ namespace Backend.Models.SocketEvents
         public SocketEventHandlers(BackendProductCategoryList cat)
         {
             _categories = cat;
-
         }
         #endregion
 
