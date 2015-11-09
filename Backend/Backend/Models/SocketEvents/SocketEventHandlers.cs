@@ -24,7 +24,7 @@ namespace Backend.Models.SocketEvents
 
         public void ProductDeletedHandler(ProductDeletedCmd product)
         {
-            throw new NotImplementedException();
+            this._categories
         }
 
         public void ProductEditedHandler(ProductEditedCmd product)
