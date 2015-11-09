@@ -1,5 +1,6 @@
 ﻿using System;
 using Backend.Communication;
+using SharedLib.Models;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
 using SharedLib.Models;
@@ -41,7 +42,6 @@ namespace Backend.Models.SocketEvents
                     break;
                 }
             }
-
         }
 
         public void ProductEditedHandler(ProductEditedCmd product)
@@ -59,17 +59,38 @@ namespace Backend.Models.SocketEvents
 
         public void ProductCategoryCreatedHandler(ProductCategoryCreatedCmd category)
         {
-            throw new NotImplementedException();
+            var cat = new BackendProductCategory()
+            {
+                BName = category.Name,
+                ProductCategoryId = category.ProductCategoryId,
+                Products = category.Products
+            };
+
+            _categories.Add(cat);
         }
 
         public void ProductCategoryDeletedHandler(ProductCategoryDeletedCmd category)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _categories.Count; i++)
+            {
+                if (_categories[i].ProductCategoryId == category.ProductCategoryId)
+                {
+                    _categories.RemoveAt(i);
+                    break;
+                }
+            }
         }
 
-        public void ProductCategoryEditedHandler(ProductCategoryEditedCmd product)
+        public void ProductCategoryEditedHandler(ProductCategoryEditedCmd category)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _categories.Count; i++)
+            {
+                if (_categories[i].ProductCategoryId == category.ProductCategoryId)
+                {
+                    _categories[i].BName = category.Name;
+                   // _categories[i].Products = category.Products; 
+                }
+            }
         }
 
         public void SubscribeProductCreated()
@@ -79,12 +100,12 @@ namespace Backend.Models.SocketEvents
 
         public void SubscribeProductDeleted()
         {
-            throw new NotImplementedException();
+            LSC.Listener.OnProductDeleted += ProductDeletedHandler;
         }
 
         public void SubscribeProductEdited()
         {
-            throw new NotImplementedException();
+            LSC.Listener.OnProductEdited += ProductEditedHandler;
         }
 
         public void SubscribeCatalogueDetails()
@@ -94,17 +115,17 @@ namespace Backend.Models.SocketEvents
 
         public void SubscribeProductCategoryCreated()
         {
-            throw new NotImplementedException();
+            LSC.Listener.OnProductCategoryCreated += ProductCategoryCreatedHandler;
         }
 
         public void SubscribeProductCategoryDeleted()
         {
-            throw new NotImplementedException();
+            LSC.Listener.OnProductCategoryDeleted += ProductCategoryDeletedHandler;
         }
 
         public void SubscribeProductCategoryEdited()
         {
-            throw new NotImplementedException();
+            LSC.Listener.OnProductCategoryEdited += ProductCategoryEditedHandler;
         }
 
         #endregion
