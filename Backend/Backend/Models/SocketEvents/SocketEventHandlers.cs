@@ -42,11 +42,22 @@ namespace Backend.Models.SocketEvents
                     break;
                 }
             }
-        }
+        } 
 
         public void ProductEditedHandler(ProductEditedCmd product)
         {
-            throw new NotImplementedException();
+            var category = _categories.GetListByCateogry(1); //TODO: NOT 1
+
+            for (int i = 0; i < category.Products.Count; i++)
+            {
+                if (category.Products[i].ProductId == product.ProductId)
+                {
+                    category.Products[i].Name = product.Name;
+                    category.Products[i].ProductNumber = product.ProductNumber;
+                    category.Products[i].Price = product.Price;
+                    //Category
+                }
+            }
         }
 
         public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)

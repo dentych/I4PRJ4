@@ -61,7 +61,25 @@ namespace Backend.ViewModels
 
         private void AddProduct()
         {
-            ModelHandler.CreateProduct(Product);
+            if(!Exists(Product))
+                ModelHandler.CreateProduct(Product);
+            else new Error().StdErr("DONT DO DIS DONNISH");
+
+        }
+        private bool Exists(BackendProduct editedProduct)
+        {
+            foreach (var cat in Categories)
+            {
+                foreach (var product in cat.Products)
+                {
+                    if (editedProduct.BName == product.Name && editedProduct.BPrice == product.Price &&
+                        editedProduct.BProductNumber == product.ProductNumber)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         #endregion

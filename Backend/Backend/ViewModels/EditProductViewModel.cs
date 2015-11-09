@@ -63,7 +63,25 @@ namespace Backend.ViewModels
 
         private void SaveProduct()
         {
-            Handler.EditProduct(EditedProduct);
+            if (!Exists(EditedProduct))
+                Handler.EditProduct(EditedProduct);
+            else new Error().StdErr("Don't do dis Donnish");
+        }
+
+        private bool Exists(BackendProduct editedProduct)
+        {
+            foreach (var cat in Categories)
+            {
+                foreach (var product in cat.Products)
+                {
+                    if (editedProduct.BName == product.Name && editedProduct.BPrice == product.Price &&
+                        editedProduct.BProductNumber == product.ProductNumber)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private void NewProductCategory()
@@ -73,7 +91,7 @@ namespace Backend.ViewModels
 
         }
 
-        public bool Valid()
+        public bool Valid() //TODO: Should check for null or whitespace
         {
             if (string.IsNullOrEmpty(EditedProduct.Name) || EditedProduct.Price < 0 ||
                 string.IsNullOrWhiteSpace(EditedProduct.ProductNumber))
