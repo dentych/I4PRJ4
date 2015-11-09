@@ -15,11 +15,21 @@ namespace KasseApparat
 {
     public class ShoppingList : ObservableCollection<PurchasedProduct>, INotifyPropertyChanged
     {
+        private IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
+        //private IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
+
         public ShoppingList()
         {}
 
         public void AddItem(PurchasedProduct product)
         {
+            foreach (var prod in this)
+                if (prod.Name == product.Name)
+                {
+                    prod.Quantity += product.Quantity;
+                    Notify("TotalPrice");
+                    return;
+                }
             Add(product);
             Notify("TotalPrice");
         }
@@ -37,8 +47,7 @@ namespace KasseApparat
 
         public void EndPurchase()
         {
-            //Get connection
-            //send This
+            _db.PurchaseDone(this);
         }
 
 #region PropertyChanged
