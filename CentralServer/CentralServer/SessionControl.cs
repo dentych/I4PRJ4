@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace CentralServer
 {
+
+    /*
+     * 
+     */
+
     class SessionControl
     {
         private readonly Dictionary<long, ClientControl> _sessions =
