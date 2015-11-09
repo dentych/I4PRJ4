@@ -9,25 +9,30 @@ namespace SharedLib.Protocol.Commands
 {
     public class CatalogueDetailsCmd: Command
     {
-        public readonly List<Product> Products = new List<Product>();
+        public readonly List<ProductCategory> ProductCategories = new List<ProductCategory>();
 
         public CatalogueDetailsCmd()
         {
         }
 
-        public CatalogueDetailsCmd(List<Product> products )
+        public CatalogueDetailsCmd(List<ProductCategory> productCategories )
         {
-            foreach (var prd in products)
+            foreach (var prd in productCategories)
             {
-                var copy = new Product(prd);
-                Products.Add(copy);
+                var copy = new ProductCategory(prd.Products)
+                {
+                    Name = prd.Name,
+                    ProductCategoryId = prd.ProductCategoryId
+                };
+
+                ProductCategories.Add(copy);
             }
         }
 
         public Catalogue GetCatalogue()
         {
             var catalogue = new Catalogue();
-            catalogue.Products.AddRange(Products);
+            catalogue.ProductCategories.AddRange(ProductCategories);
             return catalogue;
         }
     }
