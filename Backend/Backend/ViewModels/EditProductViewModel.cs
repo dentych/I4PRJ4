@@ -20,7 +20,6 @@ namespace Backend.ViewModels
     class EditProductViewModel
     {
         public IEventAggregator Aggregator;
-        public Product ProductToEdit { get; set; }
         public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
         public BackendProductCategory ProductCategory { get; set; }
         public BackendProduct EditedProduct { get; set; } = new BackendProduct();
@@ -32,13 +31,15 @@ namespace Backend.ViewModels
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditProductData>().Subscribe(ProductDataToEdit, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Publish(true);
-            EditedProduct.ProductId = ProductToEdit.ProductId;
 
         }
 
         public void ProductDataToEdit(EditProductParameters details)
         {
-            ProductToEdit = details.product;
+            EditedProduct.BName = details.product.Name;
+            EditedProduct.BPrice = details.product.Price;
+            EditedProduct.ProductId = details.product.ProductId;
+            EditedProduct.BProductNumber = details.product.ProductNumber;
             ProductCategory = details.CurrentCategory;
             Categories = details.cats;
             currentCatIndex = details.currentCatIndex;
@@ -63,7 +64,25 @@ namespace Backend.ViewModels
 
         private void SaveProduct()
         {
-            Handler.EditProduct(EditedProduct);
+            if (!Exists(EditedProduct))
+                Handler.EditProduct(EditedProduct);
+            else new Error().StdErr("Don't do dis Donnish");
+        }
+
+        private bool Exists(BackendProduct editedProduct)
+        {
+            foreach (var cat in Categories)
+            {
+                foreach (var product in cat.Products)
+                {
+                    if (editedProduct.BName == product.Name && editedProduct.BPrice == product.Price &&
+                        editedProduct.BProductNumber == product.ProductNumber)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private void NewProductCategory()
@@ -73,7 +92,7 @@ namespace Backend.ViewModels
 
         }
 
-        public bool Valid()
+        public bool Valid() //TODO: Should check for null or whitespace
         {
             if (string.IsNullOrEmpty(EditedProduct.Name) || EditedProduct.Price < 0 ||
                 string.IsNullOrWhiteSpace(EditedProduct.ProductNumber))

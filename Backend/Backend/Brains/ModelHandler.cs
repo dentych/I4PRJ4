@@ -32,36 +32,16 @@ namespace Backend.Brains
 
         public bool CreateProduct(BackendProduct product)
         {
-
-
             if (string.IsNullOrWhiteSpace(product.BName)|| product.BPrice < 0 || string.IsNullOrWhiteSpace(product.BProductNumber))
             {
                 LastError = "Enter correct product details.";
                 Error.StdErr(LastError);
                 return false;
             }
-
-
+            
             // Generate XML from product
             var cmdtoSend = _protocol.ProductXMLParser(product);
-
-            // Connect to server
-            if (!_client.Connect())
-            {
-                LastError = "Conenction error";
-                Error.StdErr(LastError);
-                return false;
-            }
-
-            // Send the XML data
-            if (!_client.Send(cmdtoSend))
-            {
-                LastError = "Sending error";
-                Error.StdErr(LastError);
-                return false;
-            }
-
-            _client.Disconnect();
+            _client.Send(cmdtoSend);
 
             return true;
         }
@@ -70,20 +50,17 @@ namespace Backend.Brains
         {
             // Generate XML from Category
             var cmdtoSend = _protocol.EditProductXMLParser(product);
-            //TODO: Send data to server
+            _client.Send(cmdtoSend);
 
-            Error.StdErr("No implemented LOL");
             return true;
         }
+
+        
 
         public bool DeleteProduct(Product product)
         {
 
-            // Generate XML from Category
-            var cmdtoSend = _protocol.DeleteProductXMLParser(product);
-            //TODO: Send data to server
-
-            Error.StdErr("No implemented LOL");
+            _client.Send(_protocol.DeleteProductXMLParser(product));
             return true;
         }
 
@@ -92,27 +69,23 @@ namespace Backend.Brains
 
             // Generate XML from Category
             var cmdtoSend = _protocol.EditCategoryXMLParser(category);
-            //TODO: Send data to server
-
-            Error.StdErr("No implemented LOL");
+            _client.Send(cmdtoSend);
             return true;
+
         }
 
         public bool AddCategory(BackendProductCategory category)
         {
             // Generate XML from Category
             var cmdtoSend = _protocol.CategoryXMLParser(category);
-            //TODO: Send data to server
-
-            Error.StdErr("No implemented LOL");
+            _client.Send(cmdtoSend);
             return true;
         }
 
         public bool DeleteCategory(BackendProductCategory category)
         {
             var cmdtosend = _protocol.DeleteCategoryXMLParser(category);
-            //TODO: Send data to server
-            Error.StdErr("No implemented LOL");
+            _client.Send(cmdtosend);
             return true;
         }
 

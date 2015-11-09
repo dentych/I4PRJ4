@@ -14,6 +14,7 @@ namespace Backend.Models.Events
     {
         public string Name;
         public int Id;
+        public BackendProductCategoryList cats;
     }
 
 }
