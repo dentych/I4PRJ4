@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Backend.Annotations;
 using SharedLib.Models;
+using System.Threading;
 
 namespace Backend.Models
 {
    
     public class BackendProductCategory : ProductCategory, INotifyPropertyChanged
     {
+        private Mutex _mutex = new Mutex();
 
         public string BName
         {
@@ -22,6 +24,20 @@ namespace Backend.Models
                 Name = value;
                 Notify("Name");
             }
+        }
+
+        public void AddProduct(Product product)
+        {
+            _mutex.WaitOne();
+            Products.Add(product);
+            _mutex.ReleaseMutex();
+        }
+
+        public void RemoveProductAt(int index)
+        {
+            _mutex.WaitOne();
+            Products.RemoveAt(index);
+            _mutex.ReleaseMutex();
         }
 
 

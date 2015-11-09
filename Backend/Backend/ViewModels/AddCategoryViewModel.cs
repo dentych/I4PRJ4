@@ -51,18 +51,23 @@ namespace Backend.ViewModels
             get { return _addCaegorytCommand ?? (_addCaegorytCommand = new RelayCommand(AddCategory, Valid)); }
         }
 
-        private void AddCategory()
-        {
-            bool alreadyexist = false;
 
-            foreach (var oldcat in Categories)
+        private bool Exists(BackendProductCategory editedProduct)
+        {
+            foreach (var cat in Categories)
             {
-                if (oldcat.BName == Category.BName)
+                if (cat.BName == editedProduct.BName)
                 {
-                    alreadyexist = true;
+                    return true;
                 }
             }
-            if(!alreadyexist)
+            return false;
+        }
+
+        private void AddCategory()
+        {
+          
+            if(!Exists(Category))
                 Handler.AddCategory(Category);
             else ErrorPrinter.StdErr("Kategorien eksisterer allerede.");
         }

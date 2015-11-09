@@ -62,9 +62,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Communication\LSC.cs" />
     <Compile Include="Models\Events\EditProductParameters.cs" />
     <Compile Include="Models\Events\EventAggregator.cs" />
     <Compile Include="Models\Events\Events.cs" />
+    <Compile Include="Models\SocketEvents\ISocketEventHandlers.cs" />
+    <Compile Include="Models\SocketEvents\SocketEventHandlers.cs" />
     <Compile Include="ViewModels\AddCategoryViewModel.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />
     <Compile Include="Views\AddCategoryWindow.xaml.cs">

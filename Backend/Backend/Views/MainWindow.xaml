@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Backend.Views"
         mc:Ignorable="d"
+        Loaded="MainWindow_OnLoaded"
         Title="Administrationssystem - Hovedmenu" Height="800" Width="1500" Background="#FFF0F0F0">
     <Grid>
         <Grid.ColumnDefinitions>

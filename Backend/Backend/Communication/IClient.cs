@@ -3,8 +3,8 @@
     public interface IClient
     {
         bool Connect();
-        bool Disconnect();
+   //     bool Disconnect();
         bool Send(string data);
-        string Receive();
+      //  string Receive();
     }
 }
