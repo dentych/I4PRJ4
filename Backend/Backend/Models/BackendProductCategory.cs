@@ -29,6 +29,8 @@ namespace Backend.Models
         public void AddProduct(Product product)
         {
             _mutex.WaitOne();
+            Products.Add(product);
+            _mutex.ReleaseMutex();
         }
 
         public void RemoveProductAt(int index)

@@ -20,31 +20,46 @@ namespace Backend.Models.SocketEvents
         }
         #endregion
 
-        #region DataReaders
-        public void ProductCreatedHandler(ProductCreatedCmd product)
+        #region Event handlers
+        public void ProductCreatedHandler(ProductCreatedCmd cmd)
         {
-            // TODO: Insert relevant ID from product, when implemented in SharedLib.
-            //_categories.GetListByCateogry()
-            //_categories.GetListByCateogry(1)
+            // TODO: Insert ID from product when implemented in SharedLib.
+            _categories.GetListByCateogry(0).AddProduct(cmd.GetProduct());
+            _categories.UpdateCurrentProducts();
         }
 
-        public void ProductDeletedHandler(ProductDeletedCmd product)
+        public void ProductDeletedHandler(ProductDeletedCmd cmd)
         {
-            BackendProductCategory category = _categories.GetListByCateogry(1);
+            // TODO: Insert ID from product when implemented in SharedLib.
+            BackendProductCategory category = _categories.GetListByCateogry(0);
 
             for (int i = 0; i < category.Products.Count; i++)
             {
-                if (category.Products[i].ProductId == product.ProductId)
+                if (category.Products[i].ProductId == cmd.ProductId)
                 {
                     category.RemoveProductAt(i);
+                    _categories.UpdateCurrentProducts();
                     break;
                 }
             }
         }
 
-        public void ProductEditedHandler(ProductEditedCmd product)
+        public void ProductEditedHandler(ProductEditedCmd cmd)
         {
-            throw new NotImplementedException();
+            // TODO: Insert ID from product when implemented in SharedLib.
+            BackendProductCategory category = _categories.GetListByCateogry(0);
+
+            foreach (var product in category.Products)
+            {
+                if (product.ProductId == cmd.ProductId)
+                {
+                    product.Name = cmd.Name;
+                    product.Price = cmd.Price;
+                    product.ProductNumber = cmd.ProductNumber;
+                    _categories.UpdateCurrentProducts();
+                    break;
+                }
+            }
         }
 
         public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)
@@ -90,7 +105,9 @@ namespace Backend.Models.SocketEvents
                 }
             }
         }
+        #endregion
 
+        #region Subscribe methods
         public void SubscribeProductCreated()
         {
             LSC.Listener.OnProductCreated += ProductCreatedHandler;
@@ -125,7 +142,6 @@ namespace Backend.Models.SocketEvents
         {
             LSC.Listener.OnProductCategoryEdited += ProductCategoryEditedHandler;
         }
-
         #endregion
     }
 }
