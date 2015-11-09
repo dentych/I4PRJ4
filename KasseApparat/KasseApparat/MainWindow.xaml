@@ -10,6 +10,8 @@
     <Window.Resources>
         <local:ProductButtonControl x:Key="ProductButtonControl" />
         <local:ShoppingList x:Key="ShoppingList" />
+        <local:ProductList x:Key="ProductList"/>
+        <local:ProductCategoryList x:Key="ProductCatList"/>
     </Window.Resources>
 
     <Grid>
