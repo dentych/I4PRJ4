@@ -17,14 +17,15 @@ namespace SharedLib.UnitTest
     {
         static void Main(string[] args)
         {
-            
+
             //// Opret produkt
             //var product = new Product()
             //{
             //    Name = "Banan",
             //    Price = 10,
             //    ProductId = 1,
-            //    ProductNumber = "25"
+            //    ProductNumber = "25",
+            //    ProductCategoryId = 5
             //};
 
             ////Opret PuchasedProduct
@@ -54,7 +55,7 @@ namespace SharedLib.UnitTest
             //productList.Add(product);
             //productList.Add(product);
 
-            //ProductCategory productCategory = new ProductCategory(productList) {Name = "Frugt", ProductCategoryId = 5};
+            //ProductCategory productCategory = new ProductCategory(productList) { Name = "Frugt", ProductCategoryId = 5 };
 
             //var catList = new List<ProductCategory>();
 
@@ -69,7 +70,7 @@ namespace SharedLib.UnitTest
             //var rpcmd = new RegisterPurchaseCmd(purchase);
             //var dcmd = new DeleteProductCmd(product);
             //var pdcmd = new ProductDeletedCmd(product);
-            //var pccmd = new CreateProductCategoryCmd("Frugt",productList);
+            //var pccmd = new CreateProductCategoryCmd("Frugt", productList);
             //var tcmd = new ProductCategoryCreatedCmd("Mere Frugt", 5, productList);
             //var dpCcmd = new DeleteProductCategoryCmd(productCategory);
             //var pCdcmd = new ProductCategoryDeletedCmd(productCategory);
@@ -125,18 +126,18 @@ namespace SharedLib.UnitTest
             //// Decode from each
             //var ccmd2 = (CreateProductCmd)cmarshal.Decode(xml);
             //var test2 = (CreateProductCmd)proto.Decode(xml2); // Her er man vel nød til at kende hvilken command der kommer til castingen????
-            //var test3 = (ProductCreatedCmd) pmarshal.Decode(xml3);
-            //var test4 = (GetCatalogueCmd) gcmarshal.Decode(xml4);
-            //var test5 = (CatalogueDetailsCmd) cdmarshal.Decode(xml5);
-            //var test6 = (RegisterPurchaseCmd) rpmarshal.Decode(xml6);
-            //var test7 = (DeleteProductCmd) dmarshal.Decode(xml7);
-            //var test8 = (ProductDeletedCmd) pdmarshal.Decode(xml8);
-            //var test9 = (CreateProductCategoryCmd) cpcmarshal.Decode(xml9);
-            //var test10 = (ProductCategoryCreatedCmd) tcmarshal.Decode(xml10);
-            //var test11 = (DeleteProductCategoryCmd) dpCmarshal.Decode(xml11);
-            //var test12 = (ProductCategoryDeletedCmd) pCdmarshal.Decode(xml12);
-            //var test13 = (EditProductCategoryCmd) epCmarshal.Decode(xml13);
-            //var test14 = (ProductCategoryEditedCmd) PCemarshal.Decode(xml14);
+            //var test3 = (ProductCreatedCmd)pmarshal.Decode(xml3);
+            //var test4 = (GetCatalogueCmd)gcmarshal.Decode(xml4);
+            //var test5 = (CatalogueDetailsCmd)cdmarshal.Decode(xml5);
+            //var test6 = (RegisterPurchaseCmd)rpmarshal.Decode(xml6);
+            //var test7 = (DeleteProductCmd)dmarshal.Decode(xml7);
+            //var test8 = (ProductDeletedCmd)pdmarshal.Decode(xml8);
+            //var test9 = (CreateProductCategoryCmd)cpcmarshal.Decode(xml9);
+            //var test10 = (ProductCategoryCreatedCmd)tcmarshal.Decode(xml10);
+            //var test11 = (DeleteProductCategoryCmd)dpCmarshal.Decode(xml11);
+            //var test12 = (ProductCategoryDeletedCmd)pCdmarshal.Decode(xml12);
+            //var test13 = (EditProductCategoryCmd)epCmarshal.Decode(xml13);
+            //var test14 = (ProductCategoryEditedCmd)PCemarshal.Decode(xml14);
 
             //// Write first test of encode and decode from specific marshal
             //Console.WriteLine(xml);
@@ -175,7 +176,7 @@ namespace SharedLib.UnitTest
             //// 5th test CatalogueDetailsCmd
             //Console.WriteLine(xml5);
             //Console.WriteLine("");
-            //Console.WriteLine(test5.ProductCategories.ElementAt(0).Products.ElementAt(0).Name);
+            //Console.WriteLine(test5.ProductCategories.ElementAt(1).Products.ElementAt(3).Name);
             //Console.WriteLine("");
 
             //Console.WriteLine("----------------------------------------------------------------------------------------");
@@ -187,7 +188,7 @@ namespace SharedLib.UnitTest
             //Console.WriteLine(test6.Products.ElementAt(1).Name);
             //Console.WriteLine(test6.Products.ElementAt(2).Name);
             //Console.WriteLine(test6.Products.ElementAt(3).Name);
-            
+
             //// 7th test DeleteProductCmd
             //Console.WriteLine(xml7);
             //Console.WriteLine("");
@@ -199,13 +200,13 @@ namespace SharedLib.UnitTest
             //Console.WriteLine("");
             //Console.WriteLine(test8.CmdName);
             //Console.WriteLine("");
-            
+
             //// 9th test ProductCategory
             //Console.WriteLine(xml9);
             //Console.WriteLine("");
             //Console.WriteLine(test9.Name);
             //Console.WriteLine("");
-            
+
             //// 10th test ProductCategoryCreated
             //Console.WriteLine(xml10);
             //Console.WriteLine("");

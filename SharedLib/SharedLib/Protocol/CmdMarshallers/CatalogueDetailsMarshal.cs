@@ -40,6 +40,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                         writer.WriteAttributeString("ProductNumber", product.ProductNumber);// "ProductNumber" attribute for Product
                         writer.WriteAttributeString("Price", product.Price.ToString()); // "Price" attribute for Product
                         writer.WriteAttributeString("ProductId", product.ProductId.ToString()); // "ProductId" attribute for Product
+                        writer.WriteAttributeString("ProductCategoryId", product.ProductCategoryId.ToString()); // "ProductCategoryId" attribute for Product
 
                         writer.WriteEndElement(); // Product ended
                     } // Products ended
@@ -57,13 +58,8 @@ namespace SharedLib.Protocol.CmdMarshallers
 
         public Command Decode(string data)
         {
-            // Create new productList
+            // Create new categoryList
             var categoryList = new List<ProductCategory>();
-            var productList = new List<Product>();
-
-            // Create string for category name
-            string categoryName = null;
-            int productCategoryId = 0;
 
             int counter = 0; // Workaround to avoid categoryName get overwrited because reader.name is also true at </ProductCategory> which means categoryName becomes null
 
@@ -96,15 +92,14 @@ namespace SharedLib.Protocol.CmdMarshallers
                         product.ProductId = Convert.ToInt32(reader["ProductId"]); // Inserts the value of the attribute name "ProductId" into the product object
                         product.ProductCategoryId = Convert.ToInt32(reader["ProductCategoryId"]); // Inserts the value of the attribute name "ProductId" into the product object
 
-                        productList.Add(product); // Add the newly created product to the productlist
+                        categoryList.Last().Products.Add(product);
 
-                        // HER LAV EN SØGNING AF CATEGORY PÅ BAGRUND AF ID'ET!!!! <-------------------------------------------------
                     } // end if
                 } // end of read
             }
 
             // return new command with the translated xml product attributes
-            return new CatalogueDetailsCmd();
+            return new CatalogueDetailsCmd(categoryList);
         }
     }
 }
