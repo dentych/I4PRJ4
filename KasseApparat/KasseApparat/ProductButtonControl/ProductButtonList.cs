@@ -6,21 +6,16 @@ using SharedLib.Models;
 
 namespace KasseApparat
 {
+    /*Klasse der står for at styre en liste med knapper. Denne liste symbolisere
+      en side af knapper på grænsefladen. Grunden til at denne klasse er tom og
+      ikke har nogen réel funktionalitet er, at det kunne være rigtig rart at have
+      hvis der i fremtiden skulle tilføjes yderligere funktionalitet til hver
+      side af knapper.*/
     public class ProductButtonList : ObservableCollection<ButtonContent>
     {
         public ProductButtonList()
         {
             
-        }
-
-        public ProductButtonList(List<Product> p)
-        {
-            this.Clear();
-
-            foreach (Product prod in p)
-            {
-                Add(new ButtonContent(prod.Name, prod.Price.ToString()));
-            }
         }
     }
 }

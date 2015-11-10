@@ -19,19 +19,33 @@ namespace KasseApparat
     {
 #region attributes
 
-
         private int _totalPages = 1;
         private int _currentPage = 1;
         private readonly ProductList _productList;
         private List<ProductButtonList> _PageList;
         private ShoppingList _shopList;
 #endregion
-
+         
+        /* 
+         * Ctor: Constructor for klassen.
+         */ 
         public ProductButtonControl()
         {
             _productList = new ProductList();
             _PageList = new List<ProductButtonList>();
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
+
+            Update();
+        }
+
+        /* 
+         * Ctor: Constructor der er skabt for at gøre hele klassen mere testbar.
+         */
+        public ProductButtonControl(ProductList pl, List<ProductButtonList> pbl, ShoppingList sl)
+        {
+            _productList = pl;
+            _PageList = pbl;
+            _shopList = sl;
 
             Update();
         }
@@ -84,18 +98,6 @@ namespace KasseApparat
             else
             {
                 _totalPages = (_productList.Count/12)+1;
-            }
-        }
-
-        public void addItem(int indexItem)
-        {
-            if (_shopList.Any(x => x.Name == _PageList[_currentPage-1][indexItem].Name))
-            {
-                _shopList.IncrementQuantity(_shopList.IndexOf(_shopList.Where(x => x.Name == _PageList[_currentPage - 1][indexItem].Name).Single()));
-            }
-            else
-            {
-                _shopList.AddItem(new PurchasedProduct(_PageList[CurrentPages-1][indexItem].Product, 1));
             }
         }
 
