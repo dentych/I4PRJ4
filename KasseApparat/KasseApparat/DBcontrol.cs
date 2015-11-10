@@ -169,7 +169,8 @@ namespace KasseApparat
             p25.Price = 55;
             p25.ProductId = 24;
             p25.ProductNumber = "24";
-
+            
+            //replace from here
             List<Product> PL = new List<Product>();
 
             PL.Add(p1);
@@ -199,6 +200,46 @@ namespace KasseApparat
             PL.Add(p25);
 
             return PL;
+            
+            //New 
+            List<Product> PL1 = new List<Product>();
+            List<Product> PL2 = new List<Product>();
+            PL1.Add(p1);
+            PL1.Add(p2);
+            PL1.Add(p3);
+            PL1.Add(p4);
+            PL2.Add(p5);
+            PL2.Add(p6);
+            PL2.Add(p7);
+            PL2.Add(p8);
+            PL2.Add(p9);
+            PL2.Add(p10);
+            PL2.Add(p11);
+            PL2.Add(p12);
+            PL2.Add(p13);
+            PL2.Add(p14);
+            PL2.Add(p15);
+            PL2.Add(p16);
+            PL2.Add(p17);
+            PL2.Add(p18);
+            PL2.Add(p19);
+            PL2.Add(p20);
+            PL2.Add(p21);
+            PL2.Add(p22);
+            PL2.Add(p23);
+            PL2.Add(p24);
+            PL2.Add(p25);
+
+            List<ProductCategory> PC = new List<ProductCategory>();
+            ProductCategory PC1 = new ProductCategory();
+            PC1.Name = "Booze";
+            PC1.Products = PL1;
+            ProductCategory PC2 = new ProductCategory();
+            PC2.Name = "Other";
+            PC2.Products = PL1;
+            PC.Add(PC1);
+            PC.Add(PC2);
+            //return PC;
         }
 
         public void PurchaseDone(IList<PurchasedProduct> ShopList)
@@ -224,7 +265,8 @@ namespace KasseApparat
 
             Connection.Disconnect();
 
-            return cmd.Products;
+            //return cmd.Products;
+            return null;
         }
 
         public void PurchaseDone(IList<PurchasedProduct> ShopList)

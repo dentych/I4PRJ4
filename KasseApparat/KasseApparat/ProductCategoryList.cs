@@ -14,13 +14,13 @@ namespace KasseApparat
     {
         public IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
         //public IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
-        private ProductList pl = (ProductList)Application.Current.MainWindow.FindResource("ProductList");
+        public ProductList pl = (ProductList)Application.Current.MainWindow.FindResource("ProductList");
 
         public ProductCategoryList()
         {
             Update();
 
-            foreach (var prod in this[0].Products)
+            foreach (var prod in this[1].Products)
                 pl.Add(prod);
         }
 

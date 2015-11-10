@@ -8,10 +8,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="900">
     <Window.Resources>
+        <local:ProductCategoryList x:Key="ProductCatList"/>
         <local:ProductButtonControl x:Key="ProductButtonControl" />
         <local:ShoppingList x:Key="ShoppingList" />
-        <local:ProductList x:Key="ProductList"/>
-        <local:ProductCategoryList x:Key="ProductCatList"/>
     </Window.Resources>
 
     <Grid>

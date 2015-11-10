@@ -29,7 +29,7 @@ namespace KasseApparat
 
         public ProductButtonControl()
         {
-            _productList = new ProductList();
+            _productList = new ProductList(); // product category skal oprette denne plz fix
             _PageList = new List<ProductButtonList>();
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
 
@@ -39,7 +39,7 @@ namespace KasseApparat
         //Updates the productbuttons, with the products contained in the database
         public void Update()
         {
-            _productList.Update();
+            _productList.Update(); //Going to be deleted plz fix
             CalculateTotalpage();
             CreatePageList();
 
