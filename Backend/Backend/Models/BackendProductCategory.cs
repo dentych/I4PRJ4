@@ -26,6 +26,7 @@ namespace Backend.Models
             }
         }
 
+
         public void AddProduct(Product product)
         {
             _mutex.WaitOne();
