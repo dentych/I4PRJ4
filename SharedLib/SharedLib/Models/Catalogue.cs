@@ -8,6 +8,6 @@ namespace SharedLib.Models
 {
     public class Catalogue
     {
-        public readonly List<Product> Products = new List<Product>();
+        public readonly List<ProductCategory> ProductCategories = new List<ProductCategory>();
     }
 }

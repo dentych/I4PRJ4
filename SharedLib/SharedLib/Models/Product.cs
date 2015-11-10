@@ -12,6 +12,7 @@ namespace SharedLib.Models
         public string Name { get; set; }
         public string ProductNumber { get; set; }
         public decimal Price { get; set; }
+        public int ProductCategoryId { get; set; }
 
         public Product()
         {
@@ -24,6 +25,7 @@ namespace SharedLib.Models
             Name = product.Name;
             ProductNumber = product.ProductNumber;
             Price = product.Price;
+            ProductCategoryId = product.ProductCategoryId;
         }
 
     }

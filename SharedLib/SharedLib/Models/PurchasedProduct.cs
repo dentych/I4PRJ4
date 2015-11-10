@@ -12,6 +12,7 @@ namespace SharedLib.Models
     {
         private uint _quantity;
         private decimal _unitPrice;
+        public int PurchaseId;
 
         public int PurchasedProductId
         {
