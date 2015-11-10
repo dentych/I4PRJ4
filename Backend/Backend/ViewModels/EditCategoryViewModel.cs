@@ -21,6 +21,7 @@ namespace Backend.ViewModels
         public BackendProductCategory ProductCategoryEdited { get; set; } = new BackendProductCategory();
         public BackendProductCategoryList Categories { get; set; }
         public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
+        public BackendProductCategoryList AllCats;
         public string OldName { get; set; }
         public int OldId { get; set; }
 
@@ -36,6 +37,7 @@ namespace Backend.ViewModels
         {
             OldName = p.Name;
             OldId = p.Id;
+            AllCats = p.cats;
         }
 
 
@@ -47,7 +49,7 @@ namespace Backend.ViewModels
             get { return _saveCategoryCommand ?? (_saveCategoryCommand = new RelayCommand(SaveCategory, Valid)); }
         }
 
-        private bool Valid()
+        private bool Valid() 
         {
             if (OldName != "")
                 return true;
@@ -56,8 +58,23 @@ namespace Backend.ViewModels
 
         private void SaveCategory()
         {
-            Handler.EditCategory(ProductCategoryEdited); // Burde måske også have OldName med?
+            if(!Exists(ProductCategoryEdited))
+                Handler.EditCategory(ProductCategoryEdited); // Burde måske også have OldName med?
+            else new Error().StdErr("donnish ffs");
         }
+
+        private bool Exists(BackendProductCategory editedProduct)
+        {
+            foreach (var cat in AllCats)
+            {
+                if (ProductCategoryEdited.BName == editedProduct.BName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         #endregion
     }
 }

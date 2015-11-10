@@ -22,8 +22,10 @@ namespace KasseApparat.UnitTest
             uut.Clear();
 
             var prod1 = new Product();
+            prod1.Name = "Coke";
             prod1.Price = 10;
             var prod2 = new Product();
+            prod2.Name = "Beer";
             prod2.Price = 5;
 
             uut.Add(new PurchasedProduct(prod1, 5));
@@ -54,6 +56,16 @@ namespace KasseApparat.UnitTest
             uut.AddItem(new PurchasedProduct(prod, 5));
 
             Assert.That(uut[2].Name, Is.EqualTo("Juice"));
+        }
+        [Test]
+        public void AddItem_AddCokeAgain_Expect3()
+        {
+            var prod = new Product();
+            prod.Name = "Coke";
+
+            uut.AddItem(new PurchasedProduct(prod, 4));
+
+            Assert.That(uut[0].Quantity, Is.EqualTo(9));
         }
 
         [Test]

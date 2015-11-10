@@ -47,14 +47,14 @@ namespace Backend.Models
             client.Send(toSend);
 
             // Receive the catalogue
-            string receive = client.Receive();
+      //      string receive = client.Receive();
 
             // Close connection, because we no longer need it
-            client.Disconnect();
+        //    client.Disconnect();
 
             // Create a catalogue details command with the product list
             var catalogue = new CatalogueDetailsCmd();
-            catalogue = protocol.Decode(receive) as CatalogueDetailsCmd;
+    //        catalogue = protocol.Decode(receive) as CatalogueDetailsCmd;
 
             // Add the products from catalogue details command to the BackendProductList.
             catalogue.Products.ForEach(Add);

@@ -12,13 +12,13 @@ namespace KasseApparat
 {
     public interface IDBcontrol
     {
-        List<Product> GetProducts();
+        List<ProductCategory> GetProducts();
         void PurchaseDone(IList<PurchasedProduct> ShopList);
     }
 
     public class FakeDBcontrol : IDBcontrol
     {
-        public List<Product> GetProducts()
+        public List<ProductCategory> GetProducts()
         {
             Product p1 = new Product();
             p1.Name = "Beer";
@@ -169,36 +169,46 @@ namespace KasseApparat
             p25.Price = 55;
             p25.ProductId = 24;
             p25.ProductNumber = "24";
+            
+      
+            List<Product> PL1 = new List<Product>();
+            List<Product> PL2 = new List<Product>();
+            PL1.Add(p1);
+            PL1.Add(p2);
+            PL1.Add(p3);
+            PL1.Add(p4);
+            PL2.Add(p5);
+            PL2.Add(p6);
+            PL2.Add(p7);
+            PL2.Add(p8);
+            PL2.Add(p9);
+            PL2.Add(p10);
+            PL2.Add(p11);
+            PL2.Add(p12);
+            PL2.Add(p13);
+            PL2.Add(p14);
+            PL2.Add(p15);
+            PL2.Add(p16);
+            PL2.Add(p17);
+            PL2.Add(p18);
+            PL2.Add(p19);
+            PL2.Add(p20);
+            PL2.Add(p21);
+            PL2.Add(p22);
+            PL2.Add(p23);
+            PL2.Add(p24);
+            PL2.Add(p25);
 
-            List<Product> PL = new List<Product>();
-
-            PL.Add(p1);
-            PL.Add(p2);
-            PL.Add(p3);
-            PL.Add(p4);
-            PL.Add(p5);
-            PL.Add(p6);
-            PL.Add(p7);
-            PL.Add(p8);
-            PL.Add(p9);
-            PL.Add(p10);
-            PL.Add(p11);
-            PL.Add(p12);
-            PL.Add(p13);
-            PL.Add(p14);
-            PL.Add(p15);
-            PL.Add(p16);
-            PL.Add(p17);
-            PL.Add(p18);
-            PL.Add(p19);
-            PL.Add(p20);
-            PL.Add(p21);
-            PL.Add(p22);
-            PL.Add(p23);
-            PL.Add(p24);
-            PL.Add(p25);
-
-            return PL;
+            List<ProductCategory> PC = new List<ProductCategory>();
+            ProductCategory PC1 = new ProductCategory();
+            PC1.Name = "Booze";
+            PC1.Products = PL1;
+            ProductCategory PC2 = new ProductCategory();
+            PC2.Name = "Other";
+            PC2.Products = PL2;
+            PC.Add(PC1);
+            PC.Add(PC2);
+            return PC;
         }
 
         public void PurchaseDone(IList<PurchasedProduct> ShopList)
@@ -215,7 +225,7 @@ namespace KasseApparat
             Connection = conn;
         }
 
-        public List<Product> GetProducts()
+        public List<ProductCategory> GetProducts()
         {
             Connection.Connect();
 
@@ -224,7 +234,8 @@ namespace KasseApparat
 
             Connection.Disconnect();
 
-            return cmd.Products;
+            //return cmd.Products;
+            return null;
         }
 
         public void PurchaseDone(IList<PurchasedProduct> ShopList)

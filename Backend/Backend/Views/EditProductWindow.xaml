@@ -20,13 +20,13 @@
             <Label Content="Rediger produkt" Padding="0" FontSize="12pt"/>
 
             <Label Content="Produktnavn"/>
-            <TextBox Name="textboxName" MaxLength="75" Text="{Binding ProductToEdit.BName, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Name="textboxName" MaxLength="75" Text="{Binding EditedProduct.BName, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="Stregkode"/>
-            <TextBox Name="textboxBarcode" MaxLength="75" Text="{Binding ProductToEdit.BProductNumber, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Name="textboxBarcode" MaxLength="75" Text="{Binding EditedProduct.BProductNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="Pris"/>
-            <TextBox Name="textboxPrice" PreviewTextInput="textboxPrice_PreviewTextInput" MaxLength="20" Text="{Binding ProductToEdit.StringBPrice, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Name="textboxPrice" PreviewTextInput="textboxPrice_PreviewTextInput" MaxLength="20" Text="{Binding EditedProduct.StringBPrice, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="Kategori"/>
             <ComboBox Name="ComboboxCategory" ItemsSource="{Binding Categories, Mode=OneWay}" DisplayMemberPath="Name" SelectedIndex="{Binding currentCatIndex}"/>

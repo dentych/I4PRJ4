@@ -62,11 +62,18 @@ namespace SharedLib.Protocol.CmdMarshallers.ProductCategoryMarshallers
             {
                 while (reader.Read()) // Makes the reader go through the whole string
                 {
-                    if (reader.Name == "ProductCategory" && counter == 0) // if a node is named "ProductCategory" and it hasnt been visited before do the following:
+                    if (reader.Name == "ProductCategory") // if a node is named "ProductCategory" and it hasnt been visited before do the following:
                     {
-                        categoryName = reader["Name"];
-                        productCategoryId = Convert.ToInt32(reader["ProductCategoryId"]);
+
                         counter++;
+                        if (counter % 2 != 0)
+                        {
+                            categoryName = reader["Name"];
+                            productCategoryId = Convert.ToInt32(reader["ProductCategoryId"]);
+                        }
+                        //categoryName = reader["Name"];
+                        //productCategoryId = Convert.ToInt32(reader["ProductCategoryId"]);
+                        //counter++;
                     } // end if
 
                     if (reader.Name == "Product") // if a node is named "Product" do the following:

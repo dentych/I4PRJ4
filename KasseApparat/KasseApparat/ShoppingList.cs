@@ -15,11 +15,18 @@ namespace KasseApparat
 {
     public class ShoppingList : ObservableCollection<PurchasedProduct>, INotifyPropertyChanged
     {
-        public ShoppingList()
-        {}
+        private IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
+        //private IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
 
         public void AddItem(PurchasedProduct product)
         {
+            foreach (var prod in this)
+                if (prod.Name == product.Name)
+                {
+                    prod.Quantity += product.Quantity;
+                    Notify("TotalPrice");
+                    return;
+                }
             Add(product);
             Notify("TotalPrice");
         }
@@ -29,6 +36,11 @@ namespace KasseApparat
             this[index].Quantity++;
             Notify("TotalPrice");
         }
+
+        public void SetQuantity(uint ammount)
+        {
+            this[CurrentIndex].Quantity = ammount;
+        }
         
         public int TotalPrice
         {
@@ -37,8 +49,7 @@ namespace KasseApparat
 
         public void EndPurchase()
         {
-            //Get connection
-            //send This
+            _db.PurchaseDone(this);
         }
 
 #region PropertyChanged
@@ -162,7 +173,7 @@ namespace KasseApparat
             if (CurrentIndex < 0) return false;
             else return true;
         }
-        #endregion
+#endregion
 
     }
 }
