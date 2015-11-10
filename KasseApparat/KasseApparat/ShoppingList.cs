@@ -36,6 +36,11 @@ namespace KasseApparat
             this[index].Quantity++;
             Notify("TotalPrice");
         }
+
+        public void SetQuantity(uint ammount)
+        {
+            this[CurrentIndex].Quantity = ammount;
+        }
         
         public int TotalPrice
         {
