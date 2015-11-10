@@ -20,7 +20,7 @@ namespace KasseApparat
         {
             Update();
 
-            foreach (var prod in this[1].Products)
+            foreach (var prod in this[0].Products)
                 pl.Add(prod);
         }
 

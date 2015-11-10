@@ -30,6 +30,7 @@ namespace KasseApparat
         public ProductButtonControl()
         {
             _productList = new ProductList(); // product category skal oprette denne plz fix
+            //Ex. Brug ProductCategoryList.pl - ProductCategory oprettes statisk i xaml
             _PageList = new List<ProductButtonList>();
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
 
@@ -39,7 +40,7 @@ namespace KasseApparat
         //Updates the productbuttons, with the products contained in the database
         public void Update()
         {
-            _productList.Update(); //Going to be deleted plz fix
+            _productList.Update(); //Going to be deleted plz fix - update bliver en func for ProductCategoryList
             CalculateTotalpage();
             CreatePageList();
 
