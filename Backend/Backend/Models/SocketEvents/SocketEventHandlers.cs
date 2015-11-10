@@ -21,6 +21,9 @@ namespace Backend.Models.SocketEvents
         #endregion
 
         #region Event handlers
+
+
+
         public void ProductCreatedHandler(ProductCreatedCmd cmd)
         {
             // TODO: Insert ID from product when implemented in SharedLib.
@@ -108,6 +111,9 @@ namespace Backend.Models.SocketEvents
         #endregion
 
         #region Subscribe methods
+
+   
+
         public void SubscribeProductCreated()
         {
             LSC.Listener.OnProductCreated += ProductCreatedHandler;

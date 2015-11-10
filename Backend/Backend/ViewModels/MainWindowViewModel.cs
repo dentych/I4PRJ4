@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Backend.Brains;
 using Backend.Communication;
@@ -18,6 +19,22 @@ namespace Backend.ViewModels
     {
         public MainWindowViewModel()
         {
+
+            var conn = LSC.Connection;
+            conn.OnConnectionOpened += ConenctionOpenedHandler;
+            conn.OnConnectionOpened += ConnectionClosedHandler;
+
+            try
+            {
+                conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("No connection"); // Y DOS DIS NOT WORK
+            }
+
             _ev = new SocketEventHandlers(Categories);
             _ev.SubscribeCatalogueDetails();
             _ev.SubscribeProductCreated();
@@ -29,7 +46,11 @@ namespace Backend.ViewModels
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Subscribe(EditCategoryLoaded, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
+
+
         }
+
+ 
 
         #region Properties
 
@@ -39,6 +60,7 @@ namespace Backend.ViewModels
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
         private readonly IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
         private readonly ISocketEventHandlers _ev;
+        public ConnectionString Connection { get; } = new ConnectionString();
 
         #endregion
 
@@ -48,6 +70,16 @@ namespace Backend.ViewModels
         {
             var window = new AddProductWindow();
             window.ShowDialog();
+        }
+
+        private void ConenctionOpenedHandler()
+        {
+            Connection.Connection = "Forbundet"; //TODO DET KLAMME LORT VIRKER IKKE
+        }
+
+        private void ConnectionClosedHandler()
+        {
+            Connection.Connection = "Ikke forbundet";
         }
 
         private void NewEditProductWindow()

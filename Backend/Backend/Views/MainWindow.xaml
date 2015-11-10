@@ -93,7 +93,7 @@
         <!-- Row 2 -->
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3">
             <Label Grid.Row="2" Grid.ColumnSpan="3" Content="Databaseforbindelse:" Padding="0" Margin="10, 0, 0, 0"/>
-            <TextBlock x:Name="statusDb" Text="Ikke forbundet" Margin="10, 0"/>
+            <TextBlock x:Name="statusDb" Text="{Binding Path=Connection.Connection}" Margin="10, 0"/>
         </StackPanel>
     </Grid>
 </Window>
