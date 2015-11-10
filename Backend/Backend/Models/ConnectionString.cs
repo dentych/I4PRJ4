@@ -13,7 +13,7 @@ namespace Backend.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _connection = "Ikke forbundet";
+        private string _connection; // = "Ikke forbundet";
 
 
         public string Connection

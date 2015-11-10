@@ -81,7 +81,7 @@ namespace Backend.ViewModels
 
         private void ConnectionClosedHandler()
         {
-            Connection.Connection = "Ikke forbundet";
+            Connection.Connection = "Forbundet";
         }
 
         private void NewEditProductWindow()
