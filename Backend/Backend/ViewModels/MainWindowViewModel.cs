@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Backend.Brains;
 using Backend.Communication;
@@ -11,6 +12,7 @@ using Backend.Views;
 using Prism.Events;
 using SharedLib.Models;
 using System.Collections.Generic;
+using SharedLib.Sockets;
 
 namespace Backend.ViewModels
 {
@@ -18,6 +20,23 @@ namespace Backend.ViewModels
     {
         public MainWindowViewModel()
         {
+
+            conn = LSC.Connection;
+            conn.OnConnectionOpened += ConenctionOpenedHandler;
+            conn.OnConnectionClosed += ConnectionClosedHandler;
+        //    conn.OnDataRecieved += DataReceivedHandler;
+
+            try
+            {
+                conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("No connection"); // Y DOS DIS NOT WORK
+            }
+
             _ev = new SocketEventHandlers(Categories);
             _ev.SubscribeCatalogueDetails();
             _ev.SubscribeProductCreated();
@@ -29,7 +48,11 @@ namespace Backend.ViewModels
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Subscribe(EditCategoryLoaded, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
+
+
         }
+
+ 
 
         #region Properties
 
@@ -39,15 +62,35 @@ namespace Backend.ViewModels
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
         private readonly IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
         private readonly ISocketEventHandlers _ev;
+        private SocketConnection conn;
+        private bool DBCON = false;
+        public ConnectionString Connection { get; } = new ConnectionString();
 
         #endregion
 
         #region Windows
 
+      /*  private void DataReceivedHandler(string s)
+        {
+            MessageBox.Show("Data received "+ s);
+        }*/
+
         private void NewAddProductWindow()
         {
             var window = new AddProductWindow();
             window.ShowDialog();
+        }
+
+        private void ConenctionOpenedHandler()
+        {
+            Connection.Connection = "Forbundet"; //TODO DET KLAMME LORT VIRKER IKKE
+            DBCON = true;
+        }
+
+        private void ConnectionClosedHandler()
+        {
+            Connection.Connection = "Ikke forbundet";
+            DBCON = false;
         }
 
         private void NewEditProductWindow()
@@ -59,7 +102,6 @@ namespace Backend.ViewModels
         #endregion
 
         #region Eventshit
-
         public void AddProductWindowLoaded(bool b)
         {
             Aggregator.GetEvent<CategoryListUpdated>().Publish(Categories);
