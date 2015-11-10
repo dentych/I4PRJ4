@@ -22,9 +22,9 @@ namespace KasseApparat
 
         public void Update()
         {
-            ClearItems();
-            List<Product> pl = _db.GetProducts();
-            foreach (var prod in pl) Add(prod);
+            //ClearItems();
+            //List<Product> pl = _db.GetProducts();
+            //foreach (var prod in pl) Add(prod);
         }
     }
 }
