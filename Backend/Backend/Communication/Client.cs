@@ -1,5 +1,5 @@
 ﻿using System.Net.Sockets;
-using Backend.Brains;
+using Backend.Models.Brains;
 using SharedLib.Sockets;
 
 namespace Backend.Communication

@@ -63,16 +63,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Communication\LSC.cs" />
-    <Compile Include="Models\ConnectionString.cs" />
+    <Compile Include="Models\Datamodels\ConnectionString.cs" />
     <Compile Include="Models\Events\EditProductParameters.cs" />
     <Compile Include="Models\Events\EventAggregator.cs" />
     <Compile Include="Models\Events\Events.cs" />
     <Compile Include="Models\SocketEvents\ISocketEventHandlers.cs" />
     <Compile Include="Models\SocketEvents\SocketEventHandlers.cs" />
     <Compile Include="ViewModels\AddCategoryViewModel.cs" />
+    <Compile Include="ViewModels\DeleteCategoryViewModel.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />
     <Compile Include="Views\AddCategoryWindow.xaml.cs">
       <DependentUpon>AddCategoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteCategoryView.xaml.cs">
+      <DependentUpon>DeleteCategoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditCategoryWindow.xaml.cs">
       <DependentUpon>EditCategoryWindow.xaml</DependentUpon>
@@ -85,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeleteCategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,28 +109,28 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Fakegenerator\FakeMaker.cs" />
-    <Compile Include="Models\BackendProduct.cs" />
-    <Compile Include="Models\BackendProductCategory.cs" />
-    <Compile Include="Models\BackendProductCategoryList.cs" />
-    <Compile Include="Models\BackendProductList.cs" />
+    <Compile Include="Models\Datamodels\BackendProduct.cs" />
+    <Compile Include="Models\Datamodels\BackendProductCategory.cs" />
+    <Compile Include="Models\Datamodels\BackendProductCategoryList.cs" />
+    <Compile Include="Models\Datamodels\BackendProductList.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Brains\ModelHandler.cs" />
+    <Compile Include="Models\Brains\ModelHandler.cs" />
     <Compile Include="ViewModels\AddProductViewModel.cs" />
-    <Compile Include="Brains\IModelHandler.cs" />
-    <Compile Include="Brains\IProtocol.cs" />
-    <Compile Include="Brains\PrjProtokol.cs" />
+    <Compile Include="Models\Brains\IModelHandler.cs" />
+    <Compile Include="Models\Brains\IProtocol.cs" />
+    <Compile Include="Models\Brains\PrjProtokol.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Communication\Client.cs" />
     <Compile Include="Communication\IClient.cs" />
-    <Compile Include="Brains\Error.cs" />
+    <Compile Include="Models\Brains\Error.cs" />
     <Compile Include="Dependencies\RelayCommand.cs" />
     <Compile Include="Views\EditProductWindow.xaml.cs">
       <DependentUpon>EditProductWindow.xaml</DependentUpon>

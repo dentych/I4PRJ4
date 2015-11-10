@@ -4,6 +4,7 @@ using SharedLib.Models;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
 using System.Collections.Generic;
+using Backend.Models.Datamodels;
 
 namespace Backend.Models.SocketEvents
 {
@@ -57,6 +58,15 @@ namespace Backend.Models.SocketEvents
                     product.Price = cmd.Price;
                     product.ProductCategoryId = cmd.ProductId;
                     product.ProductNumber = cmd.ProductNumber;
+
+                    //TODO: IMPLEMENT DIS SHIT
+                    /*
+                    if(cmd.CategoryId != category.id)
+                    {
+                        FLYT LORTET OVER I DEN RIGTIGE :) :) :)
+                    }
+                    */
+
                     _categories.UpdateCurrentProducts();
                     break;
                 }

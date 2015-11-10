@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using Backend.Brains;
 using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Fakegenerator;
@@ -12,6 +11,8 @@ using Backend.Views;
 using Prism.Events;
 using SharedLib.Models;
 using System.Collections.Generic;
+using Backend.Models.Brains;
+using Backend.Models.Datamodels;
 using SharedLib.Sockets;
 
 namespace Backend.ViewModels
@@ -28,7 +29,7 @@ namespace Backend.ViewModels
 
             try
             {
-                conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
+               // conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
 
             }
             catch (Exception)
@@ -48,6 +49,7 @@ namespace Backend.ViewModels
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Subscribe(EditCategoryLoaded, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
+            Aggregator.GetEvent<DeleteCategoryWindowLoaded>().Subscribe(DeleteCategoryWindow, true);
 
 
         }
@@ -112,12 +114,25 @@ namespace Backend.ViewModels
             Aggregator.GetEvent<CategoryListUpdated>().Publish(Categories);
         }
 
+        public void DeleteCategoryWindow(bool b)
+        {
+            var p = new DeleteCategoryParms
+            {
+                cats = Categories,
+                ToDelteIndex = Categories.CurrentIndex
+            };
+
+            Aggregator.GetEvent<NewDeleteCategoryData>().Publish(p);
+        }
+
         public void EditCategoryLoaded(bool b)
         {
-            var p = new EditCategoryParms();
-            p.Name = Categories[Categories.CurrentIndex].BName;
-            p.Id = Categories[Categories.CurrentIndex].ProductCategoryId;
-            p.cats = Categories;
+            var p = new EditCategoryParms
+            {
+                Name = Categories[Categories.CurrentIndex].BName,
+                Id = Categories[Categories.CurrentIndex].ProductCategoryId,
+                cats = Categories
+            };
             Aggregator.GetEvent<NewEditCategoryData>().Publish(p);
         }
 
@@ -185,6 +200,17 @@ namespace Backend.ViewModels
                        (_openEditCategoryWindowCommand = new RelayCommand(OpenEditCategoryDialogWindow));
             }
         }
+        /* Delete category */
+        private ICommand _openDeleteCategoryWindowCommand;
+
+        public ICommand OpenDeleteCategoryWindowCommand
+        {
+            get
+            {
+                return _openDeleteCategoryWindowCommand ??
+                       (_openDeleteCategoryWindowCommand = new RelayCommand(OpenDeleteCategoryDialogWindow));
+            }
+        }
 
         /* Settings dialog */
         private ICommand _openSettingsDialog;
@@ -229,6 +255,12 @@ namespace Backend.ViewModels
         private void OpenEditCategoryDialogWindow()
         {
             var dialog = new EditCategoryWindow();
+            dialog.ShowDialog();
+        }
+
+        private void OpenDeleteCategoryDialogWindow()
+        {
+            var dialog = new DeleteCategoryView();
             dialog.ShowDialog();
         }
 
