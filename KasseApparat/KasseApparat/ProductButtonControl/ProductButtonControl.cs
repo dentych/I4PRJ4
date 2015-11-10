@@ -22,15 +22,16 @@ namespace KasseApparat
 
         private int _totalPages = 1;
         private int _currentPage = 1;
-        private readonly ProductList _productList;
+        private readonly ProductCategoryList _productCategoryList;
         private List<ProductButtonList> _PageList;
         private ShoppingList _shopList;
+
+        private int PCLindex = 1; //For PCL
 #endregion
 
         public ProductButtonControl()
         {
-            _productList = new ProductList(); // product category skal oprette denne plz fix
-            //Ex. Brug ProductCategoryList.pl - ProductCategory oprettes statisk i xaml
+            _productCategoryList = new ProductCategoryList(); //Changed to PCL
             _PageList = new List<ProductButtonList>();
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
 
@@ -40,7 +41,7 @@ namespace KasseApparat
         //Updates the productbuttons, with the products contained in the database
         public void Update()
         {
-            _productList.Update(); //Going to be deleted plz fix - update bliver en func for ProductCategoryList
+            //_productList.Update(); not needed?
             CalculateTotalpage();
             CreatePageList();
 
@@ -62,9 +63,9 @@ namespace KasseApparat
 
                 for (int index = i; i < (index+12); i++)
                 {
-                    if (_productList.Count > i)
+                    if (_productCategoryList[PCLindex].Products.Count > i) //PCL changed
                     {
-                        _PageList[pages].Add(new ButtonContent(_productList[i]));
+                        _PageList[pages].Add(new ButtonContent(_productCategoryList[PCLindex].Products[i])); //PCL changed
                     }
                     else
                     {
@@ -78,13 +79,13 @@ namespace KasseApparat
 
         void CalculateTotalpage()
         {
-            if ((_productList.Count%12) == 0)
+            if ((_productCategoryList[PCLindex].Products.Count %12) == 0)
             {
-                _totalPages = _productList.Count/12;
+                _totalPages = _productCategoryList[PCLindex].Products.Count /12;
             }
             else
             {
-                _totalPages = (_productList.Count/12)+1;
+                _totalPages = (_productCategoryList[PCLindex].Products.Count /12)+1;
             }
         }
 
