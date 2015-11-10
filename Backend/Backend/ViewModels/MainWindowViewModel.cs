@@ -12,6 +12,7 @@ using Backend.Views;
 using Prism.Events;
 using SharedLib.Models;
 using System.Collections.Generic;
+using SharedLib.Sockets;
 
 namespace Backend.ViewModels
 {
@@ -20,9 +21,9 @@ namespace Backend.ViewModels
         public MainWindowViewModel()
         {
 
-            var conn = LSC.Connection;
+            conn = LSC.Connection;
             conn.OnConnectionOpened += ConenctionOpenedHandler;
-            conn.OnConnectionOpened += ConnectionClosedHandler;
+          //  conn.OnConnectionClosed += ConnectionClosedHandler;
 
             try
             {
@@ -60,6 +61,7 @@ namespace Backend.ViewModels
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
         private readonly IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
         private readonly ISocketEventHandlers _ev;
+        private SocketConnection conn;
         public ConnectionString Connection { get; } = new ConnectionString();
 
         #endregion

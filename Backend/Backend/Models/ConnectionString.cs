@@ -21,7 +21,7 @@ namespace Backend.Models
             get { return _connection; }
             set
             {
-                Connection = value;
+                _connection = value;
                 OnPropertyChanged("Connection");
             }
         }
