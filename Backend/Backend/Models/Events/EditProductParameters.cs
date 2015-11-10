@@ -1,3 +1,4 @@
+using Backend.Models.Datamodels;
 using SharedLib.Models;
 
 namespace Backend.Models.Events
@@ -14,6 +15,12 @@ namespace Backend.Models.Events
     {
         public string Name;
         public int Id;
+        public BackendProductCategoryList cats;
+    }
+
+    public class DeleteCategoryParms
+    {
+        public int ToDelteIndex;
         public BackendProductCategoryList cats;
     }
 

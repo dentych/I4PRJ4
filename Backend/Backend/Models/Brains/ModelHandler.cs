@@ -6,14 +6,11 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Backend.Communication;
-using Backend.Models;
+using Backend.Models.Datamodels;
 using SharedLib.Models;
 
-namespace Backend.Brains
+namespace Backend.Models.Brains
 {
     public class ModelHandler : IModelHandler
     {
@@ -89,7 +86,31 @@ namespace Backend.Brains
             return true;
         }
 
-        
+        public bool MoveProductsInCategory(BackendProductCategory categoryToEmpty, int catId)
+        {
+            if (categoryToEmpty.ProductCategoryId == catId)
+            {
+                return false;
+            }
+
+            foreach (var product in categoryToEmpty.Products)
+            {
+                var newProduct = new BackendProduct()
+                {
+                    Name = product.Name,
+                    Price = product.Price,
+                    ProductCategoryId = catId,
+                    ProductId = product.ProductId,
+                    ProductNumber = product.ProductNumber
+                };
+                var cmdtosend = _protocol.EditProductXMLParser(newProduct);
+                _client.Send(cmdtosend);
+            }
+
+            return true;
+        }
+
+
         public string LastError { private set; get; }
     } //end AddProductCB
 }

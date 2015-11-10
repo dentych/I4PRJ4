@@ -6,10 +6,10 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
-using Backend.Models;
+using Backend.Models.Datamodels;
 using SharedLib.Models;
 
-namespace Backend.Brains
+namespace Backend.Models.Brains
 {
     public interface IProtocol
     {

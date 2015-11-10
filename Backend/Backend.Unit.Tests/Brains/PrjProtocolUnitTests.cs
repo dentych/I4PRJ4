@@ -1,4 +1,4 @@
-﻿using Backend.Brains;
+﻿using Backend.Models.Brains;
 using NUnit.Framework;
 using SharedLib.Models;
 
