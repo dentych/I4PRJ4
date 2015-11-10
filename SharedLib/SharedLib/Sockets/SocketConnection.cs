@@ -51,13 +51,13 @@ namespace SharedLib.Sockets
 
         private void HandleConnected(IAsyncResult ar)
         {
-            OnConnectionClosed?.Invoke();
+            OnConnectionOpened?.Invoke();
             BeginAsyncRead();
         }
 
         private void HandleDisconnect()
         {
-            OnConnectionOpened?.Invoke();
+            OnConnectionClosed?.Invoke();
         }
 
         private void HandleDataRecieved(int length)

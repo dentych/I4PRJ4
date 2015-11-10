@@ -23,7 +23,7 @@ namespace Backend.ViewModels
 
             conn = LSC.Connection;
             conn.OnConnectionOpened += ConenctionOpenedHandler;
-          //  conn.OnConnectionClosed += ConnectionClosedHandler;
+            conn.OnConnectionClosed += ConnectionClosedHandler;
 
             try
             {
@@ -62,6 +62,7 @@ namespace Backend.ViewModels
         private readonly IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
         private readonly ISocketEventHandlers _ev;
         private SocketConnection conn;
+        private bool DBCON = false;
         public ConnectionString Connection { get; } = new ConnectionString();
 
         #endregion
@@ -77,11 +78,13 @@ namespace Backend.ViewModels
         private void ConenctionOpenedHandler()
         {
             Connection.Connection = "Forbundet"; //TODO DET KLAMME LORT VIRKER IKKE
+            DBCON = true;
         }
 
         private void ConnectionClosedHandler()
         {
-            Connection.Connection = "Forbundet";
+            Connection.Connection = "Ikke forbundet";
+            DBCON = false;
         }
 
         private void NewEditProductWindow()
@@ -93,7 +96,6 @@ namespace Backend.ViewModels
         #endregion
 
         #region Eventshit
-
         public void AddProductWindowLoaded(bool b)
         {
             Aggregator.GetEvent<CategoryListUpdated>().Publish(Categories);
