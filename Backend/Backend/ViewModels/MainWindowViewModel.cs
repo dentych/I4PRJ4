@@ -24,6 +24,7 @@ namespace Backend.ViewModels
             conn = LSC.Connection;
             conn.OnConnectionOpened += ConenctionOpenedHandler;
             conn.OnConnectionClosed += ConnectionClosedHandler;
+        //    conn.OnDataRecieved += DataReceivedHandler;
 
             try
             {
@@ -68,6 +69,11 @@ namespace Backend.ViewModels
         #endregion
 
         #region Windows
+
+      /*  private void DataReceivedHandler(string s)
+        {
+            MessageBox.Show("Data received "+ s);
+        }*/
 
         private void NewAddProductWindow()
         {
