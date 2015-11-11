@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Backend.Annotations;
-using SharedLib.Models;
 using System.Threading;
+using SharedLib.Models;
 
-namespace Backend.Models
+namespace Backend.Models.Datamodels
 {
    
     public class BackendProductCategory : ProductCategory, INotifyPropertyChanged
@@ -25,6 +19,7 @@ namespace Backend.Models
                 Notify("Name");
             }
         }
+
 
         public void AddProduct(Product product)
         {

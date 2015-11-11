@@ -1,8 +1,7 @@
-
-using Backend.Models;
+using Backend.Models.Datamodels;
 using SharedLib.Models;
 
-namespace Backend.Brains
+namespace Backend.Models.Brains
 {
     public interface IModelHandler
     {
@@ -16,7 +15,8 @@ namespace Backend.Brains
         bool EditCategory(BackendProductCategory category);
         bool AddCategory(BackendProductCategory category);
         bool DeleteCategory(BackendProductCategory category);
-#endregion
+        bool MoveProductsInCategory(BackendProductCategory categoryToEmpty, int catId);
+        #endregion
 
     } //end IAddProduct
 }

@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Backend.Brains;
 using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
+using Backend.Models.Brains;
+using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using SharedLib.Models;
 

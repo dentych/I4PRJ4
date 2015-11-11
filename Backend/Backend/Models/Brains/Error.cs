@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Backend.Brains
+namespace Backend.Models.Brains
 {
 
     public interface IError

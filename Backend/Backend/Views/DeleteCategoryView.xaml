@@ -1,0 +1,34 @@
+﻿<Window x:Class="Backend.Views.DeleteCategoryView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Backend.Views"
+        mc:Ignorable="d"
+             Title="Administrationssystem - Slet produktkategori" Height="200" Width="600" Background="#FFF0F0F0">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="10" Grid.Row="1" d:DataContext="{d:DesignData }">
+                <Label Content="Slet produktkategori" Padding="0" Margin="5,0" FontSize="12pt"/>
+
+                <Label Content="Vælg hvilken kategori produkterne skal flyttes til:"/>
+                <ComboBox Margin="5,0,10,10" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedIndex="{Binding MoveToCategoryId}"></ComboBox>
+
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+                <Label Content="Hovedmenu" Padding="0" FontSize="12pt"/>
+                <Button Content="_Slet" FontSize="10pt" Height="30" Margin="0, 10" Command="{Binding MoveAndDeleteCommand}"/>
+                <Button Content="_Annuller" FontSize="10pt" Height="30" Margin="0, 10" Click="Annuller"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

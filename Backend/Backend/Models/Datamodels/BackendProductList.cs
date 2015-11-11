@@ -1,17 +1,10 @@
-﻿using Backend.Brains;
+﻿using System.Collections.ObjectModel;
 using Backend.Communication;
 using SharedLib.Models;
 using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Backend.Models
+namespace Backend.Models.Datamodels
 {
     public class BackendProductList : ObservableCollection<Product>
     {
@@ -57,7 +50,7 @@ namespace Backend.Models
     //        catalogue = protocol.Decode(receive) as CatalogueDetailsCmd;
 
             // Add the products from catalogue details command to the BackendProductList.
-            catalogue.Products.ForEach(Add);
+         //   catalogue.Products.ForEach(Add);
         }
     }
 }

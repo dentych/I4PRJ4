@@ -4,6 +4,7 @@ using SharedLib.Models;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
 using System.Collections.Generic;
+using Backend.Models.Datamodels;
 
 namespace Backend.Models.SocketEvents
 {
@@ -26,14 +27,12 @@ namespace Backend.Models.SocketEvents
 
         public void ProductCreatedHandler(ProductCreatedCmd cmd)
         {
-            // TODO: Insert ID from product when implemented in SharedLib.
-            _categories.GetListByCateogry(0).AddProduct(cmd.GetProduct());
+            _categories.GetListByCateogry(cmd.ProductId).AddProduct(cmd.GetProduct());
             _categories.UpdateCurrentProducts();
         }
 
         public void ProductDeletedHandler(ProductDeletedCmd cmd)
         {
-            // TODO: Insert ID from product when implemented in SharedLib.
             BackendProductCategory category = _categories.GetListByCateogry(0);
 
             for (int i = 0; i < category.Products.Count; i++)
@@ -49,7 +48,6 @@ namespace Backend.Models.SocketEvents
 
         public void ProductEditedHandler(ProductEditedCmd cmd)
         {
-            // TODO: Insert ID from product when implemented in SharedLib.
             BackendProductCategory category = _categories.GetListByCateogry(0);
 
             foreach (var product in category.Products)
@@ -58,7 +56,17 @@ namespace Backend.Models.SocketEvents
                 {
                     product.Name = cmd.Name;
                     product.Price = cmd.Price;
+                    product.ProductCategoryId = cmd.ProductId;
                     product.ProductNumber = cmd.ProductNumber;
+
+                    //TODO: IMPLEMENT DIS SHIT
+                    /*
+                    if(cmd.CategoryId != category.id)
+                    {
+                        FLYT LORTET OVER I DEN RIGTIGE :) :) :)
+                    }
+                    */
+
                     _categories.UpdateCurrentProducts();
                     break;
                 }
@@ -67,9 +75,15 @@ namespace Backend.Models.SocketEvents
 
         public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)
         {
-            foreach (var category in cmd.Products) // NO IT IS PRODUCTCATEGORY)
+            foreach (var category in cmd.ProductCategories) // NO IT IS PRODUCTCATEGORY)
             {
-                //  this.Categories.Add(category);
+                BackendProductCategory Category = new BackendProductCategory()
+                {
+                    BName = category.Name,
+                    ProductCategoryId = category.ProductCategoryId,
+                    Products = category.Products
+                };
+                _categories.Add(Category);
             }
         }
 
@@ -104,7 +118,7 @@ namespace Backend.Models.SocketEvents
                 if (_categories[i].ProductCategoryId == category.ProductCategoryId)
                 {
                     _categories[i].BName = category.Name;
-                   // _categories[i].Products = category.Products; 
+                   // _categories[i].Products = category.Products; // This shouldn't be nødvendigt nissemand :-D
                 }
             }
         }

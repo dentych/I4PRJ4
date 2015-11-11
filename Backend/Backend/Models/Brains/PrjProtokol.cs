@@ -6,13 +6,13 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
-using Backend.Models;
+using Backend.Models.Datamodels;
 using SharedLib.Models;
 using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
 
-namespace Backend.Brains
+namespace Backend.Models.Brains
 {
     public class PrjProtokol : IProtocol
     {

@@ -1,6 +1,7 @@
-﻿using Backend.Brains;
-using Backend.Communication;
+﻿using Backend.Communication;
 using Backend.Models;
+using Backend.Models.Brains;
+using Backend.Models.Datamodels;
 using NSubstitute;
 using NUnit.Framework;
 using Product = SharedLib.Models.Product;

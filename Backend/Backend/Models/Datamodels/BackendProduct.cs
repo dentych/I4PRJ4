@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using SharedLib.Models;
 
-namespace Backend.Models
+namespace Backend.Models.Datamodels
 {
     public class BackendProduct : Product, INotifyPropertyChanged
     {
