@@ -1,6 +1,9 @@
 ﻿using CentralServer.Logging;
 using CentralServer.Logging.Loggers;
+using CentralServer.Messaging;
 using CentralServer.Server;
+using CentralServer.Sessions;
+using CentralServer.Threading;
 
 namespace CentralServer
 {
@@ -13,14 +16,22 @@ namespace CentralServer
             LogCheck(log);
             log.Write("Main", Log.NOTICE, "Initiating");
 
-            var main = new MainControl(log);
-            var server = new SocketServer(log, main, GetServerPort(args));
+            // Init MainControl
+            var sessions = new SessionControl();
+            var main = new MainControl(log, sessions);
+            var mainReciever = new MessageReceiver(main, new MessageQueue());
 
-            main.Start();
-            server.Start();
+            // Init socket server
+            var port = GetServerPort(args);
+            var serverRunner = new SocketServer(log, mainReciever, port);
 
-            main.Join();
-            server.Join();
+            // Start all threads
+            var mainThread = ThreadStarter.Start(mainReciever);
+            var serverThread = ThreadStarter.Start(serverRunner);
+
+            // Join on all threads
+            mainThread.Join();
+            serverThread.Join();
         }
 
         private static int GetServerPort(string[] args)
@@ -28,7 +39,7 @@ namespace CentralServer
             return 11000;
         }
 
-        private static void LogCheck(Log log)
+        private static void LogCheck(ILog log)
         {
             log.Write("LogCheck", Log.ERROR, "Category: ERROR");
             log.Write("LogCheck", Log.WARNING, "Category: WARNING");

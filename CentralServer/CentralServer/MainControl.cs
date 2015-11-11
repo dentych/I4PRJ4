@@ -1,17 +1,16 @@
-﻿using CentralServer.Logging;
+﻿using System.Linq;
+using CentralServer.Logging;
 using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
+using CentralServer.Sessions;
 using ServerDatabase;
 using SharedLib.Models;
 using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CentralServer
 {
-    class MainControl : MessageThread
+    public class MainControl : IMessageHandler
     {
         // A new client requests to be registered
         public const long E_START_SESSION = 1;
@@ -20,20 +19,21 @@ namespace CentralServer
         // A command was recieved from a known client
         public const long E_COMMAND_RECIEVED = 3;
 
-        private Log _log;
-        private SessionControl _sessions = new SessionControl();
+        private readonly ILog _log;
+        private readonly ISessionControl _sessions;
 
 
-        public MainControl(Log log)
+        public MainControl(ILog log, ISessionControl sessionControl)
         {
             _log = log;
+            _sessions = sessionControl;
         }
 
         /*
          * Invoked when this thread recieves a new message.
          * Messages propagate to specific event handlers.
          */
-        protected override void Dispatch(long id, Message msg)
+        public void Dispatch(long id, Message msg)
         {
             switch (id)
             {
@@ -115,7 +115,7 @@ namespace CentralServer
          * A client requests to recieve the entire product catalogue.
          * Respond with a CatalogueDetails command.
          */
-        private void OnGetCatalogue(ClientControl client, GetCatalogueCmd cmd)
+        private void OnGetCatalogue(IMessageReceiver client, GetCatalogueCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
                        "Client recieving catalogue details");
@@ -139,7 +139,7 @@ namespace CentralServer
          * A client requests to create a new product.
          * Create the product in database and notify all connected clients.
          */
-        private void OnCreateProduct(ClientControl client, CreateProductCmd cmd)
+        private void OnCreateProduct(IMessageReceiver client, CreateProductCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
                        "Client creating a new product");
@@ -166,7 +166,7 @@ namespace CentralServer
         /*
          * Invoked when a clients wants to register a purchase
          */
-        private void OnRegisterPurchase(ClientControl client, RegisterPurchaseCmd cmd)
+        private void OnRegisterPurchase(IMessageReceiver client, RegisterPurchaseCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
                        "Client registering a new purchase");

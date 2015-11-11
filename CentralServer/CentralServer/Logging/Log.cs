@@ -2,7 +2,7 @@
 
 namespace CentralServer.Logging
 {
-    class Log
+    public class Log : ILog
     {
         public const int DEBUG = 0;
         public const int NOTICE = 1;

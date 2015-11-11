@@ -3,24 +3,17 @@ using System.Collections.Concurrent;
 
 namespace CentralServer.Messaging
 {
-    public struct QueueItem
+    public class MessageQueue : IMessageQueue
     {
-        public long Id;
-        public Message Message;
-    }
+        private readonly BlockingCollection<MessageQueueItem> _items;
 
 
-    public class MessageQueue
-    {
-        private readonly BlockingCollection<QueueItem> _items;
-
-
-        public MessageQueue(int maxSize)
+        public MessageQueue(int maxSize = 10)
         {
             if (maxSize < 1)
                 throw new Exception("Queue size must be greater than zero");
 
-            _items = new BlockingCollection<QueueItem>(maxSize);
+            _items = new BlockingCollection<MessageQueueItem>(maxSize);
         }
 
         /*
@@ -29,7 +22,7 @@ namespace CentralServer.Messaging
          */
         public void Send(long id, Message msg = null)
         {
-            _items.Add(new QueueItem {
+            _items.Add(new MessageQueueItem {
                 Id = id,
                 Message = msg,
             });
@@ -39,7 +32,7 @@ namespace CentralServer.Messaging
          * Recieve an item from the queue.
          * Block if empty.
          */
-        public QueueItem Recieve()
+        public MessageQueueItem Recieve()
         {
             return _items.Take();
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CentralServer.Logging
 {
-    interface ILogger
+    public interface ILogger
     {
         void Write(string sender, int category, string text, string timestamp);
     }
