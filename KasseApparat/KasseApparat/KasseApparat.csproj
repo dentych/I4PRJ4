@@ -65,6 +65,8 @@
     <Compile Include="IConnection.cs" />
     <Compile Include="ProductButtonControl\ProductButtonControl.cs" />
     <Compile Include="ProductCategoryList.cs" />
+    <Compile Include="ProductMenuControl\CategoriesMenu.cs" />
+    <Compile Include="ProductMenuControl\MenuCategory.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ShoppingList.cs" />
     <Page Include="MainWindow.xaml">
