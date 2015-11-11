@@ -18,5 +18,7 @@ namespace Backend.Models.Brains
         bool MoveProductsInCategory(BackendProductCategory categoryToEmpty, int catId);
         #endregion
 
+        bool CatalogueDetails();
+
     } //end IAddProduct
 }
