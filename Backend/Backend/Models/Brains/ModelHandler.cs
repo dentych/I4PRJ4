@@ -6,6 +6,7 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
+using System;
 using Backend.Communication;
 using Backend.Models.Datamodels;
 using SharedLib.Models;
@@ -110,6 +111,12 @@ namespace Backend.Models.Brains
             return true;
         }
 
+        public bool CatalogueDetails()
+        {
+            var cmdtosend = _protocol.GetCatalougXMLParser();
+            _client.Send(cmdtosend);
+            return true;
+        }
 
         public string LastError { private set; get; }
     } //end AddProductCB
