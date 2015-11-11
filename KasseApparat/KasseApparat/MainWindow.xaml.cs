@@ -55,30 +55,21 @@ namespace KasseApparat
             Display.Text = "";
         }
 
-        private void CategoryItemOnClick(object sender, RoutedEventArgs routedEventArgs)
+#endregion
+
+        private void ButtonProductClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Button buttonName = (Button)e.OriginalSource;
+            ProductButtonControl ProdControl = (ProductButtonControl) this.FindResource("ProductButtonControl");
+            
+            ProdControl.addItem(int.Parse(buttonName.Tag.ToString()));
         }
 
-        #endregion
-        /*
         private void ButtonRefreshClick(object sender, RoutedEventArgs e)
         {
             ProductButtonControl ProdControl = (ProductButtonControl)this.FindResource("ProductButtonControl");
 
             ProdControl.Update();
-        }
-        */
-
-        private void Categori_Click(object sender, RoutedEventArgs e)
-        {
-            (sender as Button).ContextMenu.IsEnabled = true;
-            (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
-            (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
-            (sender as Button).ContextMenu.IsOpen = true;
-
-            
-            CategoriesMenu CM = (CategoriesMenu)this.FindResource("CategoriesMenu");
         }
     }
 }
