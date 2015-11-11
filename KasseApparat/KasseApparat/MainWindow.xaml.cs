@@ -25,8 +25,7 @@ namespace KasseApparat
         public MainWindow()
         {
             InitializeComponent();
-            //var productButton = new ProductButtonControl();
-            
+            var catMenu = new CategoriesMenu();
         }
 
 #region Inputs
@@ -76,9 +75,6 @@ namespace KasseApparat
             (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
-
-            
-            CategoriesMenu CM = (CategoriesMenu)this.FindResource("CategoriesMenu");
         }
     }
 }

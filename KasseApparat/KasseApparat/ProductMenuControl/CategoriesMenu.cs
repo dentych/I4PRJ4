@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using KasseApparat.ProductMenuControl;
+using SharedLib.Models;
 
 namespace KasseApparat
 {
@@ -17,47 +18,48 @@ namespace KasseApparat
     {
         private ProductCategoryList _productCategoryList;
         private Button CategoryButton;
-        private ProductButtonControl _productButtonControl;
+        private List<Product> _totalList;
 
         public CategoriesMenu()
         {
             _productCategoryList = new ProductCategoryList();
             CategoryButton = (Button)Application.Current.MainWindow.FindName("CategoryMenu");
-            _productButtonControl = (ProductButtonControl)Application.Current.MainWindow.FindResource("ProductButtonControl");
+
+            _totalList = CreateListOfAllProducts();
+            var MenuCat = new MenuCategory("All products", _totalList);
+            MenuCat.Command.Execute(this);
 
             Update();
         }
 
         public void Update()
         {
+            _totalList = CreateListOfAllProducts();
+            var MenuCat = new MenuCategory("All products", _totalList);
 
-            foreach (var category in _productCategoryList)
+            CategoryButton.ContextMenu.Items.Add(MenuCat);
+
+            //Create categories from categories list
+            for (int i = 0; i < _productCategoryList.Count; i++)
             {
-                var categoryItem = new MenuItem();
-                categoryItem.Header = category.Name;
-                categoryItem.MinHeight = 50;
-                categoryItem.Click += CategoryItemOnClick;
-                categoryItem.Background = new SolidColorBrush();
+                var MenuCateg = new MenuCategory(_productCategoryList[i].Name, _productCategoryList[i].Products);
 
-                CategoryButton.ContextMenu.Items.Add(categoryItem);
+
+
+                CategoryButton.ContextMenu.Items.Add(MenuCateg);
             }
         }
 
-        private void CategoryItemOnClick(object sender, RoutedEventArgs routedEventArgs)
+        private List<Product> CreateListOfAllProducts()
         {
-            string pressedCategory = (sender as MenuItem).Header.ToString();
-            CategoryButton.Content = pressedCategory;
+            List<Product> totalProducts = new List<Product>();
 
-            if (_productButtonControl != null)
+            foreach (var Category in _productCategoryList)
             {
-                foreach (var category in _productCategoryList)
-                {
-                    if (pressedCategory == category.Name)
-                    {
-                        _productButtonControl.Update(category.Products);
-                    }
-                }
+                totalProducts.AddRange(Category.Products);
             }
+
+            return totalProducts;
         }
     }
 }

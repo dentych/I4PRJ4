@@ -39,8 +39,7 @@
                             Content="Categories"
                             Click="Categori_Click"
                             ContextMenuService.IsEnabled="False"
-                            Margin="5"
-                            DataContext="{StaticResource ProductButtonControl}">
+                            Margin="5">
                         <Button.ContextMenu >
                             <ContextMenu>
                             </ContextMenu>

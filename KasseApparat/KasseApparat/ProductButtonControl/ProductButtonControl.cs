@@ -58,6 +58,7 @@ namespace KasseApparat
         {
             _PDL = createList;
             CalculateTotalpage();
+            _currentPage = 1;
             CreatePageList();
 
             //Notifying for new changes
