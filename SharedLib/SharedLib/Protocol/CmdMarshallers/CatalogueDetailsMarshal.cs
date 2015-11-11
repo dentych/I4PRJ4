@@ -31,6 +31,7 @@ namespace SharedLib.Protocol.CmdMarshallers
 
                     writer.WriteAttributeString("Name", productCategory.Name); // "Name" attribute for Product
                     writer.WriteAttributeString("ProductCategoryId", productCategory.ProductCategoryId.ToString()); // "ProductId" attribute for Product
+                    writer.WriteStartElement("ProductList");// ProductList start
 
                     foreach (var product in productCategory.Products) // Write product details for each element in list
                     {
@@ -45,6 +46,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                         writer.WriteEndElement(); // Product ended
                     } // Products ended
 
+                    writer.WriteEndElement(); // ProductList ended
                     writer.WriteEndElement(); // ProductCategory ended
                 }
 

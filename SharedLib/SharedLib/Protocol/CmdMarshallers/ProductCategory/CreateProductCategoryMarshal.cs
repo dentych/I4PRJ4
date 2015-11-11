@@ -28,6 +28,7 @@ namespace SharedLib.Protocol.CmdMarshallers.ProductCategoryMarshallers
                 writer.WriteAttributeString("Name", ccmd.CmdName); // "Name" attribute to root
                 writer.WriteStartElement("ProductCategory");// ProductCategory start
                 writer.WriteAttributeString("Name", ccmd.Name);// "Name" attribute for category
+                writer.WriteStartElement("ProductList"); // ProductList start
 
                 foreach (var product in ccmd.Products) // Write product details for each element in list
                 {
@@ -41,6 +42,7 @@ namespace SharedLib.Protocol.CmdMarshallers.ProductCategoryMarshallers
                     writer.WriteEndElement(); // Product ended
                 }
 
+                writer.WriteEndElement(); // ProductList ended
                 writer.WriteEndElement();// ProductCategory ended
                 writer.WriteEndElement(); // Root end
             }
