@@ -21,7 +21,7 @@ namespace KasseApparat
 
         private int _totalPages = 1;
         private int _currentPage = 1;
-        private readonly ProductCategoryList _productCategoryList;
+        private List<Product> _PDL; 
         private List<ProductButtonList> _PageList;
         private ShoppingList _shopList;
 
@@ -33,16 +33,16 @@ namespace KasseApparat
          */ 
         public ProductButtonControl()
         {
-            _productCategoryList = new ProductCategoryList(); //Changed to PCL
+            _PDL = new List<Product>(); //Changed to PCL
             _PageList = new List<ProductButtonList>();
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
 
-            Update();
+            CreatePageList();
         }
 
         /* 
          * Ctor: Constructor der er skabt for at gøre hele klassen mere testbar.
-         */
+         
         public ProductButtonControl(ProductList pl, List<ProductButtonList> pbl, ShoppingList sl)
         {
             _productList = pl;
@@ -51,11 +51,12 @@ namespace KasseApparat
 
             Update();
         }
+        */
 
         //Updates the productbuttons, with the products contained in the database
-        public void Update()
+        public void Update(List<Product> createList)
         {
-            //_productList.Update(); not needed?
+            _PDL = createList;
             CalculateTotalpage();
             CreatePageList();
 
@@ -77,9 +78,9 @@ namespace KasseApparat
 
                 for (int index = i; i < (index+12); i++)
                 {
-                    if (_productCategoryList[PCLindex].Products.Count > i) //PCL changed
+                    if (_PDL.Count > i) //PCL changed
                     {
-                        _PageList[pages].Add(new ButtonContent(_productCategoryList[PCLindex].Products[i])); //PCL changed
+                        _PageList[pages].Add(new ButtonContent(_PDL[i])); //PCL changed
                     }
                     else
                     {
@@ -93,13 +94,13 @@ namespace KasseApparat
 
         void CalculateTotalpage()
         {
-            if ((_productCategoryList[PCLindex].Products.Count %12) == 0)
+            if ((_PDL.Count %12) == 0)
             {
-                _totalPages = _productCategoryList[PCLindex].Products.Count /12;
+                _totalPages = _PDL.Count /12;
             }
             else
             {
-                _totalPages = (_productCategoryList[PCLindex].Products.Count /12)+1;
+                _totalPages = (_PDL.Count /12)+1;
             }
         }
 
