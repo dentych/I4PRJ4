@@ -13,7 +13,6 @@ namespace SharedLib.Models
         private uint _quantity;
         private decimal _unitPrice;
         public int PurchaseId;
-
         public int PurchasedProductId
         {
             get; set;
@@ -69,15 +68,17 @@ namespace SharedLib.Models
             Name = pp.Name;
             ProductNumber = pp.ProductNumber;
             UnitPrice = pp.UnitPrice;
+            PurchaseId = pp.PurchaseId;
         }
 
-        public PurchasedProduct(Product product, uint quantity)
+        public PurchasedProduct(Product product, uint quantity, int purchaseId)
         {
             Name = product.Name;
             ProductNumber = product.ProductNumber;
             UnitPrice = product.Price;
             Quantity = quantity;
             PurchasedProductId = product.ProductId;
+            PurchaseId = purchaseId;
         }
 
         public new event PropertyChangedEventHandler PropertyChanged;

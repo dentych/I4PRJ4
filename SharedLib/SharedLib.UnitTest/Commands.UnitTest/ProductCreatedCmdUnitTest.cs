@@ -23,10 +23,11 @@ namespace SharedLib.UnitTest.Commands.UnitTest
                 Name = "Appelsin",
                 Price = 10,
                 ProductId = 50,
-                ProductNumber = "15"
+                ProductNumber = "15",
+                ProductCategoryId = 5
             };
 
-            cmd = new ProductCreatedCmd("Appelsin", "15", 10,50);
+            cmd = new ProductCreatedCmd("Appelsin", "15", 10,50, 5);
         }
 
         [TearDown]
