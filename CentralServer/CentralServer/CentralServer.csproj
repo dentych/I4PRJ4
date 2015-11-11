@@ -63,6 +63,10 @@
     <Compile Include="Messaging\IMessageQueue.cs" />
     <Compile Include="Messaging\IMessageReceiver.cs" />
     <Compile Include="Messaging\MessageReceiver.cs" />
+    <Compile Include="Migrations\201511111854556_AddedProductCategory.cs" />
+    <Compile Include="Migrations\201511111854556_AddedProductCategory.Designer.cs">
+      <DependentUpon>201511111854556_AddedProductCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sessions\ISessionControl.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Log.cs" />
@@ -89,7 +93,7 @@
     <Compile Include="Server\SocketServer.cs" />
     <Compile Include="Sessions\SessionControl.cs" />
     <Compile Include="Threading\IThreadRunner.cs" />
-    <Compile Include="Threading\ThreadBase.cs" />
+    <Compile Include="Threading\ThreadStarter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -98,6 +102,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510230832315_FirstVersion.resx">
       <DependentUpon>201510230832315_FirstVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511111854556_AddedProductCategory.resx">
+      <DependentUpon>201511111854556_AddedProductCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

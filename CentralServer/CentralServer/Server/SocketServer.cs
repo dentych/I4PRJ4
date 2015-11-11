@@ -51,9 +51,13 @@ namespace CentralServer.Server
             var clientControl = new ClientControl(_log, _mainControl, connection);
             var clientReceiver = new MessageReceiver(clientControl, new MessageQueue());
             var clientThread = ThreadStarter.Start(clientReceiver);
-            clientThread.Start();
 
-            var registerMsg = new StartSessionMsg(clientReceiver);
+            RegisterClient(clientReceiver);
+        }
+
+        private void RegisterClient(IMessageReceiver client)
+        {
+            var registerMsg = new StartSessionMsg(client);
             _mainControl.Send(MainControl.E_START_SESSION, registerMsg);
         }
     }

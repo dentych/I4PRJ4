@@ -69,10 +69,10 @@ namespace CentralServer
             var sessionId = _sessions.Register(client);
             var response = new WelcomeMsg(sessionId);
 
-            client.Send(ClientControl.E_WELCOME, response);
-
             _log.Write("MainControl", Log.DEBUG,
                        "New client registered. Session ID: " + sessionId);
+
+            client.Send(ClientControl.E_WELCOME, response);
         }
 
         /*
@@ -102,9 +102,17 @@ namespace CentralServer
                 case "GetCatalogue":
                     OnGetCatalogue(client, (GetCatalogueCmd)cmd);
                     break;
+
                 case "CreateProduct":
                     OnCreateProduct(client, (CreateProductCmd)cmd);
                     break;
+                case "EditProduct":
+                    OnEditProduct(client, (EditProductCmd)cmd);
+                    break;
+                case "DeleteProduct":
+                    OnDeleteProduct(client, (DeleteProductCmd)cmd);
+                    break;
+
                 case "RegisterPurchase":
                     OnRegisterPurchase(client, (RegisterPurchaseCmd)cmd);
                     break;
@@ -125,9 +133,10 @@ namespace CentralServer
             // Retrieve products from database
             using (var db = new DatabaseContext())
             {
-                var query = from p in db.Products select p;
-                foreach (var product in query)
-                    catalogueCmd.Products.Add(product);
+                var query = from pc in db.ProductCategories select pc;
+
+                foreach (var category in query)
+                    catalogueCmd.ProductCategories.Add(category);
             }
 
             // Send response command
@@ -163,6 +172,58 @@ namespace CentralServer
             Broadcast(new ProductCreatedCmd(product));
         }
 
+
+        private void OnEditProduct(IMessageReceiver client, EditProductCmd cmd)
+        {
+            _log.Write("MainControl", Log.NOTICE,
+                       "Client modifying an existing product");
+
+            Product product;
+
+            using (var db = new DatabaseContext())
+            {
+                product = db.Products.Find(cmd.ProductId);
+
+                if (product == null)
+                    return;
+
+                product.Name = cmd.Name;
+                product.ProductNumber = cmd.ProductNumber;
+                product.Price = cmd.Price;
+
+                db.Entry(product).CurrentValues.SetValues(product);
+                db.SaveChanges();
+            }
+
+            Broadcast(new ProductEditedCmd(product));
+        }
+
+
+        private void OnDeleteProduct(IMessageReceiver client, DeleteProductCmd cmd)
+        {
+            _log.Write("MainControl", Log.NOTICE,
+                       "Client modifying an existing product");
+
+            Product product;
+
+            using (var db = new DatabaseContext())
+            {
+                product = db.Products.Find(cmd.ProductId);
+
+                if (product == null)
+                    return;
+
+                product.Name = cmd.Name;
+                product.ProductNumber = cmd.ProductNumber;
+                product.Price = cmd.Price;
+
+                db.Entry(product).CurrentValues.SetValues(product);
+                db.SaveChanges();
+            }
+
+            Broadcast(new ProductEditedCmd(product));
+        }
+
         /*
          * Invoked when a clients wants to register a purchase
          */
@@ -177,10 +238,11 @@ namespace CentralServer
          */
         private void Broadcast(Command cmd)
         {
-            var msg = new SendCommandMsg(cmd);
-
             foreach (var c in _sessions.GetClients())
+            {
+                var msg = new SendCommandMsg(cmd);
                 c.Send(ClientControl.E_SEND_COMMAND, msg);
+            }
         }
     }
 }

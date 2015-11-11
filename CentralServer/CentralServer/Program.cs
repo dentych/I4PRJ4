@@ -19,15 +19,15 @@ namespace CentralServer
             // Init MainControl
             var sessions = new SessionControl();
             var main = new MainControl(log, sessions);
-            var mainReciever = new MessageReceiver(main, new MessageQueue());
+            var mainRunner = new MessageReceiver(main, new MessageQueue());
 
             // Init socket server
             var port = GetServerPort(args);
-            var serverRunner = new SocketServer(log, mainReciever, port);
+            var server = new SocketServer(log, mainRunner, port);
 
             // Start all threads
-            var mainThread = ThreadStarter.Start(mainReciever);
-            var serverThread = ThreadStarter.Start(serverRunner);
+            var mainThread = ThreadStarter.Start(mainRunner);
+            var serverThread = ThreadStarter.Start(server);
 
             // Join on all threads
             mainThread.Join();
