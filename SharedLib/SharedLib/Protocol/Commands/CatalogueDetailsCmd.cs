@@ -17,12 +17,12 @@ namespace SharedLib.Protocol.Commands
 
         public CatalogueDetailsCmd(List<ProductCategory> productCategories )
         {
-            foreach (var prd in productCategories)
+            foreach (var prdC in productCategories)
             {
-                var copy = new ProductCategory(prd.Products)
+                var copy = new ProductCategory(prdC.Products)
                 {
-                    Name = prd.Name,
-                    ProductCategoryId = prd.ProductCategoryId
+                    Name = prdC.Name,
+                    ProductCategoryId = prdC.ProductCategoryId
                 };
 
                 ProductCategories.Add(copy);
