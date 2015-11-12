@@ -22,9 +22,6 @@ namespace Backend.Models.SocketEvents
         #endregion
 
         #region Event handlers
-
-
-
         public void ProductCreatedHandler(ProductCreatedCmd cmd)
         {
             _categories.GetListByCateogry(cmd.ProductCategoryId).AddProduct(cmd.GetProduct());
@@ -44,7 +41,7 @@ namespace Backend.Models.SocketEvents
                     break;
                 }
             }
-        } 
+        }
 
         public void ProductEditedHandler(ProductEditedCmd cmd)
         {
@@ -75,18 +72,25 @@ namespace Backend.Models.SocketEvents
 
         public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)
         {
-            foreach (var category in cmd.ProductCategories) // NO IT IS PRODUCTCATEGORY)
+            if (cmd.ProductCategories.Count > 0)
             {
-                BackendProductCategory Category = new BackendProductCategory()
+                foreach (var category in cmd.ProductCategories) // NO IT IS PRODUCTCATEGORY)
                 {
-                    BName = category.Name,
-                    ProductCategoryId = category.ProductCategoryId,
-                    Products = category.Products
-                };
-                _categories.Add(Category);
-                
+                    BackendProductCategory Category = new BackendProductCategory()
+                    {
+                        BName = category.Name,
+                        ProductCategoryId = category.ProductCategoryId,
+                        Products = category.Products
+                    };
+                    _categories.Add(Category);
+
+                }
+                _categories.Bootstrapper();
             }
-            _categories.Bootstrapper();
+            else
+            {
+                _categories.CurrentProductList = null;
+            }
         }
 
         public void ProductCategoryCreatedHandler(ProductCategoryCreatedCmd category)
@@ -120,7 +124,7 @@ namespace Backend.Models.SocketEvents
                 if (_categories[i].ProductCategoryId == category.ProductCategoryId)
                 {
                     _categories[i].BName = category.Name;
-                   // _categories[i].Products = category.Products; // This shouldn't be nødvendigt nissemand :-D
+                    // _categories[i].Products = category.Products; // This shouldn't be nødvendigt nissemand :-D
                 }
             }
         }
@@ -128,7 +132,7 @@ namespace Backend.Models.SocketEvents
 
         #region Subscribe methods
 
-   
+
 
         public void SubscribeProductCreated()
         {
