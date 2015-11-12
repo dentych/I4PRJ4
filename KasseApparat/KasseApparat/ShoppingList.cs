@@ -15,8 +15,8 @@ namespace KasseApparat
 {
     public class ShoppingList : ObservableCollection<PurchasedProduct>, INotifyPropertyChanged
     {
-        private IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
-        //private IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
+        public IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
+        //public IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
 
         public void AddItem(PurchasedProduct product)
         {
@@ -40,6 +40,7 @@ namespace KasseApparat
         public void SetQuantity(uint ammount)
         {
             this[CurrentIndex].Quantity = ammount;
+            Notify("TotalPrice");
         }
         
         public int TotalPrice
@@ -50,6 +51,7 @@ namespace KasseApparat
         public void EndPurchase()
         {
             _db.PurchaseDone(this);
+            ClearItems();
         }
 
 #region PropertyChanged

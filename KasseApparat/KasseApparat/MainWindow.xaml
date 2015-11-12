@@ -412,7 +412,8 @@
                         Click="ButtonNr_Click"/>
                 <Button x:Name="ButtonZero" Content="0" Grid.Row="4" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonNr_Click"/>
-                <Button x:Name="ButtonOneDZero" Content="Mængde" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="15"/>
+                <Button x:Name="ButtonOneDZero" Content="Mængde" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="15"
+                        Click="ButtonQuant_Click"/>
                 <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonClr_Click"/>
                 <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,7,6.6,7" Click="ButtonCash_Click"/>

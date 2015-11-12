@@ -38,9 +38,16 @@ namespace KasseApparat
                 {
                     Name = "Kontant",
                     Price = -Convert.ToDecimal(Display.Text),
-                }, 1));
+                }, 1, 1));
                 Display.Text = "";
             }
+        }
+
+        private void ButtonQuant_Click(object sender, RoutedEventArgs e)
+        {
+            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
+            shopList.SetQuantity(Convert.ToUInt32(Display.Text));
+            Display.Text = "";
         }
 
         private void ButtonNr_Click(object sender, RoutedEventArgs e)

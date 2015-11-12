@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using NSubstitute;
 using NUnit.Framework;
 using SharedLib.Models;
 
@@ -28,8 +29,8 @@ namespace KasseApparat.UnitTest
             prod2.Name = "Beer";
             prod2.Price = 5;
 
-            uut.Add(new PurchasedProduct(prod1, 5));
-            uut.Add(new PurchasedProduct(prod2, 4));
+            uut.Add(new PurchasedProduct(prod1, 5, 1));
+            uut.Add(new PurchasedProduct(prod2, 4, 1));
         }
 
         [Test]
@@ -53,7 +54,7 @@ namespace KasseApparat.UnitTest
             var prod = new Product();
             prod.Name = "Juice";
 
-            uut.AddItem(new PurchasedProduct(prod, 5));
+            uut.AddItem(new PurchasedProduct(prod, 5, 1));
 
             Assert.That(uut[2].Name, Is.EqualTo("Juice"));
         }
@@ -63,7 +64,7 @@ namespace KasseApparat.UnitTest
             var prod = new Product();
             prod.Name = "Coke";
 
-            uut.AddItem(new PurchasedProduct(prod, 4));
+            uut.AddItem(new PurchasedProduct(prod, 4, 1));
 
             Assert.That(uut[0].Quantity, Is.EqualTo(9));
         }
@@ -82,9 +83,36 @@ namespace KasseApparat.UnitTest
             bool test = false;
             uut.PropertyChanged += delegate(object sender, PropertyChangedEventArgs args) { test = true; };
 
-            uut.AddItem(new PurchasedProduct(new Product(),1));
+            uut.AddItem(new PurchasedProduct(new Product(),1, 1));
 
             Assert.True(test);
+        }
+
+        [Test]
+        public void SetQuantity_To5_Expect5()
+        {
+            uut.CurrentIndex = 0;
+            uut.SetQuantity(5);
+
+            Assert.That(uut[0].Quantity, Is.EqualTo(5));
+        }
+
+        [Test]
+        public void EndPurchase_CallEnd_Expect1Call()
+        {
+            uut._db = Substitute.For<IDBcontrol>();
+            uut.EndPurchase();
+
+            uut._db.Received(1).PurchaseDone(Arg.Any<ShoppingList>());
+        }
+
+        [Test]
+        public void EndPurchase_CallEnd_Expect0()
+        {
+            uut._db = Substitute.For<IDBcontrol>();
+            uut.EndPurchase();
+
+            Assert.That(uut.Count, Is.EqualTo(0));
         }
     }
 
@@ -119,7 +147,7 @@ namespace KasseApparat.UnitTest
         [Test]
         public void MoreCommand_Execute_Expect3()
         {
-            uut.Add(new PurchasedProduct(new Product(), 2));
+            uut.Add(new PurchasedProduct(new Product(), 2, 1));
             uut.CurrentIndex = 0;
             uut.MoreCommand.Execute(uut);
 
@@ -145,7 +173,7 @@ namespace KasseApparat.UnitTest
         [Test]
         public void LessCommand_Execute_Expect1()
         {
-            uut.Add(new PurchasedProduct(new Product(), 2));
+            uut.Add(new PurchasedProduct(new Product(), 2, 1));
             uut.CurrentIndex = 0;
             uut.LessCommand.Execute(uut);
 
@@ -155,7 +183,7 @@ namespace KasseApparat.UnitTest
         [Test]
         public void LessCommand_Execute_ExpectNone()
         {
-            uut.Add(new PurchasedProduct(new Product(), 1));
+            uut.Add(new PurchasedProduct(new Product(), 1, 1));
             uut.CurrentIndex = 0;
             uut.LessCommand.Execute(uut);
 
@@ -194,9 +222,9 @@ namespace KasseApparat.UnitTest
         {
             uut.CurrentIndex = 1;
 
-            uut.Add(new PurchasedProduct(new Product(), 1));
-            uut.Add(new PurchasedProduct(new Product(), 1));
-            uut.Add(new PurchasedProduct(new Product(), 1));
+            uut.Add(new PurchasedProduct(new Product(), 1, 1));
+            uut.Add(new PurchasedProduct(new Product(), 1, 1));
+            uut.Add(new PurchasedProduct(new Product(), 1, 1));
 
             Assert.True(uut.NextCommand.CanExecute(uut));
         }
@@ -236,7 +264,7 @@ namespace KasseApparat.UnitTest
         [Test]
         public void DeleteCommand_Execute_ExpectNone()
         {
-            uut.Add(new PurchasedProduct(new Product(), 1));
+            uut.Add(new PurchasedProduct(new Product(), 1, 1));
             uut.CurrentIndex = 0;
             uut.DeleteCommand.Execute(uut);
 
