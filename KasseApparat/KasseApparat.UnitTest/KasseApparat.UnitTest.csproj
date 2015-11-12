@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBcontrolTest.cs" />
+    <Compile Include="FakeDBcontrolTest.cs" />
+    <Compile Include="ProductCategoryListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingListTest.cs" />
   </ItemGroup>

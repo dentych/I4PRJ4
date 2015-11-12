@@ -26,6 +26,7 @@ namespace SharedLib.Protocol.CmdMarshallers.ProductCategoryMarshallers
                 writer.WriteStartElement("ProductCategory");// ProductCategory start
                 writer.WriteAttributeString("Name", ccmd.Name);// "Name" attribute for category
                 writer.WriteAttributeString("ProductCategoryId", ccmd.ProductCategoryId.ToString());// "ProductCategorId" attribute for category
+                writer.WriteStartElement("ProductList");// ProductCategory start
 
                 foreach (var product in ccmd.Products) // Write product details for each element in list
                 {
@@ -35,10 +36,12 @@ namespace SharedLib.Protocol.CmdMarshallers.ProductCategoryMarshallers
                     writer.WriteAttributeString("ProductNumber", product.ProductNumber);// "ProductNumber" attribute for Product
                     writer.WriteAttributeString("Price", product.Price.ToString()); // "Price" attribute for Product
                     writer.WriteAttributeString("ProductId", product.ProductId.ToString()); // "ProductId" attribute for Product
+                    writer.WriteAttributeString("ProductCategoryId", product.ProductCategoryId.ToString()); // "ProductId" attribute for Product
 
                     writer.WriteEndElement(); // Product ended
                 }
 
+                writer.WriteEndElement();// ProductList ended
                 writer.WriteEndElement();// ProductCategory ended
                 writer.WriteEndElement(); // Root end
             }
@@ -77,6 +80,7 @@ namespace SharedLib.Protocol.CmdMarshallers.ProductCategoryMarshallers
                         product.ProductNumber = reader["ProductNumber"]; // Inserts the value of the attribute name "ProductNumber" into the product object
                         product.Price = Convert.ToDecimal(reader["Price"]); // Inserts the value of the attribute name "Price" into the product object
                         product.ProductId = Convert.ToInt32(reader["ProductId"]); // Inserts the value of the attribute name "ProductId" into the product object
+                        product.ProductCategoryId = Convert.ToInt32(reader["ProductId"]); // Inserts the value of the attribute name "ProductId" into the product object
 
                         productList.Add(product); // Add the newly created product to the productlist
                     } // end if

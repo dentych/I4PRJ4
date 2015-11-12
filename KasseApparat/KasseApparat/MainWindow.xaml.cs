@@ -25,8 +25,7 @@ namespace KasseApparat
         public MainWindow()
         {
             InitializeComponent();
-            //var productButton = new ProductButtonControl();
-            
+            var catMenu = new CategoriesMenu();
         }
 
 #region Inputs
@@ -39,9 +38,16 @@ namespace KasseApparat
                 {
                     Name = "Kontant",
                     Price = -Convert.ToDecimal(Display.Text),
-                }, 1));
+                }, 1, 1));
                 Display.Text = "";
             }
+        }
+
+        private void ButtonQuant_Click(object sender, RoutedEventArgs e)
+        {
+            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
+            shopList.SetQuantity(Convert.ToUInt32(Display.Text));
+            Display.Text = "";
         }
 
         private void ButtonNr_Click(object sender, RoutedEventArgs e)
@@ -55,21 +61,27 @@ namespace KasseApparat
             Display.Text = "";
         }
 
-#endregion
-
-        private void ButtonProductClick(object sender, RoutedEventArgs e)
+        private void CategoryItemOnClick(object sender, RoutedEventArgs routedEventArgs)
         {
-            Button buttonName = (Button)e.OriginalSource;
-            ProductButtonControl ProdControl = (ProductButtonControl) this.FindResource("ProductButtonControl");
-            
-            ProdControl.addItem(int.Parse(buttonName.Tag.ToString()));
+            throw new NotImplementedException();
         }
 
+        #endregion
+        /*
         private void ButtonRefreshClick(object sender, RoutedEventArgs e)
         {
             ProductButtonControl ProdControl = (ProductButtonControl)this.FindResource("ProductButtonControl");
 
             ProdControl.Update();
+        }
+        */
+
+        private void Categori_Click(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).ContextMenu.IsEnabled = true;
+            (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
+            (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            (sender as Button).ContextMenu.IsOpen = true;
         }
     }
 }

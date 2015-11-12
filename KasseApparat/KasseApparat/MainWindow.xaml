@@ -10,6 +10,7 @@
     <Window.Resources>
         <local:ProductButtonControl x:Key="ProductButtonControl" />
         <local:ShoppingList x:Key="ShoppingList" />
+        <local:CategoriesMenu x:Key="CategoriesMenu" />
     </Window.Resources>
 
     <Grid>
@@ -34,9 +35,16 @@
                         <ColumnDefinition Width="24*"></ColumnDefinition>
                         <ColumnDefinition Width="14*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Margin="5" 
-                            Content="Refresh"
-                            Click="ButtonRefreshClick"></Button>
+                    <Button x:Name="CategoryMenu"
+                            Content="Categories"
+                            Click="Categori_Click"
+                            ContextMenuService.IsEnabled="False"
+                            Margin="5">
+                        <Button.ContextMenu >
+                            <ContextMenu>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
                     <Label Grid.Row="0" Grid.Column="1" 
                            HorizontalAlignment="Right"
                            Content="Page" Width="35"/>
@@ -189,7 +197,7 @@
                             Margin="5"
                             x:Name="ProductButton08"
                             Tag="7"
-                            Command="{Binding CurrentButtonPage[8].AddCommand}">
+                            Command="{Binding CurrentButtonPage[7].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"></RowDefinition>
@@ -207,7 +215,7 @@
                             Margin="5"
                             x:Name="ProductButton09"
                             Tag="8"
-                            Command="{Binding CurrentButtonPage[9].AddCommand}">
+                            Command="{Binding CurrentButtonPage[8].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"></RowDefinition>
@@ -404,7 +412,8 @@
                         Click="ButtonNr_Click"/>
                 <Button x:Name="ButtonZero" Content="0" Grid.Row="4" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonNr_Click"/>
-                <Button x:Name="ButtonOneDZero" Content="00" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"/>
+                <Button x:Name="ButtonOneDZero" Content="Mængde" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="15"
+                        Click="ButtonQuant_Click"/>
                 <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonClr_Click"/>
                 <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,7,6.6,7" Click="ButtonCash_Click"/>

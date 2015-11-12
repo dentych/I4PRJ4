@@ -42,8 +42,12 @@ namespace Backend.ViewModels
             _ev.SubscribeCatalogueDetails();
             _ev.SubscribeProductCreated();
 
-            Categories = faker.Make();
-            Categories.Bootstrapper();
+          /* Send anmodning om catalogue
+           * SocketEvents getcatalogue bliver invoked
+           * Kategoierne bliver lagt ind
+           * bootstrapper kørers */
+            modelHandler.CatalogueDetails(); 
+            
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddProductWindowLoaded, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);

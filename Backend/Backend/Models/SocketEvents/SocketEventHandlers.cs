@@ -84,7 +84,9 @@ namespace Backend.Models.SocketEvents
                     Products = category.Products
                 };
                 _categories.Add(Category);
+                
             }
+            _categories.Bootstrapper();
         }
 
         public void ProductCategoryCreatedHandler(ProductCategoryCreatedCmd category)

@@ -218,7 +218,7 @@ namespace KasseApparat
     public class DBcontrol : IDBcontrol
     {
         public IConnection Connection = null;
-        public Protocol protocol = new Protocol();
+        public IProtocol protocol = new Protocol();
 
         public DBcontrol(IConnection conn)
         {
@@ -234,8 +234,7 @@ namespace KasseApparat
 
             Connection.Disconnect();
 
-            //return cmd.Products;
-            return null;
+            return cmd.ProductCategories;
         }
 
         public void PurchaseDone(IList<PurchasedProduct> ShopList)
