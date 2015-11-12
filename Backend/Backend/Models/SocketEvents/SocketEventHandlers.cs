@@ -27,7 +27,7 @@ namespace Backend.Models.SocketEvents
 
         public void ProductCreatedHandler(ProductCreatedCmd cmd)
         {
-            _categories.GetListByCateogry(cmd.ProductId).AddProduct(cmd.GetProduct());
+            _categories.GetListByCateogry(cmd.ProductCategoryId).AddProduct(cmd.GetProduct());
             _categories.UpdateCurrentProducts();
         }
 

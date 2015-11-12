@@ -29,7 +29,7 @@ namespace Backend.ViewModels
 
             try
             {
-               // conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
+               conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
 
             }
             catch (Exception)
@@ -38,16 +38,6 @@ namespace Backend.ViewModels
                 MessageBox.Show("No connection"); // Y DOS DIS NOT WORK
             }
 
-            _ev = new SocketEventHandlers(Categories);
-            _ev.SubscribeCatalogueDetails();
-            _ev.SubscribeProductCreated();
-
-          /* Send anmodning om catalogue
-           * SocketEvents getcatalogue bliver invoked
-           * Kategoierne bliver lagt ind
-           * bootstrapper kørers */
-            modelHandler.CatalogueDetails(); 
-            
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddProductWindowLoaded, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);
@@ -55,7 +45,20 @@ namespace Backend.ViewModels
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
             Aggregator.GetEvent<DeleteCategoryWindowLoaded>().Subscribe(DeleteCategoryWindow, true);
 
+            _ev = new SocketEventHandlers(Categories);
+            _ev.SubscribeCatalogueDetails();
+            _ev.SubscribeProductCreated();
+            _ev.SubscribeProductDeleted();
+            _ev.SubscribeProductEdited();
+            _ev.SubscribeProductCategoryCreated();
+            _ev.SubscribeProductCategoryDeleted();
+            _ev.SubscribeProductCategoryEdited();
 
+          /* Send anmodning om catalogue
+           * SocketEvents getcatalogue bliver invoked
+           * Kategoierne bliver lagt ind
+           * bootstrapper kørers */
+            modelHandler.CatalogueDetails(); 
         }
 
  
