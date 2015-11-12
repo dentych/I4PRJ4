@@ -118,7 +118,7 @@ namespace KasseApparat
             else
             {
                 //Adds new item on shoppinglist.
-                _shopList.AddItem(new PurchasedProduct(Product, 1));
+                _shopList.AddItem(new PurchasedProduct(Product, 1, 1));
             }
         }
 
