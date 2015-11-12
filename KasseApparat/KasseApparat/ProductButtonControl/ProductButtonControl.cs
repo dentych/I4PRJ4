@@ -19,30 +19,46 @@ namespace KasseApparat
     {
 #region attributes
 
-
         private int _totalPages = 1;
         private int _currentPage = 1;
-        private readonly ProductCategoryList _productCategoryList;
+        private List<Product> _PDL; 
         private List<ProductButtonList> _PageList;
         private ShoppingList _shopList;
 
         private int PCLindex = 1; //For PCL
 #endregion
-
+         
+        /* 
+         * Ctor: Constructor for klassen.
+         */ 
         public ProductButtonControl()
         {
-            _productCategoryList = new ProductCategoryList(); //Changed to PCL
+            _PDL = new List<Product>(); //Changed to PCL
             _PageList = new List<ProductButtonList>();
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
 
-            Update();
+            CreatePageList();
         }
 
-        //Updates the productbuttons, with the products contained in the database
-        public void Update()
+        /* 
+         * Ctor: Constructor der er skabt for at gøre hele klassen mere testbar.
+         
+        public ProductButtonControl(ProductList pl, List<ProductButtonList> pbl, ShoppingList sl)
         {
-            //_productList.Update(); not needed?
+            _productList = pl;
+            _PageList = pbl;
+            _shopList = sl;
+
+            Update();
+        }
+        */
+
+        //Updates the productbuttons, with the products contained in the database
+        public void Update(List<Product> createList)
+        {
+            _PDL = createList;
             CalculateTotalpage();
+            _currentPage = 1;
             CreatePageList();
 
             //Notifying for new changes
@@ -63,9 +79,9 @@ namespace KasseApparat
 
                 for (int index = i; i < (index+12); i++)
                 {
-                    if (_productCategoryList[PCLindex].Products.Count > i) //PCL changed
+                    if (_PDL.Count > i) //PCL changed
                     {
-                        _PageList[pages].Add(new ButtonContent(_productCategoryList[PCLindex].Products[i])); //PCL changed
+                        _PageList[pages].Add(new ButtonContent(_PDL[i])); //PCL changed
                     }
                     else
                     {
@@ -79,25 +95,13 @@ namespace KasseApparat
 
         void CalculateTotalpage()
         {
-            if ((_productCategoryList[PCLindex].Products.Count %12) == 0)
+            if ((_PDL.Count %12) == 0)
             {
-                _totalPages = _productCategoryList[PCLindex].Products.Count /12;
+                _totalPages = _PDL.Count /12;
             }
             else
             {
-                _totalPages = (_productCategoryList[PCLindex].Products.Count /12)+1;
-            }
-        }
-
-        public void addItem(int indexItem)
-        {
-            if (_shopList.Any(x => x.Name == _PageList[_currentPage-1][indexItem].Name))
-            {
-                _shopList.IncrementQuantity(_shopList.IndexOf(_shopList.Where(x => x.Name == _PageList[_currentPage - 1][indexItem].Name).Single()));
-            }
-            else
-            {
-                _shopList.AddItem(new PurchasedProduct(_PageList[CurrentPages-1][indexItem].Product, 1));
+                _totalPages = (_PDL.Count /12)+1;
             }
         }
 
