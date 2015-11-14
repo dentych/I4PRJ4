@@ -22,9 +22,9 @@ namespace Backend.ViewModels
         public MainWindowViewModel()
         {
 
-            conn = LSC.Connection;
-            conn.OnConnectionOpened += ConenctionOpenedHandler;
-            conn.OnConnectionClosed += ConnectionClosedHandler;
+//            conn = LSC.Connection;
+              conn.OnConnectionOpened += ConenctionOpenedHandler;
+              conn.OnConnectionClosed += ConnectionClosedHandler;
         //    conn.OnDataRecieved += DataReceivedHandler;
 
             try
@@ -162,6 +162,13 @@ namespace Backend.ViewModels
 
         #region Commands
 
+        /* Valid CED */
+
+        private bool ValidCED()
+        {
+            return DBCON;
+        }
+
         /* Add Product */
         private ICommand _openAddProductWindowCommand;
 
@@ -170,7 +177,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openAddProductWindowCommand ??
-                       (_openAddProductWindowCommand = new RelayCommand(NewAddProductWindow));
+                       (_openAddProductWindowCommand = new RelayCommand(NewAddProductWindow, ValidCED));
             }
         }
 
@@ -182,7 +189,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openEditProductWindowCommand ??
-                       (_openEditProductWindowCommand = new RelayCommand(NewEditProductWindow, () => ProductIndex >= 0));
+                       (_openEditProductWindowCommand = new RelayCommand(NewEditProductWindow, () => ProductIndex >= 0 && DBCON));
             }
         }
 
@@ -194,7 +201,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openAddCategoryWindowCommand ??
-                       (_openAddCategoryWindowCommand = new RelayCommand(OpenAddCategoryDialogWindow));
+                       (_openAddCategoryWindowCommand = new RelayCommand(OpenAddCategoryDialogWindow, ValidCED));
             }
         }
 
@@ -206,7 +213,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openEditCategoryWindowCommand ??
-                       (_openEditCategoryWindowCommand = new RelayCommand(OpenEditCategoryDialogWindow));
+                       (_openEditCategoryWindowCommand = new RelayCommand(OpenEditCategoryDialogWindow, ValidCED));
             }
         }
         /* Delete category */
@@ -217,7 +224,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openDeleteCategoryWindowCommand ??
-                       (_openDeleteCategoryWindowCommand = new RelayCommand(OpenDeleteCategoryDialogWindow));
+                       (_openDeleteCategoryWindowCommand = new RelayCommand(OpenDeleteCategoryDialogWindow, ValidCED));
             }
         }
 
@@ -237,7 +244,7 @@ namespace Backend.ViewModels
             get
             {
                 return _deleteProductCommand ??
-                       (_deleteProductCommand = new RelayCommand(DeleteProductDialog, () => ProductIndex >= 0));
+                       (_deleteProductCommand = new RelayCommand(DeleteProductDialog, () => ProductIndex >= 0 && DBCON));
             }
         }
 
