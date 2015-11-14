@@ -51,7 +51,8 @@ namespace KasseApparat
         private void ButtonQuant_Click(object sender, RoutedEventArgs e)
         {
             ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
-            shopList.SetQuantity(Convert.ToUInt32(Display.Text));
+            if (shopList.Count > 0)
+                shopList.SetQuantity(Convert.ToUInt32(Display.Text));
             Display.Text = "";
         }
 
