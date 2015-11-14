@@ -373,7 +373,8 @@
                 </Grid>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Column="2" x:Name="InputPrice" Header="Inputs" Margin="9.8,10,8,10.4" BorderThickness="2">
+        <GroupBox Grid.Column="2" x:Name="InputPrice" Header="Inputs" Margin="9.8,10,8,10.4" BorderThickness="2"
+                  DataContext="{StaticResource ShoppingList}">
             <Grid Margin="0,10,-2.8,3.2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -384,9 +385,9 @@
                     <RowDefinition Height="38*"></RowDefinition>
                     <RowDefinition Height="30*"></RowDefinition>
                     <RowDefinition Height="30*"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition Height="30*"></RowDefinition>
                     <RowDefinition Height="30*"></RowDefinition>
-                    <RowDefinition Height="19*"></RowDefinition>
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <Border Margin="7,7,6.6,6" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="LightGray">
@@ -412,15 +413,21 @@
                         Click="ButtonNr_Click"/>
                 <Button x:Name="ButtonZero" Content="0" Grid.Row="4" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonNr_Click"/>
-                <Button x:Name="ButtonOneDZero" Content="Mængde" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="15"
-                        Click="ButtonQuant_Click"/>
+                <Button x:Name="ButtonOneDZero" Content="00" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="15"
+                        Click="ButtonNr_Click"/>
                 <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonClr_Click"/>
-                <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,7,6.6,7" Click="ButtonCash_Click"/>
+                <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,0,7,7" Click="ButtonCash_Click" Height="43" VerticalAlignment="Bottom"/>
                 <Button x:Name="ButtonCard" Content="Kort" Grid.Row="6" Grid.Column="1" Margin="7.4,7,7,7"/>
-                <Button x:Name="ButtonAnulate" Grid.Row="6" Grid.Column="2" Margin="7,7,6.6,7">
+                <Button x:Name="ButtonAnulate" Grid.Row="6" Grid.Column="2" Margin="7,7,6.6,7"
+                        Command="{Binding ClearCommand}">
                     <TextBlock TextAlignment="Center"><Run Text="Annuller"/><LineBreak/><Run Text="køb"/></TextBlock>
                 </Button>
+                <Button x:Name="ButtonQuantity" Content="Mængde" Grid.Row="5" Grid.Column="0" Margin="7.4,7,7,7"
+                        Click="ButtonQuant_Click"/>
+                <Button x:Name="ButtonReturn" Content="Retur" Grid.Row="5" Grid.Column="1" Margin="7,7,6.6,7"
+                        Click="ButtonClr_Click" />
+                <Button x:Name="B2" IsEnabled="False" Grid.Row="5" Grid.Column="2" Margin="7,7,6.6,7"/>
             </Grid>
         </GroupBox>
 

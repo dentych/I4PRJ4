@@ -51,7 +51,7 @@ namespace KasseApparat
         public void EndPurchase()
         {
             _db.PurchaseDone(this);
-            ClearItems();
+            ClearCommand.Execute(this);
         }
 
 #region PropertyChanged
@@ -177,5 +177,22 @@ namespace KasseApparat
         }
 #endregion
 
+#region Clear
+        ICommand _ButtonClearClick;
+        public ICommand ClearCommand { get { return _ButtonClearClick ?? (_ButtonClearClick = new RelayCommand(ClearCommandExecute, ClearCommandCanExecute)); } }
+
+        private void ClearCommandExecute()
+        {
+            while (Count > 0)
+                RemoveAt(Count-1);
+            Notify("TotalPrice");
+        }
+
+        bool ClearCommandCanExecute()
+        {
+            if (Count < 0) return false;
+            else return true;
+        }
+#endregion
     }
 }
