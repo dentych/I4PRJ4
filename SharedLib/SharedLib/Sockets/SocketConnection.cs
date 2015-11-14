@@ -7,6 +7,7 @@ namespace SharedLib.Sockets
 {
     public delegate void ConnectionOpenedHandler();
     public delegate void ConnectionClosedHandler();
+    public delegate void ConnectionErrorHandler(SocketException err);
     public delegate void DataRecievedHandler(string data);
 
 
@@ -14,6 +15,7 @@ namespace SharedLib.Sockets
     {
         event ConnectionOpenedHandler OnConnectionOpened;
         event ConnectionClosedHandler OnConnectionClosed;
+        event ConnectionErrorHandler OnConnectionError;
         event DataRecievedHandler OnDataRecieved;
         void Connect(string ip, int port);
         void Send(string data);
@@ -28,6 +30,7 @@ namespace SharedLib.Sockets
 
         public event ConnectionOpenedHandler OnConnectionOpened;
         public event ConnectionClosedHandler OnConnectionClosed;
+        public event ConnectionErrorHandler OnConnectionError;
         public event DataRecievedHandler OnDataRecieved;
 
 
@@ -84,7 +87,7 @@ namespace SharedLib.Sockets
             }
             catch (SocketException e)
             {
-                throw e;
+                OnConnectionError?.Invoke(e);
             }
         }
 
