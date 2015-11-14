@@ -31,6 +31,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                 writer.WriteAttributeString("Price", pecmd.Price.ToString()); // "Price" attribute for Product
                 writer.WriteAttributeString("ProductId", pecmd.ProductId.ToString()); // "ProductId" attribute for Product
                 writer.WriteAttributeString("ProductCategoryId", pecmd.ProductCategoryId.ToString()); // "ProductCategoryId" attribute for Product
+                writer.WriteAttributeString("OldProductCategoryId", pecmd.OldProductCategoryId.ToString()); // "ProductCategoryId" attribute for Product
 
                 writer.WriteEndElement(); // Product ended
                 writer.WriteEndElement(); // Root end
@@ -43,6 +44,7 @@ namespace SharedLib.Protocol.CmdMarshallers
         {
             // Create new product
             var product = new Product();
+            int oldProductCategoryId;
 
             // Create XmlReader to read xml string into product
             using (XmlReader reader = XmlReader.Create(new StringReader(data)))
@@ -53,10 +55,11 @@ namespace SharedLib.Protocol.CmdMarshallers
                 product.Price = Convert.ToDecimal(reader["Price"]);// Inserts the attribute name "Price" into the product object
                 product.ProductId = Convert.ToInt32(reader["ProductId"]);
                 product.ProductCategoryId = Convert.ToInt32(reader["ProductCategoryId"]);
+                oldProductCategoryId = Convert.ToInt32(reader["OldProductCategoryId"]);
             }
 
             // return new command with the translated xml product attributes
-            return new ProductEditedCmd(product);
+            return new ProductEditedCmd(product, oldProductCategoryId);
         }
     }
 }
