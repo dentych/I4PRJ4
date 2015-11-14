@@ -103,8 +103,8 @@ namespace SharedLib.Sockets
 
             if (bytesRead > 0)
             {
-                BeginAsyncRead();
                 HandleDataRecieved(bytesRead);
+                BeginAsyncRead();
             }
             else
             {
