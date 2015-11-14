@@ -29,7 +29,7 @@ namespace Backend.ViewModels
 
             try
             {
-               conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
+              conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
 
             }
             catch (Exception)
@@ -59,6 +59,8 @@ namespace Backend.ViewModels
            * Kategoierne bliver lagt ind
            * bootstrapper kørers */
             modelHandler.CatalogueDetails(); 
+       //     var tmp = new FakeMaker();
+       //     Categories = tmp.Make();
         }
 
  

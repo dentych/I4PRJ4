@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Backend.Communication;
 using Backend.Dependencies;
@@ -14,10 +13,7 @@ namespace Backend.ViewModels
     public class AddProductViewModel
     {
         public IEventAggregator Aggregator;
-        public BackendProductCategoryList Categories { get; set; }
-        public BackendProduct Product { get; set; }
-        public IModelHandler ModelHandler { get; set; }
-        public IError Err { set; get; }
+        
 
         public AddProductViewModel()
         {
@@ -28,11 +24,14 @@ namespace Backend.ViewModels
 
             Aggregator.GetEvent<CategoryListUpdated>().Subscribe(CategoryListUpdated, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Publish(true);
-
-
+            
         }
 
-
+        public BackendProductCategoryList Categories { get; set; }
+        public BackendProduct Product { get; set; }
+        public IModelHandler ModelHandler { get; set; }
+        public IError Err { set; get; }
+        public BackendProductCategory SelectedCategory { get; set; } = new BackendProductCategory();
 
 
         public bool Valid()
@@ -62,11 +61,13 @@ namespace Backend.ViewModels
 
         private void AddProduct()
         {
-            if(!Exists(Product))
+            Product.ProductCategoryId = SelectedCategory.ProductCategoryId;
+            MessageBox.Show("Cat: " + Product.ProductCategoryId);
+            if (!Exists(Product))
                 ModelHandler.CreateProduct(Product);
             else new Error().StdErr("DONT DO DIS DONNISH");
-
         }
+
         private bool Exists(BackendProduct editedProduct)
         {
             foreach (var cat in Categories)
