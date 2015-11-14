@@ -33,14 +33,20 @@ namespace KasseApparat
 
         public void IncrementQuantity(int index)
         {
-            this[index].Quantity++;
-            Notify("TotalPrice");
+            if (index >= 0)
+            {
+                this[index].Quantity++;
+                Notify("TotalPrice");
+            }
         }
 
         public void SetQuantity(uint ammount)
         {
-            this[CurrentIndex].Quantity = ammount;
-            Notify("TotalPrice");
+            if (CurrentIndex >= 0)
+            {
+                this[CurrentIndex].Quantity = ammount;
+                Notify("TotalPrice");
+            }
         }
         
         public int TotalPrice
