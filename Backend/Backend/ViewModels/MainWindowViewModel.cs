@@ -1,18 +1,17 @@
 ﻿using System;
+using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Input;
 using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Fakegenerator;
 using Backend.Models;
+using Backend.Models.Brains;
+using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Backend.Models.SocketEvents;
 using Backend.Views;
 using Prism.Events;
-using SharedLib.Models;
-using System.Collections.Generic;
-using Backend.Models.Brains;
-using Backend.Models.Datamodels;
 using SharedLib.Sockets;
 
 namespace Backend.ViewModels
@@ -21,20 +20,18 @@ namespace Backend.ViewModels
     {
         public MainWindowViewModel()
         {
-
             conn = LSC.Connection;
+            conn.OnConnectionError += ConnectionErrorHandler;
             conn.OnConnectionOpened += ConenctionOpenedHandler;
             conn.OnConnectionClosed += ConnectionClosedHandler;
-        //    conn.OnDataRecieved += DataReceivedHandler;
+            //    conn.OnDataRecieved += DataReceivedHandler;
 
             try
             {
-              conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
-
+                conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
             }
             catch (Exception)
             {
-
                 MessageBox.Show("No connection"); // Y DOS DIS NOT WORK
             }
 
@@ -54,16 +51,15 @@ namespace Backend.ViewModels
             _ev.SubscribeProductCategoryDeleted();
             _ev.SubscribeProductCategoryEdited();
 
-          /* Send anmodning om catalogue
+            /* Send anmodning om catalogue
            * SocketEvents getcatalogue bliver invoked
            * Kategoierne bliver lagt ind
            * bootstrapper kørers */
-            modelHandler.CatalogueDetails(); 
-       //     var tmp = new FakeMaker();
-       //     Categories = tmp.Make();
+           if(DBCON)
+                modelHandler.CatalogueDetails();
+            //     var tmp = new FakeMaker();
+            //     Categories = tmp.Make();
         }
-
- 
 
         #region Properties
 
@@ -73,15 +69,15 @@ namespace Backend.ViewModels
         private readonly FakeMaker faker = new FakeMaker(); // Debug only
         private readonly IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
         private readonly ISocketEventHandlers _ev;
-        private SocketConnection conn;
-        private bool DBCON = false;
+        private readonly SocketConnection conn;
+        private bool DBCON;
         public ConnectionString Connection { get; } = new ConnectionString();
 
         #endregion
 
         #region Windows
 
-      /*  private void DataReceivedHandler(string s)
+        /*  private void DataReceivedHandler(string s)
         {
             MessageBox.Show("Data received "+ s);
         }*/
@@ -96,6 +92,11 @@ namespace Backend.ViewModels
         {
             Connection.Connection = "Forbundet"; //TODO DET KLAMME LORT VIRKER IKKE
             DBCON = true;
+        }
+
+        private void ConnectionErrorHandler(SocketException e)
+        {
+            new Error().StdErr("Connection error:\n" + e);
         }
 
         private void ConnectionClosedHandler()
@@ -113,6 +114,7 @@ namespace Backend.ViewModels
         #endregion
 
         #region Eventshit
+
         public void AddProductWindowLoaded(bool b)
         {
             Aggregator.GetEvent<CategoryListUpdated>().Publish(Categories);
@@ -152,7 +154,8 @@ namespace Backend.ViewModels
                 cats = Categories,
                 currentCatIndex = Categories.CurrentIndex,
                 CurrentCategory = Categories[Categories.CurrentIndex],
-                product = Categories.CurrentProductList[ProductIndex] //TODO: Skal tage markeret produkt. I think is fixed
+                product = Categories.CurrentProductList[ProductIndex]
+                //TODO: Skal tage markeret produkt. I think is fixed
             };
 
             Aggregator.GetEvent<NewEditProductData>().Publish(details);
@@ -162,6 +165,13 @@ namespace Backend.ViewModels
 
         #region Commands
 
+        /* Valid CED */
+
+        private bool ValidCED()
+        {
+            return DBCON;
+        }
+
         /* Add Product */
         private ICommand _openAddProductWindowCommand;
 
@@ -170,7 +180,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openAddProductWindowCommand ??
-                       (_openAddProductWindowCommand = new RelayCommand(NewAddProductWindow));
+                       (_openAddProductWindowCommand = new RelayCommand(NewAddProductWindow, ValidCED));
             }
         }
 
@@ -182,7 +192,8 @@ namespace Backend.ViewModels
             get
             {
                 return _openEditProductWindowCommand ??
-                       (_openEditProductWindowCommand = new RelayCommand(NewEditProductWindow, () => ProductIndex >= 0));
+                       (_openEditProductWindowCommand =
+                           new RelayCommand(NewEditProductWindow, () => ProductIndex >= 0 && DBCON));
             }
         }
 
@@ -194,7 +205,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openAddCategoryWindowCommand ??
-                       (_openAddCategoryWindowCommand = new RelayCommand(OpenAddCategoryDialogWindow));
+                       (_openAddCategoryWindowCommand = new RelayCommand(OpenAddCategoryDialogWindow, ValidCED));
             }
         }
 
@@ -206,9 +217,10 @@ namespace Backend.ViewModels
             get
             {
                 return _openEditCategoryWindowCommand ??
-                       (_openEditCategoryWindowCommand = new RelayCommand(OpenEditCategoryDialogWindow));
+                       (_openEditCategoryWindowCommand = new RelayCommand(OpenEditCategoryDialogWindow, ValidCED));
             }
         }
+
         /* Delete category */
         private ICommand _openDeleteCategoryWindowCommand;
 
@@ -217,7 +229,7 @@ namespace Backend.ViewModels
             get
             {
                 return _openDeleteCategoryWindowCommand ??
-                       (_openDeleteCategoryWindowCommand = new RelayCommand(OpenDeleteCategoryDialogWindow));
+                       (_openDeleteCategoryWindowCommand = new RelayCommand(OpenDeleteCategoryDialogWindow, ValidCED));
             }
         }
 
@@ -237,7 +249,7 @@ namespace Backend.ViewModels
             get
             {
                 return _deleteProductCommand ??
-                       (_deleteProductCommand = new RelayCommand(DeleteProductDialog, () => ProductIndex >= 0));
+                       (_deleteProductCommand = new RelayCommand(DeleteProductDialog, () => ProductIndex >= 0 && DBCON));
             }
         }
 
@@ -308,8 +320,10 @@ namespace Backend.ViewModels
         #endregion
 
         #region FOR TESTING PLS REMOVE
+
         // TEST COMMAND
         private ICommand _testCommand;
+
         public ICommand TestCommand
         {
             get { return _testCommand ?? (_testCommand = new RelayCommand(TestCommandHandle)); }
@@ -320,7 +334,9 @@ namespace Backend.ViewModels
             Categories.CurrentProductList[0].Name = "Bonjy";
             Categories.UpdateCurrentProducts();
         }
+
         // TEST COMMAND SLUT
+
         #endregion
     }
 }

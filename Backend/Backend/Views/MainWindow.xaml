@@ -25,7 +25,6 @@
                 <MenuItem Header="_Indstillinger" Command="{Binding OpenSettingsDialog}"/>
                 <MenuItem Header="_Afslut" Command="{Binding CloseMainWindowCommand}"/>
             </MenuItem>
-            <MenuItem Header="Something"/>
         </Menu>
 
         <!-- Column 0 -->
