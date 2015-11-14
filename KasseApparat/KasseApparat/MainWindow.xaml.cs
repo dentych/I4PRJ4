@@ -41,6 +41,11 @@ namespace KasseApparat
                 }, 1, 1));
                 Display.Text = "";
             }
+            if (shopList.TotalPrice < 0)
+            {
+                MessageBox.Show("Retur: " + shopList.TotalPrice);
+                shopList.EndPurchase();
+            }
         }
 
         private void ButtonQuant_Click(object sender, RoutedEventArgs e)
@@ -56,8 +61,17 @@ namespace KasseApparat
             Display.Text += button.Content;
         }
 
+        private void ButtonReturn_Click(object sender, RoutedEventArgs e)
+        {
+            //ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
+            //shopList.SetQuantity(-Convert.ToUInt32(Display.Text));
+        }
+
         private void ButtonClr_Click(object sender, RoutedEventArgs e)
         {
+            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
+            
+
             Display.Text = "";
         }
 
