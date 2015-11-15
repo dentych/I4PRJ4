@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using SharedLib.Models;
+using System.Windows;
 
 namespace Backend.Models.Datamodels
 {
@@ -59,6 +60,11 @@ namespace Backend.Models.Datamodels
         }
 
         public void UpdateCurrentProducts()
+        {
+            Application.Current.Dispatcher.Invoke(() => Updater());
+        }
+
+        private void Updater()
         {
             List<Product> tmp = CurrentProductList;
             CurrentProductList = null;

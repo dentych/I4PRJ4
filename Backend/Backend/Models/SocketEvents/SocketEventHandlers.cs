@@ -30,7 +30,7 @@ namespace Backend.Models.SocketEvents
 
         public void ProductDeletedHandler(ProductDeletedCmd cmd)
         {
-            BackendProductCategory category = _categories.GetListByCateogry(0);
+            BackendProductCategory category = _categories.GetListByCateogry(cmd.ProductCategoryId);
 
             for (int i = 0; i < category.Products.Count; i++)
             {

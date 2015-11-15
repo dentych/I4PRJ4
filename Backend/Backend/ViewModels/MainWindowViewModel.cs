@@ -288,7 +288,7 @@ namespace Backend.ViewModels
 
         private void DeleteProductDialog()
         {
-            if (ProductIndex > 0)
+            if (ProductIndex >= 0)
             {
                 // New message box
                 var result = MessageBox.Show("Vil du slette det valgte produkt?", "Slet af produkt",

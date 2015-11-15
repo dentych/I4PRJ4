@@ -240,7 +240,7 @@ namespace CentralServer
                 db.SaveChanges();
             }
 
-            Broadcast(new DeleteProductCmd(product));
+            Broadcast(new ProductDeletedCmd(product));
         }
 
         private void OnEditProductCategory(IMessageReceiver client, EditProductCategoryCmd cmd)
