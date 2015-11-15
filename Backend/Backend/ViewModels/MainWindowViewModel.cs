@@ -97,6 +97,7 @@ namespace Backend.ViewModels
         private void ConnectionErrorHandler(SocketException e)
         {
             new Error().StdErr("Connection error:\n" + e);
+            ConnectionClosedHandler();
         }
 
         private void ConnectionClosedHandler()
