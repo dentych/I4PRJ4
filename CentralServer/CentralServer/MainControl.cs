@@ -7,6 +7,7 @@ using ServerDatabase;
 using SharedLib.Models;
 using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
+using SharedLib.Protocol.Commands.ProductCategoryCommands;
 
 namespace CentralServer
 {
@@ -112,13 +113,22 @@ namespace CentralServer
                 case "DeleteProduct":
                     OnDeleteProduct(client, (DeleteProductCmd)cmd);
                     break;
-
+                case "CreateProductCategory":
+                    OnCreateProductCategory(client, (CreateProductCategoryCmd) cmd);
+                    break;
+                case "DeleteProductCategory":
+                    OnDeleteProductCategory(client, (DeleteProductCategoryCmd) cmd);
+                    break;
+                case "EditProductCategory":
+                    OnEditProductCategory(client, (EditProductCategoryCmd) cmd);
+                    break;
                 case "RegisterPurchase":
                     OnRegisterPurchase(client, (RegisterPurchaseCmd)cmd);
                     break;
             }
         }
 
+        
         /*
          * A client requests to recieve the entire product catalogue.
          * Respond with a CatalogueDetails command.
@@ -206,7 +216,7 @@ namespace CentralServer
         private void OnDeleteProduct(IMessageReceiver client, DeleteProductCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
-                       "Client modifying an existing product");
+                       "Client deleting a product");
 
             Product product;
 
@@ -223,6 +233,72 @@ namespace CentralServer
 
             Broadcast(new DeleteProductCmd(product));
         }
+
+        private void OnEditProductCategory(IMessageReceiver client, EditProductCategoryCmd cmd)
+        {
+            _log.Write("MainControl", Log.NOTICE,
+                   "Client modifying an existing productcategory");
+
+            ProductCategory cat;
+
+            using (var db = new DatabaseContext())
+            {
+                cat = db.ProductCategories.Find(cmd.ProductCategoryId);
+
+                if (cat == null)
+                    return;
+
+                cat.Name = cmd.Name;
+                db.Entry(cat).CurrentValues.SetValues(cat);
+                db.SaveChanges();
+            }
+
+            Broadcast(new ProductCategoryEditedCmd(cat));
+        }
+
+        private void OnDeleteProductCategory(IMessageReceiver client, DeleteProductCategoryCmd cmd)
+        {
+            _log.Write("MainControl", Log.NOTICE,
+           "Client deleting a productcategory");
+
+            ProductCategory cat;
+
+            using (var db = new DatabaseContext())
+            {
+                cat = db.ProductCategories.Find(cmd.ProductCategoryId);
+
+                if (cat == null)
+                    return;
+
+                db.ProductCategories.Remove(cat);
+                db.SaveChanges();
+            }
+
+            Broadcast(new DeleteProductCategoryCmd(cat));
+        }
+
+        private void OnCreateProductCategory(IMessageReceiver client, CreateProductCategoryCmd cmd)
+        {
+            _log.Write("MainControl", Log.NOTICE,
+                    "Client creating a new productCategory");
+
+            // Create product
+            var cat = new ProductCategory()
+            {
+                Name = cmd.Name,
+            };
+
+            // Write to database
+            using (var db = new DatabaseContext())
+            {
+                db.ProductCategories.Add(cat);
+                db.SaveChanges();
+            }
+
+            // Broadcast changes to all connected clients
+            Broadcast(new ProductCategoryCreatedCmd(cat));
+        }
+
 
         /*
          * Invoked when a clients wants to register a purchase
