@@ -9,7 +9,7 @@ namespace SharedLib.Models
     public class PurchasedProduct
     {
         public int PurchasedProductId { get; set; }
-        public uint Quantity { get; set; }
+        public int Quantity { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }
         public decimal UnitPrice { get; set; }
@@ -19,7 +19,7 @@ namespace SharedLib.Models
         {
         }
 
-        public PurchasedProduct(Product product, uint quantity)
+        public PurchasedProduct(Product product, int quantity)
         {
             Name = product.Name;
             ProductNumber = product.ProductNumber;

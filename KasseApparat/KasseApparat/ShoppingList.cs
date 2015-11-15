@@ -40,7 +40,7 @@ namespace KasseApparat
             }
         }
 
-        public void SetQuantity(uint ammount)
+        public void SetQuantity(int ammount)
         {
             if (CurrentIndex >= 0)
             {
