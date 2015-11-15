@@ -7,7 +7,7 @@ using SharedLib.Models;
 
 namespace Backend.Models.Datamodels
 {
-    public class BackendProductCategoryList : ObservableCollection<BackendProductCategory>, INotifyPropertyChanged
+    public class BackendProductCategoryList : AsyncObservableCollection<BackendProductCategory>, INotifyPropertyChanged
     {
         #region Properties & vars
         private Mutex _mutex = new Mutex();
