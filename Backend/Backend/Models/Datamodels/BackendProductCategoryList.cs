@@ -58,24 +58,6 @@ namespace Backend.Models.Datamodels
             return null;
         }
 
-        public new void Add(BackendProductCategory category)
-        {
-            _mutex.WaitOne();
-
-            base.Add(category);
-
-            _mutex.ReleaseMutex();
-        }
-
-        public new void RemoveAt(int index)
-        {
-            _mutex.WaitOne();
-
-            base.RemoveAt(index);
-
-            _mutex.ReleaseMutex();
-        }
-
         public void UpdateCurrentProducts()
         {
             List<Product> tmp = CurrentProductList;
