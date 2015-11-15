@@ -85,7 +85,6 @@ namespace CentralServer
             _sessions.Unregister(msg.SessionId);
         }
 
-
         /*
          * Invoked whenever a clients sends a command to the server.
          */
@@ -127,7 +126,6 @@ namespace CentralServer
                     break;
             }
         }
-
         
         /*
          * A client requests to recieve the entire product catalogue.
@@ -146,7 +144,17 @@ namespace CentralServer
                 var query = from pc in db.ProductCategories select pc;
 
                 foreach (var category in query)
+                {
                     catalogueCmd.ProductCategories.Add(category);
+                }
+
+                foreach (var category in catalogueCmd.ProductCategories)
+                {
+                    var products = from p in db.Products
+                                   where p.ProductCategoryId.Equals(category.ProductCategoryId)
+                                   select p;
+                    category.Products = products.ToList();
+                }
             }
 
             // Send response command

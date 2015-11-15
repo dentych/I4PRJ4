@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -67,6 +68,9 @@ namespace SharedLib.Sockets
         {
             // FIXME: Handle decoding errors
             var dataStr = Encoding.Unicode.GetString(_buffer, 0, length);
+
+            Debug.WriteLine("Received: " + dataStr);
+
             OnDataRecieved?.Invoke(dataStr);
         }
 
