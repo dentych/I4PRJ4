@@ -64,7 +64,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                         pproduct.Name = reader["Name"]; // Inserts the value of the attribute name "Name" into the purchasedProduct object
                         pproduct.ProductNumber = reader["ProductNumber"]; // Inserts the value of the attribute name "ProductNumber" into the purchasedProduct object
                         pproduct.UnitPrice = Convert.ToDecimal(reader["UnitPrice"]); // Inserts the value of the attribute name "UnitPrice" into the purchasedProduct object
-                        pproduct.Quantity = Convert.ToUInt32(reader["Quantity"]); // Inserts the value of the attribute name "Quantity" into the purchasedProduct object
+                        pproduct.Quantity = Convert.ToInt32(reader["Quantity"]); // Inserts the value of the attribute name "Quantity" into the purchasedProduct object
 
                         purchase.PurchasedProducts.Add(pproduct); // Add the newly created purchasedProduct to the purchasedProductlist
                     } // end if

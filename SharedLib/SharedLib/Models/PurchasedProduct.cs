@@ -10,7 +10,7 @@ namespace SharedLib.Models
 {
     public class PurchasedProduct : INotifyPropertyChanged
     {
-        private uint _quantity;
+        private int _quantity;
         private decimal _unitPrice;
         public int PurchaseId;
         public int PurchasedProductId
@@ -18,7 +18,7 @@ namespace SharedLib.Models
             get; set;
         }
 
-        public uint Quantity
+        public int Quantity
         {
             get { return _quantity; }
             set
@@ -71,7 +71,7 @@ namespace SharedLib.Models
             PurchaseId = pp.PurchaseId;
         }
 
-        public PurchasedProduct(Product product, uint quantity, int purchaseId)
+        public PurchasedProduct(Product product, int quantity, int purchaseId)
         {
             Name = product.Name;
             ProductNumber = product.ProductNumber;

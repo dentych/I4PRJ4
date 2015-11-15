@@ -237,6 +237,13 @@ namespace SharedLib.UnitTest
             //Console.WriteLine(test14.Name);
             //Console.WriteLine("");
 
+            //// 15th test ProductCategoryCreated
+            //Console.WriteLine(xml9);
+            //Console.WriteLine("");
+            //Console.WriteLine(test9.Name);
+            //Console.WriteLine("");
+
+
         }
     }
 }
