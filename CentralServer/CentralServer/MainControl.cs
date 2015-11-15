@@ -169,6 +169,7 @@ namespace CentralServer
                 Name = cmd.Name,
                 ProductNumber = cmd.ProductNumber,
                 Price = cmd.Price,
+                ProductCategoryId = cmd.ProductCategoryId
             };
 
             // Write to database
