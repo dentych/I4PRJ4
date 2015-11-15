@@ -179,6 +179,7 @@ namespace CentralServer
                        "Client modifying an existing product");
 
             Product product;
+            int oldProductCategoryId;
 
             using (var db = new DatabaseContext())
             {
@@ -187,15 +188,18 @@ namespace CentralServer
                 if (product == null)
                     return;
 
+                oldProductCategoryId = product.ProductCategoryId;
+
                 product.Name = cmd.Name;
                 product.ProductNumber = cmd.ProductNumber;
                 product.Price = cmd.Price;
+                product.ProductCategoryId = cmd.ProductCategoryId;
 
                 db.Entry(product).CurrentValues.SetValues(product);
                 db.SaveChanges();
             }
 
-            Broadcast(new ProductEditedCmd(product));
+            Broadcast(new ProductEditedCmd(product, oldProductCategoryId));
         }
 
 
@@ -213,15 +217,11 @@ namespace CentralServer
                 if (product == null)
                     return;
 
-                product.Name = cmd.Name;
-                product.ProductNumber = cmd.ProductNumber;
-                product.Price = cmd.Price;
-
-                db.Entry(product).CurrentValues.SetValues(product);
+                db.Products.Remove(product);
                 db.SaveChanges();
             }
 
-            Broadcast(new ProductEditedCmd(product));
+            Broadcast(new DeleteProductCmd(product));
         }
 
         /*
