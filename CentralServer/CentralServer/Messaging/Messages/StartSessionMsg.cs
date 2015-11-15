@@ -9,10 +9,10 @@ namespace CentralServer.Messaging.Messages
      */
     class StartSessionMsg : Message
     {
-        private ClientControl _client;
-        public ClientControl Client { get { return _client; } }
+        private IMessageReceiver _client;
+        public IMessageReceiver Client { get { return _client; } }
 
-        public StartSessionMsg(ClientControl client)
+        public StartSessionMsg(IMessageReceiver client)
         {
             _client = client;
         }

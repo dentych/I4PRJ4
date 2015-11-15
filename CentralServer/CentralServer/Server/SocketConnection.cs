@@ -8,7 +8,7 @@ namespace CentralServer.Server
 {
     class SocketConnection
     {
-        private Log _log;
+        private ILog _log;
         private Socket _handle;
         private const int _bufferSize = 512;
         private byte[] _buffer = new byte[_bufferSize];
@@ -22,7 +22,7 @@ namespace CentralServer.Server
         public event DisconnectedHandler OnDisconnect;
 
 
-        public SocketConnection(Log log, Socket handle)
+        public SocketConnection(ILog log, Socket handle)
         {
             _log = log;
             _handle = handle;

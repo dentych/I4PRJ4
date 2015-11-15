@@ -41,8 +41,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SharedLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="SharedLib">
       <HintPath>..\..\SharedLib\SharedLib\bin\Debug\SharedLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -57,7 +56,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientControl.cs" />
-    <Compile Include="DatabaseContext.cs" />
+    <Compile Include="Database\DatabaseContext.cs" />
+    <Compile Include="Logging\ILog.cs" />
+    <Compile Include="Messaging\IMessageHandler.cs" />
+    <Compile Include="Messaging\IMessageQueue.cs" />
+    <Compile Include="Messaging\IMessageReceiver.cs" />
+    <Compile Include="Messaging\MessageReceiver.cs" />
+    <Compile Include="Migrations\201511111854556_AddedProductCategory.cs" />
+    <Compile Include="Migrations\201511111854556_AddedProductCategory.Designer.cs">
+      <DependentUpon>201511111854556_AddedProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sessions\ISessionControl.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Logging\Loggers\ConsoleLogger.cs" />
@@ -67,13 +76,11 @@
     <Compile Include="Messaging\Message.cs" />
     <Compile Include="Messaging\MessageQueue.cs" />
     <Compile Include="Messaging\Messages\CommandRecievedMsg.cs" />
-    <Compile Include="Messaging\Messages\ConnectionEstablishedMsg.cs" />
     <Compile Include="Messaging\Messages\DataRecievedMsg.cs" />
     <Compile Include="Messaging\Messages\StartSessionMsg.cs" />
     <Compile Include="Messaging\Messages\SendCommandMsg.cs" />
     <Compile Include="Messaging\Messages\StopSessionMsg.cs" />
     <Compile Include="Messaging\Messages\WelcomeMsg.cs" />
-    <Compile Include="Messaging\MessageThread.cs" />
     <Compile Include="Migrations\201510230832315_FirstVersion.cs" />
     <Compile Include="Migrations\201510230832315_FirstVersion.Designer.cs">
       <DependentUpon>201510230832315_FirstVersion.cs</DependentUpon>
@@ -83,8 +90,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\SocketConnection.cs" />
     <Compile Include="Server\SocketServer.cs" />
-    <Compile Include="SessionControl.cs" />
-    <Compile Include="Threading\ThreadBase.cs" />
+    <Compile Include="Sessions\SessionControl.cs" />
+    <Compile Include="Threading\IThreadRunner.cs" />
+    <Compile Include="Threading\ThreadStarter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -94,7 +102,11 @@
     <EmbeddedResource Include="Migrations\201510230832315_FirstVersion.resx">
       <DependentUpon>201510230832315_FirstVersion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511111854556_AddedProductCategory.resx">
+      <DependentUpon>201511111854556_AddedProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

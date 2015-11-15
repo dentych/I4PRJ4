@@ -3,13 +3,14 @@ using System.Net;
 using CentralServer.Threading;
 using CentralServer.Messaging.Messages;
 using CentralServer.Logging;
+using CentralServer.Messaging;
 
 namespace CentralServer.Server
 {
-    class SocketServer : ThreadBase
+    class SocketServer : IThreadRunner
     {
-        private Log _log;
-        private MainControl _main;
+        private ILog _log;
+        private IMessageReceiver _mainControl;
         private int _port;
 
         private Socket _listener = new Socket(
@@ -18,14 +19,14 @@ namespace CentralServer.Server
             ProtocolType.Tcp);
 
 
-        public SocketServer(Log log, MainControl main, int port)
+        public SocketServer(ILog log, IMessageReceiver mainControl, int port)
         {
             _log = log;
-            _main = main;
+            _mainControl = mainControl;
             _port = port;
         }
 
-        protected override void Run()
+        public void RunThread()
         {
             IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, _port);
 
@@ -45,11 +46,19 @@ namespace CentralServer.Server
                        "Spawning new socket client");
 
             var connection = new SocketConnection(_log, handle);
-            var client = new ClientControl(_log, connection, _main);
-            var msg = new ConnectionEstablishedMsg();
 
-            client.Start();
-            client.Send(ClientControl.E_CONNECTION_ESTABLISHED, msg);
+            // Init ClientControl and start thread
+            var clientControl = new ClientControl(_log, _mainControl, connection);
+            var clientReceiver = new MessageReceiver(clientControl, new MessageQueue());
+            var clientThread = ThreadStarter.Start(clientReceiver);
+
+            RegisterClient(clientReceiver);
+        }
+
+        private void RegisterClient(IMessageReceiver client)
+        {
+            var registerMsg = new StartSessionMsg(client);
+            _mainControl.Send(MainControl.E_START_SESSION, registerMsg);
         }
     }
 }
