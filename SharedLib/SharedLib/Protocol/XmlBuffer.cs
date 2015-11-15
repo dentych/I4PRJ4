@@ -14,7 +14,7 @@ namespace SharedLib.Protocol
     {
         private StringBuilder _buffer = new StringBuilder();
         private static Regex _cmdEndPattern = new Regex(
-                @"(</Command>|<Command\s+Name="".*""\s*/>)+",
+                @"(</Command>|<Command\s+Name=""([^""]*)""\s/>)+",
                 RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
 

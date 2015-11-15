@@ -3,6 +3,7 @@ using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
 using SharedLib.Protocol.ProtocolMarshallers;
+using System.Diagnostics;
 
 namespace SharedLib.Sockets
 {
@@ -45,6 +46,8 @@ namespace SharedLib.Sockets
 
             foreach (var doc in _buffer.GetDocuments())
             {
+                Debug.WriteLine("DOC: " + doc);
+
                 var cmd = _marshal.Decode(doc);
                 HandleCommandRecieved(cmd);
             }
