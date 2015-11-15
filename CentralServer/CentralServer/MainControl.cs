@@ -249,6 +249,7 @@ namespace CentralServer
                     return;
 
                 cat.Name = cmd.Name;
+                db.Entry(cat).CurrentValues.SetValues(cat);
                 db.SaveChanges();
             }
 
