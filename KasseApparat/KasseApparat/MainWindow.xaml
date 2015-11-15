@@ -12,6 +12,27 @@
         <local:ProductButtonControl x:Key="ProductButtonControl" />
         <local:ShoppingList x:Key="ShoppingList" />
         <local:CategoriesMenu x:Key="CategoriesMenu" />
+
+        <RadialGradientBrush x:Key="GreenButton" GradientOrigin="0.5,0.5">
+            <GradientStop Color="PaleGreen" Offset="0" />
+            <GradientStop Color="DarkSeaGreen" Offset="0.8" />
+        </RadialGradientBrush>
+        <RadialGradientBrush x:Key="BlueButton" GradientOrigin="0.5,0.5">
+            <GradientStop Color="PowderBlue" Offset="0" />
+            <GradientStop Color="DeepSkyBlue" Offset="1.2" />
+        </RadialGradientBrush>
+        <RadialGradientBrush x:Key="OrangeButton" GradientOrigin="0.5,0.5">
+            <GradientStop Color="Yellow" Offset="0" />
+            <GradientStop Color="DarkOrange" Offset="0.7" />
+        </RadialGradientBrush>
+        <RadialGradientBrush x:Key="RedButton" GradientOrigin="0.5,0.5">
+            <GradientStop Color="Orange" Offset="0" />
+            <GradientStop Color="OrangeRed" Offset="1" />
+        </RadialGradientBrush>
+        <RadialGradientBrush x:Key="GrayButton" GradientOrigin="0.5,0.5">
+            <GradientStop Color="LightGray" Offset="0" />
+            <GradientStop Color="DarkGray" Offset="1" />
+        </RadialGradientBrush>
     </Window.Resources>
 
     <Grid>
@@ -290,10 +311,10 @@
                     <Button Grid.Row="0" Grid.Column="0"
                             Margin="5"
                             Content="Previous Page"
-                            Command="{Binding PrevCommand}"></Button>
+                            Command="{Binding PrevCommand}" Background="{StaticResource GrayButton}"></Button>
                     <Button Grid.Row="0" Grid.Column="1"
                             Content="Next Page" Margin="5"
-                            Command="{Binding NextCommand}"></Button>
+                            Command="{Binding NextCommand}" Background="{StaticResource GrayButton}"></Button>
                 </Grid>
             </Grid>
         </GroupBox>
@@ -348,6 +369,8 @@
                                Text="{Binding Path=TotalPrice}"  Margin="5"
                                HorizontalAlignment="Right"/>
                 </Border>
+                <Label Content="Sidste Retur:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Foreground="DarkGray"/>
+                <Label x:Name="RetBox" Grid.Column="1" Grid.Row="2" Foreground="DarkGray"/>
 
                 <Grid Margin="5" Grid.Row="3" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
@@ -357,7 +380,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="Up" Command="{Binding PrevCommand}" Content="V" Margin="2" Grid.Column="0" FontSize="10" RenderTransformOrigin="0.5,0.5">
+                    <Button x:Name="Up" Command="{Binding PrevCommand}" Content="V" Margin="2" Grid.Column="0" FontSize="10" 
+                            RenderTransformOrigin="0.5,0.5" Background="{StaticResource BlueButton}">
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -367,10 +391,14 @@
                             </TransformGroup>
                         </Button.RenderTransform>
                     </Button>
-                    <Button x:Name="Down" Command="{Binding NextCommand}" Content="V" Margin="2" Grid.Column="1" FontSize="10"/>
-                    <RepeatButton Command="{Binding MoreCommand}" Content="+" Margin="2" Grid.Column="2" FontSize="10"/>
-                    <RepeatButton Command="{Binding LessCommand}" Content="-" Margin="2" Grid.Column="3" FontSize="10"/>
-                    <Button x:Name="Delete" Command="{Binding DeleteCommand}" Content="Delete" Margin="2" Grid.Column="4" FontSize="10"/>
+                    <Button x:Name="Down" Command="{Binding NextCommand}" Content="V" Margin="2" Grid.Column="1" 
+                            FontSize="10" Background="{StaticResource BlueButton}"/>
+                    <RepeatButton Command="{Binding MoreCommand}" Content="+" Margin="2" Grid.Column="2" 
+                                  FontSize="10" Background="{StaticResource BlueButton}"/>
+                    <RepeatButton Command="{Binding LessCommand}" Content="-" Margin="2" Grid.Column="3" 
+                                  FontSize="10" Background="{StaticResource BlueButton}"/>
+                    <Button x:Name="Delete" Command="{Binding DeleteCommand}" Content="Delete" Margin="2" Grid.Column="4" 
+                            FontSize="10" Background="{StaticResource BlueButton}"/>
                 </Grid>
             </Grid>
         </GroupBox>
@@ -392,43 +420,46 @@
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <Border Margin="7,7,6.6,6" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="LightGray">
-                    <TextBlock Background="White" x:Name="Display"  />
+                    <TextBlock Background="White" x:Name="Display" FontSize="20"/>
                 </Border>
                 <Button x:Name="ButtonOne" Content="1" Grid.Row="1" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
-                <Button x:Name="ButtonTwo" Content="2" Grid.Row="1" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
+                    <Button x:Name="ButtonTwo" Content="2" Grid.Row="1" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonThree" Content="3" Grid.Row="1" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonFour" Content="4" Grid.Row="2" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonFive" Content="5" Grid.Row="2" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonSix" Content="6" Grid.Row="2" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonSeven" Content="7" Grid.Row="3" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonEight" Content="8" Grid.Row="3" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonNine" Content="9" Grid.Row="3" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonZero" Content="0" Grid.Row="4" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonOneDZero" Content="00" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="15"
-                        Click="ButtonNr_Click"/>
+                        Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
-                        Click="ButtonClr_Click"/>
-                <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,0,7,7" Click="ButtonCash_Click" Height="43" VerticalAlignment="Bottom"/>
-                <Button x:Name="ButtonCard" Content="Kort" Grid.Row="6" Grid.Column="1" Margin="7.4,7,7,7"/>
+                        Click="ButtonClr_Click" Background="{StaticResource OrangeButton}"/>
+                <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,0,7,7" 
+                        Click="ButtonCash_Click" Height="43" VerticalAlignment="Bottom" 
+                        Background="{StaticResource GreenButton}"/>
+                <Button x:Name="ButtonCard" Content="Kort" Grid.Row="6" Grid.Column="1" Margin="7.4,7,7,7"
+                        Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonAnulate" Grid.Row="6" Grid.Column="2" Margin="7,7,6.6,7"
-                        Command="{Binding ClearCommand}">
+                        Command="{Binding ClearCommand}" Background="{StaticResource RedButton}">
                     <TextBlock TextAlignment="Center"><Run Text="Annuller"/><LineBreak/><Run Text="køb"/></TextBlock>
                 </Button>
                 <Button x:Name="ButtonQuantity" Content="Mængde" Grid.Row="5" Grid.Column="0" Margin="7.4,7,7,7"
-                        Click="ButtonQuant_Click"/>
+                        Click="ButtonQuant_Click" Background="{StaticResource BlueButton}"/>
                 <Button x:Name="ButtonReturn" Content="Retur" Grid.Row="5" Grid.Column="1" Margin="7,7,6.6,7"
-                        Click="ButtonReturn_Click" />
-                <Button x:Name="B2" IsEnabled="False" Grid.Row="5" Grid.Column="2" Margin="7,7,6.6,7"/>
+                        Click="ButtonReturn_Click" Background="{StaticResource BlueButton}"/>
+                
             </Grid>
         </GroupBox>
 

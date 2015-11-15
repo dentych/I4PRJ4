@@ -44,6 +44,7 @@ namespace KasseApparat
             if (shopList.TotalPrice < 0)
             {
                 MessageBox.Show("Retur: " + shopList.TotalPrice);
+                RetBox.Content = shopList.TotalPrice;
                 shopList.EndPurchase();
             }
         }
