@@ -11,7 +11,7 @@ using SharedLib.Models;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
 
-namespace SharedLib.Protocol.CmdMarshallers.ProductCategoryMarshallers
+namespace SharedLib.Protocol.CmdMarshallers
 {
     public class CreateProductCategoryMarshal: ICmdMarshal
     {
