@@ -28,6 +28,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                 writer.WriteAttributeString("Name", ccmd.Name); // "Name" attribute for Product
                 writer.WriteAttributeString("ProductNumber", ccmd.ProductNumber); // "ProductNumber" attribute for Product
                 writer.WriteAttributeString("Price", ccmd.Price.ToString()); // "Price" attribute for Product
+                writer.WriteAttributeString("ProductCategoryId", ccmd.ProductCategoryId.ToString()); // "ProductCategoryId" attribute for Product
 
                 writer.WriteEndElement(); // Product ended
                 writer.WriteEndElement(); // Root end
@@ -48,6 +49,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                 product.Name = reader["Name"]; // Inserts the attribute name "Name" into the product object
                 product.ProductNumber = reader["ProductNumber"]; // Inserts the attribute name "ProductNumber" into the product object
                 product.Price = Convert.ToDecimal(reader["Price"]);// Inserts the attribute name "Price" into the product object
+                product.ProductCategoryId = Convert.ToInt32(reader["ProductCategoryId"]);
             }
 
             // return new command with the translated xml product attributes
