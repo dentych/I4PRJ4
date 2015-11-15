@@ -27,7 +27,7 @@ namespace SharedLib.UnitTest.Commands.UnitTest
                 ProductNumber = "15"
             };
 
-            cmd = new CreateProductCmd("Appelsin","15",10);
+            cmd = new CreateProductCmd("Appelsin","15",10, 0);
         }
 
         [TearDown]

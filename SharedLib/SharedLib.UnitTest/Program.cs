@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SharedLib.Models;
-using SharedLib.Protocol.Commands;
-using SharedLib.Protocol;
-using SharedLib.Protocol.CmdMarshallers;
-using SharedLib.Protocol.Commands.ProductCategoryCommands;
-using SharedLib.Protocol.CmdMarshallers.ProductCategoryMarshallers;
-
-namespace SharedLib.UnitTest
+﻿namespace SharedLib.UnitTest
 {
     class Program
     {
