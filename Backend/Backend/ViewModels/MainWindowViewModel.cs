@@ -282,8 +282,17 @@ namespace Backend.ViewModels
 
         private void OpenDeleteCategoryDialogWindow()
         {
-            var dialog = new DeleteCategoryView();
-            dialog.ShowDialog();
+
+            if (Categories.Count > 1 && Categories[Categories.CurrentIndex].Products.Count > 0)
+            {
+                var dialog = new DeleteCategoryView();
+                dialog.ShowDialog();
+            }
+            else
+            {
+                DeleteProductDialog();
+            }
+                
         }
 
         private void DeleteProductDialog()
@@ -305,6 +314,28 @@ namespace Backend.ViewModels
             else
             {
                 MessageBox.Show("Intet produkt valgt.", "Slet af produkt", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+        }
+
+        private void DeleteCategoryDialog()
+        {
+            if (ProductIndex >= 0)
+            {
+                // New message box
+                var result = MessageBox.Show("Vil du slette det valgte kategori?", "Slet af kategori",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    if (ProductIndex >= 0)
+                    {
+                        modelHandler.DeleteCategory(Categories[Categories.CurrentIndex]);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ingen kategori valgt.", "Slet af kategori", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
         }
 
