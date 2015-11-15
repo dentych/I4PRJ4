@@ -290,7 +290,7 @@ namespace Backend.ViewModels
             }
             else
             {
-                DeleteProductDialog();
+                DeleteCategoryDialog();
             }
                 
         }
@@ -329,6 +329,11 @@ namespace Backend.ViewModels
                 {
                     if (ProductIndex >= 0)
                     {
+                        foreach (var product in Categories[Categories.CurrentIndex].Products)
+                        {
+                            modelHandler.DeleteProduct(product);
+                        }
+
                         modelHandler.DeleteCategory(Categories[Categories.CurrentIndex]);
                     }
                 }
