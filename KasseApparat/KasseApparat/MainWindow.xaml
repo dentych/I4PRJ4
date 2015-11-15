@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KasseApparat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="900">
+        Title="MainWindow" Height="500" Width="900"
+        Background="SlateGray">
     <Window.Resources>
         <local:ProductButtonControl x:Key="ProductButtonControl" />
         <local:ShoppingList x:Key="ShoppingList" />
@@ -382,12 +383,12 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="38*"></RowDefinition>
-                    <RowDefinition Height="30*"></RowDefinition>
-                    <RowDefinition Height="30*"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="30*"></RowDefinition>
-                    <RowDefinition Height="30*"></RowDefinition>
+                    <RowDefinition Height="38*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30*"/>
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <Border Margin="7,7,6.6,6" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="LightGray">
@@ -426,7 +427,7 @@
                 <Button x:Name="ButtonQuantity" Content="Mængde" Grid.Row="5" Grid.Column="0" Margin="7.4,7,7,7"
                         Click="ButtonQuant_Click"/>
                 <Button x:Name="ButtonReturn" Content="Retur" Grid.Row="5" Grid.Column="1" Margin="7,7,6.6,7"
-                        Click="ButtonClr_Click" />
+                        Click="ButtonReturn_Click" />
                 <Button x:Name="B2" IsEnabled="False" Grid.Row="5" Grid.Column="2" Margin="7,7,6.6,7"/>
             </Grid>
         </GroupBox>

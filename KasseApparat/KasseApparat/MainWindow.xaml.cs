@@ -52,7 +52,7 @@ namespace KasseApparat
         {
             ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
             if (shopList.Count > 0)
-                shopList.SetQuantity(Convert.ToUInt32(Display.Text));
+                shopList.SetQuantity(Convert.ToInt32(Display.Text));
             Display.Text = "";
         }
 
@@ -64,8 +64,9 @@ namespace KasseApparat
 
         private void ButtonReturn_Click(object sender, RoutedEventArgs e)
         {
-            //ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
-            //shopList.SetQuantity(-Convert.ToUInt32(Display.Text));
+            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
+            shopList.SetQuantity(-Convert.ToInt32(Display.Text));
+            Display.Text = "";
         }
 
         private void ButtonClr_Click(object sender, RoutedEventArgs e)
