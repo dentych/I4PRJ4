@@ -24,6 +24,11 @@ namespace Backend.ViewModels
 
             Aggregator.GetEvent<CategoryListUpdated>().Subscribe(CategoryListUpdated, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Publish(true);
+
+            if (Categories.Count > 0)
+            {
+                SelectedCategory = Categories[0];
+            }
             
         }
 
