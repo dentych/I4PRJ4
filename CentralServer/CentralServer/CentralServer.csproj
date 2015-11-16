@@ -62,10 +62,6 @@
     <Compile Include="Messaging\IMessageQueue.cs" />
     <Compile Include="Messaging\IMessageReceiver.cs" />
     <Compile Include="Messaging\MessageReceiver.cs" />
-    <Compile Include="Migrations\201511160155140_lolfuck.cs" />
-    <Compile Include="Migrations\201511160155140_lolfuck.Designer.cs">
-      <DependentUpon>201511160155140_lolfuck.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Sessions\ISessionControl.cs" />
     <Compile Include="Logging\ILogger.cs" />
@@ -93,11 +89,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511160155140_lolfuck.resx">
-      <DependentUpon>201511160155140_lolfuck.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
