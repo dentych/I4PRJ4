@@ -24,8 +24,6 @@ namespace KasseApparat
         private List<Product> _PDL; 
         private List<ProductButtonList> _PageList;
         private ShoppingList _shopList;
-
-        private int PCLindex = 1; //For PCL
 #endregion
          
         /* 
@@ -39,19 +37,6 @@ namespace KasseApparat
 
             CreatePageList();
         }
-
-        /* 
-         * Ctor: Constructor der er skabt for at gøre hele klassen mere testbar.
-         
-        public ProductButtonControl(ProductList pl, List<ProductButtonList> pbl, ShoppingList sl)
-        {
-            _productList = pl;
-            _PageList = pbl;
-            _shopList = sl;
-
-            Update();
-        }
-        */
 
         //Updates the productbuttons, with the products contained in the database
         public void Update(List<Product> createList)
