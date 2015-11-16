@@ -420,7 +420,7 @@
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
                 <Border Margin="7,7,6.6,6" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="2" BorderBrush="LightGray">
-                    <TextBlock Background="White" x:Name="Display" FontSize="20"/>
+                    <TextBlock Background="White" x:Name="Display" FontSize="20" TextAlignment="Right"/>
                 </Border>
                 <Button x:Name="ButtonOne" Content="1" Grid.Row="1" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
