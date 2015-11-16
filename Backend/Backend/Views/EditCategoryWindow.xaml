@@ -21,7 +21,7 @@
                 <Label Content="Rediger produktkategori" Padding="0" FontSize="12pt"/>
 
                 <Label Content="Kategorinavn"/>
-                <TextBox Name="textboxName" MaxLength="75" Text="{Binding OldName, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Name="textboxName" MaxLength="75" Text="{Binding ProductCategoryEdited.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">

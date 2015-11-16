@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Backend.Views"
         mc:Ignorable="d"
-             Title="Administrationssystem - Slet produktkategori" Height="200" Width="600" Background="#FFF0F0F0">
+             Title="Administrationssystem - Slet produktkategori" Height="300" Width="600" Background="#FFF0F0F0">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -26,7 +26,8 @@
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
                 <Label Content="Hovedmenu" Padding="0" FontSize="12pt"/>
-                <Button Content="_Slet" FontSize="10pt" Height="30" Margin="0, 10" Command="{Binding MoveAndDeleteCommand}"/>
+                <Button Content="_Slet" FontSize="10pt" Height="30" Margin="0, 10" Command="{Binding DeleteCommand}"/>
+                <Button Content="_Flyt" FontSize="10pt" Height="30" Margin="0, 10" Command="{Binding MoveCommand}"/>
                 <Button Content="_Annuller" FontSize="10pt" Height="30" Margin="0, 10" Click="Annuller"/>
             </StackPanel>
         </Grid>

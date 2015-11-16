@@ -38,6 +38,11 @@ namespace Backend.Models.Datamodels
             ExecuteOnSyncContext(() => base.Add(item));
         }
 
+        protected new void RemoveAt(int index)
+        {
+            ExecuteOnSyncContext(() => base.RemoveAt(index));
+        }
+
         protected override void InsertItem(int index, T item)
         {
             ExecuteOnSyncContext(() => base.InsertItem(index, item));

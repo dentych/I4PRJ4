@@ -45,27 +45,24 @@ namespace Backend.Models.SocketEvents
 
         public void ProductEditedHandler(ProductEditedCmd cmd)
         {
-            BackendProductCategory category = _categories.GetListByCateogry(0);
+            BackendProductCategory category = _categories.GetListByCateogry(cmd.OldProductCategoryId);
 
-            foreach (var product in category.Products)
+            for (int i = 0; i < category.Products.Count; i++)
             {
-                if (product.ProductId == cmd.ProductId)
+                var product = category.Products[i];
+
+                if (product.ProductId != cmd.ProductId) continue;
+
+                product.Name = cmd.Name;
+                product.Price = cmd.Price;
+                product.ProductNumber = cmd.ProductNumber;
+
+                if (product.ProductCategoryId != cmd.ProductCategoryId)
                 {
-                    product.Name = cmd.Name;
-                    product.Price = cmd.Price;
-                    product.ProductCategoryId = cmd.ProductId;
-                    product.ProductNumber = cmd.ProductNumber;
-
-                    //TODO: IMPLEMENT DIS SHIT
-                    /*
-                    if(cmd.CategoryId != category.id)
-                    {
-                        FLYT LORTET OVER I DEN RIGTIGE :) :) :)
-                    }
-                    */
-
-                    _categories.UpdateCurrentProducts();
-                    break;
+                    product.ProductCategoryId = cmd.ProductCategoryId;
+                    category.Products.Remove(product);
+                    _categories.GetListByCateogry(cmd.ProductCategoryId).Products.Add(product);
+                    i--;
                 }
             }
         }

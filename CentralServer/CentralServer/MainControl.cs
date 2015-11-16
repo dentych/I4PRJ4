@@ -283,7 +283,7 @@ namespace CentralServer
                 db.SaveChanges();
             }
 
-            Broadcast(new DeleteProductCategoryCmd(cat));
+            Broadcast(new ProductCategoryDeletedCmd(cat));
         }
 
         private void OnCreateProductCategory(IMessageReceiver client, CreateProductCategoryCmd cmd)

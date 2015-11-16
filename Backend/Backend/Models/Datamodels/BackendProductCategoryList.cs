@@ -40,9 +40,12 @@ namespace Backend.Models.Datamodels
             get { return _currentIndex; }
             set
             {
-                _currentIndex = value;
-                CurrentProductList = this[_currentIndex].Products;
-                Notify();
+                if (value >= 0)
+                {
+                    _currentIndex = value;
+                    CurrentProductList = this[_currentIndex].Products;
+                    Notify();
+                }
             }
         }
 
