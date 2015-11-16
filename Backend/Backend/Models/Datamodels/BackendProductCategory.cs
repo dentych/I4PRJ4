@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Threading;
 using SharedLib.Models;
+using System.Windows;
 
 namespace Backend.Models.Datamodels
 {
@@ -34,7 +35,6 @@ namespace Backend.Models.Datamodels
             Products.RemoveAt(index);
             _mutex.ReleaseMutex();
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -5,6 +5,7 @@ using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
 using System.Collections.Generic;
 using Backend.Models.Datamodels;
+using System.Windows;
 
 namespace Backend.Models.SocketEvents
 {
@@ -65,6 +66,8 @@ namespace Backend.Models.SocketEvents
                     i--;
                 }
             }
+
+            _categories.UpdateCurrentProducts();
         }
 
         public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)
