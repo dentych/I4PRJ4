@@ -10,6 +10,6 @@ namespace SharedLib.Models
     public class Purchase
     {
         public int PurchaseId { get; set; }
-        public List<PurchasedProduct> PurchasedProducts;
+        public virtual List<PurchasedProduct> PurchasedProducts { get; set; } = new List<PurchasedProduct>();
     }
 }
