@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SharedLib.Models;
 using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;
+using System.Windows;
 
 namespace KasseApparat
 {
@@ -227,10 +228,27 @@ namespace KasseApparat
 
         public List<ProductCategory> GetProducts()
         {
+            CatalogueDetailsCmd cmd = null;
+
+
             Connection.Connect();
 
             Connection.Send(protocol.Encode(new GetCatalogueCmd()));
-            var cmd = (CatalogueDetailsCmd)protocol.Decode(Connection.Receive());
+
+            while (true)
+            {
+                protocol.AddData(Connection.Receive());
+
+                foreach (var c in protocol.GetCommands())
+                    cmd = (CatalogueDetailsCmd)c;
+
+                if (cmd != null)
+                    break;
+            }
+
+            //MessageBox.Show(s);
+
+            //var cmd = (CatalogueDetailsCmd)protocol.Decode(s);
 
             Connection.Disconnect();
 
@@ -242,7 +260,7 @@ namespace KasseApparat
             Connection.Connect();
 
             Purchase pc = new Purchase();
-            pc.PurchasedProducts = (List<PurchasedProduct>)ShopList;
+            pc.PurchasedProducts = (List<PurchasedProduct>)ShopList.ToList();
 
             Connection.Send(protocol.Encode(new RegisterPurchaseCmd(pc)));
 

@@ -15,8 +15,8 @@ namespace KasseApparat
 {
     public class ShoppingList : ObservableCollection<PurchasedProduct>, INotifyPropertyChanged
     {
-        public IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
-        //public IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
+        //public IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
+        public IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
 
         public void AddItem(PurchasedProduct product)
         {
