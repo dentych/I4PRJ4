@@ -58,7 +58,9 @@ namespace Backend.ViewModels
         {
             if(!Exists())
                 Handler.EditCategory(ProductCategoryEdited); // Burde måske også have OldName med?
-            else new Error().StdErr("donnish ffs");
+            else new Error().StdErr("Kategorien eksisterer allerede.");
+            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+
         }
 
         private bool Exists()

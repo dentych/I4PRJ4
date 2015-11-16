@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Backend.Communication;
 using Backend.Dependencies;
@@ -71,6 +72,8 @@ namespace Backend.ViewModels
             if(!Exists(Category))
                 Handler.AddCategory(Category);
             else ErrorPrinter.StdErr("Kategorien eksisterer allerede.");
+
+            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
         }
 
         #endregion

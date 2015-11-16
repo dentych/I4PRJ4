@@ -67,10 +67,11 @@ namespace Backend.ViewModels
         private void AddProduct()
         {
             Product.ProductCategoryId = SelectedCategory.ProductCategoryId;
-            MessageBox.Show("Cat: " + Product.ProductCategoryId);
             if (!Exists(Product))
                 ModelHandler.CreateProduct(Product);
-            else new Error().StdErr("DONT DO DIS DONNISH");
+            else new Error().StdErr("Produktet eksisterer allerede.");
+            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+
         }
 
         private bool Exists(BackendProduct editedProduct)

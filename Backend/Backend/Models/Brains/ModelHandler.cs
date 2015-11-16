@@ -6,9 +6,11 @@
 //  Original author: benja
 ///////////////////////////////////////////////////////////
 
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using Backend.Communication;
 using Backend.Models.Datamodels;
+using Backend.Models.SocketEvents;
 using SharedLib.Models;
 
 namespace Backend.Models.Brains
@@ -17,7 +19,7 @@ namespace Backend.Models.Brains
     {
         private readonly IClient _client;
         private readonly IProtocol _protocol;
-        public  IError Error;
+        public IError Error;
 
 
         public ModelHandler(IProtocol protocol, IClient client)
@@ -30,13 +32,14 @@ namespace Backend.Models.Brains
 
         public bool CreateProduct(BackendProduct product)
         {
-            if (string.IsNullOrWhiteSpace(product.BName)|| product.BPrice < 0 || string.IsNullOrWhiteSpace(product.BProductNumber))
+            if (string.IsNullOrWhiteSpace(product.BName) || product.BPrice < 0 ||
+                string.IsNullOrWhiteSpace(product.BProductNumber))
             {
                 LastError = "Enter correct product details.";
                 Error.StdErr(LastError);
                 return false;
             }
-            
+
             // Generate XML from product
             var cmdtoSend = _protocol.ProductXMLParser(product);
             _client.Send(cmdtoSend);
@@ -50,26 +53,24 @@ namespace Backend.Models.Brains
             var cmdtoSend = _protocol.EditProductXMLParser(product);
             _client.Send(cmdtoSend);
 
+            
+
             return true;
         }
 
-        
 
         public bool DeleteProduct(Product product)
         {
-
             _client.Send(_protocol.DeleteProductXMLParser(product));
             return true;
         }
 
         public bool EditCategory(BackendProductCategory category)
         {
-
             // Generate XML from Category
             var cmdtoSend = _protocol.EditCategoryXMLParser(category);
             _client.Send(cmdtoSend);
             return true;
-
         }
 
         public bool AddCategory(BackendProductCategory category)
@@ -94,9 +95,15 @@ namespace Backend.Models.Brains
                 return false;
             }
 
-            foreach (var product in categoryToEmpty.Products)
+
+            // Thread shit, ellers crasher lortet hvis der går for lang tid mellem serversvar
+            var clonedata = categoryToEmpty.Products.ToList();
+
+
+            SocketEventHandlers.InitializeTrander(clonedata.Count);
+            foreach (var product in clonedata)
             {
-                var newProduct = new BackendProduct()
+                var newProduct = new BackendProduct
                 {
                     Name = product.Name,
                     Price = product.Price,
@@ -107,6 +114,7 @@ namespace Backend.Models.Brains
                 var cmdtosend = _protocol.EditProductXMLParser(newProduct);
                 _client.Send(cmdtosend);
             }
+
 
             return true;
         }

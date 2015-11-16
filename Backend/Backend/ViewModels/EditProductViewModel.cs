@@ -68,7 +68,9 @@ namespace Backend.ViewModels
                 EditedProduct.ProductCategoryId = Categories[currentCatIndex].ProductCategoryId;
                 Handler.EditProduct(EditedProduct);
             }
-            else new Error().StdErr("Don't do dis Donnish");
+            else new Error().StdErr("Produktet eksisterer allerede.");
+            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+
         }
 
         private bool Exists()
