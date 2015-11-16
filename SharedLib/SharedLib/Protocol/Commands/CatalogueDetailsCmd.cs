@@ -19,13 +19,16 @@ namespace SharedLib.Protocol.Commands
         {
             foreach (var prdC in productCategories)
             {
-                var copy = new ProductCategory(prdC.Products)
+                var prdCCopy = new ProductCategory()
                 {
                     Name = prdC.Name,
                     ProductCategoryId = prdC.ProductCategoryId
                 };
 
-                ProductCategories.Add(copy);
+                foreach (var product in prdC.Products)
+                    prdCCopy.Products.Add(product);
+
+                ProductCategories.Add(prdCCopy);
             }
         }
 
