@@ -20,6 +20,9 @@ namespace KasseApparat
         private Button CategoryButton;
         private List<Product> _totalList;
 
+
+        /* Ctor: Contructor. Opretter variable og updaterer kategorier 
+        */
         public CategoriesMenu()
         {
             _productCategoryList = new ProductCategoryList();
@@ -34,6 +37,8 @@ namespace KasseApparat
 
         public void Update()
         {
+            CategoryButton.ContextMenu.Items.Clear();
+            _productCategoryList.Update();
             _totalList = CreateListOfAllProducts();
             var MenuCat = new MenuCategory("All products", _totalList);
 
