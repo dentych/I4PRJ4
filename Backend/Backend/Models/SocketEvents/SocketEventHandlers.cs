@@ -1,28 +1,42 @@
-﻿using System;
-using Backend.Communication;
-using SharedLib.Models;
+﻿using Backend.Communication;
+using Backend.Models.Datamodels;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
-using System.Collections.Generic;
-using Backend.Models.Datamodels;
-using System.Windows;
 
 namespace Backend.Models.SocketEvents
 {
     public class SocketEventHandlers : ISocketEventHandlers
     {
         #region Properties and variables
+
         private readonly BackendProductCategoryList _categories;
+        private static int _pToTranfer;
+        private int _pTranfered;
+
         #endregion
 
         #region Constructor
+
         public SocketEventHandlers(BackendProductCategoryList cat)
         {
             _categories = cat;
         }
+
         #endregion
 
+        #region Helpers
+
+        public static void InitializeTrander(int c)
+        {
+            _pToTranfer = c;
+        }
+
+        #endregion
+
+  
+
         #region Event handlers
+
         public void ProductCreatedHandler(ProductCreatedCmd cmd)
         {
             _categories.GetListByCateogry(cmd.ProductCategoryId).AddProduct(cmd.GetProduct());
@@ -31,9 +45,9 @@ namespace Backend.Models.SocketEvents
 
         public void ProductDeletedHandler(ProductDeletedCmd cmd)
         {
-            BackendProductCategory category = _categories.GetListByCateogry(cmd.ProductCategoryId);
+            var category = _categories.GetListByCateogry(cmd.ProductCategoryId);
 
-            for (int i = 0; i < category.Products.Count; i++)
+            for (var i = 0; i < category.Products.Count; i++)
             {
                 if (category.Products[i].ProductId == cmd.ProductId)
                 {
@@ -46,9 +60,9 @@ namespace Backend.Models.SocketEvents
 
         public void ProductEditedHandler(ProductEditedCmd cmd)
         {
-            BackendProductCategory category = _categories.GetListByCateogry(cmd.OldProductCategoryId);
+            var category = _categories.GetListByCateogry(cmd.OldProductCategoryId);
 
-            for (int i = 0; i < category.Products.Count; i++)
+            for (var i = 0; i < category.Products.Count; i++)
             {
                 var product = category.Products[i];
 
@@ -66,24 +80,29 @@ namespace Backend.Models.SocketEvents
                     i--;
                 }
             }
+            _pTranfered++;
 
-            _categories.UpdateCurrentProducts();
+            if (_pTranfered == _pToTranfer)
+            {
+                _categories.UpdateCurrentProducts();
+                _pTranfered = 0;
+                _pToTranfer = 0;
+            }
         }
 
         public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)
         {
             if (cmd.ProductCategories.Count > 0)
             {
-                foreach (var category in cmd.ProductCategories) // NO IT IS PRODUCTCATEGORY)
+                foreach (var category in cmd.ProductCategories)
                 {
-                    BackendProductCategory Category = new BackendProductCategory()
+                    var Category = new BackendProductCategory
                     {
                         BName = category.Name,
                         ProductCategoryId = category.ProductCategoryId,
                         Products = category.Products
                     };
                     _categories.Add(Category);
-
                 }
                 _categories.Bootstrapper();
             }
@@ -95,7 +114,7 @@ namespace Backend.Models.SocketEvents
 
         public void ProductCategoryCreatedHandler(ProductCategoryCreatedCmd category)
         {
-            var cat = new BackendProductCategory()
+            var cat = new BackendProductCategory
             {
                 BName = category.Name,
                 ProductCategoryId = category.ProductCategoryId,
@@ -107,7 +126,7 @@ namespace Backend.Models.SocketEvents
 
         public void ProductCategoryDeletedHandler(ProductCategoryDeletedCmd category)
         {
-            for (int i = 0; i < _categories.Count; i++)
+            for (var i = 0; i < _categories.Count; i++)
             {
                 if (_categories[i].ProductCategoryId == category.ProductCategoryId)
                 {
@@ -119,20 +138,18 @@ namespace Backend.Models.SocketEvents
 
         public void ProductCategoryEditedHandler(ProductCategoryEditedCmd category)
         {
-            for (int i = 0; i < _categories.Count; i++)
+            for (var i = 0; i < _categories.Count; i++)
             {
                 if (_categories[i].ProductCategoryId == category.ProductCategoryId)
                 {
                     _categories[i].BName = category.Name;
-                    // _categories[i].Products = category.Products; // This shouldn't be nødvendigt nissemand :-D
                 }
             }
         }
+
         #endregion
 
         #region Subscribe methods
-
-
 
         public void SubscribeProductCreated()
         {
@@ -168,6 +185,7 @@ namespace Backend.Models.SocketEvents
         {
             LSC.Listener.OnProductCategoryEdited += ProductCategoryEditedHandler;
         }
+
         #endregion
     }
 }

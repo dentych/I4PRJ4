@@ -16,8 +16,10 @@ namespace Backend.Models.Datamodels
             get { return Name; }
             set
             {
+                _mutex.WaitOne();
                 Name = value;
                 Notify("Name");
+                _mutex.ReleaseMutex();
             }
         }
 

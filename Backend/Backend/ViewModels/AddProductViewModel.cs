@@ -67,7 +67,6 @@ namespace Backend.ViewModels
         private void AddProduct()
         {
             Product.ProductCategoryId = SelectedCategory.ProductCategoryId;
-            MessageBox.Show("Cat: " + Product.ProductCategoryId);
             if (!Exists(Product))
                 ModelHandler.CreateProduct(Product);
             else new Error().StdErr("DONT DO DIS DONNISH");

@@ -62,10 +62,11 @@
     <Compile Include="Messaging\IMessageQueue.cs" />
     <Compile Include="Messaging\IMessageReceiver.cs" />
     <Compile Include="Messaging\MessageReceiver.cs" />
-    <Compile Include="Migrations\201511111854556_AddedProductCategory.cs" />
-    <Compile Include="Migrations\201511111854556_AddedProductCategory.Designer.cs">
-      <DependentUpon>201511111854556_AddedProductCategory.cs</DependentUpon>
+    <Compile Include="Migrations\201511160155140_lolfuck.cs" />
+    <Compile Include="Migrations\201511160155140_lolfuck.Designer.cs">
+      <DependentUpon>201511160155140_lolfuck.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Sessions\ISessionControl.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Log.cs" />
@@ -81,11 +82,6 @@
     <Compile Include="Messaging\Messages\SendCommandMsg.cs" />
     <Compile Include="Messaging\Messages\StopSessionMsg.cs" />
     <Compile Include="Messaging\Messages\WelcomeMsg.cs" />
-    <Compile Include="Migrations\201510230832315_FirstVersion.cs" />
-    <Compile Include="Migrations\201510230832315_FirstVersion.Designer.cs">
-      <DependentUpon>201510230832315_FirstVersion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\SocketConnection.cs" />
@@ -99,14 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510230832315_FirstVersion.resx">
-      <DependentUpon>201510230832315_FirstVersion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511111854556_AddedProductCategory.resx">
-      <DependentUpon>201511111854556_AddedProductCategory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511160155140_lolfuck.resx">
+      <DependentUpon>201511160155140_lolfuck.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -7,8 +7,11 @@
 ///////////////////////////////////////////////////////////
 
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using Backend.Communication;
 using Backend.Models.Datamodels;
+using Backend.Models.SocketEvents;
 using SharedLib.Models;
 
 namespace Backend.Models.Brains
@@ -94,7 +97,18 @@ namespace Backend.Models.Brains
                 return false;
             }
 
+
+
+            // Thread shit, ellers crasher lortet hvis der går for lang tid mellem serversvar
+            var clonedata = new List<Product>();
             foreach (var product in categoryToEmpty.Products)
+            {
+                clonedata.Add(product);
+            }
+              
+
+            SocketEventHandlers.InitializeTrander(clonedata.Count);
+            foreach (var product in clonedata)
             {
                 var newProduct = new BackendProduct()
                 {
@@ -106,7 +120,10 @@ namespace Backend.Models.Brains
                 };
                 var cmdtosend = _protocol.EditProductXMLParser(newProduct);
                 _client.Send(cmdtosend);
+                 
             }
+          //  Thread.Sleep(500);
+            
 
             return true;
         }
