@@ -88,6 +88,11 @@ namespace Backend.Models.SocketEvents
                 _pTranfered = 0;
                 _pToTranfer = 0;
             }
+            else if (_pToTranfer == 0 && _pTranfered == 1)
+            {
+                _categories.UpdateCurrentProducts();
+                _pTranfered = 0;
+            }
         }
 
         public void CatalogueDetailsHandler(CatalogueDetailsCmd cmd)

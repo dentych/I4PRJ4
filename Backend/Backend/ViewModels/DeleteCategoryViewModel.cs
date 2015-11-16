@@ -23,6 +23,7 @@ namespace Backend.ViewModels
         public IModelHandler ModelHandler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
         private int SelectedIndex { get; set; } // Den der skal slettes (INDEX!!!)
         public int MoveToCategoryId { get; set; } = 0; // den der skal flyttes til, index bindex til den her.
+
         #endregion
 
         public DeleteCategoryViewModel()
@@ -60,6 +61,8 @@ namespace Backend.ViewModels
         private void DeleteCategory()
         {
             ModelHandler.DeleteCategory(Categories[SelectedIndex]);
+            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+
         }
 
         private bool MoveValid()
@@ -70,6 +73,7 @@ namespace Backend.ViewModels
         private void MoveProducts()
         {
             ModelHandler.MoveProductsInCategory(Categories[SelectedIndex], Categories[MoveToCategoryId].ProductCategoryId);
+
         }
 
         #endregion
