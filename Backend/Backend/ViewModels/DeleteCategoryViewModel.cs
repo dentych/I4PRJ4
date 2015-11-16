@@ -23,10 +23,6 @@ namespace Backend.ViewModels
         public IModelHandler ModelHandler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
         private int SelectedIndex { get; set; } // Den der skal slettes (INDEX!!!)
         public int MoveToCategoryId { get; set; } = 0; // den der skal flyttes til, index bindex til den her.
-        
-
-
-
         #endregion
 
         public DeleteCategoryViewModel()
@@ -34,34 +30,46 @@ namespace Backend.ViewModels
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewDeleteCategoryData>().Subscribe(GetData, true);
             Aggregator.GetEvent<DeleteCategoryWindowLoaded>().Publish(true);
-
         }
-
 
         public void GetData(DeleteCategoryParms parms)
         {
             Categories = parms.cats;
             SelectedIndex = parms.ToDelteIndex;
-
-
         }
 
         #region Commands
 
-        private ICommand _moveAndDelteCommand;
-        public ICommand MoveAndDeleteCommand
+        private ICommand _moveCommand;
+        public ICommand MoveCommand
         {
-            get { return _moveAndDelteCommand ?? (_moveAndDelteCommand = new RelayCommand(MoveAndDelete, Valid)); }
+            get { return _moveCommand ?? (_moveCommand = new RelayCommand(MoveProducts, MoveValid)); }
         }
 
-        private bool Valid()
+        private ICommand _deleteCommand;
+        public ICommand DeleteCommand
         {
-            return SelectedIndex != MoveToCategoryId;
+            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(DeleteCategory, DeleteValid)); }
         }
 
-        private void MoveAndDelete()
+        private bool DeleteValid()
         {
-            ModelHandler.MoveProductsInCategory(Categories[SelectedIndex], MoveToCategoryId);
+            return (Categories.CurrentProductList.Count == 0);
+        }
+
+        private void DeleteCategory()
+        {
+            ModelHandler.DeleteCategory(Categories[SelectedIndex]);
+        }
+
+        private bool MoveValid()
+        {
+            return (SelectedIndex != MoveToCategoryId) && (Categories[SelectedIndex].Products.Count > 0);
+        }
+
+        private void MoveProducts()
+        {
+            ModelHandler.MoveProductsInCategory(Categories[SelectedIndex], Categories[MoveToCategoryId].ProductCategoryId);
         }
 
         #endregion

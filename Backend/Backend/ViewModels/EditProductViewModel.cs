@@ -41,10 +41,8 @@ namespace Backend.ViewModels
             EditedProduct.BPrice = details.product.Price;
             EditedProduct.ProductId = details.product.ProductId;
             EditedProduct.BProductNumber = details.product.ProductNumber;
-            ProductCategory = details.CurrentCategory;
             Categories = details.cats;
             currentCatIndex = details.currentCatIndex;
-
         }
 
         #region Commands
@@ -65,19 +63,24 @@ namespace Backend.ViewModels
 
         private void SaveProduct()
         {
-            if (!Exists(EditedProduct))
+            if (!Exists())
+            {
+                EditedProduct.ProductCategoryId = Categories[currentCatIndex].ProductCategoryId;
                 Handler.EditProduct(EditedProduct);
+            }
             else new Error().StdErr("Don't do dis Donnish");
         }
 
-        private bool Exists(BackendProduct editedProduct)
+        private bool Exists()
         {
             foreach (var cat in Categories)
             {
                 foreach (var product in cat.Products)
                 {
-                    if (editedProduct.BName == product.Name && editedProduct.BPrice == product.Price &&
-                        editedProduct.BProductNumber == product.ProductNumber)
+                    if (product.ProductId == EditedProduct.ProductId) continue;
+
+                    if (EditedProduct.Name == product.Name && EditedProduct.Price == product.Price &&
+                        EditedProduct.ProductNumber == product.ProductNumber)
                     {
                         return true;
                     }

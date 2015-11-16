@@ -23,21 +23,18 @@ namespace Backend.ViewModels
         public BackendProductCategoryList Categories { get; set; }
         public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
         public BackendProductCategoryList AllCats;
-        public string OldName { get; set; }
-        public int OldId { get; set; }
 
         public EditCategoryViewModel()
         {
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditCategoryData>().Subscribe(SetCategoryData, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Publish(true);
-            ProductCategoryEdited.ProductCategoryId = OldId;
         }
 
         public void SetCategoryData(EditCategoryParms p)
         {
-            OldName = p.Name;
-            OldId = p.Id;
+            ProductCategoryEdited.Name = p.Name;
+            ProductCategoryEdited.ProductCategoryId = p.Id;
             AllCats = p.cats;
         }
 
@@ -52,23 +49,23 @@ namespace Backend.ViewModels
 
         private bool Valid() 
         {
-            if (OldName != "")
+            if (ProductCategoryEdited.Name != "")
                 return true;
             return false;
         }
 
         private void SaveCategory()
         {
-            if(!Exists(ProductCategoryEdited))
+            if(!Exists())
                 Handler.EditCategory(ProductCategoryEdited); // Burde måske også have OldName med?
             else new Error().StdErr("donnish ffs");
         }
 
-        private bool Exists(BackendProductCategory editedProduct)
+        private bool Exists()
         {
             foreach (var cat in AllCats)
             {
-                if (ProductCategoryEdited.BName == editedProduct.BName)
+                if (cat.Name == ProductCategoryEdited.Name)
                 {
                     return true;
                 }
