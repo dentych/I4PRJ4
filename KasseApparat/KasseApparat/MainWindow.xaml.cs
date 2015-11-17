@@ -52,10 +52,13 @@ namespace KasseApparat
 
         private void ButtonQuant_Click(object sender, RoutedEventArgs e)
         {
-            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
-            if (shopList.Count > 0)
-                shopList.SetQuantity(Convert.ToInt32(Display.Text));
-            Display.Text = "";
+            if (Display.Text.ToString() != "")
+            {
+                ShoppingList shopList = (ShoppingList) this.FindResource("ShoppingList");
+                if (shopList.Count > 0)
+                    shopList.SetQuantity(Convert.ToInt32(Display.Text));
+                Display.Text = "";
+            }
         }
 
         private void ButtonNr_Click(object sender, RoutedEventArgs e)
@@ -66,16 +69,16 @@ namespace KasseApparat
 
         private void ButtonReturn_Click(object sender, RoutedEventArgs e)
         {
-            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
-            shopList.SetQuantity(-Convert.ToInt32(Display.Text));
-            Display.Text = "";
+            if (Display.Text.ToString() != "")
+            {
+                ShoppingList shopList = (ShoppingList) this.FindResource("ShoppingList");
+                shopList.SetQuantity(-Convert.ToInt32(Display.Text));
+                Display.Text = "";
+            }
         }
 
         private void ButtonClr_Click(object sender, RoutedEventArgs e)
         {
-            ShoppingList shopList = (ShoppingList)this.FindResource("ShoppingList");
-            
-
             Display.Text = "";
         }
 
