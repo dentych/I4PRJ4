@@ -227,13 +227,20 @@ namespace KasseApparat
 
         public List<ProductCategory> GetProducts()
         {
+            CatalogueDetailsCmd cmd = null;
             Connection.Connect();
-
             Connection.Send(protocol.Encode(new GetCatalogueCmd()));
-            var cmd = (CatalogueDetailsCmd)protocol.Decode(Connection.Receive());
 
+            while (true)
+            {
+                protocol.AddData(Connection.Receive());
+
+                foreach (var c in protocol.GetCommands())
+                    cmd = (CatalogueDetailsCmd)c;
+                if (cmd != null)
+                    break;
+            }
             Connection.Disconnect();
-
             return cmd.ProductCategories;
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,10 @@ namespace KasseApparat.UnitTest
             uut = new DBcontrol(null);
             uut.Connection = Substitute.For<IConnection>();
             uut.protocol = Substitute.For<IProtocol>();
+
+            IEnumerable<Command> IE = new Command[] {new CatalogueDetailsCmd() };
+
+            uut.protocol.GetCommands().Returns(IE);
         }
 
         [Test]
