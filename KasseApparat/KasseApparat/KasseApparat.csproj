@@ -60,6 +60,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Connection.cs" />
+    <Compile Include="FakeDBcontrol.cs" />
+    <Compile Include="IDBcontrol.cs" />
     <Compile Include="ProductButtonControl\ButtonContent.cs" />
     <Compile Include="ProductButtonControl\ProductButtonList.cs" />
     <Compile Include="DBcontrol.cs" />
