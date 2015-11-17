@@ -80,22 +80,7 @@ namespace KasseApparat
         private void ButtonClr_Click(object sender, RoutedEventArgs e)
         {
             Display.Text = "";
-        }
-
-        private void CategoryItemOnClick(object sender, RoutedEventArgs routedEventArgs)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-        /*
-        private void ButtonRefreshClick(object sender, RoutedEventArgs e)
-        {
-            ProductButtonControl ProdControl = (ProductButtonControl)this.FindResource("ProductButtonControl");
-
-            ProdControl.Update();
-        }
-        */
+        }       
 
         private void Categori_Click(object sender, RoutedEventArgs e)
         {
@@ -106,5 +91,6 @@ namespace KasseApparat
 
             _catMenu.Update();
         }
+#endregion
     }
 }
