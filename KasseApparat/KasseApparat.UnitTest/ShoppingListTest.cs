@@ -270,5 +270,31 @@ namespace KasseApparat.UnitTest
 
             Assert.That(uut, Is.Empty);
         }
+
+        // Clear ---------------------------------------------------------------------
+
+        [Test]
+        public void ClearCanExecute_1item_True()
+        {
+            uut.Add(new PurchasedProduct());
+            
+            Assert.True(uut.ClearCommand.CanExecute(uut));
+        }
+
+        [Test]
+        public void ClearCanExecute_0item_False()
+        {
+            Assert.False(uut.ClearCommand.CanExecute(uut));
+        }
+
+        [Test]
+        public void ClearExecute_1items_Expected0()
+        {
+            uut.AddItem(new PurchasedProduct());
+
+            uut.ClearCommand.Execute(uut);
+
+            Assert.That(uut.Count, Is.EqualTo(0));
+        }
     }
 }

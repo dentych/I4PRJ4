@@ -196,7 +196,7 @@ namespace KasseApparat
 
         bool ClearCommandCanExecute()
         {
-            if (Count < 0) return false;
+            if (Count <= 0) return false;
             else return true;
         }
 #endregion
