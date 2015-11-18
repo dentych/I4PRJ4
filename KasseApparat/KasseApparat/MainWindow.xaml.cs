@@ -88,9 +88,12 @@ namespace KasseApparat
             (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
-
-            _catMenu.Update();
         }
 #endregion
+
+        private void RefreshEvent(object sender, RoutedEventArgs e)
+        {
+            _catMenu.Update();
+        }
     }
 }

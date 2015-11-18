@@ -42,46 +42,54 @@
             <ColumnDefinition Width="262*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <GroupBox Grid.Column="0" DataContext="{StaticResource ProductButtonControl}" x:Name="CurrentButtonPage" 
-                  Header="Produkter" Margin="10,10,10.2,10.4" BorderThickness="2">
+                  Header="Produkter" Margin="5" BorderThickness="2">
             <Grid Margin="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30*"></RowDefinition>
                     <RowDefinition Height="334*"/>
                     <RowDefinition Height="55*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Margin="0,0,0.4,0.6">
+                <Grid Grid.Row="0" MinHeight="20">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="154*"></ColumnDefinition>
-                        <ColumnDefinition Width="93*"/>
-                        <ColumnDefinition Width="18*"/>
-                        <ColumnDefinition Width="24*"></ColumnDefinition>
-                        <ColumnDefinition Width="14*"></ColumnDefinition>
+                        <ColumnDefinition Width="51*"></ColumnDefinition>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="12*"></ColumnDefinition>
+                        <ColumnDefinition Width="7*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button x:Name="CategoryMenu"
                             Content="Categories"
                             Click="Categori_Click"
                             ContextMenuService.IsEnabled="False"
-                            Margin="5">
+                            Margin="4">
                         <Button.ContextMenu >
                             <ContextMenu>
                             </ContextMenu>
                         </Button.ContextMenu>
                     </Button>
-                    <Label Grid.Row="0" Grid.Column="1" 
+                    <Button Grid.Row="0" Grid.Column="1"
+                            Margin="4"
+                            Click="RefreshEvent">
+                        <StackPanel Margin="3">
+                            <Image Source="Billeder\Refresh.png"></Image>
+                        </StackPanel>
+                    </Button>
+                    <Label Grid.Row="0" Grid.Column="2" 
                            HorizontalAlignment="Right"
-                           Content="Page" Width="35"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2"
+                           Content="Page"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3"
                            Text="{Binding CurrentPages}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"/>
-                    <Label Grid.Row="0" Grid.Column="3"
+                    <Label Grid.Row="0" Grid.Column="4"
                            Content="of"
                            HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Row="0" Grid.Column="4"
+                    <TextBlock Grid.Row="0" Grid.Column="5"
                                Text="{Binding TotalPages}"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
-                <Grid Margin="0,25,0.4,5" Grid.RowSpan="2">
+                <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -424,7 +432,7 @@
                 </Border>
                 <Button x:Name="ButtonOne" Content="1" Grid.Row="1" Grid.Column="0" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
-                    <Button x:Name="ButtonTwo" Content="2" Grid.Row="1" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
+                <Button x:Name="ButtonTwo" Content="2" Grid.Row="1" Grid.Column="1" Margin="7.4,7,7,7" FontSize="20"
                         Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonThree" Content="3" Grid.Row="1" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
@@ -459,7 +467,7 @@
                         Click="ButtonQuant_Click" Background="{StaticResource BlueButton}"/>
                 <Button x:Name="ButtonReturn" Content="Retur" Grid.Row="5" Grid.Column="1" Margin="7,7,6.6,7"
                         Click="ButtonReturn_Click" Background="{StaticResource BlueButton}"/>
-                
+
             </Grid>
         </GroupBox>
 
