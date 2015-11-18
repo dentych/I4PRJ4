@@ -44,7 +44,7 @@ namespace KasseApparat
             Connection.Connect();
 
             Purchase pc = new Purchase();
-            pc.PurchasedProducts = (List<PurchasedProduct>)ShopList;
+            pc.PurchasedProducts = ShopList.ToList();
 
             Connection.Send(protocol.Encode(new RegisterPurchaseCmd(pc)));
 
