@@ -47,7 +47,7 @@ namespace KasseApparat
             //Create categories from categories list
             for (int i = 0; i < _productCategoryList.Count; i++)
             {
-                var MenuCateg = new MenuCategory(_productCategoryList[i].Name, _productCategoryList[i].Products);
+                var MenuCateg = new MenuCategory(_productCategoryList[i].Name, _productCategoryList[i].Products.ToList());
 
 
 
