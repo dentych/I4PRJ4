@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Windows;
 
 namespace KasseApparat
 {
@@ -39,6 +40,7 @@ namespace KasseApparat
             }
             catch (Exception)
             {
+                MessageBox.Show("Error writing from socket");
                 return;
             }
 
@@ -56,6 +58,7 @@ namespace KasseApparat
             }
             catch (Exception)
             {
+                MessageBox.Show("Error reading from socket");
                 return null;
             }
 
