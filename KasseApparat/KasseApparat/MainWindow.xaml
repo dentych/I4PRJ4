@@ -45,18 +45,18 @@
                   Header="Produkter" Margin="5" BorderThickness="2">
             <Grid Margin="4">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30*"></RowDefinition>
+                    <RowDefinition Height="30*" MinHeight="20"/>
                     <RowDefinition Height="334*"/>
-                    <RowDefinition Height="55*"></RowDefinition>
+                    <RowDefinition Height="55*"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" MinHeight="20">
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="51*"></ColumnDefinition>
+                        <ColumnDefinition Width="51*"/>
                         <ColumnDefinition Width="17*"/>
                         <ColumnDefinition Width="55*"/>
                         <ColumnDefinition Width="9*"/>
-                        <ColumnDefinition Width="12*"></ColumnDefinition>
-                        <ColumnDefinition Width="7*"></ColumnDefinition>
+                        <ColumnDefinition Width="12*"/>
+                        <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
                     <Button x:Name="CategoryMenu"
                             Content="Categories"
@@ -91,15 +91,15 @@
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="0"
                             Margin="5"
@@ -108,8 +108,8 @@
                             Command="{Binding CurrentButtonPage[0].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[0].Name}"></Label>
@@ -126,8 +126,8 @@
                             >
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[1].Name}"></Label>
@@ -143,8 +143,8 @@
                             Command="{Binding CurrentButtonPage[2].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[2].Name}"></Label>
@@ -160,8 +160,8 @@
                             Command="{Binding CurrentButtonPage[3].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[3].Name}"></Label>
@@ -177,8 +177,8 @@
                             Command="{Binding CurrentButtonPage[4].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0"
                                        Text="{Binding CurrentButtonPage[4].Name}"
@@ -196,8 +196,8 @@
                             Command="{Binding CurrentButtonPage[5].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[5].Name}"></Label>
@@ -213,8 +213,8 @@
                             Command="{Binding CurrentButtonPage[6].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[6].Name}"></Label>
@@ -230,8 +230,8 @@
                             Command="{Binding CurrentButtonPage[7].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[7].Name}"
@@ -248,8 +248,8 @@
                             Command="{Binding CurrentButtonPage[8].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[8].Name}"></Label>
@@ -265,8 +265,8 @@
                             Command="{Binding CurrentButtonPage[9].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[9].Name}"></Label>
@@ -282,8 +282,8 @@
                             Command="{Binding CurrentButtonPage[10].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[10].Name}"></Label>
@@ -299,8 +299,8 @@
                             Command="{Binding CurrentButtonPage[11].AddCommand}">
                         <Grid >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    Content="{Binding CurrentButtonPage[11].Name}"></Label>
@@ -313,8 +313,8 @@
                 </Grid>
                 <Grid Grid.Row="2" Margin="0,0,0.4,0.2" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="0"
                             Margin="5"
@@ -332,15 +332,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="39*"/>
                     <ColumnDefinition Width="14*"/>
-
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="294*"></RowDefinition>
-                    <RowDefinition Height="26*"></RowDefinition>
+                    <RowDefinition Height="294*"/>
+                    <RowDefinition Height="26*"/>
                     <RowDefinition Height="25*"/>
-                    <RowDefinition Height="54*"></RowDefinition>
+                    <RowDefinition Height="54*"/>
                 </Grid.RowDefinitions>
-
 
                 <ListBox x:Name="ListBoxShoppingList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" 
                          ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" SelectedIndex="{Binding CurrentIndex}"
@@ -349,9 +347,9 @@
                         <DataTemplate>
                             <Grid Margin="4" Height="20" HorizontalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock x:Name="TextBlockQuantity" 
                                            Grid.Column="0" 
@@ -369,7 +367,6 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-
 
                 <Label Content="Total" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,5,0"/>
                 <Border Background="White" Grid.Column="1" Grid.Row="1" Margin="-1,-1,10,0" BorderThickness="1" BorderBrush="DarkGray">
@@ -414,9 +411,9 @@
                   DataContext="{StaticResource ShoppingList}">
             <Grid Margin="0,10,-2.8,3.2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="38*"/>
@@ -455,8 +452,7 @@
                 <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
                         Click="ButtonClr_Click" Background="{StaticResource OrangeButton}"/>
                 <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,0,7,7" 
-                        Click="ButtonCash_Click" Height="43" VerticalAlignment="Bottom" 
-                        Background="{StaticResource GreenButton}"/>
+                        Click="ButtonCash_Click" Height="43" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonCard" Content="Kort" Grid.Row="6" Grid.Column="1" Margin="7.4,7,7,7"
                         Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonAnulate" Grid.Row="6" Grid.Column="2" Margin="7,7,6.6,7"
