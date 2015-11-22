@@ -1,6 +1,6 @@
-﻿using Backend.Communication;
-using Backend.Models;
+﻿using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using NSubstitute;
 using NUnit.Framework;

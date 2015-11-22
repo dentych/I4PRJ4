@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using SharedLib.Models;
@@ -21,14 +21,19 @@ namespace Backend.ViewModels
     /// </summary>
     public class AddCategoryViewModel
     {
-        public IEventAggregator Aggregator { get; set; } = SingleEventAggregator.Aggregator;
-        public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
-        public IError ErrorPrinter { get; set; } = new Error();
+        public IEventAggregator Aggregator { get; set; } 
+        public IModelHandler Handler { get; set; } 
+        public IError ErrorPrinter { get; set; } 
         public BackendProductCategoryList Categories { get; set; } 
-        public  BackendProductCategory Category { get; set; } = new BackendProductCategory();
+        public  BackendProductCategory Category { get; set; } 
 
         public AddCategoryViewModel()
         {
+            Aggregator = SingleEventAggregator.Aggregator;
+            Handler = new ModelHandler(new PrjProtokol(), new Client());
+            ErrorPrinter = new Error();
+            Category = new BackendProductCategory();
+
             Aggregator.GetEvent<CategoryListUpdated>().Subscribe(CategoryListUpdated);
             Aggregator.GetEvent<AddProductWindowLoaded>().Publish(true);
         }
@@ -52,9 +57,7 @@ namespace Backend.ViewModels
             Categories = updatedList;
         }
 
-
         #region Commands
-
         /* Add Product */
         private ICommand _addCaegorytCommand;
         public ICommand AddCategoryCommand
@@ -90,9 +93,6 @@ namespace Backend.ViewModels
 
             Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
         }
-
         #endregion
     }
-
-
 }

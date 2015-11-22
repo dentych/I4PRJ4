@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Prism.Events;
@@ -16,13 +16,20 @@ namespace Backend.ViewModels
     public class AddProductViewModel
     {
         public IEventAggregator Aggregator;
-        
+
+        public BackendProductCategoryList Categories { get; set; }
+        public BackendProduct Product { get; set; }
+        public IModelHandler ModelHandler { get; set; }
+        public IError Err { set; get; }
+        public BackendProductCategory SelectedCategory { get; set; } 
+
         /// <summary>
         /// Set up events for viewmodel-viewmodel communication, 
         /// and select a standard category on the category list.
         /// </summary>
         public AddProductViewModel()
         {
+            SelectedCategory = new BackendProductCategory();
             Product = new BackendProduct();
             Err = new Error();
             ModelHandler = new ModelHandler(new PrjProtokol(), new Client());
@@ -35,14 +42,7 @@ namespace Backend.ViewModels
             {
                 SelectedCategory = Categories[0];
             }
-            
         }
-
-        public BackendProductCategoryList Categories { get; set; }
-        public BackendProduct Product { get; set; }
-        public IModelHandler ModelHandler { get; set; }
-        public IError Err { set; get; }
-        public BackendProductCategory SelectedCategory { get; set; } = new BackendProductCategory();
 
         /// <summary>
         /// Check if all fields for the product is filled out and
@@ -70,7 +70,6 @@ namespace Backend.ViewModels
         }
 
         #region Commands
-
         /* Add Product */
         private ICommand _addProductCommand;
         public ICommand AddProductCommand
@@ -89,7 +88,6 @@ namespace Backend.ViewModels
                 ModelHandler.CreateProduct(Product);
             else new Error().StdErr("Produktet eksisterer allerede.");
             Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
-
         }
 
         /// <summary>
@@ -114,7 +112,6 @@ namespace Backend.ViewModels
             }
             return false;
         }
-
         #endregion
     }
 }

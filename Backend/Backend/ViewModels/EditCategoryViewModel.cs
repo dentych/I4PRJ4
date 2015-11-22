@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Prism.Events;
@@ -16,13 +16,15 @@ namespace Backend.ViewModels
     public class EditCategoryViewModel
     {
         public IEventAggregator Aggregator;
-        public BackendProductCategory ProductCategoryEdited { get; set; } = new BackendProductCategory();
+        public BackendProductCategory ProductCategoryEdited { get; set; } 
         public BackendProductCategoryList Categories { get; set; }
-        public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
+        public IModelHandler Handler { get; set; }
         public BackendProductCategoryList AllCats;
 
         public EditCategoryViewModel()
         {
+            Handler = new ModelHandler(new PrjProtokol(), new Client());
+            ProductCategoryEdited = new BackendProductCategory();
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditCategoryData>().Subscribe(SetCategoryData, true);
             Aggregator.GetEvent<EditCategoryWindowLoaded>().Publish(true);
