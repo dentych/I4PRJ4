@@ -14,54 +14,75 @@ namespace SharedLib.UnitTest.Commands.UnitTest
     [TestFixture]
     class CatalogueDetailsCmdUnitTest
     {
-        //Product product;
-        //CatalogueDetailsCmd cmd;
+        Product product;
+        ProductCategory productCategory;
+        CatalogueDetailsCmd cmd;
 
-        //[SetUp]
-        //public void SetUp()
-        //{
-        //    product = new Product()
-        //    {
-        //        Name = "Banan",
-        //        Price = 10,
-        //        ProductId = 1,
-        //        ProductNumber = "20"
-        //    };
-        //    cmd = Substitute.For<CatalogueDetailsCmd>();
-        //    cmd.Products.Add(product);
-        //    cmd.Products.Add(product);
-        //    cmd.Products.Add(product);
-        //}
+        [SetUp]
+        public void SetUp()
+        {
+            product = new Product()
+            {
+                Name = "Banan",
+                Price = 10,
+                ProductId = 1,
+                ProductNumber = "20"
+            };
 
-        //[TearDown]
-        //public void TearDown()
-        //{
-        //    product = null;
-        //    cmd = null;
-        //}
+            productCategory = new ProductCategory() {Name = "Frugt", ProductCategoryId = 5};
 
-        //[Test]
-        //public void CatalogueDetailsCmd_CorrectName()
-        //{
-        //    Assert.That(cmd.Products.ElementAt(1).Name.Equals(product.Name));
-        //}
+            productCategory.Products.Add(product);
+            productCategory.Products.Add(product);
+            productCategory.Products.Add(product);
 
-        //[Test]
-        //public void CatalogueDetailsCmd_CorrectPrice()
-        //{
-        //    Assert.That(cmd.Products.ElementAt(1).Price.Equals(product.Price));
-        //}
+            cmd = Substitute.For<CatalogueDetailsCmd>();
+            cmd.ProductCategories.Add(productCategory);
+            cmd.ProductCategories.Add(productCategory);
+            cmd.ProductCategories.Add(productCategory);
+        }
 
-        //[Test]
-        //public void CatalogueDetailsCmd_CorrectProductId()
-        //{
-        //    Assert.That(cmd.Products.ElementAt(1).ProductId.Equals(product.ProductId));
-        //}
+        [TearDown]
+        public void TearDown()
+        {
+            productCategory = null;
+            product = null;
+            cmd = null;
+        }
 
-        //[Test]
-        //public void CatalogueDetailsCmd_CorrectProductNumber()
-        //{
-        //    Assert.That(cmd.Products.ElementAt(1).ProductNumber.Equals(product.ProductNumber));
-        //}
+        [Test]
+        public void CatalogueDetailsCmd_CorrectProductCategoryName()
+        {
+            Assert.That(cmd.ProductCategories.ElementAt(1).Name.Equals(productCategory.Name));
+        }
+
+        [Test]
+        public void CatalogueDetailsCmd_CorrectProductCategoryId()
+        {
+            Assert.That(cmd.ProductCategories.ElementAt(1).ProductCategoryId.Equals(productCategory.ProductCategoryId));
+        }
+
+        [Test]
+        public void CatalogueDetailsCmd_CorrectNameInProducts()
+        {
+            Assert.That(cmd.ProductCategories.ElementAt(1).Products.ElementAt(1).Name.Equals(product.Name));
+        }
+
+        [Test]
+        public void CatalogueDetailsCmd_CorrectPriceInProducts()
+        {
+            Assert.That(cmd.ProductCategories.ElementAt(1).Products.ElementAt(1).Price.Equals(product.Price));
+        }
+
+        [Test]
+        public void CatalogueDetailsCmd_CorrectProductIdInProducts()
+        {
+            Assert.That(cmd.ProductCategories.ElementAt(1).Products.ElementAt(1).ProductId.Equals(product.ProductId));
+        }
+
+        [Test]
+        public void CatalogueDetailsCmd_CorrectProductNumberInProducts()
+        {
+            Assert.That(cmd.ProductCategories.ElementAt(1).Products.ElementAt(1).ProductNumber.Equals(product.ProductNumber));
+        }
     }
 }

@@ -48,13 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdMarshallers.UnitTest\CatalogueDetailsMarshalUnitTest.cs" />
-    <Compile Include="CmdMarshallers.UnitTest\CreateProductMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\Product.UnitTest\CreateProductMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\GetCatalogueMarshalUnitTest.cs" />
-    <Compile Include="CmdMarshallers.UnitTest\ProductCreatedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\Product.UnitTest\ProductCreatedMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\RegisterPurchaseMarshalUnitTest.cs" />
     <Compile Include="Commands.UnitTest\CatalogueDetailsCmdUnitTest.cs" />
-    <Compile Include="Commands.UnitTest\CreateProductCmdUnitTest.cs" />
-    <Compile Include="Commands.UnitTest\ProductCreatedCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\Product.UnitTest\CreateProductCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\Product.UnitTest\ProductCreatedCmdUnitTest.cs" />
     <Compile Include="Commands.UnitTest\RegisterPurchaseCmdUnitTest.cs" />
     <Compile Include="CommandUnitTest.cs" />
     <Compile Include="Program.cs" />
@@ -74,7 +74,10 @@
       <Name>SharedLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CmdMarshallers.UnitTest\ProductCategory.UnitTest\" />
+    <Folder Include="Commands.UnitTest\ProductCategory.UnitTest\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
