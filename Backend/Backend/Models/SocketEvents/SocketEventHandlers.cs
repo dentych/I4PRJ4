@@ -5,47 +5,50 @@ using SharedLib.Protocol.Commands.ProductCategoryCommands;
 
 namespace Backend.Models.SocketEvents
 {
+    /// <summary>
+    /// Event handlers for all the socket events.
+    /// </summary>
     public class SocketEventHandlers : ISocketEventHandlers
     {
         #region Properties and variables
-
         private readonly BackendProductCategoryList _categories;
         private static int _pToTranfer;
         private int _pTranfered;
-
         #endregion
 
         #region Constructor
-
+        /// <summary>
+        /// Sets a reference to a category list.
+        /// </summary>
+        /// <param name="cat">Category list</param>
         public SocketEventHandlers(BackendProductCategoryList cat)
         {
             _categories = cat;
         }
-
         #endregion
 
         #region Helpers
-
-        public static void InitializeTrander(int c)
+        /// <summary>
+        /// Sets how many events are expected before updating the current product list in
+        /// the MainWindow. Used in ProductEditedHandler.
+        /// </summary>
+        /// <param name="c">Amount of edits expected.</param>
+        public static void InitializeTransfer(int c)
         {
             _pToTranfer = c;
         }
-
         #endregion
 
-  
-
         #region Event handlers
-
         public void ProductCreatedHandler(ProductCreatedCmd cmd)
         {
-            _categories.GetListByCateogry(cmd.ProductCategoryId).AddProduct(cmd.GetProduct());
+            _categories.GetListByCategory(cmd.ProductCategoryId).AddProduct(cmd.GetProduct());
             _categories.UpdateCurrentProducts();
         }
 
         public void ProductDeletedHandler(ProductDeletedCmd cmd)
         {
-            var category = _categories.GetListByCateogry(cmd.ProductCategoryId);
+            var category = _categories.GetListByCategory(cmd.ProductCategoryId);
 
             for (var i = 0; i < category.Products.Count; i++)
             {
@@ -60,7 +63,7 @@ namespace Backend.Models.SocketEvents
 
         public void ProductEditedHandler(ProductEditedCmd cmd)
         {
-            var category = _categories.GetListByCateogry(cmd.OldProductCategoryId);
+            var category = _categories.GetListByCategory(cmd.OldProductCategoryId);
 
             for (var i = 0; i < category.Products.Count; i++)
             {
@@ -76,22 +79,17 @@ namespace Backend.Models.SocketEvents
                 {
                     product.ProductCategoryId = cmd.ProductCategoryId;
                     category.Products.Remove(product);
-                    _categories.GetListByCateogry(cmd.ProductCategoryId).Products.Add(product);
+                    _categories.GetListByCategory(cmd.ProductCategoryId).Products.Add(product);
                     i--;
                 }
             }
             _pTranfered++;
 
-            if (_pTranfered == _pToTranfer)
+            if (_pTranfered >= _pToTranfer)
             {
                 _categories.UpdateCurrentProducts();
                 _pTranfered = 0;
                 _pToTranfer = 0;
-            }
-            else if (_pToTranfer == 0 && _pTranfered == 1)
-            {
-                _categories.UpdateCurrentProducts();
-                _pTranfered = 0;
             }
         }
 
@@ -151,11 +149,9 @@ namespace Backend.Models.SocketEvents
                 }
             }
         }
-
         #endregion
 
         #region Subscribe methods
-
         public void SubscribeProductCreated()
         {
             LSC.Listener.OnProductCreated += ProductCreatedHandler;
@@ -190,7 +186,6 @@ namespace Backend.Models.SocketEvents
         {
             LSC.Listener.OnProductCategoryEdited += ProductCategoryEditedHandler;
         }
-
         #endregion
     }
 }

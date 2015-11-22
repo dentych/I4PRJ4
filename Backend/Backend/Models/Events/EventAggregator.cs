@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
+﻿using Prism.Events;
 
 namespace Backend.Models
 {
+    /// <summary>
+    /// Event aggregator.
+    /// </summary>
     public class SingleEventAggregator
     {
+        /// <summary>
+        /// The event aggreator instance.
+        /// </summary>
         private static IEventAggregator _agg;
-        public static IEventAggregator Aggregator => _agg ?? (_agg = new Prism.Events.EventAggregator());
+        /// <summary>
+        /// Event aggreator property. Makes sure it's a singleton instance.
+        /// </summary>
+        public static IEventAggregator Aggregator => _agg ?? (_agg = new EventAggregator());
     }
 }

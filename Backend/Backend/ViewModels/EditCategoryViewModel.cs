@@ -10,6 +10,9 @@ using Prism.Events;
 
 namespace Backend.ViewModels
 {
+    /// <summary>
+    /// Viewmodel for the edit category window.
+    /// </summary>
     public class EditCategoryViewModel
     {
         public IEventAggregator Aggregator;

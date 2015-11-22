@@ -10,7 +10,9 @@ namespace Backend.Models.Datamodels
 
         private string _connection; // = "Ikke forbundet";
 
-
+        /// <summary>
+        /// Connection string
+        /// </summary>
         public string Connection
         {
             get { return _connection; }

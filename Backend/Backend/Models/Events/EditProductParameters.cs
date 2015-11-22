@@ -3,6 +3,9 @@ using SharedLib.Models;
 
 namespace Backend.Models.Events
 {
+    /// <summary>
+    /// Parameters for NewEditProductData.
+    /// </summary>
     public class EditProductParameters
     {
         public BackendProductCategoryList cats;
@@ -11,6 +14,9 @@ namespace Backend.Models.Events
         public int currentCatIndex;
     }
 
+    /// <summary>
+    /// Parameters for NewEditCategoryData.
+    /// </summary>
     public class EditCategoryParms
     {
         public string Name;
@@ -18,6 +24,9 @@ namespace Backend.Models.Events
         public BackendProductCategoryList cats;
     }
 
+    /// <summary>
+    /// Parameters for NewDeleteCategoryData.
+    /// </summary>
     public class DeleteCategoryParms
     {
         public int ToDelteIndex;

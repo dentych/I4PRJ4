@@ -24,6 +24,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -113,7 +115,6 @@
     <Compile Include="Models\Datamodels\BackendProduct.cs" />
     <Compile Include="Models\Datamodels\BackendProductCategory.cs" />
     <Compile Include="Models\Datamodels\BackendProductCategoryList.cs" />
-    <Compile Include="Models\Datamodels\BackendProductList.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

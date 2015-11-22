@@ -10,6 +10,9 @@ using Prism.Events;
 
 namespace Backend.ViewModels
 {
+    /// <summary>
+    /// Viewmodel for the add product window.
+    /// </summary>
     public class AddProductViewModel
     {
         public IEventAggregator Aggregator;

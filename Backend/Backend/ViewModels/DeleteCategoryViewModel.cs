@@ -10,6 +10,9 @@ using Prism.Events;
 
 namespace Backend.ViewModels
 {
+    /// <summary>
+    /// Viewmodel for the delete category window.
+    /// </summary>
     public class DeleteCategoryViewModel
     {
         #region Properties

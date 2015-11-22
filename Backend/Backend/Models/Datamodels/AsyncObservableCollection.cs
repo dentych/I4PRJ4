@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Backend.Models.Datamodels
 {
+    /// <summary>
+    /// An async implementation of the ObservableCollection.
+    /// This class is found on the internet: https://gist.github.com/thomaslevesque/10023516
+    /// </summary>
+    /// <typeparam name="T">The type of objects the list will contain</typeparam>
     public class AsyncObservableCollection<T> : ObservableCollection<T>
     {
         private readonly SynchronizationContext _synchronizationContext = SynchronizationContext.Current;
