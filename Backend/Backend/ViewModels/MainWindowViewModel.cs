@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Input;
 using Backend.Communication;
 using Backend.Dependencies;
-using Backend.Fakegenerator;
 using Backend.Models;
 using Backend.Models.Brains;
 using Backend.Models.Datamodels;
@@ -16,10 +15,17 @@ using SharedLib.Sockets;
 
 namespace Backend.ViewModels
 {
+    /// <summary>
+    /// Main window's view model
+    /// </summary>
     public class MainWindowViewModel
     {
+        /// <summary>
+        /// Set up events for socket communication and viewmodel-viewmodel communication.
+        /// </summary>
         public MainWindowViewModel()
         {
+            // Socket communication events
             conn = LSC.Connection;
             conn.OnConnectionError += ConnectionErrorHandler;
             conn.OnConnectionOpened += ConenctionOpenedHandler;
@@ -28,13 +34,14 @@ namespace Backend.ViewModels
 
             try
             {
-                conn.Connect("127.0.0.1", 11000); //TODO: Settings, Something to handle the no connection error
+                conn.Connect(Properties.Settings.Default.CSIP, Properties.Settings.Default.CSPort);
             }
             catch (Exception)
             {
-                MessageBox.Show("No connection"); // Y DOS DIS NOT WORK
+                MessageBox.Show("No connection");
             }
 
+            // Event aggregator for sending data between viewmodels
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddProductWindowLoaded, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Subscribe(AddCategoryLoaded, true);
@@ -42,6 +49,7 @@ namespace Backend.ViewModels
             Aggregator.GetEvent<EditProductWindowLoaded>().Subscribe(EditProductWindowLoaded, true);
             Aggregator.GetEvent<DeleteCategoryWindowLoaded>().Subscribe(DeleteCategoryWindow, true);
 
+            // More socket communication events
             _ev = new SocketEventHandlers(Categories);
             _ev.SubscribeCatalogueDetails();
             _ev.SubscribeProductCreated();
@@ -66,7 +74,7 @@ namespace Backend.ViewModels
         public BackendProductCategoryList Categories { get; } = new BackendProductCategoryList();
         public int ProductIndex { get; set; } = 0;
         public readonly IEventAggregator Aggregator;
-        private readonly FakeMaker faker = new FakeMaker(); // Debug only
+        //private readonly FakeMaker faker = new FakeMaker(); // Debug only
         private readonly IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
         private readonly ISocketEventHandlers _ev;
         private readonly SocketConnection conn;
@@ -77,35 +85,46 @@ namespace Backend.ViewModels
 
         #region Windows
 
-        /*  private void DataReceivedHandler(string s)
-        {
-            MessageBox.Show("Data received "+ s);
-        }*/
-
+        /// <summary>
+        /// Opened when the button for add product is pressed in the GUI
+        /// </summary>
         private void NewAddProductWindow()
         {
             var window = new AddProductWindow();
             window.ShowDialog();
         }
 
+        /// <summary>
+        /// Called when the socket client has opened a connection to the central server.
+        /// </summary>
         private void ConenctionOpenedHandler()
         {
             Connection.Connection = "Forbundet"; //TODO DET KLAMME LORT VIRKER IKKE
             DBCON = true;
         }
 
+        /// <summary>
+        /// Called if any errors occurs when trying to connect to central server.
+        /// </summary>
+        /// <param name="e">The exception that has been thrown</param>
         private void ConnectionErrorHandler(SocketException e)
         {
             new Error().StdErr("Connection error:\n" + e);
             ConnectionClosedHandler();
         }
 
+        /// <summary>
+        /// Called when the socket connection is closed.
+        /// </summary>
         private void ConnectionClosedHandler()
         {
             Connection.Connection = "Ikke forbundet";
             DBCON = false;
         }
 
+        /// <summary>
+        /// Opens a new edit product window when the corresponding button is pressed in the GUI.
+        /// </summary>
         private void NewEditProductWindow()
         {
             var window = new EditProductWindow();
@@ -115,6 +134,15 @@ namespace Backend.ViewModels
         #endregion
 
         #region Eventshit
+
+        /*
+        These event handlers are called when an event is
+        received from another window. Data will then be sent
+        back to the window with the requested data.
+        This makes viewmodel to viewmodel communication
+        possible, so data does not have to be routed through
+        the view.
+        */
 
         public void AddProductWindowLoaded(bool b)
         {
@@ -167,7 +195,6 @@ namespace Backend.ViewModels
         #region Commands
 
         /* Valid CED */
-
         private bool ValidCED()
         {
             return DBCON;
@@ -262,30 +289,35 @@ namespace Backend.ViewModels
             get { return _closeMainWindowCommand ?? (_closeMainWindowCommand = new RelayCommand(CloseMainWindow)); }
         }
 
+        /* Settings dialog */
         private void OpenSettingsDialogWindow()
         {
             var dialog = new SettingsDialog();
             dialog.ShowDialog();
         }
 
+        /* Add category */
         private void OpenAddCategoryDialogWindow()
         {
             var dialog = new AddCategoryWindow();
             dialog.ShowDialog();
         }
 
+        /* Edit category */
         private void OpenEditCategoryDialogWindow()
         {
             var dialog = new EditCategoryWindow();
             dialog.ShowDialog();
         }
 
+        /* Delete category */
         private void OpenDeleteCategoryDialogWindow()
         {
             var dialog = new DeleteCategoryView();
             dialog.ShowDialog();
         }
 
+        /* Delete product */
         private void DeleteProductDialog()
         {
             if (ProductIndex >= 0)
@@ -308,6 +340,7 @@ namespace Backend.ViewModels
             }
         }
 
+        /* Close the main window */
         private void CloseMainWindow()
         {
             var result = MessageBox.Show("Er du nu HELT sikker?", "Advarsel", MessageBoxButton.YesNo,
@@ -317,26 +350,6 @@ namespace Backend.ViewModels
                 Application.Current.MainWindow.Close();
             }
         }
-
-        #endregion
-
-        #region FOR TESTING PLS REMOVE
-
-        // TEST COMMAND
-        private ICommand _testCommand;
-
-        public ICommand TestCommand
-        {
-            get { return _testCommand ?? (_testCommand = new RelayCommand(TestCommandHandle)); }
-        }
-
-        private void TestCommandHandle()
-        {
-            Categories.CurrentProductList[0].Name = "Bonjy";
-            Categories.UpdateCurrentProducts();
-        }
-
-        // TEST COMMAND SLUT
 
         #endregion
     }

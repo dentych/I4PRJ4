@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Backend.Communication;
 using Backend.Dependencies;
@@ -12,7 +7,6 @@ using Backend.Models.Brains;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Prism.Events;
-using SharedLib.Models;
 
 namespace Backend.ViewModels
 {
