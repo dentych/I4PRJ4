@@ -36,7 +36,6 @@ namespace Backend.ViewModels
 
             Aggregator.GetEvent<CategoryListUpdated>().Subscribe(CategoryListUpdated);
             Aggregator.GetEvent<AddProductWindowLoaded>().Publish(true);
-            
         }
 
         /// <summary>
@@ -58,9 +57,7 @@ namespace Backend.ViewModels
             Categories = updatedList;
         }
 
-
         #region Commands
-
         /* Add Product */
         private ICommand _addCaegorytCommand;
         public ICommand AddCategoryCommand
@@ -96,9 +93,6 @@ namespace Backend.ViewModels
 
             Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
         }
-
         #endregion
     }
-
-
 }

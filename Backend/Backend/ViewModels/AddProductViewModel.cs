@@ -42,9 +42,7 @@ namespace Backend.ViewModels
             {
                 SelectedCategory = Categories[0];
             }
-            
         }
-
 
         /// <summary>
         /// Check if all fields for the product is filled out and
@@ -72,7 +70,6 @@ namespace Backend.ViewModels
         }
 
         #region Commands
-
         /* Add Product */
         private ICommand _addProductCommand;
         public ICommand AddProductCommand
@@ -91,7 +88,6 @@ namespace Backend.ViewModels
                 ModelHandler.CreateProduct(Product);
             else new Error().StdErr("Produktet eksisterer allerede.");
             Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
-
         }
 
         /// <summary>
@@ -116,7 +112,6 @@ namespace Backend.ViewModels
             }
             return false;
         }
-
         #endregion
     }
 }

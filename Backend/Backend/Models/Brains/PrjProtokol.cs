@@ -17,8 +17,8 @@ namespace Backend.Models.Brains
         public PrjProtokol()
         {
             LocalProtocol = new Protocol();
-
         }
+
         public string ProductXMLParser(Product toParse)
         {
             return LocalProtocol.Encode(new CreateProductCmd(toParse));

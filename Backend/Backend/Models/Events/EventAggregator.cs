@@ -19,9 +19,5 @@ namespace Backend.Models
         {
             get { return _agg ?? (_agg = new EventAggregator()); }
         }
-        //public static IEventAggregator Aggregator => _agg ?? (_agg = new EventAggregator());
-
-
     }
-
 }

@@ -50,7 +50,6 @@ namespace Backend.ViewModels
         }
 
         #region Commands
-
         private ICommand _addProductCategoryCommand;
         public ICommand AddCategoryCommand
         {
@@ -77,7 +76,6 @@ namespace Backend.ViewModels
             }
             else new Error().StdErr("Produktet eksisterer allerede.");
             Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
-
         }
 
         /// <summary>
@@ -128,7 +126,6 @@ namespace Backend.ViewModels
             }
             return true;
         }
-
         #endregion
     }
 }
