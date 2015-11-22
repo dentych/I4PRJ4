@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Prism.Events;
@@ -20,17 +20,20 @@ namespace Backend.ViewModels
         #region Properties
         public IEventAggregator Aggregator;
         public BackendProductCategoryList Categories { get; set; }
-        public IModelHandler ModelHandler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
+        public IModelHandler ModelHandler { get; set; } 
         private int SelectedIndex { get; set; } // Den der skal slettes (INDEX!!!)
-        public int MoveToCategoryId { get; set; } = 0; // den der skal flyttes til, index bindex til den her.
+        public int MoveToCategoryId { get; set; }  // den der skal flyttes til, index bindex til den her.
 
         #endregion
 
         public DeleteCategoryViewModel()
         {
+            MoveToCategoryId = 0;
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewDeleteCategoryData>().Subscribe(GetData, true);
             Aggregator.GetEvent<DeleteCategoryWindowLoaded>().Publish(true);
+
+            ModelHandler = new ModelHandler(new PrjProtokol(), new Client());
         }
 
         public void GetData(DeleteCategoryParms parms)

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SharedLib.Sockets;
+﻿using SharedLib.Sockets;
 
-namespace Backend.Communication
+namespace Backend.Models.Communication
 {
     public class LSC
     {

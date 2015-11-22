@@ -1,4 +1,4 @@
-﻿namespace Backend.Communication
+﻿namespace Backend.Models.Communication
 {
     public interface IClient
     {

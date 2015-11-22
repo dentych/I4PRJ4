@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Backend.Communication;
+using Backend.Models.Communication;
 using SharedLib.Models;
 using SharedLib.Protocol;
 using SharedLib.Protocol.Commands;

@@ -1,14 +1,11 @@
-﻿using System.Net.Sockets;
-using Backend.Models.Brains;
+﻿using Backend.Models.Brains;
 using SharedLib.Sockets;
 
-namespace Backend.Communication
+namespace Backend.Models.Communication
 {
     public class Client : IClient
     {
         private readonly SocketConnection _conn = LSC.Connection;
-        private TcpClient client = null;
-
 
         public IError Error = new Error();
 

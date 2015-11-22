@@ -1,0 +1,200 @@
+[1mdiff --git a/Backend/Backend.Unit.Tests/Brains/AddProductCBUnitTests.cs b/Backend/Backend.Unit.Tests/Brains/AddProductCBUnitTests.cs[m
+[1mindex 320f6e2..581de1e 100644[m
+[1m--- a/Backend/Backend.Unit.Tests/Brains/AddProductCBUnitTests.cs[m
+[1m+++ b/Backend/Backend.Unit.Tests/Brains/AddProductCBUnitTests.cs[m
+[36m@@ -1,6 +1,6 @@[m
+[31m-﻿using Backend.Communication;[m
+[31m-using Backend.Models;[m
+[32m+[m[32m﻿using Backend.Models;[m
+ using Backend.Models.Brains;[m
+[32m+[m[32musing Backend.Models.Communication;[m
+ using Backend.Models.Datamodels;[m
+ using NSubstitute;[m
+ using NUnit.Framework;[m
+[1mdiff --git a/Backend/Backend.Unit.Tests/Models/EventAggregatorUnitTests.cs b/Backend/Backend.Unit.Tests/Models/EventAggregatorUnitTests.cs[m
+[1mindex 217904b..5af43c1 100644[m
+[1m--- a/Backend/Backend.Unit.Tests/Models/EventAggregatorUnitTests.cs[m
+[1m+++ b/Backend/Backend.Unit.Tests/Models/EventAggregatorUnitTests.cs[m
+[36m@@ -4,6 +4,7 @@[m [musing System.Linq;[m
+ using System.Text;[m
+ using System.Threading.Tasks;[m
+ using Backend.Models;[m
+[32m+[m[32musing Backend.Models.Events;[m
+ using NUnit.Framework;[m
+ using Prism.Events;[m
+ [m
+[1mdiff --git a/Backend/Backend/Backend.csproj b/Backend/Backend/Backend.csproj[m
+[1mindex 34f312b..d2e1e74 100644[m
+[1m--- a/Backend/Backend/Backend.csproj[m
+[1m+++ b/Backend/Backend/Backend.csproj[m
+[36m@@ -62,7 +62,7 @@[m
+       <Generator>MSBuild:Compile</Generator>[m
+       <SubType>Designer</SubType>[m
+     </ApplicationDefinition>[m
+[31m-    <Compile Include="Communication\LSC.cs" />[m
+[32m+[m[32m    <Compile Include="Models\Communication\LSC.cs" />[m
+     <Compile Include="Models\Datamodels\AsyncObservableCollection.cs" />[m
+     <Compile Include="Models\Datamodels\ConnectionString.cs" />[m
+     <Compile Include="Models\Events\EditProductParameters.cs" />[m
+[36m@@ -129,8 +129,8 @@[m
+       <DependentUpon>App.xaml</DependentUpon>[m
+       <SubType>Code</SubType>[m
+     </Compile>[m
+[31m-    <Compile Include="Communication\Client.cs" />[m
+[31m-    <Compile Include="Communication\IClient.cs" />[m
+[32m+[m[32m    <Compile Include="Models\Communication\Client.cs" />[m
+[32m+[m[32m    <Compile Include="Models\Communication\IClient.cs" />[m
+     <Compile Include="Models\Brains\Error.cs" />[m
+     <Compile Include="Dependencies\RelayCommand.cs" />[m
+     <Compile Include="Views\EditProductWindow.xaml.cs">[m
+[1mdiff --git a/Backend/Backend/Communication/Client.cs b/Backend/Backend/Communication/Client.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 2e6431b..0000000[m
+[1m--- a/Backend/Backend/Communication/Client.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,28 +0,0 @@[m
+[31m-﻿using System.Net.Sockets;[m
+[31m-using Backend.Models.Brains;[m
+[31m-using SharedLib.Sockets;[m
+[31m-[m
+[31m-namespace Backend.Communication[m
+[31m-{[m
+[31m-    public class Client : IClient[m
+[31m-    {[m
+[31m-        private readonly SocketConnection _conn = LSC.Connection;[m
+[31m-        private TcpClient client = null;[m
+[31m-[m
+[31m-[m
+[31m-        public IError Error = new Error();[m
+[31m-[m
+[31m-        public bool Connect()[m
+[31m-        {[m
+[31m-            LSC.Connection.Connect("127.0.0.1", 7913); // Skal bruge settings.[m
+[31m-            return true; // Burde være void.[m
+[31m-        }[m
+[31m-[m
+[31m-[m
+[31m-        public bool Send(string data)[m
+[31m-        {[m
+[31m-            _conn.Send(data);[m
+[31m-            return true; // same shit.[m
+[31m-        }[m
+[31m-    }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/Backend/Backend/Communication/IClient.cs b/Backend/Backend/Communication/IClient.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 4c2ad4f..0000000[m
+[1m--- a/Backend/Backend/Communication/IClient.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,10 +0,0 @@[m
+[31m-﻿namespace Backend.Communication[m
+[31m-{[m
+[31m-    public interface IClient[m
+[31m-    {[m
+[31m-        bool Connect();[m
+[31m-   //     bool Disconnect();[m
+[31m-        bool Send(string data);[m
+[31m-      //  string Receive();[m
+[31m-    }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/Backend/Backend/Communication/LSC.cs b/Backend/Backend/Communication/LSC.cs[m
+[1mdeleted file mode 100644[m
+[1mindex b471a84..0000000[m
+[1m--- a/Backend/Backend/Communication/LSC.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,44 +0,0 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m
+[31m-using System.Linq;[m
+[31m-using System.Text;[m
+[31m-using System.Threading.Tasks;[m
+[31m-using SharedLib.Sockets;[m
+[31m-[m
+[31m-namespace Backend.Communication[m
+[31m-{[m
+[31m-    public class LSC[m
+[31m-    {[m
+[31m-        private static SocketConnection _connection;[m
+[31m-        private static CommandListener _listener;[m
+[31m-[m
+[31m-        public static SocketConnection Connection[m
+[31m-        {[m
+[31m-            get[m
+[31m-            {[m
+[31m-                if (_connection == null)[m
+[31m-                {[m
+[31m-                    _connection = new SocketConnection();[m
+[31m-                }[m
+[31m-                return _connection;[m
+[31m-            }[m
+[31m-        }[m
+[31m-[m
+[31m-        public static CommandListener Listener[m
+[31m-        {[m
+[31m-            get[m
+[31m-            {[m
+[31m-                if (_listener == null)[m
+[31m-                {[m
+[31m-                    if (_connection == null)[m
+[31m-                    {[m
+[31m-                        _connection = new SocketConnection();[m
+[31m-                    }[m
+[31m-[m
+[31m-                    _listener = new CommandListener(_connection);[m
+[31m-                }[m
+[31m-                return _listener;[m
+[31m-            }[m
+[31m-        }[m
+[31m-    }[m
+[31m-}[m
+[1mdiff --git a/Backend/Backend/Models/Brains/ModelHandler.cs b/Backend/Backend/Models/Brains/ModelHandler.cs[m
+[1mindex c2f96bd..b2482d1 100644[m
+[1m--- a/Backend/Backend/Models/Brains/ModelHandler.cs[m
+[1m+++ b/Backend/Backend/Models/Brains/ModelHandler.cs[m
+[36m@@ -8,7 +8,7 @@[m
+ [m
+ using System.Collections.Generic;[m
+ using System.Linq;[m
+[31m-using Backend.Communication;[m
+[32m+[m[32musing Backend.Models.Communication;[m
+ using Backend.Models.Datamodels;[m
+ using Backend.Models.SocketEvents;[m
+ using SharedLib.Models;[m
+[1mdiff --git a/Backend/Backend/Models/Brains/PrjProtokol.cs b/Backend/Backend/Models/Brains/PrjProtokol.cs[m
+[1mindex 2a4cb53..b46c07a 100644[m
+[1m--- a/Backend/Backend/Models/Brains/PrjProtokol.cs[m
+[1m+++ b/Backend/Backend/Models/Brains/PrjProtokol.cs[m
+[36m@@ -16,7 +16,12 @@[m [mnamespace Backend.Models.Brains[m
+ {[m
+     public class PrjProtokol : IProtocol[m
+     {[m
+[31m-        public Protocol LocalProtocol { get; set; } = new Protocol();[m
+[32m+[m[32m        public Protocol LocalProtocol { get; set; }[m
+[32m+[m
+[32m+[m[32m        public PrjProtokol()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            LocalProtocol = new Protocol();[m
+[32m+[m[32m        }[m
+ [m
+         public string ProductXMLParser(Product toParse)[m
+         {[m
+[1mdiff --git a/Backend/Backend/Models/Datamodels/BackendProductList.cs b/Backend/Backend/Models/Datamodels/BackendProductList.cs[m
+[1mindex 5e486b8..53c0220 100644[m
+[1m--- a/Backend/Backend/Models/Datamodels/BackendProductList.cs[m
+[1m+++ b/Backend/Backend/Models/Datamodels/BackendProductList.cs[m
+[36m@@ -1,5 +1,5 @@[m
+ ﻿using System.Collections.ObjectModel;[m
+[31m-using Backend.Communication;[m
+[32m+[m[32musing Backend.Models.Communication;[m
+ using SharedLib.Models;[m
+ using SharedLib.Protocol;[m
+ using SharedLib.Protocol.Commands;[m
+[1mdiff --git a/Backend/Backend/Models/Events/EventAggregator.cs b/Backend/Backend/Models/Events/EventAggregator.cs[m
+[1mindex effa0a2..1a1ca08 100644[m
+[1m--- a/Backend/Backend/Models/Events/EventAggregator.cs[m
+[1m+++ b/Backend/Backend/Models/Events/EventAggregator.cs[m
+[36m@@ -1,15 +1,15 @@[m
+[31m-﻿using System;[m
+[31m-using System.Collections.Generic;[m

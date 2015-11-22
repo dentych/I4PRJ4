@@ -8,7 +8,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Backend.Communication;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.SocketEvents;
 using SharedLib.Models;

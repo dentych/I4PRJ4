@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Backend.Models;
+using Backend.Models.Events;
 using NUnit.Framework;
 using Prism.Events;
 

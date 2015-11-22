@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Prism.Events;
@@ -13,7 +13,13 @@ namespace Backend.ViewModels
     public class AddProductViewModel
     {
         public IEventAggregator Aggregator;
-        
+
+        public BackendProductCategoryList Categories { get; set; }
+        public BackendProduct Product { get; set; }
+        public IModelHandler ModelHandler { get; set; }
+        public IError Err { set; get; }
+        public BackendProductCategory SelectedCategory { get; set; }
+
 
         public AddProductViewModel()
         {
@@ -21,6 +27,7 @@ namespace Backend.ViewModels
             Err = new Error();
             ModelHandler = new ModelHandler(new PrjProtokol(), new Client());
             Aggregator = SingleEventAggregator.Aggregator;
+            SelectedCategory = new BackendProductCategory();
 
             Aggregator.GetEvent<CategoryListUpdated>().Subscribe(CategoryListUpdated, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Publish(true);
@@ -32,11 +39,6 @@ namespace Backend.ViewModels
             
         }
 
-        public BackendProductCategoryList Categories { get; set; }
-        public BackendProduct Product { get; set; }
-        public IModelHandler ModelHandler { get; set; }
-        public IError Err { set; get; }
-        public BackendProductCategory SelectedCategory { get; set; } = new BackendProductCategory();
 
 
         public bool Valid()
