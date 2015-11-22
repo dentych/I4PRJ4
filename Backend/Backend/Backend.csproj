@@ -64,7 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Communication\LSC.cs" />
+    <Compile Include="Models\Communication\LSC.cs" />
     <Compile Include="Models\Datamodels\AsyncObservableCollection.cs" />
     <Compile Include="Models\Datamodels\ConnectionString.cs" />
     <Compile Include="Models\Events\EditProductParameters.cs" />
@@ -130,8 +130,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Communication\Client.cs" />
-    <Compile Include="Communication\IClient.cs" />
+    <Compile Include="Models\Communication\Client.cs" />
+    <Compile Include="Models\Communication\IClient.cs" />
     <Compile Include="Models\Brains\Error.cs" />
     <Compile Include="Dependencies\RelayCommand.cs" />
     <Compile Include="Views\EditProductWindow.xaml.cs">

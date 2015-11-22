@@ -4,6 +4,7 @@ using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Backend.Views;
@@ -17,14 +18,17 @@ namespace Backend.ViewModels
     class EditProductViewModel
     {
         public IEventAggregator Aggregator;
-        public IModelHandler Handler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
+        public IModelHandler Handler { get; set; } 
         public BackendProductCategory ProductCategory { get; set; }
-        public BackendProduct EditedProduct { get; set; } = new BackendProduct();
+        public BackendProduct EditedProduct { get; set; } 
         public BackendProductCategoryList Categories { get; set; }
         public int currentCatIndex { get; set;  }
 
         public EditProductViewModel()
         {
+            Handler = new ModelHandler(new PrjProtokol(), new Client());
+            EditedProduct = new BackendProduct();
+
             // Subscribe to event, and publish a window loaded event, to receive data.
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditProductData>().Subscribe(ProductDataToEdit, true);

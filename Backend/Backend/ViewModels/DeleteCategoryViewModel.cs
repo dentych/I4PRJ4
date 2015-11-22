@@ -4,6 +4,7 @@ using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Prism.Events;
@@ -18,9 +19,9 @@ namespace Backend.ViewModels
         #region Properties
         public IEventAggregator Aggregator;
         public BackendProductCategoryList Categories { get; set; }
-        public IModelHandler ModelHandler { get; set; } = new ModelHandler(new PrjProtokol(), new Client());
+        public IModelHandler ModelHandler { get; set; }
         private int SelectedIndex { get; set; } // Den der skal slettes (INDEX!!!)
-        public int MoveToCategoryId { get; set; } = 0; // den der skal flyttes til, index bindex til den her.
+        public int MoveToCategoryId { get; set; } // den der skal flyttes til, index bindex til den her.
         #endregion
         
         /// <summary>
@@ -28,6 +29,8 @@ namespace Backend.ViewModels
         /// </summary>
         public DeleteCategoryViewModel()
         {
+            MoveToCategoryId = 0;
+            ModelHandler = new ModelHandler(new PrjProtokol(), new Client());
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewDeleteCategoryData>().Subscribe(GetData, true);
             Aggregator.GetEvent<DeleteCategoryWindowLoaded>().Publish(true);

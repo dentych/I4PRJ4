@@ -1,8 +1,9 @@
 ﻿using System.Net.Sockets;
+using Backend.Communication;
 using Backend.Models.Brains;
 using SharedLib.Sockets;
 
-namespace Backend.Communication
+namespace Backend.Models.Communication
 {
     /// <summary>
     /// Socket connection client.

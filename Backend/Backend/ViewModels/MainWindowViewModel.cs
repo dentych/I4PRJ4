@@ -6,6 +6,7 @@ using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;
+using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Backend.Models.SocketEvents;
@@ -20,11 +21,33 @@ namespace Backend.ViewModels
     /// </summary>
     public class MainWindowViewModel
     {
+
+
+        #region Properties
+
+        public BackendProductCategoryList Categories { get; } 
+        public int ProductIndex { get; set; }
+        public readonly IEventAggregator Aggregator;
+        //private readonly FakeMaker faker = new FakeMaker(); // Debug only
+        private readonly IModelHandler modelHandler;
+        private readonly ISocketEventHandlers _ev;
+        private readonly SocketConnection conn;
+        private bool DBCON;
+        public ConnectionString Connection { get; }
+
+        #endregion
+
         /// <summary>
         /// Set up events for socket communication and viewmodel-viewmodel communication.
         /// </summary>
         public MainWindowViewModel()
         {
+            Categories = new BackendProductCategoryList();
+            ProductIndex = 0;
+            modelHandler = new ModelHandler(new PrjProtokol(), new Client());
+            Connection = new ConnectionString();
+
+
             // Socket communication events
             conn = LSC.Connection;
             conn.OnConnectionError += ConnectionErrorHandler;
@@ -69,19 +92,6 @@ namespace Backend.ViewModels
             //     Categories = tmp.Make();
         }
 
-        #region Properties
-
-        public BackendProductCategoryList Categories { get; } = new BackendProductCategoryList();
-        public int ProductIndex { get; set; } = 0;
-        public readonly IEventAggregator Aggregator;
-        //private readonly FakeMaker faker = new FakeMaker(); // Debug only
-        private readonly IModelHandler modelHandler = new ModelHandler(new PrjProtokol(), new Client());
-        private readonly ISocketEventHandlers _ev;
-        private readonly SocketConnection conn;
-        private bool DBCON;
-        public ConnectionString Connection { get; } = new ConnectionString();
-
-        #endregion
 
         #region Windows
 
