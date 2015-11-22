@@ -4,11 +4,13 @@ using SharedLib.Sockets;
 
 namespace Backend.Communication
 {
+    /// <summary>
+    /// Socket connection client.
+    /// </summary>
     public class Client : IClient
     {
         private readonly SocketConnection _conn = LSC.Connection;
         private TcpClient client = null;
-
 
         public IError Error = new Error();
 
@@ -17,7 +19,6 @@ namespace Backend.Communication
             LSC.Connection.Connect("127.0.0.1", 7913); // Skal bruge settings.
             return true; // Burde være void.
         }
-
 
         public bool Send(string data)
         {

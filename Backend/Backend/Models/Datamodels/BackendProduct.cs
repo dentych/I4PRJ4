@@ -3,8 +3,14 @@ using SharedLib.Models;
 
 namespace Backend.Models.Datamodels
 {
+    /// <summary>
+    /// An override of the SharedLib Product, which implements data binding notifications when settings change.
+    /// </summary>
     public class BackendProduct : Product, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Name of the product.
+        /// </summary>
         public string BName
         {
             get { return Name; }
@@ -15,6 +21,9 @@ namespace Backend.Models.Datamodels
             }
         }
 
+        /// <summary>
+        /// Barcode for the product.
+        /// </summary>
         public string BProductNumber
         {
             get { return ProductNumber; }
@@ -26,6 +35,9 @@ namespace Backend.Models.Datamodels
         }
 
         private string aPrice;
+        /// <summary>
+        /// The price in string format.
+        /// </summary>
         public string StringBPrice
         {
             get { return BPrice.ToString(); }
@@ -41,6 +53,9 @@ namespace Backend.Models.Datamodels
             }
         }
 
+        /// <summary>
+        /// The price in decimal format.
+        /// </summary>
         public decimal BPrice
         {
             get { return Price; }

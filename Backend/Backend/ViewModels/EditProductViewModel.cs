@@ -11,6 +11,9 @@ using Prism.Events;
 
 namespace Backend.ViewModels
 {
+    /// <summary>
+    /// Viewmodel for the edit product window.
+    /// </summary>
     class EditProductViewModel
     {
         public IEventAggregator Aggregator;

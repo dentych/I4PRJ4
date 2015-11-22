@@ -16,7 +16,9 @@ using SharedLib.Models;
 
 namespace Backend.ViewModels
 {
-
+    /// <summary>
+    /// Viewmodel for the add category window.
+    /// </summary>
     public class AddCategoryViewModel
     {
         public IEventAggregator Aggregator { get; set; } = SingleEventAggregator.Aggregator;
