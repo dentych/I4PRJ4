@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Backend.Communication;
 using Backend.Dependencies;
@@ -14,7 +8,6 @@ using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Backend.Views;
 using Prism.Events;
-using SharedLib.Models;
 
 namespace Backend.ViewModels
 {
@@ -29,12 +22,17 @@ namespace Backend.ViewModels
 
         public EditProductViewModel()
         {
+            // Subscribe to event, and publish a window loaded event, to receive data.
             Aggregator = SingleEventAggregator.Aggregator;
             Aggregator.GetEvent<NewEditProductData>().Subscribe(ProductDataToEdit, true);
             Aggregator.GetEvent<EditProductWindowLoaded>().Publish(true);
-
         }
 
+        /// <summary>
+        /// Set the data of EditedProduct to the received data of details.
+        /// EditedProduct is data bound to the view.
+        /// </summary>
+        /// <param name="details">Details about the product to be edited</param>
         public void ProductDataToEdit(EditProductParameters details)
         {
             EditedProduct.BName = details.product.Name;
@@ -46,26 +44,29 @@ namespace Backend.ViewModels
         }
 
         #region Commands
+
         private ICommand _addProductCategoryCommand;
-        private ICommand _saveProductCommand;
-
-
         public ICommand AddCategoryCommand
         {
             get { return _addProductCategoryCommand ?? (_addProductCategoryCommand = new RelayCommand(NewProductCategory)); }
         }
 
+        private ICommand _saveProductCommand;
         public ICommand SaveProductCommand
         {
             get { return _saveProductCommand ?? (_saveProductCommand = new RelayCommand(SaveProduct,Valid)); }
         }
 
-
+        /// <summary>
+        /// Save the product by sending a command to central server.
+        /// </summary>
         private void SaveProduct()
         {
             if (!Exists())
             {
+                // Set the product category ID of edited product to the current chosen category in the GUI.
                 EditedProduct.ProductCategoryId = Categories[currentCatIndex].ProductCategoryId;
+                // Generate and send an edit product command to Central Server.
                 Handler.EditProduct(EditedProduct);
             }
             else new Error().StdErr("Produktet eksisterer allerede.");
@@ -73,6 +74,11 @@ namespace Backend.ViewModels
 
         }
 
+        /// <summary>
+        /// Check whether or not an exact copy of this product exists in any
+        /// of the categories.
+        /// </summary>
+        /// <returns>True if a copy if found, otherwise false.</returns>
         private bool Exists()
         {
             foreach (var cat in Categories)
@@ -91,14 +97,23 @@ namespace Backend.ViewModels
             return false;
         }
 
+        /// <summary>
+        /// Opens a new window to create a new category.
+        /// </summary>
         private void NewProductCategory()
         {
             var dialog = new AddCategoryWindow();
             dialog.ShowDialog();
-
         }
 
-        public bool Valid() //TODO: Should check for null or whitespace
+        /// <summary>
+        /// Checks if any of these three conditions are met:
+        /// * Product name is null or empty.
+        /// * Product price is below 0.
+        /// * Product barcode is null or whitespace.
+        /// </summary>
+        /// <returns>True if any of the conditions are met, otherwise false.</returns>
+        public bool Valid()
         {
             if (string.IsNullOrEmpty(EditedProduct.Name) || EditedProduct.Price < 0 ||
                 string.IsNullOrWhiteSpace(EditedProduct.ProductNumber))

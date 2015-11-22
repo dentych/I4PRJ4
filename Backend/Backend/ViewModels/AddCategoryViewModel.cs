@@ -31,12 +31,20 @@ namespace Backend.ViewModels
             Aggregator.GetEvent<AddProductWindowLoaded>().Publish(true);
         }
 
-        
+        /// <summary>
+        /// Check if the category name is correctly filled.
+        /// To be correctly filled out, the category name CAN NOT be empty.
+        /// </summary>
+        /// <returns>True if the category name has been filled out, false if it's empty.</returns>
         public bool Valid()
         {
             return !string.IsNullOrEmpty(Category.BName);
         }
 
+        /// <summary>
+        /// Called when the event from mainwindow viewmodel is raised.
+        /// </summary>
+        /// <param name="updatedList">A reference to the category list from mainwindow viewmodel.</param>
         public void CategoryListUpdated(BackendProductCategoryList updatedList)
         {
             Categories = updatedList;
@@ -47,13 +55,16 @@ namespace Backend.ViewModels
 
         /* Add Product */
         private ICommand _addCaegorytCommand;
-
         public ICommand AddCategoryCommand
         {
             get { return _addCaegorytCommand ?? (_addCaegorytCommand = new RelayCommand(AddCategory, Valid)); }
         }
 
-
+        /// <summary>
+        /// Check if a category with the same name already exists.
+        /// </summary>
+        /// <param name="editedProduct">The category to check for.</param>
+        /// <returns>True if there is a category with the same name, otherwise false.</returns>
         private bool Exists(BackendProductCategory editedProduct)
         {
             foreach (var cat in Categories)
@@ -66,9 +77,11 @@ namespace Backend.ViewModels
             return false;
         }
 
+        /// <summary>
+        /// Called when the button to create the category is pressed.
+        /// </summary>
         private void AddCategory()
         {
-          
             if(!Exists(Category))
                 Handler.AddCategory(Category);
             else ErrorPrinter.StdErr("Kategorien eksisterer allerede.");
