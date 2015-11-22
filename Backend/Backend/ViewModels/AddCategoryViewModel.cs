@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Backend.Communication;
 using Backend.Dependencies;
 using Backend.Models;
 using Backend.Models.Brains;

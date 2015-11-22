@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Backend.Communication;
 using Backend.ViewModels;
 
 namespace Backend.Views
