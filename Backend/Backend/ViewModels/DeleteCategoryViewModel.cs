@@ -83,7 +83,7 @@ namespace Backend.ViewModels
 
         /// <summary>
         /// Checks if moving products can be done. This is done by checking if
-        /// the category to move to is different than the current AND if
+        /// the category to move to is different than the current category AND if
         /// the current category contains any products.
         /// </summary>
         /// <returns>True if the move is valid, otherwise false.</returns>
