@@ -2,6 +2,7 @@
 <AnalyseParams>
   <TargetExecutable>C:\Program Files (x86)\NUnit 2.6.4\bin\nunit-console.exe</TargetExecutable>
   <TargetArguments>UnitTests.nunit</TargetArguments>
+  <TargetWorkingDir>.</TargetWorkingDir>
   <Output>cover_report.html</Output>
   <ReportType>html</ReportType>
 </AnalyseParams>
