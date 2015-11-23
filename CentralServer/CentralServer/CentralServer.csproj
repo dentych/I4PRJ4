@@ -62,7 +62,6 @@
     <Compile Include="Messaging\IMessageQueue.cs" />
     <Compile Include="Messaging\IMessageReceiver.cs" />
     <Compile Include="Messaging\MessageReceiver.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Sessions\ISessionControl.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Log.cs" />
