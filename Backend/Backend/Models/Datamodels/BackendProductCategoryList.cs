@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -84,7 +85,16 @@ namespace Backend.Models.Datamodels
         /// </summary>
         public void UpdateCurrentProducts()
         {
-            Application.Current.Dispatcher.Invoke(() => Updater());
+            // Should the Application not be running, or the window is closed, then we call the Updater from the current thread.
+            try
+            {
+                Application.Current.Dispatcher.Invoke(() => Updater());
+            }
+            catch (Exception)
+            {
+                Updater();
+            }
+            
         }
 
         /// <summary>
