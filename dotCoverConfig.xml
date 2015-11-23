@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnalyseParams>
+  <TargetExecutable>D:\Program Files (x86)\NUnit 2.6.4\bin\nunit-console-x86.exe</TargetExecutable>
+  <TargetArguments>UnitTests.nunit</TargetArguments>
+  <Output>cover_report.html</Output>
+  <ReportType>html</ReportType>
+</AnalyseParams>
