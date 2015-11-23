@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SharedLib.Models;
 using SharedLib.Protocol.Commands;
 
-namespace SharedLib.UnitTest.Commands.UnitTest
+namespace SharedLib.UnitTest.Commands.UnitTest.ProductUnitTest
 {
     [TestFixture]
     class ProductCreatedCmdUnitTest
@@ -62,6 +57,12 @@ namespace SharedLib.UnitTest.Commands.UnitTest
         }
 
         [Test]
+        public void ProductCreatedCmd_byAttributesTestProductCategoryId()
+        {
+            Assert.That(product.ProductCategoryId.Equals(cmd.ProductCategoryId));
+        }
+
+        [Test]
         public void ProductCreatedCmd_byProductTestName()
         {
             var cmd = new ProductCreatedCmd(product);
@@ -91,6 +92,14 @@ namespace SharedLib.UnitTest.Commands.UnitTest
             var cmd = new ProductCreatedCmd(product);
 
             Assert.That(product.ProductId.Equals(cmd.ProductId));
+        }
+
+        [Test]
+        public void ProductCreatedCmd_byProductTestProductCategoryId()
+        {
+            var cmd = new ProductCreatedCmd(product);
+
+            Assert.That(product.ProductCategoryId.Equals(cmd.ProductCategoryId));
         }
     }
 }

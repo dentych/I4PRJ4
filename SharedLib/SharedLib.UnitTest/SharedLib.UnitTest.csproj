@@ -48,13 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdMarshallers.UnitTest\CatalogueDetailsMarshalUnitTest.cs" />
-    <Compile Include="CmdMarshallers.UnitTest\Product.UnitTest\CreateProductMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\CreateProductMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\GetCatalogueMarshalUnitTest.cs" />
-    <Compile Include="CmdMarshallers.UnitTest\Product.UnitTest\ProductCreatedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\ProductCreatedMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\RegisterPurchaseMarshalUnitTest.cs" />
     <Compile Include="Commands.UnitTest\CatalogueDetailsCmdUnitTest.cs" />
-    <Compile Include="Commands.UnitTest\Product.UnitTest\CreateProductCmdUnitTest.cs" />
-    <Compile Include="Commands.UnitTest\Product.UnitTest\ProductCreatedCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductUnitTest\CreateProductCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductUnitTest\ProductCreatedCmdUnitTest.cs" />
     <Compile Include="Commands.UnitTest\RegisterPurchaseCmdUnitTest.cs" />
     <Compile Include="CommandUnitTest.cs" />
     <Compile Include="Program.cs" />
@@ -75,8 +75,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CmdMarshallers.UnitTest\ProductCategory.UnitTest\" />
-    <Folder Include="Commands.UnitTest\ProductCategory.UnitTest\" />
+    <Folder Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\" />
+    <Folder Include="Commands.UnitTest\ProductCategoryUnitTest\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

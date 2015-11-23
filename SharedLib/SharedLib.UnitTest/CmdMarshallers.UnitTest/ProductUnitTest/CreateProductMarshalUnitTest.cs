@@ -9,7 +9,7 @@ using SharedLib.Models;
 using SharedLib.Protocol.CmdMarshallers;
 using SharedLib.Protocol.Commands;
 
-namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
+namespace SharedLib.UnitTest.CmdMarshallers.UnitTest.ProductUnitTest
 {
     [TestFixture]
     class CreateProductMarshalUnitTest
@@ -27,7 +27,9 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
                 Name = "Banan",
                 Price = 10,
                 ProductId = 1,
-                ProductNumber = "20"
+                ProductNumber = "20",
+                ProductCategoryId = 5
+                
             };
             cmd = Substitute.For<CreateProductCmd>(product);
             cpMarshal = Substitute.For<CreateProductMarshal>();
@@ -76,6 +78,14 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
+        public void Encode_ContainsCorrectProductCategoryId()
+        {
+            string data = cpMarshal.Encode(cmd);
+
+            StringAssert.Contains("ProductCategoryId=\"5\"", data);
+        }
+
+        [Test]
         public void Decode_CorrectCommandName()
         {
             var decodedCmd = cpMarshal.Decode(data);
@@ -108,6 +118,15 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
             decodedCmd = (CreateProductCmd)cpMarshal.Decode(data);
 
             Assert.That(decodedCmd.Price.Equals(cmd.Price));
+        }
+
+        [Test]
+        public void Decode_CorrectProductCategoryId()
+        {
+            CreateProductCmd decodedCmd;
+            decodedCmd = (CreateProductCmd)cpMarshal.Decode(data);
+
+            Assert.That(decodedCmd.ProductCategoryId.Equals(cmd.ProductCategoryId));
         }
     }
 }
