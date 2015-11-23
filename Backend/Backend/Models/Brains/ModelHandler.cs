@@ -62,9 +62,6 @@ namespace Backend.Models.Brains
             // Generate XML from Category
             var cmdtoSend = _protocol.EditProductXMLParser(product);
             _client.Send(cmdtoSend);
-
-            
-
             return true;
         }
 
