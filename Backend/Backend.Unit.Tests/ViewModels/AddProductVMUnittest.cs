@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Backend.Unit.Tests.ViewModels
 {
     [TestFixture]
-    public class AddProductVMTest
+    public class AddProductViewModelUnitTests
     {
         AddProductViewModel vm;
 

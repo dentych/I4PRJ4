@@ -64,6 +64,7 @@
     <Compile Include="Brains\Modelhandler.Tests.Unit.cs" />
     <Compile Include="ViewModels\AddProductVMUnittest.cs" />
     <Compile Include="Brains\ClientUnitTests.cs" />
+    <Compile Include="ViewModels\EditProductVMUnitTests.cs" />
     <Compile Include="ViewModels\MainWindowVMUnitTests.cs" />
     <Compile Include="Models\EventAggregatorUnitTests.cs" />
     <Compile Include="Brains\PrjProtokol.Test.Unit.cs" />
