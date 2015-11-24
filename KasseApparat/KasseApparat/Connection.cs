@@ -13,6 +13,11 @@ namespace KasseApparat
         private TcpClient client = null;
         private NetworkStream stream = null;
 
+        /// <summary>
+        /// Constructor, som tager mod ip og port
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="port"></param>
         public Connection(string ip, int port)
         {
             if (port < 1 || port > 65535)
@@ -29,6 +34,11 @@ namespace KasseApparat
             Port = port;
         }
 
+
+        /// <summary>
+        /// Funktion til at sende data på den oprettede TcpClient
+        /// </summary>
+        /// <param name="data"></param>
         public void Send(string data)
         {
             if (client == null || stream == null) return;
@@ -46,6 +56,10 @@ namespace KasseApparat
 
         }
 
+        /// <summary>
+        /// Funktion som læser fra den oprettede TcpClient
+        /// </summary>
+        /// <returns></returns>
         public string Receive()
         {
             if (client == null || stream == null) return null;
@@ -65,12 +79,19 @@ namespace KasseApparat
             return Encoding.Unicode.GetString(recMsg);
         }
 
+        /// <summary>
+        /// Opretter TcpClienten og henter den NetworkStream som skal skrives/læses på
+        /// </summary>
         public void Connect()
         {
             client = new TcpClient(Ip, Port);
             stream = client.GetStream();
         }
 
+
+        /// <summary>
+        /// Lukker NetworkStream og TcpClienten 
+        /// </summary>
         public void Disconnect()
         {
             stream.Close();
