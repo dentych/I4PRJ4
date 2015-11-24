@@ -5,4 +5,9 @@
   <TargetWorkingDir>.</TargetWorkingDir>
   <Output>cover_report.html</Output>
   <ReportType>html</ReportType>
+  <Filters>
+    <ExcludeFilters>
+      <FilterEntry>Backend.Fakegenerator<FilterEntry>
+    </ExcludeFilters>
+  </Filters>
 </AnalyseParams>
