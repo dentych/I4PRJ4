@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Brains\LSCUnitTests.cs" />
     <Compile Include="Brains\Modelhandler.Tests.Unit.cs" />
+    <Compile Include="Models\AsyncCollectionUnittests.cs" />
     <Compile Include="ViewModels\AddProductVMUnittest.cs" />
     <Compile Include="Brains\ClientUnitTests.cs" />
     <Compile Include="ViewModels\EditProductVMUnitTests.cs" />
