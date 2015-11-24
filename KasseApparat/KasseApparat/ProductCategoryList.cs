@@ -15,11 +15,17 @@ namespace KasseApparat
         public IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
         //public IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
 
+        /// <summary>
+        /// Contructor, kalder Update() for at Clienten starter op med produkter på listen
+        /// </summary>
         public ProductCategoryList()
         {
             Update();
         }
 
+        /// <summary>
+        /// Update funktion som henter produkt oversigt fra central server og sætter disse som de tilgængelige produkter
+        /// </summary>
         public void Update()
         {
             ClearItems();
