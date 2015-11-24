@@ -9,9 +9,9 @@ namespace Backend.Models.Brains
     /// <summary>
     /// Generates XML strings to be sent to Central Server. The generated strings will contain an encoded command, appropriate for the action the user wish to perform.
     /// </summary>
-    public class PrjProtokol : IProtocol
+    public class PrjProtokol : IBProtocol
     {
-        public Protocol LocalProtocol { get; set; }
+        public SharedLib.Protocol.IProtocol LocalProtocol { get; set; }
 
 
         public PrjProtokol()

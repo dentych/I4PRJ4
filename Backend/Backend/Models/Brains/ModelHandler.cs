@@ -9,22 +9,22 @@ namespace Backend.Models.Brains
     /// <summary>
     /// Handlers for all the actions performed in the GUI. asd asdasd asd a dqrlk jlkjawkeljf 
     /// </summary>
-    /// The ModelHandler will generate an XML string, using IProtocol and then send the data
+    /// The ModelHandler will generate an XML string, using IBProtocol and then send the data
     /// to central server using IClient.
     public class ModelHandler : IModelHandler
     {
         private readonly IClient _client;
-        private readonly IProtocol _protocol;
+        private readonly IBProtocol _ibProtocol;
         public IError Error;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="protocol">The protocol to use.</param>
+        /// <param name="ibProtocol">The ibProtocol to use.</param>
         /// <param name="client">The client to use.</param>
-        public ModelHandler(IProtocol protocol, IClient client)
+        public ModelHandler(IBProtocol ibProtocol, IClient client)
         {
-            _protocol = protocol;
+            _ibProtocol = ibProtocol;
             LastError = null;
             _client = client;
             Error = new Error();
@@ -46,7 +46,7 @@ namespace Backend.Models.Brains
             }
 
             // Generate XML from product
-            var cmdtoSend = _protocol.ProductXMLParser(product);
+            var cmdtoSend = _ibProtocol.ProductXMLParser(product);
             _client.Send(cmdtoSend);
 
             return true;
@@ -60,7 +60,7 @@ namespace Backend.Models.Brains
         public bool EditProduct(BackendProduct product)
         {
             // Generate XML from Category
-            var cmdtoSend = _protocol.EditProductXMLParser(product);
+            var cmdtoSend = _ibProtocol.EditProductXMLParser(product);
             _client.Send(cmdtoSend);
             return true;
         }
@@ -72,7 +72,7 @@ namespace Backend.Models.Brains
         /// <returns>True if command is sent, otherwise false.</returns>
         public bool DeleteProduct(Product product)
         {
-            _client.Send(_protocol.DeleteProductXMLParser(product));
+            _client.Send(_ibProtocol.DeleteProductXMLParser(product));
             return true;
         }
 
@@ -84,7 +84,7 @@ namespace Backend.Models.Brains
         public bool EditCategory(BackendProductCategory category)
         {
             // Generate XML from Category
-            var cmdtoSend = _protocol.EditCategoryXMLParser(category);
+            var cmdtoSend = _ibProtocol.EditCategoryXMLParser(category);
             _client.Send(cmdtoSend);
             return true;
         }
@@ -97,7 +97,7 @@ namespace Backend.Models.Brains
         public bool AddCategory(BackendProductCategory category)
         {
             // Generate XML from Category
-            var cmdtoSend = _protocol.CategoryXMLParser(category);
+            var cmdtoSend = _ibProtocol.CategoryXMLParser(category);
             _client.Send(cmdtoSend);
             return true;
         }
@@ -109,7 +109,7 @@ namespace Backend.Models.Brains
         /// <returns>True if command is sent, otherwise false.</returns>
         public bool DeleteCategory(BackendProductCategory category)
         {
-            var cmdtosend = _protocol.DeleteCategoryXMLParser(category);
+            var cmdtosend = _ibProtocol.DeleteCategoryXMLParser(category);
             _client.Send(cmdtosend);
             return true;
         }
@@ -143,7 +143,7 @@ namespace Backend.Models.Brains
                     ProductId = product.ProductId,
                     ProductNumber = product.ProductNumber
                 };
-                var cmdtosend = _protocol.EditProductXMLParser(newProduct);
+                var cmdtosend = _ibProtocol.EditProductXMLParser(newProduct);
                 _client.Send(cmdtosend);
             }
 
@@ -157,7 +157,7 @@ namespace Backend.Models.Brains
         /// <returns>True if command is sent, otherwise false.</returns>
         public bool CatalogueDetails()
         {
-            var cmdtosend = _protocol.GetCatalougXMLParser();
+            var cmdtosend = _ibProtocol.GetCatalougXMLParser();
             _client.Send(cmdtosend);
             return true;
         }

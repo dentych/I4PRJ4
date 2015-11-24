@@ -13,7 +13,7 @@ namespace Backend.Unit.Tests.Brains
     {
 
         private IClient _client;
-        private IProtocol _protokol;
+        private IBProtocol _protokol;
         private ModelHandler _uut;
         private IError _err;
 
@@ -21,7 +21,7 @@ namespace Backend.Unit.Tests.Brains
         public void Setup()
         {
             _client = Substitute.For<IClient>();
-            _protokol = Substitute.For<IProtocol>();
+            _protokol = Substitute.For<IBProtocol>();
             _uut = new ModelHandler(_protokol, _client);
             _err = Substitute.For<IError>();
             _uut.Error = _err;
