@@ -14,15 +14,19 @@ using SharedLib.Models;
 
 namespace KasseApparat
 {
+    /// <summary>
+    ///     En klasse der indeholder en liste med menuCategories samt funktionalitet til at arbejde med disse. Derved kan der vælges forskellige
+    ///     kategorier af knapper og disse kan derefter afspejles i kasseapparatet.
+    /// </summary>
     public class CategoriesMenu : ObservableCollection<MenuCategory>, INotifyPropertyChanged
     {
         private ProductCategoryList _productCategoryList;
         private Button CategoryButton;
         private List<Product> _totalList;
 
-
-        /* Ctor: Contructor. Opretter variable og updaterer kategorier 
-        */
+        /// <summary>
+        ///     Constructor: Opretter variabler og sætter produktknapperne til at vise alle produkter uanset kategori som default.
+        /// </summary>
         public CategoriesMenu()
         {
             _productCategoryList = new ProductCategoryList();
@@ -35,6 +39,10 @@ namespace KasseApparat
             Update();
         }
 
+        /// <summary>
+        ///     Opdaterer kategorierne udfra indholdet i ProduktCategoryList. Denne funktion kan kaldes hvis brugeren af kasseapparatet ønsker
+        ///     at hente produkterne fra databasen.
+        /// </summary>
         public void Update()
         {
             CategoryButton.ContextMenu.Items.Clear();
@@ -55,6 +63,11 @@ namespace KasseApparat
             }
         }
 
+        /// <summary>
+        ///     Denne funktion tager produkterne fra alle kategorier og opretter en liste med alle produkterne. Derved kan en kategori oprettes der
+        ///     viser alle produkter på 1 gang.
+        /// </summary>
+        /// <returns></returns>
         private List<Product> CreateListOfAllProducts()
         {
             List<Product> totalProducts = new List<Product>();
