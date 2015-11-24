@@ -25,6 +25,7 @@ namespace Backend.Models.Communication
                 }
                 return _connection;
             }
+            set { _connection = value; }
         }
 
         /// <summary>
@@ -45,6 +46,7 @@ namespace Backend.Models.Communication
                 }
                 return _listener;
             }
+            set { _listener = value; }
         }
     }
 }

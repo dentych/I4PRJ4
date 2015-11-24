@@ -60,8 +60,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brains\LSCUnitTests.cs" />
     <Compile Include="Brains\Modelhandler.Tests.Unit.cs" />
-    <Compile Include="Brains\AddProductCBUnitTests.cs" />
     <Compile Include="ViewModels\AddProductVMUnittest.cs" />
     <Compile Include="Brains\ClientUnitTests.cs" />
     <Compile Include="ViewModels\MainWindowVMUnitTests.cs" />
