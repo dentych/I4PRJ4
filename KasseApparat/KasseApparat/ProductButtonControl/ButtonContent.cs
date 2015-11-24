@@ -10,26 +10,31 @@ using System.Windows.Input;
 
 namespace KasseApparat
 {
-    /*Denne klasse symboliserer en knap i grænsefladen under inputs. Derved kan hver
-    knaps individuelle funktionalitet skrives 1 sted og så bruges flere gange.*/
+    /// <summary>
+    ///     Denne klasse symboliserer en knap i grænsefladen under inputs. Derved kan hver  
+    ///     knaps individuelle funktionalitet skrives 1 sted og så bruges flere gange. I henhold til MVVM
+    ///     er denne klasse viewmodel for knapperne.
+    /// </summary>
     public class ButtonContent : INotifyPropertyChanged
     {
         private string _name;
         private string _price;
         readonly ShoppingList _shopList;
 
-        /*
-         * Ctor: Opretter en knap udfra et givent product.
-         */
-        public ButtonContent(Product p)
+        /// <summary>
+        ///     Ctor: Opretter en knap udfra indholdet af et produkt kaldet buttonProduct. Opretter variabler og opretter også en forbindelse
+        ///     til ShoppingList objektet fra viewet, derved kan produktet tilknyttet knappen tilføjes til shoppinglist ved et tryk.
+        /// </summary>
+        /// <param name="buttonProduct"></param>
+        public ButtonContent(Product buttonProduct)
         {
             _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
 
             //Check if recieved product contains a product
-            if (!string.IsNullOrEmpty(p.Name))
+            if (!string.IsNullOrEmpty(buttonProduct.Name))
             {
-                Name = p.Name;
-                Price = p.Price + " kr.";
+                Name = buttonProduct.Name;
+                Price = buttonProduct.Price + " kr.";
             }
             else
             {
@@ -37,12 +42,15 @@ namespace KasseApparat
                 this.Price = string.Empty;
             }
 
-            Product = p;
+            Product = buttonProduct;
         }
 
-        /*
-         * Ctor: Opretter en knap udfra et navn og en pris
-         */
+        /// <summary>
+        ///     Ctor: Opretter en knap udfra indholdet af 2 strenge, en med navn og en med pris. Denne contructor bruges primært til at skabe tomme knapper
+        ///     når der ikke er flere produkter at tilføjes.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
         public ButtonContent(string name, string price)
         {
             if (!string.IsNullOrEmpty(name))
@@ -57,9 +65,9 @@ namespace KasseApparat
             }
         }
 
-        /*
-         * Property for pris, bruges i grænsefladen til at sætte knappens pris
-         */
+        /// <summary>
+        ///     En property der returnerer prisen på den vare knappen symboliserer. Bruges til at vise prisen på den pågældende knap.
+        /// </summary>
         public string Price
         {
             set
@@ -73,9 +81,9 @@ namespace KasseApparat
             }
         }
 
-        /*
-         * Property for navn, bruges i grænsefladen til at sætte knappens navn
-         */
+        /// <summary>
+        ///     En property der returnerer navnet på den vare knappen symboliserer. Bruges til at vise prisen på den pågældende knap.
+        /// </summary>
         public string Name
         {
             set
@@ -89,21 +97,20 @@ namespace KasseApparat
             }
         }
 
-        /*
-         * Giver adgang til det produkt som knappen symboliserer. Derved kan man nemt
-         * få adgang til det produkt som skal oprettes i indkøbskurven ved tryk på
-         * knappen.
-         */
+        /// <summary>
+        ///     Giver adgang til det produkt som knappen symboliserer. Derved kan man nemt
+        ///     få adgang til det produkt som skal oprettes i indkøbskurven ved tryk på knappen.
+        /// </summary>
         public Product Product;
 
         ICommand _AddCommand;
         public ICommand AddCommand { get { return _AddCommand ?? (_AddCommand = new RelayCommand(AddCommandExecute, AddCommandCanExecute)); } }
 
-        /*
-         * AddCommand: En command som kaldes ved tryk på en knap i grænsefladen. Denne tilføjer så et nyt
-         * produkt til shoppinglist hvis produktet ikke eksisterer, eller incrementerer mængden af produktet
-         * hvis det allerede eksisterer i listen.
-         */
+        /// <summary>
+        ///     AddCommand: En command som kaldes ved tryk på en knap i grænsefladen. Denne tilføjer så et nyt
+        ///     produkt til shoppinglist hvis produktet ikke eksisterer, eller incrementerer mængden af produktet
+        ///     hvis det allerede eksisterer i listen.
+        /// </summary>
         void AddCommandExecute()
         {
 
@@ -122,10 +129,10 @@ namespace KasseApparat
             }
         }
 
-        /*
-         * Denne bestemmer om knappen er enabled. Hvis der altså ikke er indhold i strengen
-         * der symboliserer dens navn eller dens pris.
-         */
+        /// <summary>
+        ///     Dette command bestemmer om knappen er enabled. Hvis der ikke er indhold i knappen kan knappen ikke trykkes på.
+        /// </summary>
+        /// <returns></returns>
         bool AddCommandCanExecute()
         {
             if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Price))
@@ -134,11 +141,10 @@ namespace KasseApparat
                 return true;
         }
 
-        /* 
-         * Property changed event handler: Giver grænsefladen besked hvis der er en ændring i en
-         * given property. Derved ved view at den skal opdatere sig selv og afspejle det indhold
-         * der ligger i model laget
-         */
+        /// <summary>
+        ///     Property changed event handler: Giver grænsefladen besked hvis der er en ændring i en given property.
+        ///     Derved ved view at den skal opdatere sig selv og afspejle det indhold der ligger i model laget.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void Notify([CallerMemberName] string propertyName = null)
