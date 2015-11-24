@@ -81,7 +81,7 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
-        public void Encode_ContainsCorrectName()
+        public void Encode_ProductContainsCorrectName()
         {
             string data = cdMarshal.Encode(cmd);
 
@@ -89,7 +89,7 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
-        public void Encode_ContainsCorrectProductNumber()
+        public void Encode_ProductContainsCorrectProductNumber()
         {
             string data = cdMarshal.Encode(cmd);
 
@@ -97,7 +97,7 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
-        public void Encode_ContainsCorrectPrice()
+        public void Encode_ProductContainsCorrectPrice()
         {
             string data = cdMarshal.Encode(cmd);
 
@@ -105,11 +105,19 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
-        public void Encode_ContainsCorrectProductId()
+        public void Encode_ProductContainsCorrectProductId()
         {
             string data = cdMarshal.Encode(cmd);
 
             StringAssert.Contains("ProductId=\"1\"", data);
+        }
+
+        [Test]
+        public void Encode_ProductContainsCorrectProductCategoryId()
+        {
+            string data = cdMarshal.Encode(cmd);
+
+            StringAssert.Contains("ProductCategoryId=\"5\"", data);
         }
 
         [Test]
@@ -139,7 +147,7 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
-        public void Decode_CorrectName()
+        public void Decode_ProductCorrectName()
         {
             CatalogueDetailsCmd decodedCmd;
             decodedCmd = (CatalogueDetailsCmd)cdMarshal.Decode(data);
@@ -148,7 +156,7 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
-        public void Decode_CorrectProductNumber()
+        public void Decode_ProductCorrectProductNumber()
         {
             CatalogueDetailsCmd decodedCmd;
             decodedCmd = (CatalogueDetailsCmd)cdMarshal.Decode(data);
@@ -157,7 +165,7 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
-        public void Decode_CorrectPrice()
+        public void Decode_ProductCorrectPrice()
         {
             CatalogueDetailsCmd decodedCmd;
             decodedCmd = (CatalogueDetailsCmd)cdMarshal.Decode(data);
@@ -166,12 +174,21 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         }
 
         [Test]
-        public void Decode_CorrectProductId()
+        public void Decode_ProductCorrectProductId()
         {
             CatalogueDetailsCmd decodedCmd;
             decodedCmd = (CatalogueDetailsCmd)cdMarshal.Decode(data);
 
             Assert.That(decodedCmd.ProductCategories.ElementAt(1).Products.ElementAt(1).ProductId.Equals(cmd.ProductCategories.ElementAt(1).Products.ElementAt(1).ProductId));
+        }
+
+        [Test]
+        public void Decode_ProductCorrectProductCategoryId()
+        {
+            CatalogueDetailsCmd decodedCmd;
+            decodedCmd = (CatalogueDetailsCmd)cdMarshal.Decode(data);
+
+            Assert.That(decodedCmd.ProductCategories.ElementAt(1).Products.ElementAt(1).ProductCategoryId.Equals(cmd.ProductCategories.ElementAt(1).Products.ElementAt(1).ProductCategoryId));
         }
 
     }
