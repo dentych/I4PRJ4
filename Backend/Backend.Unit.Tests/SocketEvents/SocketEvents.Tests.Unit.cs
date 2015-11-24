@@ -259,5 +259,14 @@ namespace Backend.Unit.Tests.SocketEvents
 
             Assert.That(_categories[1].Name, Is.EqualTo(edited.Name));
         }
+
+        [Test]
+        public void CatalogueDetailsHandler_catcountis0_ExpectcurrentprodlisttobeNull()
+        {
+            var testcommand = new CatalogueDetailsCmd();
+            _uut.CatalogueDetailsHandler(testcommand);
+
+            Assert.That(_categories.CurrentProductList,Is.Null);
+        }
     }
 }
