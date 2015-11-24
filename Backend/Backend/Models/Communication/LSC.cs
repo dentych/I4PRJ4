@@ -2,6 +2,8 @@
 
 namespace Backend.Models.Communication
 {
+
+
     /// <summary>
     /// Singleton for the socket connection.
     /// </summary>
