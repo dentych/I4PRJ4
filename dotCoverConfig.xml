@@ -7,7 +7,7 @@
   <ReportType>html</ReportType>
   <Filters>
     <ExcludeFilters>
-      <FilterEntry>Backend.Fakegenerator<FilterEntry>
+      <FilterEntry>Backend.Fakegenerator</FilterEntry>
     </ExcludeFilters>
   </Filters>
 </AnalyseParams>
