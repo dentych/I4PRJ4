@@ -60,8 +60,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Compile Include="Brains\Modelhandler.Tests.Unit.cs" />
     <Compile Include="Brains\AddProductCBUnitTests.cs" />
+=======
+>>>>>>> Stashed changes
     <Compile Include="ViewModels\AddProductVMUnittest.cs" />
     <Compile Include="Brains\ClientUnitTests.cs" />
     <Compile Include="ViewModels\MainWindowVMUnitTests.cs" />
