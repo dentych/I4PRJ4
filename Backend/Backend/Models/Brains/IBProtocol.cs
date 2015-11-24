@@ -6,7 +6,7 @@ namespace Backend.Models.Brains
     /// <summary>
     /// Interface for the SharedLib protocol, since it was missing at the time of creating this.
     /// </summary>
-    public interface IProtocol
+    public interface IBProtocol
     {
         /// <summary>
         /// Generates the XML for creating a new product.
@@ -49,5 +49,5 @@ namespace Backend.Models.Brains
         /// </summary>
         /// <returns>Generated XML string.</returns>
         string GetCatalougXMLParser();
-    } //end IProtocol
+    } //end IBProtocol
 }
