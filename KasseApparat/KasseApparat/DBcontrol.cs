@@ -15,11 +15,19 @@ namespace KasseApparat
         public IConnection Connection = null;
         public IProtocol protocol = new Protocol();
 
+        /// <summary>
+        /// Constructor, som tager den connection der skal sendes over
+        /// </summary>
+        /// <param name="conn"></param>
         public DBcontrol(IConnection conn)
         {
             Connection = conn;
         }
 
+        /// <summary>
+        /// Funktionen som kaldes når der skal hentes produkter fra central server
+        /// </summary>
+        /// <returns></returns>
         public List<ProductCategory> GetProducts()
         {
             CatalogueDetailsCmd cmd = null;
@@ -39,6 +47,10 @@ namespace KasseApparat
             return cmd.ProductCategories;
         }
 
+        /// <summary>
+        /// Funktionen som kaldes når et køb afsluttes. Sender info om købet til central server
+        /// </summary>
+        /// <param name="ShopList"></param>
         public void PurchaseDone(IList<PurchasedProduct> ShopList)
         {
             Connection.Connect();
