@@ -91,7 +91,11 @@ namespace Backend.ViewModels
                 Handler.AddCategory(Category);
             else ErrorPrinter.StdErr("Kategorien eksisterer allerede.");
 
-            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            try
+            {
+                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            }
+            catch (Exception) { }
         }
         #endregion
     }
