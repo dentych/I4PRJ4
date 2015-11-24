@@ -48,13 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdMarshallers.UnitTest\CatalogueDetailsMarshalUnitTest.cs" />
-    <Compile Include="CmdMarshallers.UnitTest\CreateProductMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\CreateProductMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\GetCatalogueMarshalUnitTest.cs" />
-    <Compile Include="CmdMarshallers.UnitTest\ProductCreatedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\DeleteProductMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\EditProductMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\ProductCreatedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\ProductDeletedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\ProductEditedMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\RegisterPurchaseMarshalUnitTest.cs" />
     <Compile Include="Commands.UnitTest\CatalogueDetailsCmdUnitTest.cs" />
-    <Compile Include="Commands.UnitTest\CreateProductCmdUnitTest.cs" />
-    <Compile Include="Commands.UnitTest\ProductCreatedCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductUnitTest\CreateProductCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductUnitTest\DeleteProductCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductUnitTest\EditProductCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductUnitTest\ProductCreatedCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductUnitTest\ProductDeletedCmdUnitTest.cs" />
+    <Compile Include="Commands.UnitTest\ProductUnitTest\ProductEditedCmdUnitTest.cs" />
     <Compile Include="Commands.UnitTest\RegisterPurchaseCmdUnitTest.cs" />
     <Compile Include="CommandUnitTest.cs" />
     <Compile Include="Program.cs" />
@@ -74,7 +82,10 @@
       <Name>SharedLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\" />
+    <Folder Include="Commands.UnitTest\ProductCategoryUnitTest\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

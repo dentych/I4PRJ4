@@ -7,13 +7,13 @@ using NUnit.Framework;
 using SharedLib.Models;
 using SharedLib.Protocol.Commands;
 
-namespace SharedLib.UnitTest.Commands.UnitTest
+namespace SharedLib.UnitTest.Commands.UnitTest.ProductUnitTest
 {
     [TestFixture]
-    class ProductCreatedCmdUnitTest
+    class EditProductCmdUnitTest
     {
         Product product;
-        ProductCreatedCmd cmd;
+        EditProductCmd cmd;
 
         [SetUp]
         public void SetUp()
@@ -27,7 +27,7 @@ namespace SharedLib.UnitTest.Commands.UnitTest
                 ProductCategoryId = 5
             };
 
-            cmd = new ProductCreatedCmd("Appelsin", "15", 10,50, 5);
+            cmd = new EditProductCmd("Appelsin", "15", 10, 50, 5);
         }
 
         [TearDown]
@@ -38,59 +38,75 @@ namespace SharedLib.UnitTest.Commands.UnitTest
         }
 
         [Test]
-        public void ProductCreatedCmd_byAttributesTestName()
+        public void EditProductCmd_byAttributesTestName()
         {
             Assert.That(product.Name.Equals(cmd.Name));
         }
 
         [Test]
-        public void ProductCreatedCmd_byAttributesTestProductNumber()
+        public void EditProductCmd_byAttributesTestProductNumber()
         {
             Assert.That(product.ProductNumber.Equals(cmd.ProductNumber));
         }
 
         [Test]
-        public void ProductCreatedCmd_byAttributesTestPrice()
+        public void EditProductCmd_byAttributesTestPrice()
         {
             Assert.That(product.Price.Equals(cmd.Price));
         }
 
         [Test]
-        public void ProductCreatedCmd_byAttributesTestProductId()
+        public void EditProductCmd_byAttributesTestProductId()
         {
             Assert.That(product.ProductId.Equals(cmd.ProductId));
         }
 
         [Test]
-        public void ProductCreatedCmd_byProductTestName()
+        public void EditProductCmd_byAttributesTestProductCategoryId()
         {
-            var cmd = new ProductCreatedCmd(product);
+            Assert.That(product.ProductCategoryId.Equals(cmd.ProductCategoryId));
+        }
+
+
+        [Test]
+        public void EditProductCmd_byProductTestName()
+        {
+            var cmd = new EditProductCmd(product);
 
             Assert.That(product.Name.Equals(cmd.Name));
         }
 
         [Test]
-        public void ProductCreatedCmd_byProductTestProductNumber()
+        public void EditProductCmd_byProductTestProductNumber()
         {
-            var cmd = new ProductCreatedCmd(product);
+            var cmd = new EditProductCmd(product);
 
             Assert.That(product.ProductNumber.Equals(cmd.ProductNumber));
         }
 
         [Test]
-        public void ProductCreatedCmd_byProductTestPrice()
+        public void EditProductCmd_byProductTestPrice()
         {
-            var cmd = new ProductCreatedCmd(product);
+            var cmd = new EditProductCmd(product);
 
             Assert.That(product.Price.Equals(cmd.Price));
         }
 
         [Test]
-        public void ProductCreatedCmd_byProductTestProductId()
+        public void EditProductCmd_byProductTestProductId()
         {
-            var cmd = new ProductCreatedCmd(product);
+            var cmd = new EditProductCmd(product);
 
             Assert.That(product.ProductId.Equals(cmd.ProductId));
         }
+
+        [Test]
+        public void EditProductCmd_byProductTestProductCategoryId()
+        {
+            var cmd = new EditProductCmd(product);
+
+            Assert.That(product.ProductCategoryId.Equals(cmd.ProductCategoryId));
+        }
+
     }
 }

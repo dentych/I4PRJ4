@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NSubstitute;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SharedLib.Models;
 using SharedLib.Protocol.Commands;
 
-namespace SharedLib.UnitTest.Commands.UnitTest
+namespace SharedLib.UnitTest.Commands.UnitTest.ProductUnitTest
 {
     [TestFixture]
     class CreateProductCmdUnitTest
@@ -24,10 +18,11 @@ namespace SharedLib.UnitTest.Commands.UnitTest
                 Name = "Appelsin",
                 Price = 10,
                 ProductId = 50,
-                ProductNumber = "15"
+                ProductNumber = "15",
+                ProductCategoryId = 5
             };
 
-            cmd = new CreateProductCmd("Appelsin","15",10, 0);
+            cmd = new CreateProductCmd("Appelsin","15",10, 5);
         }
 
         [TearDown]
@@ -55,6 +50,12 @@ namespace SharedLib.UnitTest.Commands.UnitTest
             Assert.That(product.Price.Equals(cmd.Price));
         }
 
+        [Test]
+        public void CreateProductCmd_byAttributesTestProductCategoryId()
+        {
+            Assert.That(product.ProductCategoryId.Equals(cmd.ProductCategoryId));
+        }
+
 
         [Test]
         public void CreateProductCmd_byProductTestName()
@@ -78,6 +79,14 @@ namespace SharedLib.UnitTest.Commands.UnitTest
             var cmd = new CreateProductCmd(product);
 
             Assert.That(product.Price.Equals(cmd.Price));
+        }
+
+        [Test]
+        public void CreateProductCmd_byProductTestProductCategoryId()
+        {
+            var cmd = new CreateProductCmd(product);
+
+            Assert.That(product.ProductCategoryId.Equals(cmd.ProductCategoryId));
         }
     }
 }

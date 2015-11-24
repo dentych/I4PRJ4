@@ -9,14 +9,14 @@ using SharedLib.Models;
 using SharedLib.Protocol.CmdMarshallers;
 using SharedLib.Protocol.Commands;
 
-namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
+namespace SharedLib.UnitTest.CmdMarshallers.UnitTest.ProductUnitTest
 {
     [TestFixture]
-    class ProductCreatedMarshalUnitTest
+    class ProductDeletedMarshalUnitTest
     {
         Product product;
-        ProductCreatedCmd cmd;
-        ProductCreatedMarshal pcMarshal;
+        ProductDeletedCmd cmd;
+        ProductDeletedMarshal marshal;
         string data;
 
         [SetUp]
@@ -27,11 +27,12 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
                 Name = "Banan",
                 Price = 10,
                 ProductId = 2,
-                ProductNumber = "20"
+                ProductNumber = "20",
+                ProductCategoryId = 5
             };
-            cmd = Substitute.For<ProductCreatedCmd>(product);
-            pcMarshal = Substitute.For<ProductCreatedMarshal>();
-            data = pcMarshal.Encode(cmd);
+            cmd = Substitute.For<ProductDeletedCmd>(product);
+            marshal = Substitute.For<ProductDeletedMarshal>();
+            data = marshal.Encode(cmd);
         }
 
         [TearDown]
@@ -39,22 +40,22 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         {
             product = null;
             cmd = null;
-            pcMarshal = null;
+            marshal = null;
             data = null;
         }
 
         [Test]
         public void Encode_ContainsCorrectCommandName()
         {
-            string data = pcMarshal.Encode(cmd);
+            string data = marshal.Encode(cmd);
 
-            StringAssert.Contains("Command Name=\"ProductCreated\"", data);
+            StringAssert.Contains("Command Name=\"ProductDeleted\"", data);
         }
 
         [Test]
         public void Encode_ContainsCorrectName()
         {
-            string data = pcMarshal.Encode(cmd);
+            string data = marshal.Encode(cmd);
 
             StringAssert.Contains("Product Name=\"Banan\"", data);
         }
@@ -62,7 +63,7 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         [Test]
         public void Encode_ContainsCorrectProductNumber()
         {
-            string data = pcMarshal.Encode(cmd);
+            string data = marshal.Encode(cmd);
 
             StringAssert.Contains("ProductNumber=\"20\"", data);
         }
@@ -70,7 +71,7 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         [Test]
         public void Encode_ContainsCorrectPrice()
         {
-            string data = pcMarshal.Encode(cmd);
+            string data = marshal.Encode(cmd);
 
             StringAssert.Contains("Price=\"10\"", data);
         }
@@ -78,15 +79,23 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         [Test]
         public void Encode_ContainsCorrectProductId()
         {
-            string data = pcMarshal.Encode(cmd);
+            string data = marshal.Encode(cmd);
 
             StringAssert.Contains("ProductId=\"2\"", data);
         }
 
         [Test]
+        public void Encode_ContainsCorrectProductCategoryId()
+        {
+            string data = marshal.Encode(cmd);
+
+            StringAssert.Contains("ProductCategoryId=\"5\"", data);
+        }
+
+        [Test]
         public void Decode_CorrectCommandName()
         {
-            var decodedCmd = pcMarshal.Decode(data);
+            var decodedCmd = marshal.Decode(data);
 
             Assert.That(decodedCmd.CmdName.Equals(cmd.CmdName));
         }
@@ -94,8 +103,8 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         [Test]
         public void Decode_CorrectName()
         {
-            ProductCreatedCmd decodedCmd;
-            decodedCmd = (ProductCreatedCmd)pcMarshal.Decode(data);
+            ProductDeletedCmd decodedCmd;
+            decodedCmd = (ProductDeletedCmd)marshal.Decode(data);
 
             Assert.That(decodedCmd.Name.Equals(cmd.Name));
         }
@@ -103,8 +112,8 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         [Test]
         public void Decode_CorrectProductNumber()
         {
-            ProductCreatedCmd decodedCmd;
-            decodedCmd = (ProductCreatedCmd)pcMarshal.Decode(data);
+            ProductDeletedCmd decodedCmd;
+            decodedCmd = (ProductDeletedCmd)marshal.Decode(data);
 
             Assert.That(decodedCmd.ProductNumber.Equals(cmd.ProductNumber));
         }
@@ -112,8 +121,8 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         [Test]
         public void Decode_CorrectPrice()
         {
-            ProductCreatedCmd decodedCmd;
-            decodedCmd = (ProductCreatedCmd)pcMarshal.Decode(data);
+            ProductDeletedCmd decodedCmd;
+            decodedCmd = (ProductDeletedCmd)marshal.Decode(data);
 
             Assert.That(decodedCmd.Price.Equals(cmd.Price));
         }
@@ -121,10 +130,19 @@ namespace SharedLib.UnitTest.CmdMarshallers.UnitTest
         [Test]
         public void Decode_CorrectProductId()
         {
-            ProductCreatedCmd decodedCmd;
-            decodedCmd = (ProductCreatedCmd)pcMarshal.Decode(data);
+            ProductDeletedCmd decodedCmd;
+            decodedCmd = (ProductDeletedCmd)marshal.Decode(data);
 
             Assert.That(decodedCmd.ProductId.Equals(cmd.ProductId));
+        }
+
+        [Test]
+        public void Decode_CorrectProductCategoryId()
+        {
+            ProductDeletedCmd decodedCmd;
+            decodedCmd = (ProductDeletedCmd)marshal.Decode(data);
+
+            Assert.That(decodedCmd.ProductCategoryId.Equals(cmd.ProductCategoryId));
         }
 
     }
