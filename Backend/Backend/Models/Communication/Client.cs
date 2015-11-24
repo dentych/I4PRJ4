@@ -11,7 +11,7 @@ namespace Backend.Models.Communication
     {
         public ISocketConnection Conn = LSC.Connection;
 
-        public bool Connect()
+       public bool Connect()
         {
             Conn.Connect("127.0.0.1", 7913); // Skal bruge settings.
             return true; // Burde være void.
