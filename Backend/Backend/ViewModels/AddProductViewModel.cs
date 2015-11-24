@@ -7,6 +7,7 @@ using Backend.Models.Communication;
 using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Prism.Events;
+using System;
 
 namespace Backend.ViewModels
 {
@@ -37,11 +38,6 @@ namespace Backend.ViewModels
 
             Aggregator.GetEvent<CategoryListUpdated>().Subscribe(CategoryListUpdated, true);
             Aggregator.GetEvent<AddProductWindowLoaded>().Publish(true);
-
-            if (Categories.Count > 0)
-            {
-                SelectedCategory = Categories[0];
-            }
         }
 
         /// <summary>
@@ -67,6 +63,11 @@ namespace Backend.ViewModels
         public void CategoryListUpdated(BackendProductCategoryList updatedList)
         {
             Categories = updatedList;
+
+            if (Categories.Count > 0)
+            {
+                SelectedCategory = Categories[0];
+            }
         }
 
         #region Commands
@@ -86,8 +87,12 @@ namespace Backend.ViewModels
             Product.ProductCategoryId = SelectedCategory.ProductCategoryId;
             if (!Exists(Product))
                 ModelHandler.CreateProduct(Product);
-            else new Error().StdErr("Produktet eksisterer allerede.");
-            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            else Err.StdErr("Produktet eksisterer allerede.");
+            try
+            {
+                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            }
+            catch(Exception) { }
         }
 
         /// <summary>
