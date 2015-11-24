@@ -50,7 +50,11 @@
     <Compile Include="CmdMarshallers.UnitTest\CatalogueDetailsMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\CreateProductMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\GetCatalogueMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\DeleteProductMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\EditProductMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\ProductCreatedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\ProductDeletedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\ProductEditedMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\RegisterPurchaseMarshalUnitTest.cs" />
     <Compile Include="Commands.UnitTest\CatalogueDetailsCmdUnitTest.cs" />
     <Compile Include="Commands.UnitTest\ProductUnitTest\CreateProductCmdUnitTest.cs" />
