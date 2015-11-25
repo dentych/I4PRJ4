@@ -40,6 +40,7 @@ namespace Backend.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
+            DBCON = false;
             Client = new Client();
             Error = new Error();
             conn = LSC.Connection;
