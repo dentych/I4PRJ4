@@ -24,6 +24,7 @@ namespace Backend.Views
         {
             DataContext = new EditProductViewModel();
             InitializeComponent();
+            FocusManager.SetFocusedElement(this, textboxName);
         }
 
         private void textboxPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)

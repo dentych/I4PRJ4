@@ -98,7 +98,9 @@ namespace Backend.ViewModels
         /// <returns>True if the move is valid, otherwise false.</returns>
         private bool MoveValid()
         {
-            return (SelectedIndex != MoveToCategoryId) && (Categories[SelectedIndex].Products.Count > 0);
+            if(MoveToCategoryId >= 0)
+                return (SelectedIndex != MoveToCategoryId) && (Categories[SelectedIndex].Products.Count > 0);
+            return false;
         }
 
         /// <summary>
