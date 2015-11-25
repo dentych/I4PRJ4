@@ -24,6 +24,7 @@ namespace Backend.Views
         {
             InitializeComponent();
             DataContext = new AddCategoryViewModel();
+            FocusManager.SetFocusedElement(this, textboxName);
         }
 
         /* LUK LORTET */

@@ -24,6 +24,8 @@ namespace Backend.Views
         {
             InitializeComponent();
             DataContext = new EditCategoryViewModel();
+            FocusManager.SetFocusedElement(this, textboxName);
+
         }
         private void Annuller(object sender, RoutedEventArgs e)
         {
