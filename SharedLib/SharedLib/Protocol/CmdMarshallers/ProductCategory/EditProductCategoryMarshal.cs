@@ -80,7 +80,7 @@ namespace SharedLib.Protocol.CmdMarshallers
                         product.ProductNumber = reader["ProductNumber"]; // Inserts the value of the attribute name "ProductNumber" into the product object
                         product.Price = Convert.ToDecimal(reader["Price"]); // Inserts the value of the attribute name "Price" into the product object
                         product.ProductId = Convert.ToInt32(reader["ProductId"]); // Inserts the value of the attribute name "ProductId" into the product object
-                        product.ProductCategoryId = Convert.ToInt32(reader["ProductId"]); // Inserts the value of the attribute name "ProductId" into the product object
+                        product.ProductCategoryId = Convert.ToInt32(reader["ProductCategoryId"]); // Inserts the value of the attribute name "ProductId" into the product object
 
                         productList.Add(product); // Add the newly created product to the productlist
                     } // end if
