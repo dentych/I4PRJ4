@@ -20,7 +20,7 @@ namespace KasseApparat
     ///     der så indeholder endnu en liste hvori knapperne er. Her står ProduktButtonControl så for den
     ///     funktionalitet der er tilknyttet denne liste og dens oprettelse. 
     /// </summary>
-    public class ProductButtonControl : INotifyPropertyChanged
+    public class ProductButtonControl : INotifyPropertyChanged, IProductButtonControl
     {
 #region attributes
 
@@ -30,12 +30,24 @@ namespace KasseApparat
         private List<ProductButtonList> _PageList;
         private ShoppingList _shopList;
 #endregion
-         
+
+        /// <summary>
+        ///     Test contructor
+        /// </summary>
+        public ProductButtonControl(List<Product> productList = null)
+        {
+            _PDL = productList;
+            _PageList = new List<ProductButtonList>();
+            _shopList = new ShoppingList();
+
+            CreatePageList();
+        }
+
         public ProductButtonControl()
         {
             _PDL = new List<Product>(); //Changed to PCL
             _PageList = new List<ProductButtonList>();
-            _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
+            _shopList = null;
 
             CreatePageList();
         }
@@ -62,7 +74,7 @@ namespace KasseApparat
         ///     Denne funktion laver en liste med produkter om til en liste der indholder lister med produktknapper. Derved
         ///     kan en produktliste laves om til knapper i kasseapparatet.
         /// </summary>
-        void CreatePageList()
+        public void CreatePageList()
         {
             _PageList.Clear();
 
@@ -77,7 +89,7 @@ namespace KasseApparat
                 {
                     if (_PDL.Count > i) //PCL changed
                     {
-                        _PageList[pages].Add(new ButtonContent(_PDL[i])); //PCL changed
+                        _PageList[pages].Add(new ButtonContent(_PDL[i], _shopList)); //PCL changed
                     }
                     else
                     {
@@ -93,7 +105,7 @@ namespace KasseApparat
         ///     Udregner den totale mængde af knappe sider. Denne funktion er private og bruges i grænsefladen til vise vise total side mængde
         ///     og i commands til at fortælle når den sidste knappeside vises, og sikrer derved at nextCommand ikke kan trykkes.
         /// </summary>
-        void CalculateTotalpage()
+        public void CalculateTotalpage()
         {
             if ((_PDL.Count %12) == 0)
             {
@@ -177,7 +189,6 @@ namespace KasseApparat
         public int TotalPages
         {
             get { return _totalPages; }
-            private set { _totalPages = value; }
         }
 
         /// <summary>

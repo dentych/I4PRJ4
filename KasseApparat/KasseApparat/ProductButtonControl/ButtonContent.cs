@@ -15,7 +15,7 @@ namespace KasseApparat
     ///     knaps individuelle funktionalitet skrives 1 sted og så bruges flere gange. I henhold til MVVM
     ///     er denne klasse viewmodel for knapperne.
     /// </summary>
-    public class ButtonContent : INotifyPropertyChanged
+    public class ButtonContent : INotifyPropertyChanged, IButtonContent
     {
         private string _name;
         private string _price;
@@ -26,9 +26,17 @@ namespace KasseApparat
         ///     til ShoppingList objektet fra viewet, derved kan produktet tilknyttet knappen tilføjes til shoppinglist ved et tryk.
         /// </summary>
         /// <param name="buttonProduct"></param>
-        public ButtonContent(Product buttonProduct)
+        /// <param name="sl"></param>
+        public ButtonContent(Product buttonProduct, ShoppingList sl = null)
         {
-            _shopList = (ShoppingList)Application.Current.MainWindow.FindResource("ShoppingList");
+            if (sl == null)
+            {
+                _shopList = (ShoppingList) Application.Current.MainWindow.FindResource("ShoppingList");
+            }
+            else
+            {
+                _shopList = sl;
+            }
 
             //Check if recieved product contains a product
             if (!string.IsNullOrEmpty(buttonProduct.Name))
@@ -82,6 +90,12 @@ namespace KasseApparat
         }
 
         /// <summary>
+        ///     Giver adgang til det produkt som knappen symboliserer. Derved kan man nemt
+        ///     få adgang til det produkt som skal oprettes i indkøbskurven ved tryk på knappen.
+        /// </summary>
+        public Product Product { get; set; }
+
+        /// <summary>
         ///     En property der returnerer navnet på den vare knappen symboliserer. Bruges til at vise prisen på den pågældende knap.
         /// </summary>
         public string Name
@@ -96,12 +110,6 @@ namespace KasseApparat
                 return _name;
             }
         }
-
-        /// <summary>
-        ///     Giver adgang til det produkt som knappen symboliserer. Derved kan man nemt
-        ///     få adgang til det produkt som skal oprettes i indkøbskurven ved tryk på knappen.
-        /// </summary>
-        public Product Product;
 
         ICommand _AddCommand;
         public ICommand AddCommand { get { return _AddCommand ?? (_AddCommand = new RelayCommand(AddCommandExecute, AddCommandCanExecute)); } }
