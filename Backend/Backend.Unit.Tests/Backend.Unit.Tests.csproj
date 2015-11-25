@@ -67,6 +67,7 @@
     <Compile Include="ViewModels\AddProductVMUnittest.cs" />
     <Compile Include="Brains\ClientUnitTests.cs" />
     <Compile Include="ViewModels\DeleteCategoryViewModelUnitTests.cs" />
+    <Compile Include="ViewModels\EditCategoryViewModelUnitTests.cs" />
     <Compile Include="ViewModels\EditProductVMUnitTests.cs" />
     <Compile Include="ViewModels\MainWindowVMUnitTests.cs" />
     <Compile Include="Models\EventAggregatorUnitTests.cs" />
