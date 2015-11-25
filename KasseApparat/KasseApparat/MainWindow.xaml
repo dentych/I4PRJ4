@@ -461,10 +461,10 @@
                         Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonOneDZero" Content="00" Grid.Row="4" Grid.Column="1" Margin="7.4,7,7,7" FontSize="15"
                         Click="ButtonNr_Click" Background="{StaticResource GreenButton}"/>
-                <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="20"
+                <Button x:Name="ButtonClear" Content="Clear" Grid.Row="4" Grid.Column="2" Margin="7,7,6.6,7" FontSize="15"
                         Click="ButtonClr_Click" Background="{StaticResource OrangeButton}"/>
-                <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7,0,7,7" 
-                        Click="ButtonCash_Click" Height="43" Background="{StaticResource GreenButton}"/>
+                <Button x:Name="ButtonCash" Content="Kontant" Grid.Row="6" Grid.Column="0" Margin="7.4,7,7,7" 
+                        Click="ButtonCash_Click" Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonCard" Content="Kort" Grid.Row="6" Grid.Column="1" Margin="7.4,7,7,7"
                         Background="{StaticResource GreenButton}"/>
                 <Button x:Name="ButtonAnulate" Grid.Row="6" Grid.Column="2" Margin="7,7,6.6,7"
