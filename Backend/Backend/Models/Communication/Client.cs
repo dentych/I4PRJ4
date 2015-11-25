@@ -13,7 +13,7 @@ namespace Backend.Models.Communication
 
        public bool Connect()
         {
-            Conn.Connect("127.0.0.1", 7913); // Skal bruge settings.
+            Conn.Connect(Properties.Settings.Default.CSIP, Properties.Settings.Default.CSPort); // Skal bruge settings.
             return true; // Burde være void.
         }
 
