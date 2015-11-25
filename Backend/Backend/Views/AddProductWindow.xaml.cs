@@ -15,10 +15,12 @@ namespace Backend.Views
         {
             InitializeComponent();
             DataContext = new AddProductViewModel();
+            FocusManager.SetFocusedElement(this, textboxName);
+
         }
 
 
-        
+
 
         /* VALIDER */
         private void textboxPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)

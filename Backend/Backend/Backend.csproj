@@ -124,7 +124,7 @@
     <Compile Include="Models\Brains\ModelHandler.cs" />
     <Compile Include="ViewModels\AddProductViewModel.cs" />
     <Compile Include="Models\Brains\IModelHandler.cs" />
-    <Compile Include="Models\Brains\IProtocol.cs" />
+    <Compile Include="Models\Brains\IBProtocol.cs" />
     <Compile Include="Models\Brains\PrjProtokol.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

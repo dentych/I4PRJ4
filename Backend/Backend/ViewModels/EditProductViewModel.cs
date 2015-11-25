@@ -8,13 +8,14 @@ using Backend.Models.Datamodels;
 using Backend.Models.Events;
 using Backend.Views;
 using Prism.Events;
+using System;
 
 namespace Backend.ViewModels
 {
     /// <summary>
     /// Viewmodel for the edit product window.
     /// </summary>
-    class EditProductViewModel
+    public class EditProductViewModel
     {
         public IEventAggregator Aggregator;
         public IModelHandler Handler { get; set; } 
@@ -22,11 +23,13 @@ namespace Backend.ViewModels
         public BackendProduct EditedProduct { get; set; } 
         public BackendProductCategoryList Categories { get; set; }
         public int currentCatIndex { get; set;  }
+        public IError Err { get; set; }
 
         public EditProductViewModel()
         {
             Handler = new ModelHandler(new PrjProtokol(), new Client());
             EditedProduct = new BackendProduct();
+            Err = new Error();
 
             // Subscribe to event, and publish a window loaded event, to receive data.
             Aggregator = SingleEventAggregator.Aggregator;
@@ -74,8 +77,11 @@ namespace Backend.ViewModels
                 // Generate and send an edit product command to Central Server.
                 Handler.EditProduct(EditedProduct);
             }
-            else new Error().StdErr("Produktet eksisterer allerede.");
-            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            else Err.StdErr("Produktet eksisterer allerede.");
+            try {
+                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            }
+            catch (Exception) { }
         }
 
         /// <summary>

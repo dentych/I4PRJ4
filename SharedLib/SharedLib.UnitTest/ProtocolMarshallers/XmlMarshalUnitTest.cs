@@ -51,7 +51,7 @@ namespace SharedLib.UnitTest.ProtocolMarshallers
         public void Encode_CommandDoesntExist_ThrowException()
         {
             marshal.Encode(wcmd);
-        }
+        } 
 
         [Test]
         public void Decode_ClassExists_CreateInstance()
@@ -68,6 +68,6 @@ namespace SharedLib.UnitTest.ProtocolMarshallers
             string wrongData = "<Command Name = 'wrongCmd' />";
 
             marshal.Decode(wrongData);
-        }
+        } 
     }
 }

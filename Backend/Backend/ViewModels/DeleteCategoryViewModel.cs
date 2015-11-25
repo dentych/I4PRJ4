@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Backend.Dependencies;
 using Backend.Models;
@@ -22,7 +23,7 @@ namespace Backend.ViewModels
         private int SelectedIndex { get; set; } // Den der skal slettes (INDEX!!!)
         public int MoveToCategoryId { get; set; } // den der skal flyttes til, index bindex til den her.
         #endregion
-        
+
         /// <summary>
         /// Set up events to communicate from and to mainwindow viewmodel.
         /// </summary>
@@ -82,8 +83,11 @@ namespace Backend.ViewModels
         {
             // Create and send delete category command to central server.
             ModelHandler.DeleteCategory(Categories[SelectedIndex]);
-            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
-
+            try
+            {
+                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            }
+            catch (Exception) { }
         }
 
         /// <summary>
@@ -94,7 +98,9 @@ namespace Backend.ViewModels
         /// <returns>True if the move is valid, otherwise false.</returns>
         private bool MoveValid()
         {
-            return (SelectedIndex != MoveToCategoryId) && (Categories[SelectedIndex].Products.Count > 0);
+            if(MoveToCategoryId >= 0)
+                return (SelectedIndex != MoveToCategoryId) && (Categories[SelectedIndex].Products.Count > 0);
+            return false;
         }
 
         /// <summary>

@@ -58,15 +58,15 @@ namespace Backend.Models.Datamodels
             ExecuteOnSyncContext(() => base.RemoveItem(index));
         }
 
-        protected override void SetItem(int index, T item)
-        {
-            ExecuteOnSyncContext(() => base.SetItem(index, item));
-        }
+        //protected override void SetItem(int index, T item)
+        //{
+        //    ExecuteOnSyncContext(() => base.SetItem(index, item));
+        //}
 
-        protected override void MoveItem(int oldIndex, int newIndex)
-        {
-            ExecuteOnSyncContext(() => base.MoveItem(oldIndex, newIndex));
-        }
+        //protected override void MoveItem(int oldIndex, int newIndex)
+        //{
+        //    ExecuteOnSyncContext(() => base.MoveItem(oldIndex, newIndex));
+        //}
 
         protected override void ClearItems()
         {

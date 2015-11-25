@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Backend.Dependencies;
 using Backend.Models;
@@ -17,12 +18,13 @@ namespace Backend.ViewModels
     {
         public IEventAggregator Aggregator;
         public BackendProductCategory ProductCategoryEdited { get; set; } 
-        public BackendProductCategoryList Categories { get; set; }
         public IModelHandler Handler { get; set; }
         public BackendProductCategoryList AllCats;
+        public IError Err { get; set; }
 
         public EditCategoryViewModel()
         {
+            Err = new Error();
             Handler = new ModelHandler(new PrjProtokol(), new Client());
             ProductCategoryEdited = new BackendProductCategory();
             Aggregator = SingleEventAggregator.Aggregator;
@@ -57,8 +59,13 @@ namespace Backend.ViewModels
         {
             if(!Exists())
                 Handler.EditCategory(ProductCategoryEdited); // Burde måske også have OldName med?
-            else new Error().StdErr("Kategorien eksisterer allerede.");
-            Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            else Err.StdErr("Kategorien eksisterer allerede.");
+
+            try
+            {
+                Application.Current.Windows[Application.Current.Windows.Count - 1].Close();
+            }
+            catch (Exception) { }
 
         }
 

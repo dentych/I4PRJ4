@@ -1,5 +1,11 @@
-﻿namespace Backend.Unit.Tests.Brains
-{/*
+﻿using System;
+using Backend.Models.Communication;
+using NSubstitute;
+using NUnit.Framework;
+using SharedLib.Sockets;
+
+namespace Backend.Unit.Tests.Brains
+{
     [TestFixture]
     public class ClientUnitTests
     {
@@ -7,24 +13,28 @@
         public void Setup()
         {
             _uut = new Client();
+            _sock = Substitute.For<ISocketConnection>();
+            _uut.Conn = _sock;
         }
 
         private Client _uut;
+        private ISocketConnection _sock;
 
 
         [Test]
-        [ExpectedException(typeof (ArgumentException), ExpectedMessage = "Bad IP")]
-        public void IP_SetBadIP_ExpectException() // I CANNOT MAKEN SHIT FAIL
+        public void Connect_Call_ExpectCallToSocketConnection()
         {
-
-            var uut = new Client();
+            _uut.Connect();
+            _sock.Received(1).Connect(Arg.Any<string>(),Arg.Any<int>());
         }
+
 
         [Test]
-        public void Send_RealtTest_ExpectTrue()
+        public void Semd_Call_ExpectCallToSocketConnection()
         {
-            Assert.True(_uut.Send("TEST"));
+            _uut.Send("TEST");
+            _sock.Received(1).Send("TEST");
         }
 
-    }*/
+    }
 }

@@ -5,6 +5,10 @@ namespace KasseApparat
 {
     public class FakeDBcontrol : IDBcontrol
     {
+        /// <summary>
+        /// Dummy til at oprette nogle produkter under test, når der ikke er forbinedelse til central server
+        /// </summary>
+        /// <returns></returns>
         public List<ProductCategory> GetProducts()
         {
             Product p1 = new Product();
@@ -198,6 +202,10 @@ namespace KasseApparat
             return PC;
         }
 
+        /// <summary>
+        /// Dummy funktion til at sende køb til central server, gør intet
+        /// </summary>
+        /// <param name="ShopList"></param>
         public void PurchaseDone(IList<PurchasedProduct> ShopList)
         {}
     }

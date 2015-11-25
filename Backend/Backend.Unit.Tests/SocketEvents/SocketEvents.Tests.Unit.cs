@@ -259,5 +259,34 @@ namespace Backend.Unit.Tests.SocketEvents
 
             Assert.That(_categories[1].Name, Is.EqualTo(edited.Name));
         }
+
+        [Test]
+        public void CatalogueDetailsHandler_catcountis0_ExpectcurrentprodlisttobeNull()
+        {
+            var testcommand = new CatalogueDetailsCmd();
+            _uut.CatalogueDetailsHandler(testcommand);
+
+            Assert.That(_categories.CurrentProductList,Is.Null);
+        }
+
+        [Test]
+        public void ProductEditedHanddler_ProductCatIdNotEqualcmdProductId_ExpectProductToBeRemovedFromCat()
+        {
+
+            var productedited = new Product()
+            {
+                Name = "Product1Edited",
+                Price = 1,
+                ProductCategoryId = 1,
+                ProductId = 0,
+                ProductNumber = "P1"
+            };
+
+
+            var testCommand = new ProductEditedCmd(productedited,0);
+            _uut.ProductEditedHandler(testCommand);
+
+            Assert.That(_categoryWithNoProducts.Products[0].Name, Is.EqualTo(productedited.Name));
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace SharedLib.UnitTest
+﻿using SharedLib.Models;
+using SharedLib.Protocol.Commands;
+
+namespace SharedLib.UnitTest
 {
     class Program
     {
@@ -229,8 +232,7 @@
             //Console.WriteLine("");
             //Console.WriteLine(test9.Name);
             //Console.WriteLine("");
-
-
         }
+
     }
 }
