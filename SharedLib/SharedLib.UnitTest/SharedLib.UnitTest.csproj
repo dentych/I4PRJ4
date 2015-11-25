@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdMarshallers.UnitTest\CatalogueDetailsMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\CreateProductCategoryMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\DeleteProductCategoryMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\EditProductCategoryMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\ProductCategoryCreatedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\ProductCategoryDeletedMarshalUnitTest.cs" />
+    <Compile Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\ProductCategoryEditedMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\CreateProductMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\GetCatalogueMarshalUnitTest.cs" />
     <Compile Include="CmdMarshallers.UnitTest\ProductUnitTest\DeleteProductMarshalUnitTest.cs" />
@@ -83,7 +89,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CmdMarshallers.UnitTest\ProductCategoryUnitTest\" />
     <Folder Include="Commands.UnitTest\ProductCategoryUnitTest\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
