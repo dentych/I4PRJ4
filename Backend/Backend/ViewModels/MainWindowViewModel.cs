@@ -23,20 +23,26 @@ namespace Backend.ViewModels
         #region Properties
         public BackendProductCategoryList Categories { get; } 
         public int ProductIndex { get; set; }
-        public readonly IEventAggregator Aggregator;
-        //private readonly FakeMaker faker = new FakeMaker(); // Debug only
-        private readonly IModelHandler modelHandler;
-        private readonly ISocketEventHandlers _ev;
-        private readonly SocketConnection conn;
+        public IError Error { get; set; }
+        public IEventAggregator Aggregator;
+        public IModelHandler modelHandler;
+        public ISocketEventHandlers _ev;
+        public ISocketConnection conn;
+        public IClient Client;
         private bool DBCON;
         public ConnectionString Connection { get; }
         #endregion
+
+
 
         /// <summary>
         /// Set up events for socket communication and viewmodel-viewmodel communication.
         /// </summary>
         public MainWindowViewModel()
         {
+            Client = new Client();
+            Error = new Error();
+            conn = LSC.Connection;
             Categories = new BackendProductCategoryList();
             ProductIndex = 0;
             modelHandler = new ModelHandler(new PrjProtokol(), new Client());
@@ -49,14 +55,9 @@ namespace Backend.ViewModels
             conn.OnConnectionClosed += ConnectionClosedHandler;
             //    conn.OnDataRecieved += DataReceivedHandler;
 
-            try
-            {
-                conn.Connect(Properties.Settings.Default.CSIP, Properties.Settings.Default.CSPort);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No connection");
-            }
+ 
+            Client.Connect();
+ 
 
             // Event aggregator for sending data between viewmodels
             Aggregator = SingleEventAggregator.Aggregator;
