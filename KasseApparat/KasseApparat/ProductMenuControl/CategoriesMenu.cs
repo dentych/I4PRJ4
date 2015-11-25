@@ -33,8 +33,6 @@ namespace KasseApparat
             CategoryButton = (Button)Application.Current.MainWindow.FindName("CategoryMenu");
 
             _totalList = CreateListOfAllProducts();
-            var MenuCat = new MenuCategory("All products", _totalList);
-            MenuCat.Command.Execute(this);
 
             Update();
         }
@@ -49,6 +47,7 @@ namespace KasseApparat
             _productCategoryList.Update();
             _totalList = CreateListOfAllProducts();
             var MenuCat = new MenuCategory("All products", _totalList);
+            MenuCat.Command.Execute(this);
 
             CategoryButton.ContextMenu.Items.Add(MenuCat);
 
@@ -56,8 +55,6 @@ namespace KasseApparat
             for (int i = 0; i < _productCategoryList.Count; i++)
             {
                 var MenuCateg = new MenuCategory(_productCategoryList[i].Name, _productCategoryList[i].Products.ToList());
-
-
 
                 CategoryButton.ContextMenu.Items.Add(MenuCateg);
             }

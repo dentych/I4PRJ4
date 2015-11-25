@@ -5,6 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KasseApparat"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:beh="clr-namespace:KasseApparat.FontBehavior"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="900"
         Background="SlateGray">
@@ -58,6 +60,7 @@
                         <ColumnDefinition Width="25*"></ColumnDefinition>
                         <ColumnDefinition Width="14*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
+                    
                     <Button x:Name="CategoryMenu"
                             Content="Categories"
                             Click="Categori_Click"
@@ -101,6 +104,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <i:Interaction.Behaviors>
+                        <beh:ScaleFontBehaviorProductButtons MaxFontSize="32"/>
+                    </i:Interaction.Behaviors>
                     <Button Grid.Row="0" Grid.Column="0"
                             Margin="5"
                             x:Name="ProductButton01"
@@ -316,6 +322,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <i:Interaction.Behaviors>
+                        <beh:ScaleFontBehaviorPrevNext MaxFontSize="32"/>
+                    </i:Interaction.Behaviors>
                     <Button Grid.Row="0" Grid.Column="0"
                             Margin="5"
                             Content="Previous Page"
@@ -385,6 +394,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <i:Interaction.Behaviors>
+                        <beh:ScaleFontBehaviorProductButtons MaxFontSize="32"/>
+                    </i:Interaction.Behaviors>
                     <Button x:Name="Up" Command="{Binding PrevCommand}" Content="V" Margin="2" Grid.Column="0" FontSize="10" 
                             RenderTransformOrigin="0.5,0.5" Background="{StaticResource BlueButton}">
                         <Button.RenderTransform>

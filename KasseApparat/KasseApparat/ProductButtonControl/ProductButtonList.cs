@@ -13,7 +13,7 @@ namespace KasseApparat
     /// hvis der i fremtiden skulle tilføjes yderligere funktionalitet til hver
     /// side af knapper.
     /// </summary>
-    public class ProductButtonList : ObservableCollection<ButtonContent>
+    public class ProductButtonList : ObservableCollection<IButtonContent>
     {
         public ProductButtonList()
         {

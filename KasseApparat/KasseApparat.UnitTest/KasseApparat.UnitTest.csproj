@@ -48,8 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonContent.Test.Unit.cs" />
+    <Compile Include="CategoriesMenu.Test.Unit.cs" />
     <Compile Include="DBcontrolTest.cs" />
     <Compile Include="FakeDBcontrolTest.cs" />
+    <Compile Include="ProductButtonControl.Test.Unit.cs" />
     <Compile Include="ProductCategoryListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingListTest.cs" />
