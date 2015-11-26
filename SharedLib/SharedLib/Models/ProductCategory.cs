@@ -12,7 +12,7 @@ namespace SharedLib.Models
         public string Name { get; set; }
         public int ProductCategoryId { get; set; }
 
-        public ICollection<Product> Products { get; set; } = new List<Product>();
+        public IList<Product> Products { get; set; } = new List<Product>();
 
         public ProductCategory() { }
 
