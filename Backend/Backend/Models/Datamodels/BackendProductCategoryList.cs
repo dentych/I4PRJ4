@@ -15,11 +15,11 @@ namespace Backend.Models.Datamodels
     public class BackendProductCategoryList : AsyncObservableCollection<BackendProductCategory>, INotifyPropertyChanged
     {
         #region Properties & vars
-        private List<Product> _currentProductList;
+        private IList<Product> _currentProductList;
         /// <summary>
         /// Current product list. This is data bound to the list in the main window.
         /// </summary>
-        public List<Product> CurrentProductList
+        public IList<Product> CurrentProductList
         {
             get { return _currentProductList; }
             set
@@ -103,7 +103,7 @@ namespace Backend.Models.Datamodels
         /// </summary>
         private void Updater()
         {
-            List<Product> tmp = CurrentProductList;
+            IList<Product> tmp = CurrentProductList;
             CurrentProductList = null;
             CurrentProductList = tmp;
         }
