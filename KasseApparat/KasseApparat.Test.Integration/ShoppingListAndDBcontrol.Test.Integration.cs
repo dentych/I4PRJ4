@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KasseApparat.Test.Integration
 {
-    public class Class1
+    class ShoppingListAndDBcontrol
     {
     }
 }
