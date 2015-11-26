@@ -23,7 +23,7 @@ namespace CentralServer.Messaging
 
                 try {
                     _handler.Dispatch(item.Id, item.Message);
-                } catch (StopThread)  {
+                } catch (StopHandling)  {
                     break;
                 }
             }

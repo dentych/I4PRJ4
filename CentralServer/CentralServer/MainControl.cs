@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using CentralServer.Logging;
+﻿using CentralServer.Logging;
 using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
 using CentralServer.Sessions;
-using ServerDatabase;
-using SharedLib.Models;
-using SharedLib.Protocol;
+using CentralServer.Handlers;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol.Commands.ProductCategoryCommands;
 
@@ -22,13 +19,16 @@ namespace CentralServer
 
         private readonly ILog _log;
         private readonly ISessionControl _sessions;
+        private readonly ICommandHandler _handler;
 
 
-        public MainControl(ILog log, ISessionControl sessionControl)
+        public MainControl(ILog log, ISessionControl sessions, ICommandHandler handler)
         {
             _log = log;
-            _sessions = sessionControl;
+            _sessions = sessions;
+            _handler = handler;
         }
+
 
         /*
          * Invoked when this thread recieves a new message.
@@ -60,6 +60,7 @@ namespace CentralServer
             }
         }
 
+
         /*
          * Invoked when MainControl accepts a client.
          * Register a new session and respond with Session ID to the client.
@@ -76,6 +77,7 @@ namespace CentralServer
             client.Send(ClientControl.E_WELCOME, response);
         }
 
+
         /*
          * Invoked when a client has disconnected.
          * In this case its session must be unregistered.
@@ -84,6 +86,7 @@ namespace CentralServer
         {
             _sessions.Unregister(msg.SessionId);
         }
+
 
         /*
          * Invoked whenever a clients sends a command to the server.
@@ -99,234 +102,37 @@ namespace CentralServer
             // Invoke the appropriate handler according to the command recieved
             switch (cmd.CmdName)
             {
+                // Catalogue
                 case "GetCatalogue":
-                    OnGetCatalogue(client, (GetCatalogueCmd)cmd);
+                    _handler.HandleGetCatalogue(client, (GetCatalogueCmd)cmd);
                     break;
-
+                
+                // Products
                 case "CreateProduct":
-                    OnCreateProduct(client, (CreateProductCmd)cmd);
+                    _handler.HandleCreateProduct(client, (CreateProductCmd)cmd);
                     break;
                 case "EditProduct":
-                    OnEditProduct(client, (EditProductCmd)cmd);
+                    _handler.HandleEditProduct(client, (EditProductCmd)cmd);
                     break;
                 case "DeleteProduct":
-                    OnDeleteProduct(client, (DeleteProductCmd)cmd);
+                    _handler.HandleDeleteProduct(client, (DeleteProductCmd)cmd);
                     break;
+
+                // Product Categories
                 case "CreateProductCategory":
-                    OnCreateProductCategory(client, (CreateProductCategoryCmd) cmd);
-                    break;
-                case "DeleteProductCategory":
-                    OnDeleteProductCategory(client, (DeleteProductCategoryCmd) cmd);
+                    _handler.HandleCreateProductCategory(client, (CreateProductCategoryCmd)cmd);
                     break;
                 case "EditProductCategory":
-                    OnEditProductCategory(client, (EditProductCategoryCmd) cmd);
+                    _handler.HandleEditProductCategory(client, (EditProductCategoryCmd)cmd);
                     break;
+                case "DeleteProductCategory":
+                    _handler.HandleDeleteProductCategory(client, (DeleteProductCategoryCmd)cmd);
+                    break;
+
+                // Purchases
                 case "RegisterPurchase":
-                    OnRegisterPurchase(client, (RegisterPurchaseCmd)cmd);
+                    _handler.HandleRegisterPurchase(client, (RegisterPurchaseCmd)cmd);
                     break;
-            }
-        }
-        
-        /*
-         * A client requests to recieve the entire product catalogue.
-         * Respond with a CatalogueDetails command.
-         */
-        private void OnGetCatalogue(IMessageReceiver client, GetCatalogueCmd cmd)
-        {
-            _log.Write("MainControl", Log.NOTICE,
-                       "Client recieving catalogue details");
-
-            var catalogueCmd = new CatalogueDetailsCmd();
-
-            // Retrieve products from database
-            using (var db = new DatabaseContext())
-            {
-                var query = from pc in db.ProductCategories select pc;
-
-                foreach (var category in query)
-                {
-                    catalogueCmd.ProductCategories.Add(category);
-                }
-
-                foreach (var category in catalogueCmd.ProductCategories)
-                {
-                    var products = from p in db.Products
-                                   where p.ProductCategoryId.Equals(category.ProductCategoryId)
-                                   select p;
-                    category.Products = products.ToList();
-                }
-            }
-
-            // Send response command
-            var response = new SendCommandMsg(catalogueCmd);
-            client.Send(ClientControl.E_SEND_COMMAND, response);
-        }
-
-        /*
-         * A client requests to create a new product.
-         * Create the product in database and notify all connected clients.
-         */
-        private void OnCreateProduct(IMessageReceiver client, CreateProductCmd cmd)
-        {
-            _log.Write("MainControl", Log.NOTICE,
-                       "Client creating a new product");
-
-            // Create product
-            var product = new Product()
-            {
-                Name = cmd.Name,
-                ProductNumber = cmd.ProductNumber,
-                Price = cmd.Price,
-                ProductCategoryId = cmd.ProductCategoryId
-            };
-
-            // Write to database
-            using (var db = new DatabaseContext())
-            {
-                db.Products.Add(product);
-                db.SaveChanges();
-            }
-
-            // Broadcast changes to all connected clients
-            Broadcast(new ProductCreatedCmd(product));
-        }
-
-
-        private void OnEditProduct(IMessageReceiver client, EditProductCmd cmd)
-        {
-            _log.Write("MainControl", Log.NOTICE,
-                       "Client modifying an existing product");
-
-            Product product;
-            int oldProductCategoryId;
-
-            using (var db = new DatabaseContext())
-            {
-                product = db.Products.Find(cmd.ProductId);
-
-                if (product == null)
-                    return;
-
-                oldProductCategoryId = product.ProductCategoryId;
-
-                product.Name = cmd.Name;
-                product.ProductNumber = cmd.ProductNumber;
-                product.Price = cmd.Price;
-                product.ProductCategoryId = cmd.ProductCategoryId;
-
-                db.Entry(product).CurrentValues.SetValues(product);
-                db.SaveChanges();
-            }
-
-            Broadcast(new ProductEditedCmd(product, oldProductCategoryId));
-        }
-
-
-        private void OnDeleteProduct(IMessageReceiver client, DeleteProductCmd cmd)
-        {
-            _log.Write("MainControl", Log.NOTICE,
-                       "Client deleting a product");
-
-            Product product;
-
-            using (var db = new DatabaseContext())
-            {
-                product = db.Products.Find(cmd.ProductId);
-
-                if (product == null)
-                    return;
-
-                db.Products.Remove(product);
-                db.SaveChanges();
-            }
-
-            Broadcast(new ProductDeletedCmd(product));
-        }
-
-        private void OnEditProductCategory(IMessageReceiver client, EditProductCategoryCmd cmd)
-        {
-            _log.Write("MainControl", Log.NOTICE,
-                   "Client modifying an existing productcategory");
-
-            ProductCategory cat;
-
-            using (var db = new DatabaseContext())
-            {
-                cat = db.ProductCategories.Find(cmd.ProductCategoryId);
-
-                if (cat == null)
-                    return;
-
-                cat.Name = cmd.Name;
-                db.Entry(cat).CurrentValues.SetValues(cat);
-                db.SaveChanges();
-            }
-
-            Broadcast(new ProductCategoryEditedCmd(cat));
-        }
-
-        private void OnDeleteProductCategory(IMessageReceiver client, DeleteProductCategoryCmd cmd)
-        {
-            _log.Write("MainControl", Log.NOTICE,
-           "Client deleting a productcategory");
-
-            ProductCategory cat;
-
-            using (var db = new DatabaseContext())
-            {
-                cat = db.ProductCategories.Find(cmd.ProductCategoryId);
-
-                if (cat == null)
-                    return;
-
-                db.ProductCategories.Remove(cat);
-                db.SaveChanges();
-            }
-
-            Broadcast(new ProductCategoryDeletedCmd(cat));
-        }
-
-        private void OnCreateProductCategory(IMessageReceiver client, CreateProductCategoryCmd cmd)
-        {
-            _log.Write("MainControl", Log.NOTICE,
-                    "Client creating a new productCategory");
-
-            // Create product
-            var cat = new ProductCategory()
-            {
-                Name = cmd.Name,
-            };
-
-            // Write to database
-            using (var db = new DatabaseContext())
-            {
-                db.ProductCategories.Add(cat);
-                db.SaveChanges();
-            }
-
-            // Broadcast changes to all connected clients
-            Broadcast(new ProductCategoryCreatedCmd(cat));
-        }
-
-
-        /*
-         * Invoked when a clients wants to register a purchase
-         */
-        private void OnRegisterPurchase(IMessageReceiver client, RegisterPurchaseCmd cmd)
-        {
-            _log.Write("MainControl", Log.NOTICE,
-                       "Client registering a new purchase");
-        }
-
-        /*
-         * Broadcast a command to all connected clients
-         */
-        private void Broadcast(Command cmd)
-        {
-            foreach (var c in _sessions.GetClients())
-            {
-                var msg = new SendCommandMsg(cmd);
-                c.Send(ClientControl.E_SEND_COMMAND, msg);
             }
         }
     }
