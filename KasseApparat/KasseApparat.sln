@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KasseApparat", "KasseApparat\KasseApparat.csproj", "{1FCA1C8B-E899-48AE-B6B1-B9CC7E58A31C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KasseApparat.UnitTest", "KasseApparat.UnitTest\KasseApparat.UnitTest.csproj", "{C8D5ED01-ABDF-4D8F-9306-6DD5BF2F6E06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KasseApparat.Test.Integration", "KasseApparat.Test.Integration\KasseApparat.Test.Integration.csproj", "{7FBF3795-A9C7-4386-ACB0-1FE53261320B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C8D5ED01-ABDF-4D8F-9306-6DD5BF2F6E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8D5ED01-ABDF-4D8F-9306-6DD5BF2F6E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8D5ED01-ABDF-4D8F-9306-6DD5BF2F6E06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FBF3795-A9C7-4386-ACB0-1FE53261320B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FBF3795-A9C7-4386-ACB0-1FE53261320B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FBF3795-A9C7-4386-ACB0-1FE53261320B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FBF3795-A9C7-4386-ACB0-1FE53261320B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
