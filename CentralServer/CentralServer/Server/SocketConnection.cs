@@ -6,7 +6,7 @@ using CentralServer.Messaging.Messages;
 
 namespace CentralServer.Server
 {
-    class SocketConnection
+    public class SocketConnection
     {
         private ILog _log;
         private Socket _handle;

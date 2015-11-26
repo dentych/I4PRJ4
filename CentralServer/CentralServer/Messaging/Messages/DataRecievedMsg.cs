@@ -1,7 +1,7 @@
 ﻿
 namespace CentralServer.Messaging.Messages
 {
-    class DataRecievedMsg : Message
+    public class DataRecievedMsg : Message
     {
         private string _data;
 

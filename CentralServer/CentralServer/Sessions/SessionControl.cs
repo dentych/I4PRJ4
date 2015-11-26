@@ -4,7 +4,7 @@ using CentralServer.Messaging;
 
 namespace CentralServer.Sessions
 {
-    class SessionControl : ISessionControl
+    public class SessionControl : ISessionControl
     {
         private readonly Dictionary<long, IMessageReceiver> _sessions =
             new Dictionary<long, IMessageReceiver>();

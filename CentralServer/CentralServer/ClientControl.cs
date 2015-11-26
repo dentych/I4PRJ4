@@ -9,7 +9,7 @@ using System;
 
 namespace CentralServer
 {
-    class ClientControl : IMessageHandler
+    public class ClientControl : IMessageHandler
     {
         // Client has been registered
         public const long E_WELCOME = 1;
