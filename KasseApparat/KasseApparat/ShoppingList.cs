@@ -17,6 +17,7 @@ namespace KasseApparat
     {
         public IDBcontrol _db = new FakeDBcontrol(); //Fake for testing
         //public IDBcontrol _db = new DBcontrol(new Connection("127.0.0.1", 11000));
+        public IPrinter print = new FilePrinter();
 
         /// <summary>
         /// Tilføjer et produkt til shoppinglisten. 
@@ -76,6 +77,7 @@ namespace KasseApparat
         public void EndPurchase()
         {
             _db.PurchaseDone(this);
+            print.PrintPurchase(this.ToList());
             ClearCommand.Execute(this);
         }
 
