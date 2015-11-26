@@ -12,19 +12,14 @@ namespace SharedLib.Models
         public string Name { get; set; }
         public int ProductCategoryId { get; set; }
 
-        public List<Product> Products = new List<Product>();
+        public ICollection<Product> Products { get; set; } = new List<Product>();
 
-        public ProductCategory()
-        {
-        }
+        public ProductCategory() { }
 
-        public ProductCategory(List<Product> products)
+        public ProductCategory(IList<Product> products)
         {
             foreach (var prd in products)
-            {
-                var copy = new Product(prd);
-                Products.Add(copy);
-            }
+                Products.Add(prd);
         }
     }
 }

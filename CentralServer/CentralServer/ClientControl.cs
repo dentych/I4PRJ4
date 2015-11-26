@@ -1,4 +1,5 @@
-﻿using CentralServer.Logging;
+﻿using CentralServer.Handlers;
+using CentralServer.Logging;
 using CentralServer.Messaging;
 using CentralServer.Messaging.Messages;
 using CentralServer.Server;
@@ -35,6 +36,9 @@ namespace CentralServer
 
         public void Dispatch(long id, Message msg)
         {
+            if (_connection == null)
+                throw new StopHandling();
+
             switch (id)
             {
                 case E_WELCOME:
@@ -54,14 +58,12 @@ namespace CentralServer
 
         private void HandleConnectionClosed()
         {
+            _connection = null;
+
             _log.Write("ClientControl", Log.NOTICE, "Connection closed");
 
             var unregisterMsg = new StopSessionMsg(_sessionId);
             _main.Send(MainControl.E_STOP_SESSION, unregisterMsg);
-
-            _connection = null;
-
-            throw new StopThread();
         }
 
         private void HandleDataRecieved(string data)
@@ -96,7 +98,8 @@ namespace CentralServer
 
         private void HandleSendCommand(SendCommandMsg msg)
         {
-            _connection.Send(_protocol.Encode(msg.Command));
+            if (_connection != null)
+                _connection.Send(_protocol.Encode(msg.Command));
         }
     }
 }
