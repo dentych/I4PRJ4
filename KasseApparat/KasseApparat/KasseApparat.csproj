@@ -82,9 +82,11 @@
     </ApplicationDefinition>
     <Compile Include="Connection.cs" />
     <Compile Include="FakeDBcontrol.cs" />
+    <Compile Include="FilePrinter.cs" />
     <Compile Include="FontBehavior\ScaleFontBehavior.cs" />
     <Compile Include="FontBehavior\VisualHelper.cs" />
     <Compile Include="IDBcontrol.cs" />
+    <Compile Include="IPrinter.cs" />
     <Compile Include="ProductButtonControl\ButtonContent.cs" />
     <Compile Include="ProductButtonControl\IButtonContent.cs" />
     <Compile Include="ProductButtonControl\IProductButtonControl.cs" />
