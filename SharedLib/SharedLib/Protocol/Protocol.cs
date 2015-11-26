@@ -16,7 +16,7 @@ namespace SharedLib.Protocol
         public IEnumerable<Command> GetCommands()
         {
             foreach (var doc in _buffer.GetDocuments())
-                yield return _marshaller.Decode(doc);
+                yield return _marshaller.Decode(doc.Replace("\0", ""));
         }
 
         public string Encode(Command cmd)

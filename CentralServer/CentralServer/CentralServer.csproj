@@ -47,7 +47,7 @@
     </Reference>
     <Reference Include="SharedLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedLib\SharedLib\bin\Release\SharedLib.dll</HintPath>
+      <HintPath>..\..\SharedLib\SharedLib\bin\Debug\SharedLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201511152336543_AfterMerge.cs" />
     <Compile Include="Migrations\201511152336543_AfterMerge.Designer.cs">
       <DependentUpon>201511152336543_AfterMerge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511260818304_AddedDatetimeOnPurchase.cs" />
+    <Compile Include="Migrations\201511260818304_AddedDatetimeOnPurchase.Designer.cs">
+      <DependentUpon>201511260818304_AddedDatetimeOnPurchase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DatabaseContext.cs" />
     <Compile Include="Logging\ILog.cs" />
@@ -98,12 +102,17 @@
     <Compile Include="Threading\ThreadStarter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511152336543_AfterMerge.resx">
       <DependentUpon>201511152336543_AfterMerge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511260818304_AddedDatetimeOnPurchase.resx">
+      <DependentUpon>201511260818304_AddedDatetimeOnPurchase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
