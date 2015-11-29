@@ -20,6 +20,7 @@ namespace KasseApparat.UnitTest
         public void Setup()
         {
             uut = new ShoppingList();
+            uut.print = Substitute.For<IPrinter>();
             uut.Clear();
 
             var prod1 = new Product();
@@ -113,6 +114,14 @@ namespace KasseApparat.UnitTest
             uut.EndPurchase();
 
             Assert.That(uut.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void PrinterPrintPurchase_1Call_Expect1()
+        {
+            uut.EndPurchase();
+
+            uut.print.Received(1).PrintPurchase(Arg.Any<List<PurchasedProduct>>());
         }
     }
 
