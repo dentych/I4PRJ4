@@ -11,30 +11,15 @@
         Title="MainWindow" Height="500" Width="900"
         Background="SlateGray">
     <Window.Resources>
-        <local:ProductButtonControl x:Key="ProductButtonControl" />
-        <local:ShoppingList x:Key="ShoppingList" />
-        <local:CategoriesMenu x:Key="CategoriesMenu" />
-
-        <RadialGradientBrush x:Key="GreenButton" GradientOrigin="0.5,0.5">
-            <GradientStop Color="PaleGreen" Offset="0" />
-            <GradientStop Color="DarkSeaGreen" Offset="0.8" />
-        </RadialGradientBrush>
-        <RadialGradientBrush x:Key="BlueButton" GradientOrigin="0.5,0.5">
-            <GradientStop Color="PowderBlue" Offset="0" />
-            <GradientStop Color="DeepSkyBlue" Offset="1.2" />
-        </RadialGradientBrush>
-        <RadialGradientBrush x:Key="OrangeButton" GradientOrigin="0.5,0.5">
-            <GradientStop Color="Yellow" Offset="0" />
-            <GradientStop Color="DarkOrange" Offset="0.7" />
-        </RadialGradientBrush>
-        <RadialGradientBrush x:Key="RedButton" GradientOrigin="0.5,0.5">
-            <GradientStop Color="Orange" Offset="0" />
-            <GradientStop Color="OrangeRed" Offset="1" />
-        </RadialGradientBrush>
-        <RadialGradientBrush x:Key="GrayButton" GradientOrigin="0.5,0.5">
-            <GradientStop Color="LightGray" Offset="0" />
-            <GradientStop Color="DarkGray" Offset="1" />
-        </RadialGradientBrush>
+        <ResourceDictionary>
+            <local:ProductButtonControl x:Key="ProductButtonControl" />
+            <local:ShoppingList x:Key="ShoppingList" />
+            <local:CategoriesMenu x:Key="CategoriesMenu" />
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid>
