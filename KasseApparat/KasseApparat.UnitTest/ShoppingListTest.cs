@@ -115,6 +115,14 @@ namespace KasseApparat.UnitTest
 
             Assert.That(uut.Count, Is.EqualTo(0));
         }
+
+        [Test]
+        public void PrinterPrintPurchase_1Call_Expect1()
+        {
+            uut.EndPurchase();
+
+            uut.print.Received(1).PrintPurchase(Arg.Any<List<PurchasedProduct>>());
+        }
     }
 
     [TestFixture]
