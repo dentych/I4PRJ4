@@ -32,7 +32,7 @@ namespace KasseApparat.Test.Integration
         }
 
         [Test]
-        public void Connect_1Call_Expect1()
+        public void ConnectionConnect_1Call_Expect1()
         {
             PCLut.Update();
 
@@ -40,7 +40,7 @@ namespace KasseApparat.Test.Integration
         }
 
         [Test]
-        public void Disconnect_1Call_Expect1()
+        public void ConnectionDisconnect_1Call_Expect1()
         {
             PCLut.Update();
 
@@ -48,7 +48,7 @@ namespace KasseApparat.Test.Integration
         }
 
         [Test]
-        public void Send_1Call_Expect1()
+        public void ConnectionSend_1Call_Expect1()
         {
             PCLut.Update();
 
@@ -56,7 +56,7 @@ namespace KasseApparat.Test.Integration
         }
 
         [Test]
-        public void Receive_1Call_Expect1()
+        public void ConnectionReceive_1Call_Expect1()
         {
             PCLut.Update();
 

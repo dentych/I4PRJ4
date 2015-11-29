@@ -20,6 +20,7 @@ namespace KasseApparat.UnitTest
         public void Setup()
         {
             uut = new ShoppingList();
+            uut.print = Substitute.For<IPrinter>();
             uut.Clear();
 
             var prod1 = new Product();
