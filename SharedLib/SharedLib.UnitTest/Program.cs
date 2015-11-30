@@ -1,4 +1,6 @@
-﻿using SharedLib.Models;
+﻿using System;
+using SharedLib.Models;
+using SharedLib.Protocol.CmdMarshallers;
 using SharedLib.Protocol.Commands;
 
 namespace SharedLib.UnitTest
@@ -7,7 +9,6 @@ namespace SharedLib.UnitTest
     {
         static void Main(string[] args)
         {
-
             //// Opret produkt
             //var product = new Product()
             //{
