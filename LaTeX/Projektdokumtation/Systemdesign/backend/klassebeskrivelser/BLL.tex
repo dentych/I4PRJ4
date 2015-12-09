@@ -57,37 +57,6 @@ PrjProtokol har til ansvar at lave kald til \gls{SL} og dens protokol.Den sørge
  \bigskip
  
 
-\bigskip
-\bigskip
-\textbf{Communications} namespacet indeholder klasser der gør det muligt at skabe forbindelse til \gls{CS} .\\
-
-\textbf{Client}
-Denne benytter singleton-klassen \textit{LSC}\footnote{LSC findes på side \pageref{LSC_Beskrivelse}.} til at oprette forbindelse til \gls{CS} og sende data igennem denne. Det er denne klasse som bruges i bl.a. ModelHandleren{\footnote{ModelHandler findes på side \pageref{Modelhandler_Beskrivelse}.}} til at sende data.
-\begin{center}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.55\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Client.png}
-    \caption{Client}
-    \label{fig:modelhandler}
-\end{figure}
-\end{center}
-\label{Modelhandler_Beskrivelse}
- \bigskip 
-
-
-\textbf{LSC}
-\label{LSC_Beskrivelse}\\
-LSC er en wrapper-klasse som indkapsulerer en socketforbindelse fra \gls{SL} som en singleton. Singleton benyttes således at uanset hvilken instans af  client i programmet der bruges, vil den samme forbindelse blive brugt. 
-\begin{center}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/LSC.png}
-    \caption{LSC}
-    \label{fig:modelhandler}
-\end{figure}
-\end{center}
-\label{Modelhandler_Beskrivelse}
- \bigskip 
 
 
 
@@ -190,6 +159,47 @@ Denne klasse indeholder en liste af kategorier. Det er denne datatype som indeho
     \centering
     \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/BPCList.png}
     \caption{BackendProductCategoryList}
+    \label{fig:modelhandler}
+\end{figure}
+\end{center}
+\label{Modelhandler_Beskrivelse}
+ \bigskip 
+ 
+ \textbf{BackendProduct}\\
+Denne klasse arver fra \gls{PD} fra \gls{SL}. Klassen implementerer desuden fra INotifyProperyChanged, og derved kan dynamisk opdatere i den grafiske brugerflade. Denne model symboliserer \gls{PD}.
+\begin{center}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Backendproduct.png}
+    \caption{BackendProduct}
+    \label{fig:modelhandler}
+\end{figure}
+\end{center}
+\label{Modelhandler_Beskrivelse}
+ \bigskip 
+ 
+ 
+  \textbf{ConnectionString}\\
+Denne klasse bruges således at der kan fremvises i GUI'en, om der er forbundet til \gls{CS}. Denne implementerer INotifyProperyChanged, således visningen kan opdateres dynamisk.
+\begin{center}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/const.png}
+    \caption{ConnectionString}
+    \label{fig:modelhandler}
+\end{figure}
+\end{center}
+\label{Modelhandler_Beskrivelse}
+ \bigskip 
+
+
+ \textbf{BackendProductCategory}\\
+Denne klasse arver fra \gls{PD} fra \gls{SL}. Klassen implementerer desuden fra INotifyProperyChanged, og derved kan dynamisk opdatere i den grafiske brugerflade. Denne model symboliserer \gls{PDK}.
+\begin{center}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Backendproductcat.png}
+    \caption{BackendProductCategory}
     \label{fig:modelhandler}
 \end{figure}
 \end{center}

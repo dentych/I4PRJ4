@@ -1,4 +1,8 @@
 \subsection{Data Access Layer}
+
+
+\input{Systemdesign/backend/klassebeskrivelser/DAL}
+
 \paragraph*{Kommunikation med Central Server}
 Klienten i Administrationssystemet består af en socketconnection som er defineret i SharedLib[Ref]. Da denne skal bruges i både businesslogic, men også i MainWindowViewModel og der samtidig øn-skes at den samme benyttes hver gang, bruges Singleton[Reference] for denne forbindelse. \\
 Til at sende data benyttes en ModelHandler [Ref], som hver i sær har en metode til de forskellige handlinger. Eksempelvis EditProduct, DeleteProduct mf. Disse metoder arbejder alle sammen på samme måde:
@@ -10,7 +14,7 @@ Til at sende data benyttes en ModelHandler [Ref], som hver i sær har en metode 
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.45\textwidth]{Systemdesign/backend/Images/DataSend.png}
+    \includegraphics[width=1\textwidth]{Systemdesign/backend/Images/DataSend.png}
     \caption{Eksempel på hvordan CreateProduct bliver behandlet i systemet og sendt til Central Server}
     \label{fig:CreateSend}
 \end{figure}
