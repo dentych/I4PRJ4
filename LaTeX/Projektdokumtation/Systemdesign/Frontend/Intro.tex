@@ -3,4 +3,12 @@ Kasseapparatet er et program som viser produkter og kan håndtere disse i en ind
 
 
 \subsection{Design og struktur}
-Kasseapparatet er kun tildels designet med MVVM~\cite{MVVM}, men dog med stor fokus på adskilelse af Forretningslag og Præsentationslaget. Dette er sikret ved brug af klasser der står for at styre logikken i grænsefladen samt kommunikere ned i de nedre lag. Derved er de dele som ikke direkte implementere MVVM dog stadig inspireret heraf.
+Kasseapparatet er designet med MVVM~\cite{MVVM}, med stor fokus på adskilelse af Forretningslag og Præsentationslaget. Dette er sikret ved brug af klasser der står for at styre logikken i grænsefladen samt kommunikere ned i de nedre lag, disse kaldet viewmodels. Disse bliver forklaret nærmere længere nede i kapitel ?.
+Vores system er herunder beskrevet ved følgende pakkediagram.	
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Systemdesign/Frontend/pics/KassePakker}
+	\caption{Pakkediagram over kasseapparat.}
+	\label{fig:EndeligeGUI}
+\end{figure}
