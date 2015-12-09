@@ -1,0 +1,18 @@
+\subsection{Design og Implementering}
+
+Da \gls{SL} skulle designes blev det i første iteration klart at der ville opstå et væld af klasser i dette bibliotek. Det blev derfor besluttet at disse skulle være tilgængelige via en .dll fil som alle systemer fik adgang til og disse klasser blev efter grundige overvejelser indkapslet i de pakker som ses på figur \ref{fig:oversigtSL}. Pakkerne blev herefter udviklet efter nødvendighed igennem de forskellige iterationer, Hvilket satte SOLID designprincipperne på noget af en prøve.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Systemdesign/SharedLib/Images/SharedLib_Package.png}
+    \caption{Oversigt over alle pakker i SharedLib}
+    \label{fig:oversigtSL}
+\end{figure}
+
+På figur \ref{fig:oversigtSL} ses det hvordan strukturen i SharedLib er opbygget.  
+
+
+
+\input{Systemdesign/SharedLib/Protocol}
+\input{Systemdesign/SharedLib/Commands}
+\input{Systemdesign/SharedLib/Marshallers}
