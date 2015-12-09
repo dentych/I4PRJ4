@@ -1,5 +1,12 @@
 \textbf{ProductCategoryList}
 
-...
+ProductCategoryList er en ObservableCollection<ProductCategory>, som indholder de sidst hentede ProductCategorier fra \gls{CS}. Når Update() kaldes opdatere ProductCategoryList sig selv ved at hente alle ProductCateogies fra \gls{CS} via DBcontrol, og overskriver sin ObservableCollection med disse.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=30mm]{Systemdesign/Frontend/BLL/Pics/ProductCategoryList}
+    \caption{ProductCategoryList}
+    \label{fig:ProductCategoryList}
+\end{figure}
 
 \bigskip
