@@ -2,19 +2,28 @@
 
 Herunder ses en  beskrivelse af samtlige klasser i business logic layer. Beskrivelsen vil fremgå som \textit{klassenavn"} efterfulgt af en kort beskrivelse af klassens ansvar og funktionalitet.\\\\
 
-\paragraph{Brains} namespacet indeholder generel businesslogik for at kunne udføre handlinger, så som at oprette kommandoer, parse objekter til XMl mv. Den benytter sig meget af det delte bibliotek \gls{SL}.\\
 
+\paragraph{ViewModels} namespacet indeholder viewmodels til alle views. Viewmodels indeholder den data som præsentationslaget binder til. Dette indebærer kommandoer til knapper, samt properties som skal bruges af viewet.
+
+\textbf{MainWindowViewModel}\\
+Denne viewmodel hører til MainWindow, som er hovedvinduet i \gls{AS}. Denne viewmodel indeholder alle produktkategorier, som har lister med produkter. Derudover er der kommandoer til at åbne alle andre vinduer i systemet. Denne viewmodel har subscribed på alle andre viewmodels "Loaded" events. Se nærmere omkring disse under \ref{eventaggregator_beskrivelse}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Error.png}
+	\caption{Error}
+	\label{fig:modelhandler}
+\end{figure}
+
+\paragraph{Brains} namespacet indeholder generel businesslogik for at kunne udføre handlinger, så som at oprette kommandoer, parse objekter til XMl mv. Den benytter sig meget af det delte bibliotek \gls{SL}.\\
 
 \textbf{Error}\\
 Errorklassen er en fejlbeskedprinter, som kan printe en besked på skærmen, eksempelvis ved fejl eller notifikationer.
-\begin{center}
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.2\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Error.png}
     \caption{Error}
     \label{fig:modelhandler}
 \end{figure}
-\end{center}
  \bigskip 
  
  
