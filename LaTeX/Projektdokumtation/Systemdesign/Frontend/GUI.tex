@@ -14,10 +14,57 @@ Denne skitse implementerede vi så.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{Systemdesign/Frontend/pics/GUI}
-	\caption{Den endelige grænseflade på kasseapparatet.}
+	\caption{ProductButtonControl}
 	\label{fig:EndeligeGUI}
 \end{figure}
 
 Da grænsefladen var opsat var det nu nødvendigt at opsætte viewmodels til at forbinde grænsefladen med de underliggende lag.
 
 \subsubsection{ViewModels}
+\textbf{CategoriesMenu}
+
+
+\textbf{MenuCategory}
+
+\textbf{ProductButtonControl} \\
+ProductButtonControl står for at styre hvilken knappeside der vises. Dette betyder at den indeholder en ProduktButtonList, der ved klik er i stand til at skifte knappeside.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{Systemdesign/Frontend/pics/ProductButtonControl}
+	\caption{ProductButtonControl.}
+	\label{fig:PBC}
+\end{figure}
+
+\textbf{ProductButtonList} \\
+ProductButtonList indeholder lister af knapper. Derved kan hver knappeliste symbolisere en side af knapper. Denne liste har ikke nogen anden funktionalitet, men eksisterer for at koden skal kunne facilitere dynamiske knappestørrelser i fremtiden. Denne klasse ville kunne tjekke på hvor stor siden er, og oprette knappesider med den ønskede antal knapper derefter.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{Systemdesign/Frontend/pics/ProductButtonList}
+	\caption{ProductButtonList.}
+	\label{fig:PBL}
+\end{figure}
+
+\textbf{ProductButtonContent} \\
+ProductButtonContent har indholdet af 1 knap på grænsefladen, samt produktinformationer og commands til at oprette produkter på shoppinglist ved tryk. Når man skifter side i grænsefladen produktbuttoncontent være forbundet til hver knap.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.2\textwidth]{Systemdesign/Frontend/pics/ProductButtonContent}
+	\caption{ProductButtonContent.}
+	\label{fig:PBCon}
+\end{figure}
+
+\textbf{ShoppingList} \\
+ShoppingList indeholder de produkter som kunden gerne vil købe og er i sin enkelthed en indkøbskurv. Denne klasse arver fra Observable Collection og er derved også en liste. Dette gør klassen i stand til at tjekke på sin egen data og indeholde funktioner der hjælper med at oprette nye elementer, samt at kunne incrementere produktantal.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{Systemdesign/Frontend/pics/ShoppingList}
+	\caption{ShoppingList.}
+	\label{fig:SL}
+\end{figure}
+
+
