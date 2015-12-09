@@ -3,6 +3,8 @@
 Herunder ses en  beskrivelse af samtlige klasser i business logic layer. Beskrivelsen vil fremgå som \textit{klassenavn"} efterfulgt af en kort beskrivelse af klassens ansvar og funktionalitet.\\\\
 
 
+\textbf{Brains} namespacet indeholder generel businesslogik for at kunne udføre handlinger, så som at oprette kommandoer, parse objekter til XMl mv. Den benytter sig meget af det delte bibliotek \gls{SL}.\\
+
 \paragraph{ViewModels} namespacet indeholder viewmodels til alle views. Viewmodels indeholder den data som præsentationslaget binder til. Dette indebærer kommandoer til knapper, samt properties som skal bruges af viewet.
 
 \textbf{MainWindowViewModel}\\
@@ -22,7 +24,7 @@ Errorklassen er en fejlbeskedprinter, som kan printe en besked på skærmen, eks
     \centering
     \includegraphics[width=0.2\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Error.png}
     \caption{Error}
-    \label{fig:modelhandler}
+    \label{fig:error}
 \end{figure}
  \bigskip 
  
@@ -41,7 +43,7 @@ ModelHandlerens ansvar er at lave den kommando der skal sendes til \gls{CS}. Den
     \centering
     \includegraphics[width=0.45\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/ModelHandler.png}
     \caption{ModelHandler}
-    \label{fig:modelhandler}
+    \label{fig:modelhandlerreal}
 \end{figure}
 \end{center}
 \label{Modelhandler_Beskrivelse}
@@ -59,10 +61,10 @@ PrjProtokol har til ansvar at lave kald til \gls{SL} og dens protokol.Den sørge
     \centering
     \includegraphics[width=0.45\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/PrjProtokol.png}
     \caption{ModelHandler}
-    \label{fig:modelhandler}
+    \label{fig:prjprotko}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{PrjProtokol_Beskrivelse}
  \bigskip
  
 
@@ -85,11 +87,14 @@ Et objekt indeholdende data der bliver brugt i en anden viewmodel, når NewEditP
     \centering
     \includegraphics[width=0.50\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Parms.png}
     \caption{Paramtereklasser}
-    \label{fig:modelhandler}
+    \label{fig:EditProductParameters}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{EditProductParameters_Beskrivelse}
  \bigskip 
+
+
+
 
 \textbf{CategoryListUpdated, NewEditProductData, NewEditCategoryData, NewDeleteCategoryData}
 Disse arver ale sammen fra PubSubEvent\footnote{En eventtype som bruges i PRISM ~\cite{PRISM}}. Disse events raises når et vindue med en anden viewmodel er loaded, og der ønskes at dele data mellem disse viewmodels. Kommunikation mellem viewmodels er beskrevet nærmere på side \pageref{viewcomm}.  \bigskip
@@ -98,13 +103,12 @@ Disse arver ale sammen fra PubSubEvent\footnote{En eventtype som bruges i PRISM 
     \centering
     \includegraphics[width=0.50\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Events1.png}
     \caption{Events}
-    \label{fig:modelhandler}
+    \label{fig:CategoryListUpdated}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{CategoryListUpdated_Beskrivelse}
  \bigskip 
-\newpage
-	
+
 
 
 
@@ -115,10 +119,10 @@ Disse klasser arver ale sammen fra PubSubEvent\footnote{En eventtype som bruges 
     \centering
     \includegraphics[width=0.50\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Events2.png}
     \caption{Events}
-    \label{fig:modelhandler}
+    \label{fig:AddProductWindowLoaded}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{AddProductWindowLoaded_Beskrivelse}
  \bigskip 
 
 
@@ -135,10 +139,10 @@ Denne klasse indeholder alle eventhandlere som bruges, når der bliver raised et
     \centering
     \includegraphics[width=0.50\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/SocketEvents.png}
     \caption{SocketEventHandlers}
-    \label{fig:modelhandler}
+    \label{fig:SocketEventHandlers}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{SocketEventHandlerBeskrivelse}
  \bigskip 
  
  
@@ -149,10 +153,10 @@ Denne klasse indeholder en EventAggregator fra PRISM~\cite{PRISM}, som man hånd
     \centering
     \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/agg.png}
     \caption{SingleEventAggregator}
-    \label{fig:modelhandler}
+    \label{fig:SingleEventAggregator}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{SingleEventAggregator_Beskrivelse}
  \bigskip 
 
 \bigskip
@@ -168,10 +172,10 @@ Denne klasse indeholder en liste af kategorier. Det er denne datatype som indeho
     \centering
     \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/BPCList.png}
     \caption{BackendProductCategoryList}
-    \label{fig:modelhandler}
+    \label{fig:BackendProductCategoryList}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{BackendProductCategoryList_Beskrivelse}
  \bigskip 
  
  \textbf{BackendProduct}\\
@@ -181,10 +185,10 @@ Denne klasse arver fra \gls{PD} fra \gls{SL}. Klassen implementerer desuden fra 
     \centering
     \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Backendproduct.png}
     \caption{BackendProduct}
-    \label{fig:modelhandler}
+    \label{fig:BackendProduct}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{BackendProduct_Beskrivelse}
  \bigskip 
  
  
@@ -195,10 +199,10 @@ Denne klasse bruges således at der kan fremvises i GUI'en, om der er forbundet 
     \centering
     \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/const.png}
     \caption{ConnectionString}
-    \label{fig:modelhandler}
+    \label{fig:ConnectionString}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{ConnectionString_Beskrivelse}
  \bigskip 
 
 
@@ -209,9 +213,9 @@ Denne klasse arver fra \gls{PD} fra \gls{SL}. Klassen implementerer desuden fra 
     \centering
     \includegraphics[width=0.30\textwidth]{Systemdesign/backend/klassebeskrivelser/Images/Backendproductcat.png}
     \caption{BackendProductCategory}
-    \label{fig:modelhandler}
+    \label{fig:BackendProductCategory}
 \end{figure}
 \end{center}
-\label{Modelhandler_Beskrivelse}
+\label{BackendProductCategoryr_Beskrivelse}
  \bigskip 
 
