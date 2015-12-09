@@ -1,0 +1,33 @@
+\subsection{Use case 5: Slet \gls{PD}}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Navn}					& Slet \gls{PD} \\\hline
+\textbf{Formål}					& At slette et \gls{PD} \\\hline
+\textbf{Initialisering}			& \gls{SB} \\\hline
+\textbf{Aktører}				& \gls{SB} \\\hline
+\textbf{Reference}				& Ingen. \\\hline								
+\textbf{Samtidige forekomster}	& $\infty$ \\\hline
+\textbf{Prækondition}			& Der skal være et \gls{PD} at slette. \\\hline
+\textbf{Postkondition}			& Det valgte \gls{PD} skal være slettet. \\
+\hline
+\textbf{Hovedscenarie}			& 1. \gls{SB} vælger det \gls{PD} der ønskes slettet og trykker på knappen til at slette \gls{PD}.\\												
+								& 2. Et dialogvindue, der spørger om \gls{PD}et ønskes slettet, vises på skærmen.\\
+								& 3. \gls{SB} trykker på knappen til at godkende sletningen og dialogvinduet forsvinder.\\
+								& ~ [Ext 1: \gls{SB} vælger at annullere sletningen.]\\
+								& 4. \gls{PD}et slettets umiddelbart herefter fra listen over \gls{PD}er.\\
+								& ~ [Ext 2: \gls{CS} melder fejl]\\
+\hline
+\textbf{Extensions}				& [Ext 1: \gls{SB} vælger at annullere sletningen.]\\
+								& ~ 1. \gls{SB} trykker på knappen til at annullere sletningen.\\
+								& ~ 2. Dialogvinduet forsvinder og intet yderligere foretages.\\
+								& [Ext 2: \gls{CS} melder fejl] \\
+								& ~ 1. Beskedboks informerer \gls{SB} om fejl. \\
+								& ~ 2. Usecasen afsluttes \\\hline
+\hline
+\end{tabularx}
+\caption{Use case 5: Slet \gls{PD}}
+\label{tab:UCsp}
+\end{table}

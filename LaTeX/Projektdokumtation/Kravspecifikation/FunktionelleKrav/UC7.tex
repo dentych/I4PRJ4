@@ -1,0 +1,39 @@
+\subsection{Use case 6: Opret \gls{PD}kategori}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Navn}					& Opret \gls{PDK} \\\hline
+\textbf{Formål}					& At oprette en \gls{PDK} til \gls{PD}er \\\hline
+\textbf{Initialisering}			& \gls{SB} \\\hline
+\textbf{Aktører}				& \gls{SB} (Primær)\\\hline
+\textbf{Reference}				& Ingen \\\hline
+								
+\textbf{Samtidige forekomster}	& $\infty$ \\\hline
+
+\textbf{Prækondition}			& Der er oprettet forbindelse til \gls{CS} og der er instanser af \gls{PDK} i systemet. \\\hline
+
+\textbf{Postkondition}			& Der er oprettet en \textit{ny} \gls{PDK} i systemet \\\hline
+
+\textbf{Hovedscenarie}			& 1. \gls{SB} trykker på knappen til opret \gls{PDK} \\		
+								& 2. Et pop up vindue åbnes i \gls{GUI}, hvori der indtastes informationer om \gls{PDK}.\\
+								& 3. \gls{SB} trykker på knappen til gem\\
+								& ~ [Ext 1: \gls{PDK} eksisterer allerede]\\
+								& 3. Systemet sender kommando med information til \gls{CS}. \\
+								& ~ [Ext 2: \gls{CS} melder fejl.\\
+								& 4. \gls{AS} modtager opdatering om ny \gls{PDK}. \\
+								& 5. \gls{AS} opdaterer kategorilisten \\\hline
+
+\textbf{Extensions}				
+								& [Ext 1: \gls{PDK} eksisterer allerede] \\	
+								& ~ 1. Beskedboks informerer \gls{SB} om at \gls{PDK} eksisterer allerede.\\
+								& ~ 2. Der fortsættes fra punkt 2.\\
+								 		
+								& [Ext 2: \gls{CS} melder fejl] \\
+								& ~ 1. Beskedboks informerer \gls{SB} om fejl. \\
+								& ~ 2. Usecasen afsluttes \\\hline
+\end{tabularx}
+\caption{Use case 6: Opret \gls{PDK}}
+\label{tab:UCopk}
+\end{table}

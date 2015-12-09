@@ -1,0 +1,330 @@
+\ifglsentryexists{SB}{}%
+{%
+\gls@defglossaryentry{SB}%
+{%
+name={Superbruger},%
+sort={Superbruger},%
+type={main},%
+first={Superbruger},%
+firstplural={Superbrugers},%
+text={Superbruger},%
+plural={Superbrugers},%
+description={En bruger med yderligere rettigheder end Ekspedient, som kan administrere systemets indhold i Administrationssystemet},%
+descriptionplural={En bruger med yderligere rettigheder end Ekspedient, som kan administrere systemets indhold i Administrationssystemet},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Eks}{}%
+{%
+\gls@defglossaryentry{Eks}%
+{%
+name={Ekspedient},%
+sort={Ekspedient},%
+type={main},%
+first={Ekspedient},%
+firstplural={Ekspedients},%
+text={Ekspedient},%
+plural={Ekspedients},%
+description={En bruger der benytter Kassesystem til at sælge varer},%
+descriptionplural={En bruger der benytter Kassesystem til at sælge varer},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{Kunde}{}%
+{%
+\gls@defglossaryentry{Kunde}%
+{%
+name={Kunde},%
+sort={Kunde},%
+type={main},%
+first={Kunde},%
+firstplural={Kundes},%
+text={Kunde},%
+plural={Kundes},%
+description={En person, som køber eller returner varer},%
+descriptionplural={En person, som køber eller returner varer},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{KA}{}%
+{%
+\gls@defglossaryentry{KA}%
+{%
+name={Kasseapparat},%
+sort={Kasseapparat},%
+type={main},%
+first={Kasseapparat},%
+firstplural={Kasseapparats},%
+text={Kasseapparat},%
+plural={Kasseapparats},%
+description={En skærm, med en grafisk brugerflade, hvorpå Ekspedient håndterer salg},%
+descriptionplural={En skærm, med en grafisk brugerflade, hvorpå Ekspedient håndterer salg},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{AS}{}%
+{%
+\gls@defglossaryentry{AS}%
+{%
+name={Administrationssystem},%
+sort={Administrationssystem},%
+type={main},%
+first={Administrationssystem},%
+firstplural={Administrationssystems},%
+text={Administrationssystem},%
+plural={Administrationssystems},%
+description={Der hvor Superbruger administrerer produkter og produktkategorier},%
+descriptionplural={Der hvor Superbruger administrerer produkter og produktkategorier},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CS}{}%
+{%
+\gls@defglossaryentry{CS}%
+{%
+name={CentralServer},%
+sort={CentralServer},%
+type={main},%
+first={CentralServer},%
+firstplural={CentralServers},%
+text={CentralServer},%
+plural={CentralServers},%
+description={Er bindeleddet imellem Kasseapparat, Administrationssystem og Databasen},%
+descriptionplural={Er bindeleddet imellem Kasseapparat, Administrationssystem og Databasen},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{DB}{}%
+{%
+\gls@defglossaryentry{DB}%
+{%
+name={Database},%
+sort={Database},%
+type={main},%
+first={Database},%
+firstplural={Databases},%
+text={Database},%
+plural={Databases},%
+description={Den centrale database der administreres af CentralServer},%
+descriptionplural={Den centrale database der administreres af CentralServer},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SL}{}%
+{%
+\gls@defglossaryentry{SL}%
+{%
+name={SharedLib},%
+sort={SharedLib},%
+type={main},%
+first={SharedLib},%
+firstplural={SharedLibs},%
+text={SharedLib},%
+plural={SharedLibs},%
+description={Et bibliotek til at encode/decode xml, samt indeholder Produkt og ProduktKategori klasserne},%
+descriptionplural={Et bibliotek til at encode/decode xml, samt indeholder Produkt og ProduktKategori klasserne},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{GUI}{}%
+{%
+\gls@defglossaryentry{GUI}%
+{%
+name={GUI},%
+sort={GUI},%
+type={main},%
+first={GUI},%
+firstplural={GUIs},%
+text={GUI},%
+plural={GUIs},%
+description={Grafisk brugergrænseflade},%
+descriptionplural={Grafisk brugergrænseflade},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{PD}{}%
+{%
+\gls@defglossaryentry{PD}%
+{%
+name={Produkt},%
+sort={Produkt},%
+type={main},%
+first={Produkt},%
+firstplural={Produkts},%
+text={Produkt},%
+plural={Produkts},%
+description={En vare, som en kunde kan købe og returnere},%
+descriptionplural={En vare, som en kunde kan købe og returnere},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{PDK}{}%
+{%
+\gls@defglossaryentry{PDK}%
+{%
+name={Produktkategori},%
+sort={Produktkategori},%
+type={main},%
+first={Produktkategori},%
+firstplural={Produktkategoris},%
+text={Produktkategori},%
+plural={Produktkategoris},%
+description={En gruppe af produkter},%
+descriptionplural={En gruppe af produkter},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
