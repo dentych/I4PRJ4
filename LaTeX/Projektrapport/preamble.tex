@@ -1,0 +1,90 @@
+
+\documentclass[a4paper,oneside]{memoir}
+
+
+\usepackage{titlesec} % Fjerne Kapitel og tal fra chapters
+\titleformat{\chapter}
+			{\Large\bfseries} % format
+			{\huge{\thechapter} \hspace{1 mm}}                % label
+			{0pt}             % sep
+			{\huge}           % before-code
+
+% For dansk opsætning med æ, ø og å•, samt pænere orddeling.
+\usepackage[utf8]{inputenc}				% æøå
+\usepackage[danish]{babel}				% dansk opsætning
+\renewcommand{\danishhyphenmins}{22}	% fikser babel fejl/bedre orddeling
+
+\usepackage{listings}
+\usepackage{listliketab}
+
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} 					%Sætter fonten til lmodern
+
+
+% ¤¤ Litteraturlisten ¤¤ %
+\usepackage[danish]{varioref}				% Muliggoer bl.a. krydshenvisninger med sidetal (\vref)
+\usepackage{natbib}							% Udvidelse med naturvidenskabelige citationsmodeller
+\bibpunct[,]{[}{]}{;}{a}{,}{,} 				% Definerer de 6 parametre ved Harvard henvisning (bl.a. parantestype og seperatortegn)
+\bibliographystyle{Litteratur/harvard}			% Udseende af litteraturlisten.
+\usepackage{hyperref}
+\usepackage{url}
+
+
+%Marginer indstilles
+\setlrmarginsandblock{3cm}{3cm}{*}		%Højre - venstre
+\setulmarginsandblock{3cm}{2.5cm}{*}	%Øverst - nederst
+\checkandfixthelayout[nearest]    		%Specifikt valg af højde algoritme
+
+\setcounter{tocdepth}{3} %inkluderer sub- +subsubsection i indhold
+\usepackage{titlesec}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} %ingen mellemrum efter subsection
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt} %ingen mellemrum efter subsubsection
+
+% Sidehoved og -fod
+\makepagestyle{mypagestyle} %Min pagestyle med sidetal
+\copypagestyle{mypagestyle}{empty}
+\makeheadrule{mypagestyle}{\textwidth}{\normalrulethickness}
+\makeoddfoot{mypagestyle}{\quad}{\quad}{\thepage\ af \thelastpage} 
+
+\makeoddhead{empty}{}{Semesterprojekt 4 - Gruppe 3}{} 			% Titel til opgaven
+\pagestyle{mypagestyle} 				%aktiver ny sidehoved/-fod
+
+
+%Ingen indryk efter ny afsnit
+\setlength\parindent{0pt} 
+
+%\usepackage{ragged2e,anyfontsize}			% Justering af elementer
+%\usepackage{fixltx2e}						% Retter forskellige fejl i LaTeX-kernen
+
+\usepackage{graphicx} 						% Haandtering af eksterne billeder (JPG, PNG, EPS, PDF)
+\usepackage{multirow}                		% Fletning af raekker og kolonner (\multicolumn og \multirow)
+
+\usepackage{float}							% Muliggoer eksakt placering af floats, f.eks. \begin{figure}[H]
+
+\usepackage{enumerate}						% Muliggoer at man kan bruge fx a) i enumerate
+
+\usepackage{pdflscape}						% Muligør landskab på enkelte sider
+\usepackage{tabularx}						% Tabeller med X width
+
+\usepackage{mathtools}
+
+\usepackage[footnote,draft,danish,silent,nomargin]{fixme}	%For at holde styr på mangler i teksten
+
+\usepackage{caption} % Indstille captions
+
+\newcommand{\dec}{^{\circ}}					% Gradertegn
+\newcommand{\m}{\cdot}						% Gangetegn
+\newcommand{\ext}[2]{
+[Extension #1]: #2
+}
+
+\usepackage{color}
+\definecolor{blue}{RGB}{46,106,177}
+\definecolor{lblue}{RGB}{60,120,190}
+\titleformat*{\section}
+   {\normalfont\Large\bfseries\color{blue} }
+\titleformat*{\chapter}
+   {\normalfont\Large\bfseries\color{blue} }
+\titleformat*{\subsection}
+   {\normalfont\Large\bfseries\color{lblue} }
