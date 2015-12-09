@@ -5,6 +5,7 @@ ViewModels ligger som en mellemting mellem business logic layer og presentation 
 
 
 \subsubsection{Viewmodel kommunikation}
+\label{viewcomm}
 Alle view startes fra MainViewViewModel, som invidviduelt starter deres egen viewmodel. Det betyder at det ville være nødvendigt at lave data globalt for at kunne arbejde på den samme data, som f.eks. kategorier og de individuelle produkter i disse. \\
 For at løse dette, har vi valgt at bruge Prism EventAggregator~\cite{PRISM}, som tillader os at kommu-nikere på tværs af viewmodels. Når MainViewViewModel startes, subscriber den på en række forskellige events, som bliver rasied når følgende vinduer bliver loaded:
 
