@@ -1,0 +1,66 @@
+\BOOKMARK [1][-]{section.0.1}{Arbejdsfordelings Liste}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Kravspecifikation}{}% 2
+\BOOKMARK [1][-]{section.1.1}{Revision}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Systembeskrivelse}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.3}{Akt\370rer}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.4}{Akt\370r Use Case Diagram}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.5}{Funktionelle Krav - Use Cases}{chapter.1}% 7
+\BOOKMARK [2][-]{subsection*.7}{MoSCoW}{section.1.5}% 8
+\BOOKMARK [2][-]{subsection*.8}{Use case 1: Gennemf\370r salg}{section.1.5}% 9
+\BOOKMARK [2][-]{subsection*.10}{Use case 2: Returner vare}{section.1.5}% 10
+\BOOKMARK [2][-]{subsection*.12}{Use case 3: Opret PD}{section.1.5}% 11
+\BOOKMARK [2][-]{subsection*.14}{Use case 4: Rediger PD}{section.1.5}% 12
+\BOOKMARK [2][-]{subsection*.16}{Use case 5: Slet PD}{section.1.5}% 13
+\BOOKMARK [2][-]{subsection*.18}{Use case 6: Opret PDkategori}{section.1.5}% 14
+\BOOKMARK [2][-]{subsection*.20}{Use case 7: Rediger PDK}{section.1.5}% 15
+\BOOKMARK [2][-]{subsection*.22}{Use case 8: Slet produktkategori}{section.1.5}% 16
+\BOOKMARK [1][-]{section.1.6}{Ikke Funktionelle Krav}{chapter.1}% 17
+\BOOKMARK [0][-]{chapter.2}{Systemarkitektur}{}% 18
+\BOOKMARK [1][-]{section.2.1}{Logisk View}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection*.25}{Oversigt}{section.2.1}% 20
+\BOOKMARK [2][-]{subsection*.27}{Arkitekturpakker}{section.2.1}% 21
+\BOOKMARK [3][-]{subsubsection*.28}{SL}{subsection*.27}% 22
+\BOOKMARK [3][-]{subsubsection*.29}{DB}{subsection*.27}% 23
+\BOOKMARK [3][-]{subsubsection*.30}{KA}{subsection*.27}% 24
+\BOOKMARK [3][-]{subsubsection*.32}{CentralServer}{subsection*.27}% 25
+\BOOKMARK [3][-]{subsubsection*.34}{AS}{subsection*.27}% 26
+\BOOKMARK [2][-]{subsection*.36}{Use Case realiseringer}{section.2.1}% 27
+\BOOKMARK [1][-]{section.2.2}{Physical View}{chapter.2}% 28
+\BOOKMARK [2][-]{subsection*.39}{Oversigt}{section.2.2}% 29
+\BOOKMARK [2][-]{subsection*.41}{Node Beskrivelser}{section.2.2}% 30
+\BOOKMARK [3][-]{subsubsection*.42}{Kasseapparat}{subsection*.41}% 31
+\BOOKMARK [3][-]{subsubsection*.43}{Administrationssystem}{subsection*.41}% 32
+\BOOKMARK [3][-]{subsubsection*.44}{CentralServer}{subsection*.41}% 33
+\BOOKMARK [3][-]{subsubsection*.45}{Database}{subsection*.41}% 34
+\BOOKMARK [1][-]{section.2.3}{Development View}{chapter.2}% 35
+\BOOKMARK [2][-]{subsection*.46}{Oversigt}{section.2.3}% 36
+\BOOKMARK [2][-]{subsection*.48}{Komponentbeskrivelser}{section.2.3}% 37
+\BOOKMARK [3][-]{subsubsection*.49}{Administrationssytstem}{subsection*.48}% 38
+\BOOKMARK [3][-]{subsubsection*.50}{Central server}{subsection*.48}% 39
+\BOOKMARK [3][-]{subsubsection*.51}{Kassesystemet}{subsection*.48}% 40
+\BOOKMARK [3][-]{subsubsection*.52}{SharedLib}{subsection*.48}% 41
+\BOOKMARK [0][-]{chapter.3}{Systemdesign}{}% 42
+\BOOKMARK [1][-]{section.3.1}{Kassesystem}{chapter.3}% 43
+\BOOKMARK [2][-]{subsection*.53}{Introduktion}{section.3.1}% 44
+\BOOKMARK [2][-]{subsection*.54}{Design og struktur}{section.3.1}% 45
+\BOOKMARK [2][-]{subsection*.55}{Presentation Layer}{section.3.1}% 46
+\BOOKMARK [2][-]{subsection*.56}{Business Logic Layer}{section.3.1}% 47
+\BOOKMARK [2][-]{subsection*.57}{Data Access Layer}{section.3.1}% 48
+\BOOKMARK [1][-]{section.3.2}{Administrationssystem}{chapter.3}% 49
+\BOOKMARK [2][-]{subsection*.58}{Introduktion}{section.3.2}% 50
+\BOOKMARK [2][-]{subsection*.60}{Presentation Layer}{section.3.2}% 51
+\BOOKMARK [2][-]{subsection*.61}{Business Logic Layer}{section.3.2}% 52
+\BOOKMARK [2][-]{subsection*.63}{Data Access Layer}{section.3.2}% 53
+\BOOKMARK [1][-]{section.3.3}{Central Server}{chapter.3}% 54
+\BOOKMARK [1][-]{section.3.4}{Shared Library}{chapter.3}% 55
+\BOOKMARK [0][-]{chapter.4}{Accepttest}{}% 56
+\BOOKMARK [1][-]{subsection*.66}{Accepttest for UC1: Gennemf\370r salg}{chapter.4}% 57
+\BOOKMARK [2][-]{subsection*.71}{Accepttest for UC2: Returner vare}{subsection*.66}% 58
+\BOOKMARK [2][-]{subsection*.74}{Accepttest for UC3: Opret PD}{subsection*.66}% 59
+\BOOKMARK [2][-]{subsection*.78}{Accepttest for UC4: Rediger PD}{subsection*.66}% 60
+\BOOKMARK [2][-]{subsection*.82}{Accepttest for UC5: Slet produkt}{subsection*.66}% 61
+\BOOKMARK [2][-]{subsection*.86}{Accepttest for UC6: Opret produktkategori}{subsection*.66}% 62
+\BOOKMARK [2][-]{subsection*.90}{Accepttest for UC7: Rediger produktkategori}{subsection*.66}% 63
+\BOOKMARK [2][-]{subsection*.93}{Accepttest for UC8: Slet produktkategori}{subsection*.66}% 64
+\BOOKMARK [2][-]{subsection*.97}{Glossary}{subsection*.66}% 65
+\BOOKMARK [0][-]{section*.100}{Litteratur}{}% 66

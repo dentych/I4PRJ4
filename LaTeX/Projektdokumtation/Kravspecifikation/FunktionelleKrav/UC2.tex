@@ -1,0 +1,30 @@
+\subsection{Use case 2: Returner vare}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Navn}					& Returner vare \\\hline
+\textbf{Formål}					& Returnere en fejlkøbt vare \\\hline
+\textbf{Initialisering}			& \gls{Eks} \\\hline
+\textbf{Aktører}				& \gls{Eks} (Primær) \\
+								& \gls{Kunde} (Sekundær) \\\hline
+\textbf{Reference}				& Ingen \\\hline
+								
+\textbf{Samtidige forekomster}	& Én per \gls{KA} \\\hline
+\textbf{Prækondition}			& \gls{KA} har forbindelse til \gls{CS} \\\hline
+\textbf{Postkondition}			& \gls{Kunde} har returneret sin vare og fået tilsvarende penge udbetalt \\\hline
+\textbf{Hovedscenarie}			
+& 1. \gls{Eks} indtaster varen \\			
+& 2. \gls{Eks} vælger vare og indtaster antal og vælger Retur \\
+& ~ [Ext 1: \gls{Kunde} fortryder] \\
+& 3. \gls{Eks} indtaster 0 + kontant \\
+& 4. \gls{Eks} giver \gls{Kunde} angivet beløbet tilbage \\\hline
+
+\textbf{Extensions}				
+& [Ext 1: \gls{Kunde} fortryder] \\
+& 1. \gls{Eks}en vælger Annuller \\\hline
+\end{tabularx}
+\caption{Use case 2: Returner vare}
+\label{tab:UCrtv}
+\end{table}

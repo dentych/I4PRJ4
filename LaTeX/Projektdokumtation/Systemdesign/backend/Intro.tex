@@ -1,0 +1,30 @@
+\subsection{Introduktion}
+
+
+Administrationssystemet er en applikation som kan tilføje, fjerne og redigere produkter eller kategorier, tilhørende kassesystemets database.\\
+Applikationen er designet skalerbart, således brugeren ikke er begrænset til kun at kunne tilføje, fjerne eller redigere fra udelukkende en node, men derimod synkront holde databasen opdateret fra flere noder på en gang. Dette betyder at databasen og alle opkoblede administrationssystemer, altid vil være helt synkroniseret.
+
+\subsubsection*{Design og struktur}
+Backend er designet på baggrund af MVVM designmønstret~\cite{MVVM}. 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Systemdesign/backend/Images/Opbygning.png}
+    \caption{Oversigt over alle namespaces i administrationssystemet}
+    \label{fig:oversigtAs}
+\end{figure}
+
+På figur \ref{fig:oversigtAs} ses det hvordan strukturen i administrationssystemet er opbygget. 
+
+\begin{itemize}
+\item \textbf{Views} indeholder XAML og codebehindfilerne for den grafiske brugerflade. 
+\item \textbf{ViewModels} indeholder de data og commands som views binder til. 
+\item \textbf{Models} indeholder datamodeller og businesslogik.
+\item \textbf{Datamodels} indeholder datamodeller, herunder bl.a. produkter, collections og kategorier.
+\item \textbf{Events} indeholder events der bruges til kommunikation mellem viewmodel, den tilhørende aggregator samt parametremodellen til nogen af disse events.
+\item \textbf{SocketEvents} indeholder de events der bliver raised af Client ved modtagelse af data.
+\item \textbf{Brains} indeholder generel businesslogik (???) til bl.a. at oprette kommandoer til klienten, og fejl-håndtering.
+\item \textbf{Dependencies} indeholder sourcekode til at arbejde med commands.
+\item \textbf{Communication} indeholder klient til at skabe forbindelse til Central Server.
+\end{itemize}
+
+De ovenstående 

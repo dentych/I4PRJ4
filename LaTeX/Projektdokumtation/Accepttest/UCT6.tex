@@ -1,0 +1,48 @@
+\subsection{Accepttest for UC5: Slet produkt}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+\hline
+\multicolumn{5}{|l|}{\textbf{Use case under test:} 5 - Slet produkt} \\\hline
+\multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er oprettet et "TestProdukt 1", som er vist på listen over produkter} \\\hline
+Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+1 & \gls{SB} vælger "TestProdukt 1" på listen over produkter og trykker slet & Det valgte produkt er valgt på listen og et vindue åbner, som spørger om \gls{SB} virkelig ønsker at slette produktet. & & \\\hline
+2 & \gls{SB} trykker på knappen til at godkende sletningen & Vinduet lukker igen og en meddelelse om, at produktet er slettet. & & \\\hline
+3 & Det valgte produkt slettes umiddelbart efter fra listen & Produktet forsvinder fra listen over produkter. & & \\
+\hline
+\end{tabularx}
+\caption{Accepttest 5: Slet produkt}
+\label{tab:ATsp}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+\hline
+\multicolumn{5}{|l|}{\textbf{Use case under test:} 5 - Slet produkt} \\\hline
+\multicolumn{5}{|l|}{\textbf{Scenarie:} Ext 1 - \gls{SB} vælger at annullere sletningen.} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er oprettet et "TestProdukt 1", som er vist på listen over produkter} \\\hline
+Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+1 & \gls{SB} vælger "TestProdukt 1" på listen over produkter og trykker slet & Det valgte produkt er valgt på listen og et vindue åbner, som spørger om \gls{SB} virkelig ønsker at slette produktet. & & \\\hline
+2 & \gls{SB} trykker på knappen til at annullere sletningen & Vinduet lukker igen og intet yderligere foretages. & & \\
+\hline
+\end{tabularx}
+\caption{Accepttest 5: Slet produkt - Ext 1}
+\label{tab:ATsp}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+\hline
+\multicolumn{5}{|l|}{\textbf{Use case under test:} 5 - Slet produkt} \\\hline
+\multicolumn{5}{|l|}{\textbf{Scenarie:} Ext 2 - Central server melder fejl} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er oprettet et produkt, som er vist på listen over produkter} \\\hline
+Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+1 & \gls{SB} vælger "TestProdukt 1" på listen over produkter og trykker slet & Det valgte produkt er valgt på listen og et vindue åbner, som spørger om \gls{SB} virkelig ønsker at slette produktet. & & \\\hline
+2 & \gls{SB} trykker på knappen til at godkende sletningen & Vinduet lukker igen og en meddelelse om, at produktet er slettet. & & \\\hline
+3 & Det valgte produkt opdateres ikke og der vises en fejlbesked & Produktet bliver på listen over produkter, og en fejlbesked vises til \gls{SB}. & & \\
+\hline
+\end{tabularx}
+\caption{Accepttest 5: Slet produkt - Ext 2}
+\label{tab:ATsp}
+\end{table}

@@ -1,0 +1,38 @@
+\subsection{Use case 8: Slet produktkategori}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Navn}					& Slet produktkategori \\\hline
+\textbf{Formål}					& At slette en produktkategori \\\hline
+\textbf{Initialisering}			& Superbruger \\\hline
+\textbf{Aktører}				& Superbruger (Primær)\\\hline
+\textbf{Reference}				& Ingen \\\hline
+								
+\textbf{Samtidige forekomster}	& $\infty$ \\\hline
+\textbf{Prækondition}			& Forbindelse til serveren er oprettet \\\hline
+\textbf{Postkondition}			& Produktkategorien er slettet i systemet \\\hline
+
+\textbf{Hovedscenarie}			& 1. Superbruger trykker på den kategori der ønskes at slette i listen af kategorier. \\		
+								& 2. Superbruger trykker på knappen til slet kategori i hovedmenuen og der vises et vindue.\\
+								& 4. Superbruger vælger hvilken kategori han ønsker at flytte produkterne til og trykker på knappen til at flytte produkterne.\\
+								& ~ [Ext 1: Der er ingen produkter i kategorien.]\\
+								& ~ [Ext 2: Superbruger annullerer sletningen]\\
+								& 5. Superbrugeren trykker på slet kategori, efter produkterne er flyttet.\\
+								& 5. Vinduet lukker og kategorien bliver slettet fra listen over kategorier.\\
+								& ~ [Ext 3: Central server melder fejl]\\
+								& 8. Administrationssystemet opdaterer kategorilisten \\\hline
+
+\textbf{Extensions}							
+  								& [Ext 1: Der er ingen produkter i den valgte kategori.] \\
+  								& ~ 1. Knappen til Flyt er grå, og kan ikke aktiveres.\\
+  								& [Ext 2: Brugeren annullerer sletningen]\\
+  								& ~ 2. Usecasen afsluttes \\
+								
+								& [Ext 3: Central server melder fejl]\\
+								& ~ 1. Beskedboks informerer brugeren om fejl.\\
+								& ~ 2. Usecasen afsluttes.\\\hline
+\end{tabularx}
+\caption{Use case 8: Slet produktkategori}
+\label{tab:UCspk}
+\end{table}

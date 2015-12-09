@@ -1,0 +1,40 @@
+\subsection{Use case 3: Opret \gls{PD}} \label{prodkat}
+At oprette en \gls{PD}er til systemet.
+
+%Test: \gls{\gls{SB}}
+%LOL LOL OLOL TEST: \Gls{\gls{SB}}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Navn}					& Opret \gls{PD} \\\hline
+\textbf{Formål}					& \gls{SB} opretter \gls{PD} . \\\hline
+\textbf{Initialisering}			& \gls{SB} \\\hline
+\textbf{Aktører}				& \gls{SB} (Primær)\\\hline
+\textbf{Reference}				& Ingen \\\hline
+								
+\textbf{Samtidige forekomster}	& $\infty$ \\\hline
+\textbf{Prækondition}			& Der er oprettet forbindelse til \gls{CS}.
+\\\hline
+\textbf{Postkondition}			& Der er oprettet et nyt, tidligere ubenyttet \gls{PD} i systemet.
+\\\hline
+\textbf{Hovedscenarie}			& 1. \gls{SB} trykker på opret \gls{PD} på i \gls{AS}.\\												& 2. Et pop up vindue åbnes i \gls{GUI}, hvori der indtastes informationer om \gls{PD}et.\\
+								& 3. \gls{SB} trykker på gem.\\
+								& ~ [Ext 1: \gls{PD} eksisterer allerede] \\
+								& 2. Systemet sender kommando til \gls{CS}.\\
+								& ~ [Ext 2: \gls{CS} melder fejl.\\
+								& 3. \gls{AS} modtager opdatering om nyt \gls{PD}. \\
+								& 4. \gls{AS} opdaterer \gls{PD}listen \\\hline
+
+\textbf{Extensions}						
+								& [Ext 1: \gls{PD}et eksisterer allerede] \\
+								& ~ 1. Beskedboks informerer \gls{SB} om at \gls{PD} allerede eksisterer.\\
+								& ~ 2. Der fortsættes fra punkt 1.\\
+									
+								& [Ext 2: \gls{CS} melder fejl] \\
+								& ~ 1. Beskedboks informerer \gls{SB} om fejl. \\
+								& ~ 2. Usecasen afsluttes \\\hline
+\end{tabularx}
+\caption{Use case 3: Usecase for opret \gls{PD} }
+\label{tab:UCop}
+\end{table}

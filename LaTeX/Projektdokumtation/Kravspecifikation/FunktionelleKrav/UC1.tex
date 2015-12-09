@@ -1,0 +1,44 @@
+\subsection{Use case 1: Gennemfør salg}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Navn}					& Gennemfør salg \\\hline
+\textbf{Formål}					& Gennemføre et salg af et vilkårligt antal varer til \gls{Kunde} \\\hline
+\textbf{Initialisering}			& \gls{Eks} \\\hline
+\textbf{Aktører}				& \gls{Eks} (Primær), \\& \gls{Kunde} (Sekundær) \\\hline
+\textbf{Reference}				& Ingen \\\hline
+								
+\textbf{Samtidige forekomster}	& Én per instans af \gls{KA} \\\hline
+\textbf{Prækondition}			& \gls{KA} har forbindelse til \gls{CS} \\\hline
+\textbf{Postkondition}			& \gls{Kunde} har købt sine varer og salget er gemt i \gls{DB} \\\hline
+\textbf{Hovedscenarie}			
+& 1. For hver vare \gls{Kunde} vil købe:\\		
+& ~~ a. \gls{Eks} indtaster vare \\
+& ~~ b. Ekspedient vælger vare og indtaster antal og vælger Antal \\
+& ~ [Ext 1: Forkert vare indtastet] \\
+& ~ [Ext 2: Forkert antal indtastet] \\
+& ~ [Ext 3: Handlen afbrydes] \\
+& 2. Kunde giver Ekspedient penge \\
+& 3. Ekspedient indtaster beløbet, som Kunde har givet \\
+& 4. Ekspedient trykker på knappen til valgte betalingsform \\
+& 5. Kunden får eventuelt restbeløb tilbage \\
+\hline
+
+\textbf{Extensions}				
+& [Ext 1: Forkert vare indtastet] \\
+& ~ 1. Ekspedient vælger varen på liste over vare \\
+& ~ 2. Ekspedient trykker på delete knappen \\
+& [Ext 2: Forkert antal indtastet] \\
+& ~ 1. Ekspedient vælger varen på liste over vare \\
+& ~ 2. Ekspedient indtaster det korrekte antal \\
+& ~ 3. Ekspedient trykker på “Antal” for at bekræfte \\
+& [Ext 3: Handlen afbrydes] \\
+& ~ 1. Ekspedient trykker på annuller knappen \\
+\hline
+
+\end{tabularx}
+\caption{Use case 1: Gennemfør salg}
+\label{tab:UCgfs}
+\end{table}
