@@ -235,3 +235,8 @@ ModelManifest.xml
 *.out
 *.synctex.gz
 *.pdf
+*.bcf
+*.blg
+*.glsdefs
+*.run.xml
+*.xdy
