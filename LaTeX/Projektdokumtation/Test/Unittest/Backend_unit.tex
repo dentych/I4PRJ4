@@ -8,16 +8,16 @@ Administrationssystemet har været testet itterativt over udviklingsperioden. De
 
 
 \textbf{Testdetaljer}\\
-I administrationssystemet er der en total testcoverage på \textit{72 procent} af testbare klasser\footnote{GUI, eksterne klasser, XML mv er \textit{ikke} en del af testbare klasser.}. Dette summerer sig op til \textit{111} unittests, som er fordelt over viewmodels og models\footnote{Se eventuelt oversigtsdiagram på figur \ref{fig:oversigtAs}, side \pageref{fig:oversigtAs}}. Testene er lavet vha. NUnit~\cite{NUnit} og NSubstitute~\cite{NSubstitute} og coverage analyse er foretaget med dotCover~\cite{dotCover}.
+I administrationssystemet er der en total testcoverage på \textit{72 procent} af testbare klasser\footnote{GUI, eksterne klasser, XML mv er \textit{ikke} en del af testbare klasser.}. Dette summerer sig op til \textit{111} unittests, som er fordelt over viewmodels og models\footnote{Se eventuelt oversigtsdiagram på figur \ref{fig:oversigtAs}, side \pageref{fig:oversigtAs}}. Testene er lavet vha. NUnit~\cite{NUnit} og NSubstitute~\cite{NSubstitute} og coverage analyse er foretaget med dotCover~\cite{dotCover}. Det hele er samtidig blevet bygget løbende på en continuous integration server, mere specifikt Jenkins.~\cite{Jenkins}.
 
-	\begin{figure}[htb]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.50\textwidth]{Test/Images/Backend/AntalUnit.png}
 		\caption{Antal unittests for Administrationssystem}
 		\label{fig:antalunit}
 	\end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.90\textwidth]{Test/Images/Backend/Coverage.png}
 	\caption{Testcoverage for Administrationssystem}
