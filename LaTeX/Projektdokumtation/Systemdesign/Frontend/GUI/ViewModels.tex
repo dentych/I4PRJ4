@@ -2,6 +2,16 @@
 Herunder vil vi kort forklare de brugte viewmodels, i systemet.
 
 \subsubsection{Klassebeskrivelser}
+\textbf{MainWindow}\\
+I MainWindow er der oprettet en række Button.Click.Events, som har ansvar for logic som er afhængig af displayet i inputs segmentet. Disse events er skrevet for at adskille ShoppingList fra selve view(xaml) delen og implementere dermed en view(code) del, som laver funktionens kald ned til ShoppingList. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=80mm]{Systemdesign/Frontend/GUI/Pics/Main}
+	\caption{MainWindow}
+	\label{fig:KasseMainWindowClass}
+\end{figure}
+
 \textbf{CategoriesMenu}\\
 CategoriesMenu er en menu med categorier. Denne klasse står for at kende alle kategorier. Ved et tryk på den categoryknappen vil CategoriesMenu oprette en menu med alle kategorier der eksisterer i systemet. Til hver menuitem vil den også tilknytte en liste af produkter. Derved kan der, ved tryk på menuitem, oprettes knapper med præcis de produkter der er ønsket. 
 
