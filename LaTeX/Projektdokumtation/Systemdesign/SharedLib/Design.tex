@@ -4,14 +4,28 @@ Da \gls{SL} skulle designes blev det i første iteration klart at der ville opst
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\textwidth]{Systemdesign/SharedLib/Images/SharedLib_Package.png}
+    \includegraphics[width=1.0\textwidth]{Systemdesign/SharedLib/Images/SharedLib_Package.png}
     \caption{Oversigt over alle pakker i SharedLib}
     \label{fig:oversigtSL}
 \end{figure}
 
 På figur \ref{fig:oversigtSL} ses det hvordan strukturen i SharedLib er opbygget.  \\
 
-PUNKTFORM I FORHOLD TIL FIGUR!!!\\
+Herunder ses en kort beskrivelse af de forskellige namespaces, og hvad de indeholder.
+
+\begin{itemize}
+\item \textbf{Models} indeholder datamodeller der i de forskellige systemer bruges som skabeloner. 
+\item \textbf{Threading} Bonjy WRITE STUFFSS!!. 
+\item \textbf{Sockets} Bonjy WRITE STUFFSS!!.
+\item \textbf{Protocol} indeholder hele protokollen og er denne der bruges til kommunikation mellem alle delsystemer.
+\item \textbf{ProtocolMarshallers} indeholder de kodesprog der kan kommunikeres med.
+\item \textbf{Commands} indeholder de forskellige kommandoer der bruges til at sende information over protokollen.
+\item \textbf{ProductCommands} indeholder kommandoer der er specifikke for produkter.
+\item \textbf{ProductCategoryCommands} indeholder kommandoer der er specifikke for produktkategorier.
+\item \textbf{CmdMarshallers} indeholder marshallers som har til opgave at parse de forskellige kommandoer til og fra XML.
+\item \textbf{ProductMarshallers} indeholder marshallers der er specifikke for produkter.
+\item \textbf{ProductCategoryMarshallers} indeholder marshallers der er specifikke for produktkategorier.
+\end{itemize}
 
 FORTÆL HER NOGET OVERVEJELSER VED SOLID!!!\\
 
@@ -21,3 +35,5 @@ FORTÆL YDERLIGERE GENERELT OM SHAREDLIB!!!\\
 \input{Systemdesign/SharedLib/Protocol}
 \input{Systemdesign/SharedLib/Commands}
 \input{Systemdesign/SharedLib/Marshallers}
+\input{Systemdesign/SharedLib/Threading}
+\input{Systemdesign/SharedLib/Sockets}
