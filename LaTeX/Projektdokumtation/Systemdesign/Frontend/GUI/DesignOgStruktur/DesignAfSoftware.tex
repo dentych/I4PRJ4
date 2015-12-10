@@ -1,5 +1,5 @@
 \subsubsection{Design af elementer}
-Herunder vil designet af en stor del af Kommunikationen i grænsefladen blive beskrevet, først med klassediagrammer og derefter med sekvensdiagrammer.\\
+Herunder vil designet af en stor del af Kommunikationen i grænsefladen blive beskrevet, både med klassediagrammer og sekvensdiagrammer.\\
 
 \textbf{Klassediagrammer}\\
 
@@ -10,19 +10,25 @@ Herunder vil designet af en stor del af Kommunikationen i grænsefladen blive be
 	\label{fig:KasseKlasse}
 \end{figure}
 
-På figur \ref{fig:KasseKlasse} kan man se hele kasseapparatets software vist ved dens klasser og funktioner. Dog er ViewModels delt op i 2 pakker. Dette er bestemt, da det ville give mere mening at gøre det på denne måde når man skulle forklare klasserne og deres indbyrdes forhold. \\
-Klassediagrammet er delt op i 3 lag, der skal symbolisere henholdsvis Præsentationslag, Business logic og Data access
+På figur \ref{fig:KasseKlasse} kan man se hele kasseapparatets software vist ved dens klasser og funktioner. Dog er ViewModels delt op i 2 pakker. Dette er bestemt, da det ville give mere mening at gøre det på denne måde, når man skulle forklare klasserne og deres indbyrdes forhold. \\
+Klassediagrammet er delt op i 3 lag, der skal symbolisere henholdsvis Præsentationslag, Business logic og Data access.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{Systemdesign/Frontend/GUI/DesignOgStruktur/Pics/KlassediagramButtonModel}
+	\includegraphics[width=0.7\textwidth]{Systemdesign/Frontend/GUI/DesignOgStruktur/Pics/KlassediagramButtonModel}
 	\caption{Klassediagram over ViewModel pakken ButtonModel.}
-	\label{fig:EndeligeGUI}
+	\label{fig:ButtonModel}
 \end{figure}
+
+På figur \ref{fig:ButtonModel} ser man ViewModel pakken buttonmodel, der står for produktknapperne i grænsefladen. Disse objekter sikrer at man kan skifte produktside og ved tryk på en knap kan et produkt tilføjes til shoppinglist som er indkøbskurven på \gls{KA}tet. For at opsætte denne pakke blev der først opsat et sekvensdiagram set på figur.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{Systemdesign/Frontend/GUI/DesignOgStruktur/Pics/KlassediagramCategoryControl}
+	\includegraphics[width=0.7\textwidth]{Systemdesign/Frontend/GUI/DesignOgStruktur/Pics/KlassediagramCategoryControl}
 	\caption{Pakkediagram over ViewModel pakken CategoryControl.}
-	\label{fig:EndeligeGUI}
+	\label{fig:CategoryControl}
 \end{figure}
+
+CategoryControl er en ViewModel pakke der står for at kontrollere produktkategori valg og dermed hvilke produkter der vises i grænsefladen. Denne ViewModel pakke kender til ProductButtonControl.
+
+\newpage
