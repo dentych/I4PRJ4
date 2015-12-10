@@ -7,7 +7,14 @@ Der er lavet integrationstests der tager udgangspunkt i ViewModels og tester med
 \textbf{Testdetaljer}\\
 Testene er foretaget ved hjælp af NUnit og NSubstitute. Funktionaliteten i viewmodels er testet sammen med modeller fra \gls{AS}et selv, samt \gls{SL}. For at finde ud af, hvilke klasser der skulle testes sammen er der udarbejdet et dependency tree, som kan ses på figur \ref{fig:AS-dependencies}.\\
 
-\newpage
+
+\textbf{Beskrivelse af integrationstest}\\
+Som det kan ses er det et rimelig omfattende dependency tree. Alle views (Window klasserne) er udelukket fra testen, da det blot er XML kodning af vinduernes udseende og data bindinger. Alle vinduerne afhænger af deres viewmodel.\\
+Disse viewmodels indeholder den bagvedliggende funktionalitet, i samarbejde med models. Disse er derfor testet sammen. Testene er foretaget så de tester den funktionalitet en bruger ville benytte sig af i brugergrænsefladen.\\
+Dette indebærer stort set bare at teste de kommandoer som knapperne i en GUI benytter sig af, samtidig med at der foretages ændringer i de datamodeller som ligger i de forskellige viewmodels.\\
+\\
+ Testene er foretaget ud fra et "top-down" princip, hvor de øverste klasser (viewmodels) er testet med de klasser de afhænger af, herunder ModelHanlder mv., men også hvad der bliver sendt ud på klienten. Desuden har \gls{SL} været en aktiv del af integrationstesten.
+
 \textbf{Dependency tree}
 \begin{figure}[H]
 	\centering
@@ -16,5 +23,3 @@ Testene er foretaget ved hjælp af NUnit og NSubstitute. Funktionaliteten i view
 	\label{fig:AS-dependencies}
 \end{figure}
 
-\textbf{Beskrivelse af integrationstest}\\
-Som det kan ses er det et rimelig omfattende dependency tree. Alle views (Window klasserne) er udelukket fra testen, da det blot er XML kodning af vinduernes udseende og data bindinger. Alle vinduerne afhænger af deres viewmodel. Disse viewmodels indeholder den bagvedliggende funktionalitet, i samarbejde med models. Disse er derfor testet sammen. Testene er foretaget så de tester den funktionalitet en bruger ville benytte sig af i brugergrænsefladen. Dette indebærer stort set bare at teste de kommandoer som knapperne i en GUI benytter sig af, samtidig med at der foretages ændringer i de datamodeller som ligger i de forskellige viewmodels. Testene er foretaget ud fra et "top-down" princip, hvor de øverste klasser (viewmodels) er testet med de klasser de afhænger af (models, såsom BackendProductCategoryList, ModelHandler, og så fremdeles).
