@@ -9,11 +9,11 @@
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Kassesystemet har forbindelse til Central Server, hvor i varen der eksisterer en Testvare 1 til 100kr} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{Eks} trykker på “Testvare 1” til 100 kr  & Testvare 1 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 100 kr & & \\\hline
-2 & \gls{Eks} trykker på testvaren på Salgs listen & Testvaren markeres & & \\\hline
-3 & \gls{Eks} indtaster 1 via tastatur i GUI & 1 fremkommer i display & & \\\hline
-4 & \gls{Eks} vælger Retur & Testvare i salgsliste sættes til antal -1 & &\\\hline
-5 & \gls{Eks} indtaster 0 + kontant & Gui angiver at der skal returneres 100 kr & & \\
+1 & \gls{Eks} trykker på “Testvare 1” til 100 kr  & Testvare 1 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 100 kr & Varen fremkommer i listen, og prisen opdateret & OK \\\hline
+2 & \gls{Eks} trykker på testvaren på Salgs listen & Testvaren markeres & Markeres & OK \\\hline
+3 & \gls{Eks} indtaster 1 via tastatur i GUI & 1 fremkommer i display & 1 fremkommer i display & OK \\\hline
+4 & \gls{Eks} vælger Retur & Testvare i salgsliste sættes til antal -1 & Testvare er sat til -1 i listen & OK\\\hline
+5 & \gls{Eks} indtaster 0 + kontant & GUI angiver at der skal returneres 100 kr & GUI giver popup der siger der skal returneres 100 kr & OK \\
 \hline
 \end{tabularx}
 \caption{Accepttest 2: Returner vare}
@@ -27,7 +27,7 @@ Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hlin
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Ext 1 - \gls{Kunde} fortryder} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er varer indtastet} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & Ekspedient trykker Annuller & Salgsliste rydes & & \\\hline
+1 & Ekspedient trykker Annuller & Salgsliste rydes & Salgslisten ryddes & OK \\\hline
 
 \end{tabularx}
 \caption{Accepttest 2: Returner vare - Ext 1}

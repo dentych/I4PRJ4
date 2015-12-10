@@ -9,9 +9,9 @@
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er oprettet forbindelse til \gls{CS}, \gls{PD}et "Test\gls{PD} 1" eksisterer \textit{ikke} i systemet, samt \textit{Testkategori 1} kategorien eksisterer i systemet.} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{SB} trykker på “Opret \gls{PD}” i \gls{AS} \gls{GUI} & Et vindue med \gls{PD} formular fremkommer & & \\\hline
-2 & \gls{SB} indtaster Navn: "Test\gls{PD} 1", Pris: "100", \gls{PD}kategori: "Testkategori 1" og trykker på knappen til Gem & En beskesboks informerer om at data er sendt til serveren, og vinduet til opret \gls{PD} lukkes. & & \\\hline
-3 & \gls{SB} observerer \gls{PD}listen & Test\gls{PD} 1 kommer frem i \gls{PD}listen. & & \\\hline
+1 & \gls{SB} trykker på “Opret \gls{PD}” i \gls{AS} \gls{GUI} & Et vindue med \gls{PD} formular fremkommer & Vindue fremkommer & OK \\\hline
+2 & \gls{SB} indtaster Navn: "Test\gls{PD} 1", Pris: "100", \gls{PD}kategori: "Testkategori 1", stregekode: "123ABC", og trykker på knappen til Gem & Vinduet lukkes. & Vinduet lukkes & OK \\\hline
+3 & \gls{SB} observerer \gls{PD}listen & Test\gls{PD} 1 kommer frem i \gls{PD}listen. & Testprodukt 1 fremkommer i produktlisten & OK \\\hline
 \end{tabularx}
 \caption{Accepttest 3: Opret \gls{PD}}
 \label{tab:ATop}
@@ -27,8 +27,8 @@ Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hlin
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Extension 1: \gls{PD}et eksisterer allerede} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er oprettet forbindelse til \gls{CS}, \gls{PD}et "Test\gls{PD} 1" eksisterer \textit{allerede} i systemet, samt "Testkategori 1" kategorien eksisterer i systemet.} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{SB} trykker på “Opret \gls{PD}” i \gls{AS} \gls{GUI} & Et vindue med \gls{PD} formular fremkommer & & \\\hline
-2 & \gls{SB} indtaster Navn: "Test\gls{PD} 1", Pris: "100", \gls{PD}kategori: "Testkategori 1" og trykker på knappen til Gem & En beskesboks informerer \gls{SB}e om at \gls{PD}et allerede eksisterer, og vinduet til opret \gls{PD} forbliver. & & \\\hline
+1 & \gls{SB} trykker på “Opret \gls{PD}” i \gls{AS} \gls{GUI} & Et vindue med \gls{PD} formular fremkommer & Vindue fremkommer & OK \\\hline
+2 & \gls{SB} indtaster Navn: "Test\gls{PD} 1", Pris: "100", stregekode "ABC123" \gls{PD}kategori: "Testkategori 1" og trykker på knappen til Gem & En beskesboks informerer \gls{SB}e om at \gls{PD}et allerede eksisterer, og vinduet til opret \gls{PD} lukker. & Vinduet lukker, popup informerer om fejl & OK \\\hline
 \end{tabularx}
 \caption{Accepttest 3: Opret \gls{PD}, extension 1.}
 \label{tab:ATop}

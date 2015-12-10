@@ -7,9 +7,9 @@
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er oprettet et "TestProdukt 1", som er vist på listen over produkter} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{SB} vælger "TestProdukt 1" på listen over produkter og trykker slet & Det valgte produkt er valgt på listen og et vindue åbner, som spørger om \gls{SB} virkelig ønsker at slette produktet. & & \\\hline
-2 & \gls{SB} trykker på knappen til at godkende sletningen & Vinduet lukker. & & \\\hline
-3 & Det valgte produkt slettes umiddelbart efter fra listen & Produktet forsvinder fra listen over produkter. & & \\
+1 & \gls{SB} vælger "TestProdukt 1" på listen over produkter og trykker slet & Det valgte produkt er valgt på listen og et vindue åbner, som spørger om \gls{SB} virkelig ønsker at slette produktet. & Dialogboks fremvises & OK \\\hline
+2 & \gls{SB} trykker på knappen til at godkende sletningen & Vinduet lukker. & Vinduet lukker & OK \\\hline
+3 & Det valgte produkt slettes umiddelbart efter fra listen & Produktet forsvinder fra listen over produkter. & Produktet forsvinder & OK \\
 \hline
 \end{tabularx}
 \caption{Accepttest 5: Slet produkt}
@@ -23,8 +23,8 @@ Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hlin
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Ext 1 - \gls{SB} vælger at annullere sletningen.} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er oprettet et "TestProdukt 1", som er vist på listen over produkter} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{SB} vælger "TestProdukt 1" på listen over produkter og trykker slet & Det valgte produkt er valgt på listen og et vindue åbner, som spørger om \gls{SB} virkelig ønsker at slette produktet. & & \\\hline
-2 & \gls{SB} trykker på knappen til at annullere sletningen & Vinduet lukker igen og intet yderligere foretages. & & \\
+1 & \gls{SB} vælger "TestProdukt 1" på listen over produkter og trykker slet & Det valgte produkt er valgt på listen og et vindue åbner, som spørger om \gls{SB} virkelig ønsker at slette produktet. & Vindue kommer & OK \\\hline
+2 & \gls{SB} trykker på knappen til at annullere sletningen & Vinduet lukker igen og intet yderligere foretages. & Vinduet lukkes, produkt stadig i listen. & OK \\
 \hline
 \end{tabularx}
 \caption{Accepttest 5: Slet produkt - Ext 1}
