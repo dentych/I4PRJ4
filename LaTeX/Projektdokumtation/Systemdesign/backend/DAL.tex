@@ -7,7 +7,7 @@
 Klienten i Administrationssystemet består af en socketconnection som er defineret i SharedLib[Ref]. Da denne skal bruges i både businesslogic, men også i MainWindowViewModel og der samtidig øn-skes at den samme benyttes hver gang, bruges Singleton[Reference] for denne forbindelse. \\
 Til at sende data benyttes en ModelHandler [Ref], som hver i sær har en metode til de forskellige handlinger. Eksempelvis EditProduct, DeleteProduct mf. Disse metoder arbejder alle sammen på samme måde:
 \begin{enumerate}
-\item Opret en XML-kommandostring vha. protokollen [\textbf{REFERENCE TIL PROTOKOLLEN}]
+\item Opret en XML-kommandostring vha. protokollen\footnote{Nærmere beskrivet under SharedLib, afsnit \ref{SHAREDLIB}, side \pageref{SHAREDLIB}}
 \item Send data til klienten
 \end{enumerate}
 
@@ -19,11 +19,11 @@ Til at sende data benyttes en ModelHandler [Ref], som hver i sær har en metode 
     \label{fig:CreateSend}
 \end{figure}
 
-På figur \ref{fig:CreateSend} ses det hvordan en viewmodel kunne kalde CreateProduct i ModelHandler\footnote{Nærmere beskrevet på side \pageref{Modelhandler_Beskrivelse}}, som får lavet en XML-streng \gls{CS} kan forstå. Derefter bliver denne data sendt ud igennem en socket forbindelse.
+På figur \ref{fig:CreateSend} ses det hvordan en viewmodel kunne kalde CreateProduct i ModelHandler\footnote{Nærmere beskrevet under klassebeskrivelser, afsnit \ref{Modelhandler_Beskrivelse} side \pageref{Modelhandler_Beskrivelse}}, som får lavet en XML-streng \gls{CS} kan forstå. Derefter bliver denne data sendt ud igennem en socket forbindelse.
 Derefter afsluttes der. Det betyder at når der eksempelvis oprettes et nyt produkt, bliver der ikke opdateret noget i systemet, der bliver udelukkende sendt data til \gls{CS}.\\\\
 
 
-For at modtage data, subscriber MainWindowViewModel på nogle forskellige events, som eksempelvis OnProductCategoryDeleted, OnProductEdited mf. Dette gøres igennem klassen SocketEventHandlers\footnote{Nærmere beskrevet på side \pageref{SocketEventHandlerBeskrivelse}}, som også indeholder de eventhandlere der bliver kaldt, når et event raises på serveren.  Det er derfor disse eventhandlere som håndtere dataen, og lægger den nye data ind i datamodellerne – og det er først der, der bliver opdateret lokalt. På den måde vil der aldrig eksistere noget i databasen der ikke eksisterer i Administrationssystemet og vice versa. 
+For at modtage data, subscriber MainWindowViewModel på nogle forskellige events, som eksempelvis OnProductCategoryDeleted, OnProductEdited mf. Dette gøres igennem klassen SocketEventHandlers\footnote{Nærmere beskrevet under klassebeskrivelser, afsnit \ref{SocketEventHandlerBeskrivelse} side \pageref{SocketEventHandlerBeskrivelse}}, som også indeholder de eventhandlere der bliver kaldt, når et event raises på serveren.  Det er derfor disse eventhandlere som håndtere dataen, og lægger den nye data ind i datamodellerne – og det er først der, der bliver opdateret lokalt. På den måde vil der aldrig eksistere noget i databasen der ikke eksisterer i Administrationssystemet og vice versa. 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=1\textwidth]{Systemdesign/backend/Images/DataReceive.png}
