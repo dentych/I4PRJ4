@@ -9,11 +9,11 @@
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:}  Kassesystemet har forbindelse til \gls{CS}, hvor i der eksisterer en Testvare 1 til 100 kr. samt en Testvare 2 til 50 kr} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{Eks} trykker på “Testvare 1” til 100 kr & Testvare 1 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 100 kr & & \\\hline
-2 & \gls{Eks} trykker på “Testvare 2” til 50 kr & Testvare 2 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 150 kr & & \\\hline
-3 & \gls{Eks} indtaster 200 & Beløbet fremkommer i GUI & & \\\hline
+1 & \gls{Eks} trykker på “Testvare 1” til 100 kr & Testvare 1 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 100 kr & Varen fremkommer i listen, og total køb er 100 kr. & OK \\\hline
+2 & \gls{Eks} trykker på “Testvare 2” til 50 kr & Testvare 2 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 150 kr & Testvare 2 fremkommer, total pris 150 & OK \\\hline
+3 & \gls{Eks} indtaster 200 & Beløbet fremkommer i GUI & Beløbet fremkommer i display-tingen & OK \\\hline
 4 & \gls{Eks} trykker på “Kontant Betaling” & Beløbet, som \gls{Kunde} skal have retur, (50 kr.) fremkommer. Alle varer fjernes fra listen over indtastede varer. Samlet pris for varerne nulstillet til 0 kr.
-Salget gemmes i databasen &  & \\
+Salget gemmes i databasen & Popup informerer om at kunden skal have 50 kr tilbage, efter OK resettes listen & OK \\
 \hline
 \end{tabularx}
 \caption{Accepttest 1: Gennemfør salg}
@@ -28,9 +28,9 @@ Salget gemmes i databasen &  & \\
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Ext 1 - Forkert vare indtastet} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er ingen varer indtastet} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{Eks} trykker på “Testvare 1” til 100 kr. & Testvare 1 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 100 kr. & & \\\hline
-2 & \gls{Eks} vælger varen på listen over vare & Den valgte vare markeres & & \\\hline
-3 & \gls{Eks} trykker på slet knappen & Testvare 1 forsvinder fra listen over indtastede varer og den samlede pris for varerne nulstillet til 0 kr. & & \\
+1 & \gls{Eks} trykker på “Testvare 1” til 100 kr. & Testvare 1 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 100 kr. & Testvare 1 fremkommer i listen & OK \\\hline
+2 & \gls{Eks} vælger varen på listen over vare & Den valgte vare markeres & Varen markeres & OK \\\hline
+3 & \gls{Eks} trykker på slet knappen & Testvare 1 forsvinder fra listen over indtastede varer og den samlede pris for varerne nulstillet til 0 kr. & Varen forsvinder, pris er 0 & OK \\
 \hline
 \end{tabularx}
 \caption{Accepttest 1: Gennemfør salg - Ext 1}
@@ -64,8 +64,8 @@ Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hlin
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Ext 3 - \gls{Kunde}n stopper handlen} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er ingen varer indtastet} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{Eks} trykker på “Testvare 1” til 100 kr. & Testvare 1 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 100 kr. & & \\\hline
-2 & \gls{Eks} trykker på “Annuller” & Alle varer fjernes fra listen over indtastede varer. Samlet pris for varerne nulstillet til 0 kr. & & \\
+1 & \gls{Eks} trykker på “Testvare 1” til 100 kr. & Testvare 1 fremkommer i listen over indtastede varer og den samlede pris for købet opdateres til 100 kr. & Som forventet er listen opdateret og prisen står til 100 kr & OK \\\hline
+2 & \gls{Eks} trykker på “Annuller” & Alle varer fjernes fra listen over indtastede varer. Samlet pris for varerne nulstillet til 0 kr. & Listen er tom, pris nulstillet & OK \\
 \hline
 \end{tabularx}
 \caption{Accepttest 1: Gennemfør salg - Ext 3}
