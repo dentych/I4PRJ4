@@ -4,15 +4,6 @@
 \subsubsection{Introduktion}
 Præsentationslaget i kasseapparatet er opbygget med XML i WPF. Selve laget blev først designet ved brug af skitsen på figur \ref{fig:KasseMockup} og derefter implementeret i visual studios WPF designer som set på figur \ref{fig:EndeligeGUI}. Da Grænsefladen var sat op så blev yderligere underliggende funktionalitet tilføjet såsom viewmodels og der blev opsat sekvensdiagrammer til disse for at forbedre forståelsen af den kommunikation der skulle løbe igennem systemet. Et godt eksempel er sekvensdiagrammet på figur \ref{fig:SekvensViewModel} som er opsat på baggrund af Use Case 1 - Tilføj produkt. Dette sekvensdiagram er også opsat hvor kommunikationen igennem de andre lag er med. Dette diagram kan findes på bilag ?. Til sidst til dette afsnit er der medtaget klassebeskrivelser der kort fortæller om hver klasse og dennes ansvar. \\
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{Systemdesign/Frontend/GUI/Pics/Sekvensdiagram-TilfoejProdukt}
-	\caption{Sekvensdiagram over tilføjelse af produkt til shoppinglist}
-	\label{fig:SekvensViewModel}
-\end{figure}
-
-På figur \ref{fig:SekvensViewModel} kan se hvad der sker når en person trykker på et produkt. Når knappen bliver trykket ned, så kalder viewet AddItemCommand i ViewModellen ButtonContent. Dette command tjekker så om der allerede er tilføjet et produkt i shoppinglist. Hvis det er, incrementeres produktet. Hvis ikke så tilføjes det. Herefter notifier shoppinglist på at der er ændret på totalprice og denne nye værdi hentes derefter af viewet.
-
 \subsubsection{Brugergrænsefladen}
 
 \begin{figure}[H]
