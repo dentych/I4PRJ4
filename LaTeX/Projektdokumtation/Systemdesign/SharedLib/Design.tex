@@ -9,9 +9,7 @@ Da \gls{SL} skulle designes blev det i første iteration klart at der ville opst
     \label{fig:oversigtSL}
 \end{figure}
 
-På figur \ref{fig:oversigtSL} ses det hvordan strukturen i SharedLib er opbygget.  \\
-
-Herunder ses en kort beskrivelse af de forskellige namespaces, og hvad de indeholder.
+Herunder ses en kort beskrivelse af de forskellige pakker, og hvad de indeholder.
 
 \begin{itemize}
 \item \textbf{Models} indeholder datamodeller der i de forskellige systemer bruges som skabeloner. 
@@ -27,9 +25,14 @@ Herunder ses en kort beskrivelse af de forskellige namespaces, og hvad de indeho
 \item \textbf{ProductCategoryMarshallers} indeholder marshallers der er specifikke for produktkategorier.
 \end{itemize}
 
-FORTÆL HER NOGET OVERVEJELSER VED SOLID!!!\\
+\textbf{Funktionalitet}\\
 
-FORTÆL YDERLIGERE GENERELT OM SHAREDLIB!!!\\
+\gls{SL}'s hovedformål var fra starten at sørge for at udviklerne på de forskellige delsystemer ikke skulle tænke over at parse deres data til XML og tilbage til brugbar data. Derfor blev det besluttet at ligge alt denne funktionalitet et sted. Denne funktionalitet blev siden udvidet til datamodeller hvis nødvendighed opstod da alle delsystemer på denne måde kunne håndtere informationer om f.eks. produkter, på samme måde.\\
+
+Protokollen for \gls{SL} fungerer ved at et givet delsystem f.eks. laver et produkt objekt de gerne vil sende til \gls{CS}, dette pakkes herefter ind i et kommando objekt, Som derefter bliver sendt med som parameter i protokol objektets encode funktion. denne sørger for at produktinformationerne inde i kommando objektet bliver parset til XML og at dette bliver gemt i en string som bliver sendt via socket objektet. For yderligere informationer omkring protokollen, se da afsnit\ref{PROTOKOL}\\
+
+FORTÆL HER NOGLE OVERVEJELSER VED SOLID!!!\\
+
 
 \input{Systemdesign/SharedLib/Models}
 \input{Systemdesign/SharedLib/Protocol}

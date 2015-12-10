@@ -1,5 +1,35 @@
 \subsection{Commands}
+Fælles for alle systemerne i dette projekt er at de kommunikere ved hjælp af kommandoer. For at gøre denne kommunikationen lettere blev der oprettet en Command klasse der i sig selv blot har en attribut med et kommando navn, dette betyder at når der arbejdes med kommander, så kan man ved hjælp af Command klassens navn caste til den korrekte implementering af denne kommando.
 
-Command tekst her, wooow
+Der skelnes imellem tre typer af kommandoer:
+
+\begin{itemize}
+\item \textbf{Generelle kommandoer} 
+\item \textbf{Produkt kommandoer} 
+\item \textbf{Produktkategori kommandoer}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Systemdesign/SharedLib/Images/Commands/GeneralCommands.png}
+    \caption{Oversigt over generelle kommandoer der nedarver fra Command klassen}
+    \label{fig:klasseModelCata}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Systemdesign/SharedLib/Images/Commands/ProductCommands.png}
+    \caption{Oversigt over produktspecifikke kommandoer der nedarver fra Command klassen}
+    \label{fig:klasseModelCata}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Systemdesign/SharedLib/Images/Commands/ProductCategoryCommands.png}
+    \caption{Oversigt over produktkategori-specifikke kommandoer der nedarver fra Command klassen}
+    \label{fig:klasseModelCata}
+\end{figure}
+
+
 
 \input{Systemdesign/SharedLib/Klassebeskrivelser/CommandKlassebeskrivelser}
