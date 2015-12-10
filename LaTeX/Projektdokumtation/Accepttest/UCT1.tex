@@ -45,11 +45,10 @@ Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hlin
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Ext 2 - Forkert antal indtastet} \\\hline
 \multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er ingen varer indtastet} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{Eks} trykker på tallet 2 & Tallet 2 fremkommer i displayet & & \\\hline
-2 & \gls{Eks} trykker på “Testvare 1” til 100 kr. & Testvare 1 fremkommer i listen over indtastede varer gange 2 og den samlede pris for købet opdateres til 200 kr. & & \\\hline
-3 & \gls{Eks} vælger varen på listen over vare & Den valgte vare markeres & & \\\hline
-4 & \gls{Eks} indtaster 5 & Tallet 5 fremkommer i displayet &  & \\\hline
-5 & \gls{Eks} trykker på "Antal" & I listen over indtastede varer står der nu 5 i antal ved Testvare 1. Samlet pris ændres til 500 kr &  & \\
+1 & \gls{Eks} trykker på “Testvare 1” til 100 kr. & Testvare 1 fremkommer i listen over indtastede varer gange 2 og den samlede pris for købet opdateres til 200 kr. & Vare fremkommer & OK \\\hline
+2 & \gls{Eks} vælger varen på listen over vare & Den valgte vare markeres & Varen markeres & OK \\\hline
+3 & \gls{Eks} indtaster 5 & Tallet 5 fremkommer i displayet & 5 fremkommer i display  & OK \\\hline
+4 & \gls{Eks} trykker på "Antal" & I listen over indtastede varer står der nu 5 i antal ved Testvare 1. Samlet pris ændres til 500 kr & Antal er nu 5, samlet pris er 500  & OK \\
 \hline
 \end{tabularx}
 \caption{Accepttest 1: Gennemfør salg - Ext 2}
