@@ -20,23 +20,6 @@ Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hlin
 \label{tab:ATspk}
 \end{table}
 
-\begin{table}[H]
-\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
-\hline
-\multicolumn{5}{|l|}{\textbf{Use case under test:} 8 - Slet produktkategori} \\\hline
-\multicolumn{5}{|l|}{\textbf{Scenarie:} Ext. 2 \gls{SB} trykker annuller} \\\hline
-\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er forbindelse til \gls{CS}, Testkategori 1 eksisterer, Testprodukt 1 er oprettet og placeret i Testkategori 1} \\\hline
-Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{SB} vælger Testkategori 1 i kategorilisten & Testkategori 1 markeres. & Markeres & OK \\\hline
-2 & \gls{SB} trykker på knappen til Slet Kategori & En dialogboks åbnes der informerer superbruger om at der er produkter i kategorien, og \gls{SB} kan vælge en anden kategori de skal flyttes til. & Vindue åbner, der bliver ikke informeret om at der er produkter, men sletknappen er grå, og eneste mulighed er at trykke flyt eller annuller & OK \\\hline
-3 & \gls{SB} trykker på knappen til Annuller & Vinduet til slet produkter og information lukkes  & Den lukkes & OK \\\hline
-4 & \gls{SB} observerer kategorilisten & Testkategori 1 forsvinder IKKE fra listen af produkter & Forsvinder ikke & OK \\
-\hline
-\end{tabularx}
-\caption{Accepttest 8: Slet produktkategori, extension 1}
-\label{tab:ATspk}
-\end{table}
-
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
@@ -53,4 +36,22 @@ Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hlin
 \end{tabularx}
 \caption{Accepttest 8: Slet produktkategori, extension 2}
 \label{tab:ATspk}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+		\hline
+		\multicolumn{5}{|l|}{\textbf{Use case under test:} 8 - Slet produktkategori} \\\hline
+		\multicolumn{5}{|l|}{\textbf{Scenarie:} Ext. 2 \gls{SB} trykker annuller} \\\hline
+		\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er forbindelse til \gls{CS}, Testkategori 1 eksisterer, Testprodukt 1 er oprettet og placeret i Testkategori 1} \\\hline
+		Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+		1 & \gls{SB} vælger Testkategori 1 i kategorilisten & Testkategori 1 markeres. & Markeres & OK \\\hline
+		2 & \gls{SB} trykker på knappen til Slet Kategori & En dialogboks åbnes der informerer superbruger om at der er produkter i kategorien, og \gls{SB} kan vælge en anden kategori de skal flyttes til. & Vindue åbner, der bliver ikke informeret om at der er produkter, men sletknappen er grå, og eneste mulighed er at trykke flyt eller annuller & OK \\\hline
+		3 & \gls{SB} trykker på knappen til Annuller & Vinduet til slet produkter og information lukkes  & Den lukkes & OK \\\hline
+		4 & \gls{SB} observerer kategorilisten & Testkategori 1 forsvinder IKKE fra listen af produkter & Forsvinder ikke & OK \\
+		\hline
+	\end{tabularx}
+	\caption{Accepttest 8: Slet produktkategori, extension 1}
+	\label{tab:ATspk}
 \end{table}
