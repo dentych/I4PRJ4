@@ -1,1 +1,17 @@
 \section{Resultater og Diskussion}
+Projektet har resulteret i en funktionel prototype som overholder alle "skal" punkter fra kravspecifikationen der blev opstillet til systemet på forhånd.\\
+
+\textbf{Kasseapparat}\\
+Det var krævet af Kasseapparatet, at det skulle kunne gennemføre salg, gennemføre returnering af varer og kommunikere med CentralServer. Alle disse krav er opfyldt i den endelige prototype.\\
+
+\textbf{Administrationssystem}\\
+Administrationssystem var en del af de fleste af de opstillede Use Cases, og havde derfor en masse logik der skulle laves. Oprettelse, sletning og redigering af produkter og kategorier var en del af minimumssystemet, og al denne funktionalitet er funktionsdygtigt i prototypen.\\
+Der er brugt meget tid på at udvikle et produkt der nemt kan skaleres med flere instanser af Administrationssystem og Kasseapparat. Der blev således brugt en del tid på at udvikle funktionalitet til at holde alle instanser opdateret hele tiden, ved hjælp af asynkron kommunikation.\\
+I Administrationssystem er der hovedsagelig lagt vægt på funktionalitet, hvilket betyder at det visuelle design har været sekundær prioritet. Administrationssystem gør i prototypen blot brug af det standard design der ligger i Windows.\\
+
+\textbf{CentralServer}\\
+CentralServer kan kommunikere med både Administrationssystem og Kasseapparat. CentralServer har også funktionalitet til at oprette, redigere og slette produkter og kategorier på kommando fra Administrationssystem.\\
+
+\textbf{SharedLib}\\
+Alle tre systemer gør brug af et fælles bibliotek, kaldet SharedLib, hvor funktionalitet til at encode og decode kommandoer til XML ligger. Dette samler funktionaliteten, så delsystemerne ikke selv skal implementere den samme funktionalitet flere gange.\\
+Når al funktionaliteten er samlet et sted betyder også, at alle tre delsystemer kommunikerer på præcis samme måde, så der altid er vished om, at protokollen mellem delsystemerne overholdes.\\
