@@ -7,11 +7,11 @@
 \hline
 \multicolumn{5}{|l|}{\textbf{Use case under test:} 6 - Opret produktkategori} \\\hline
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
-\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Administrationssystemet har oprettet forbindelse til server, der eksisterer ingen eksisterende kategorier.} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Administrationssystemet har oprettet forbindelse til server, "Testprodukt 1" eksisterer \textit{ikke} i systemet. samt "Testkategori 1" eksisterer.} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{SB} trykker på knappen til Opret produktkategori & \gls{SB} præsenteres for et nyt vindue & Nyt vindue fremkommer & OK \\\hline
-2 & \gls{SB} indtaster Navn: "Testkategori 1", hvorefter \gls{SB} trykker på gem. & Vinduet til opret produktkategori lukkes. & Vinduet lukkes & OK \\\hline
-3 & \gls{SB} observerer kategorilisten & Testkategori 1 vises i produktlisten & Kategorien fremkommer & OK \\
+1 & \gls{SB} trykker på knappen til Opret produkt & \gls{SB} præsenteres for et nyt vindue & & \\\hline
+2 & \gls{SB} indtaster Navn: "Testprodukt 1", Pris: "100" og Kategori: "Testkategori 1, hvorefter \gls{SB} trykker på gem. & Vinduet til opret produkt lukkes. & & \\\hline
+3 & \gls{SB} observerer produktlisten & Testprodukt 1 vises i produktlisten & & \\
 \hline
 \end{tabularx}
 \caption{Accepttest 6: Opret produktkategori}
@@ -23,10 +23,10 @@ Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hlin
 \hline
 \multicolumn{5}{|l|}{\textbf{Use case under test:} 6 - Opret produktkategori} \\\hline
 \multicolumn{5}{|l|}{\textbf{Scenarie:} Extension 1: Kategorien eksisterer allerede} \\\hline
-\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} \gls{AS} har oprettet forbindelse til \gls{CS}, "Testkategori 1" eksisterer \textit{allerede} i systemet.} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} \gls{AS} har oprettet forbindelse til \gls{CS}, "Testprodukt 1" eksisterer \textit{allerede} i systemet, samt "Testkategori 1" eksisterer.} \\\hline
 Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
-1 & \gls{SB} trykker på knappen til Opret produktkategori & \gls{SB} præsenteres for et nyt vindue & Nyt vindue fremkommer & OK \\\hline
-2 & \gls{SB} indtaster Navn: "Testkategori 1", hvorefter \gls{SB} trykker på gem. & \gls{SB} bliver præsenteret for en beskedboks der informerer om at produktkategorien allerede eksisterer, og vinduet til opret produktkategori lukker. & Beskedboks fremkommer, ved tryk på OK lukker vinduet & OK \\\hline
+1 & \gls{SB} trykker på knappen til Opret produkt & \gls{SB} præsenteres for et nyt vindue & & \\\hline
+2 & \gls{SB} indtaster Navn: "Testprodukt 1", Pris: "100" og Katetegori: "Testkategori 1, hvorefter \gls{SB} trykker på gem. & \gls{SB} bliver præsenteret for en beskedboks der informerer om at produktkategorien allerede eksisterer, og vinduet til opret produkt forbliver. & & \\\hline
 \end{tabularx}
 \caption{Accepttest 6: Opret produktkategori, ext. 1}
 \label{tab:ATopk}
