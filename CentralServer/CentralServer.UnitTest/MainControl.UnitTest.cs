@@ -71,7 +71,7 @@ namespace CentralServer.UnitTest
             var cmd = new GetCatalogueCmd();
             var msg = new CommandRecievedMsg(1, cmd);
 
-            uut.Dispatch(MainControl.E_COMMAND_RECIEVED, msg);
+            uut.Dispatch(MainControl.E_COMMAND_RECEIVED, msg);
 
             handler.Received(1).HandleGetCatalogue(Arg.Any<IMessageReceiver>(), Arg.Any<GetCatalogueCmd>());
         }
@@ -82,7 +82,7 @@ namespace CentralServer.UnitTest
             var cmd = new CreateProductCmd("", "", 0, 0);
             var msg = new CommandRecievedMsg(1, cmd);
 
-            uut.Dispatch(MainControl.E_COMMAND_RECIEVED, msg);
+            uut.Dispatch(MainControl.E_COMMAND_RECEIVED, msg);
 
             handler.Received(1).HandleCreateProduct(Arg.Any<IMessageReceiver>(), Arg.Any<CreateProductCmd>());
         }
@@ -93,7 +93,7 @@ namespace CentralServer.UnitTest
             var cmd = new EditProductCmd("", "", 0, 0, 0);
             var msg = new CommandRecievedMsg(1, cmd);
 
-            uut.Dispatch(MainControl.E_COMMAND_RECIEVED, msg);
+            uut.Dispatch(MainControl.E_COMMAND_RECEIVED, msg);
 
             handler.Received(1).HandleEditProduct(Arg.Any<IMessageReceiver>(), Arg.Any<EditProductCmd>());
         }
@@ -104,7 +104,7 @@ namespace CentralServer.UnitTest
             var cmd = new DeleteProductCmd(0);
             var msg = new CommandRecievedMsg(1, cmd);
 
-            uut.Dispatch(MainControl.E_COMMAND_RECIEVED, msg);
+            uut.Dispatch(MainControl.E_COMMAND_RECEIVED, msg);
 
             handler.Received(1).HandleDeleteProduct(Arg.Any<IMessageReceiver>(), Arg.Any<DeleteProductCmd>());
         }
@@ -116,7 +116,7 @@ namespace CentralServer.UnitTest
             var cmd = new CreateProductCategoryCmd(cat);
             var msg = new CommandRecievedMsg(1, cmd);
 
-            uut.Dispatch(MainControl.E_COMMAND_RECIEVED, msg);
+            uut.Dispatch(MainControl.E_COMMAND_RECEIVED, msg);
 
             handler.Received(1).HandleCreateProductCategory(Arg.Any<IMessageReceiver>(), Arg.Any<CreateProductCategoryCmd>());
         }
@@ -128,7 +128,7 @@ namespace CentralServer.UnitTest
             var cmd = new EditProductCategoryCmd(cat);
             var msg = new CommandRecievedMsg(1, cmd);
 
-            uut.Dispatch(MainControl.E_COMMAND_RECIEVED, msg);
+            uut.Dispatch(MainControl.E_COMMAND_RECEIVED, msg);
 
             handler.Received(1).HandleEditProductCategory(Arg.Any<IMessageReceiver>(), Arg.Any<EditProductCategoryCmd>());
         }
@@ -140,7 +140,7 @@ namespace CentralServer.UnitTest
             var cmd = new DeleteProductCategoryCmd(cat);
             var msg = new CommandRecievedMsg(1, cmd);
 
-            uut.Dispatch(MainControl.E_COMMAND_RECIEVED, msg);
+            uut.Dispatch(MainControl.E_COMMAND_RECEIVED, msg);
 
             handler.Received(1).HandleDeleteProductCategory(Arg.Any<IMessageReceiver>(), Arg.Any<DeleteProductCategoryCmd>());
         }
@@ -151,9 +151,17 @@ namespace CentralServer.UnitTest
             var cmd = new RegisterPurchaseCmd(new Purchase());
             var msg = new CommandRecievedMsg(1, cmd);
 
-            uut.Dispatch(MainControl.E_COMMAND_RECIEVED, msg);
+            uut.Dispatch(MainControl.E_COMMAND_RECEIVED, msg);
 
             handler.Received(1).HandleRegisterPurchase(Arg.Any<IMessageReceiver>(), Arg.Any<RegisterPurchaseCmd>());
+        }
+
+        [Test]
+        public void Dispatch_SendInvalidEvent_WrittenToLog()
+        {
+            uut.Dispatch(-1L, null);
+
+            log.Received(1).Write("MainControl", Log.DEBUG, Arg.Any<string>());
         }
     }
 }

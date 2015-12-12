@@ -4,6 +4,7 @@ using CentralServer.Threading;
 using CentralServer.Messaging.Messages;
 using CentralServer.Logging;
 using CentralServer.Messaging;
+using SharedLib.Protocol;
 
 namespace CentralServer.Server
 {
@@ -48,7 +49,7 @@ namespace CentralServer.Server
             var connection = new SocketConnection(_log, handle);
 
             // Init ClientControl and start thread
-            var clientControl = new ClientControl(_log, _mainControl, connection);
+            var clientControl = new ClientControl(_log, _mainControl, connection, new Protocol());
             var clientReceiver = new MessageReceiver(clientControl, new MessageQueue());
             var clientThread = ThreadStarter.Start(clientReceiver);
 

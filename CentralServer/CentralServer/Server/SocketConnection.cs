@@ -6,16 +6,12 @@ using CentralServer.Messaging.Messages;
 
 namespace CentralServer.Server
 {
-    public class SocketConnection
+    public class SocketConnection : ISocketConnection
     {
         private ILog _log;
         private Socket _handle;
         private const int _bufferSize = 512;
         private byte[] _buffer = new byte[_bufferSize];
-
-        // Delegates
-        public delegate void DataRecievedHandler(string data);
-        public delegate void DisconnectedHandler();
 
         // Events
         public event DataRecievedHandler OnDataRecieved;

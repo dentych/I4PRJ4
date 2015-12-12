@@ -61,7 +61,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientControl.UnitTest.cs" />
+    <Compile Include="Logging\Log.UnitTest.cs" />
     <Compile Include="MainControl.UnitTest.cs" />
+    <Compile Include="Messaging\Messages\SendCommandMsg.UnitTest.cs" />
+    <Compile Include="Messaging\Messages\DataRecievedMsg.UnitTest.cs" />
+    <Compile Include="Messaging\Messages\CommandRecievedMsg.UnitTest.cs" />
+    <Compile Include="Messaging\Messages\StartSessionMsg.UnitTest.cs" />
+    <Compile Include="Messaging\Messages\StopSessionMsg.UnitTest.cs" />
+    <Compile Include="Messaging\Messages\WelcomeMsg.UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\SessionControl.UnitTest.cs" />
   </ItemGroup>

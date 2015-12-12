@@ -93,5 +93,37 @@ namespace CentralServer.UnitTest
 
             control.GetClient(1);
         }
+
+        [Test]
+        public void GetClients_AddOneClient_ReturnsOneClient()
+        {
+            var control = new SessionControl();
+            var client = Substitute.For<IMessageReceiver>();
+
+            control.Register(client);
+            var clients = control.GetClients();
+
+            Assert.That(clients.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GetClients_AddFiveClient_ReturnsFiveClients()
+        {
+            var control = new SessionControl();
+            var client1 = Substitute.For<IMessageReceiver>();
+            var client2 = Substitute.For<IMessageReceiver>();
+            var client3 = Substitute.For<IMessageReceiver>();
+            var client4 = Substitute.For<IMessageReceiver>();
+            var client5 = Substitute.For<IMessageReceiver>();
+
+            control.Register(client1);
+            control.Register(client2);
+            control.Register(client3);
+            control.Register(client4);
+            control.Register(client5);
+            var clients = control.GetClients();
+
+            Assert.That(clients.Count, Is.EqualTo(5));
+        }
     }
 }

@@ -71,10 +71,6 @@
     <Compile Include="Migrations\201511260818304_AddedDatetimeOnPurchase.Designer.cs">
       <DependentUpon>201511260818304_AddedDatetimeOnPurchase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201511260935241_ChangedToIList.cs" />
-    <Compile Include="Migrations\201511260935241_ChangedToIList.Designer.cs">
-      <DependentUpon>201511260935241_ChangedToIList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\DatabaseContext.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Messaging\IMessageHandler.cs" />
@@ -83,6 +79,7 @@
     <Compile Include="Messaging\MessageReceiver.cs" />
     <Compile Include="RequisitionReceipt\IRequisitionReceipt.cs" />
     <Compile Include="RequisitionReceipt\RequisitionReceipt.cs" />
+    <Compile Include="Server\ISocketConnection.cs" />
     <Compile Include="Sessions\ISessionControl.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Log.cs" />
@@ -119,9 +116,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511260818304_AddedDatetimeOnPurchase.resx">
       <DependentUpon>201511260818304_AddedDatetimeOnPurchase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511260935241_ChangedToIList.resx">
-      <DependentUpon>201511260935241_ChangedToIList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
