@@ -4,7 +4,7 @@ Da \gls{SL} skulle designes blev det i første iteration klart at der ville opst
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=1.0\textwidth]{Systemdesign/SharedLib/Images/SharedLib_Package.png}
+    \includegraphics[width=1.0\textwidth]{Systemdesign/SharedLib/Images/SharedLib_Package2.png}
     \caption{Oversigt over alle pakker i SharedLib}
     \label{fig:oversigtSL}
 \end{figure}
@@ -13,7 +13,6 @@ Herunder ses en kort beskrivelse af de forskellige pakker, og hvad de indeholder
 
 \begin{itemize}
 \item \textbf{Models} indeholder datamodeller der i de forskellige systemer bruges som skabeloner. 
-\item \textbf{Threading} \textbf{Bonjy WRITE STUFFSS!!. NO JAKOB DOES DISS!!!!} 
 \item \textbf{Sockets} indeholder klasser til asynkron forbindelse til \gls{CS} samt de events der bliver raised a \gls{CS}.
 \item \textbf{Protocol} indeholder hele protokollen og er denne der bruges til kommunikation mellem alle delsystemer.
 \item \textbf{ProtocolMarshallers} indeholder de kodesprog der kan kommunikeres med.
@@ -31,12 +30,37 @@ Herunder ses en kort beskrivelse af de forskellige pakker, og hvad de indeholder
 
 Protokollen for \gls{SL} fungerer ved at et givet delsystem f.eks. laver et produkt objekt de gerne vil sende til \gls{CS}, dette pakkes herefter ind i et kommando objekt, Som derefter bliver sendt med som parameter i protokol objektets encode funktion. denne sørger for at produktinformationerne inde i kommando objektet bliver parset til XML og at dette bliver gemt i en string som bliver sendt via socket objektet. For yderligere informationer omkring protokollen, se da afsnit\ref{PROTOKOL}\\
 
-FORTÆL HER NOGLE OVERVEJELSER VED SOLID!!!\\
+
+\textbf{Design}\\
+
+Da Design arbejdet af protokollen langsomt begyndte at tage form, kom udfordringen med hvordan der kunne udarbejdes en sekvens af handlinger som så enkelt som muligt kunne tilføje funktionalitet til systemet, men som samtidigt ikke ville sætte det ud af spil eller kræve store revideringer, i og med protokollen var sådan en central del af systemet. Blikket blev hurtigt kastet mod SOLID design principperne da disse kunne gøre netop dette for systemet.
+
+Det første punkt var S, Single responsibility, og her blev udarbejdet ideen om det der senere skulle blive commands og marshallers, det at hver commando skulle have sin egen klasse og sin egen parser og at disse kun skulle have det ene ansvar, netop at videre bringe information og at parse denne.
+
+Næste punkt O, Open-Closed princippet, der ligger op til at systemet skal være åben for tilføjelser men lukket for ændringer, blev også overholdt ved teorien omkring commands og marshallers, da der pludseligt kunne opstå et behov for ny funktionalitet, og at man her ved hjælp af et interface kunne lave en ny implementering og hermed en ny kommando uden af ændre det eksiterende.
+
+\textbf{L'et i SOLID er Liskov's substitutions princip og dette siger at du skal kunne bytte rundt på en subklasse og den klasse denne arver fra, uden at programmet bemærker dette. Dette er i \gls{SL} også tilfældet. Det eneste sted der reelt er arv er fra Command klassen og til de forskellige kommandoer og dette vil ikke give problemer og der brydes derfor ikke med dette princip. UNDERSØG OM DET ER ET PROBLEM MED EKSTRA ATTRIBUTTER???}
+
+I'et var Interface Segregation og betød at hvis der ønskes en specifik funktion i et større system, som bør der så vidt muligt være interfaces der sørger for at den ønskede funktionalitet kan tilgås uden at være tvunget til at tage stilling til og håndtere unødvendige funktioner. Dette opnådede protokollen også da der blev indført interfaces for alle klasser på når Commands som derimod blev en abstrakt klasse der blev nedarvet fra.
+
+D'et og det sidste punkt i SOLID er Dependency inversion og kræver at afhængigheder skal komme nede fra og op. Ment som at en superklasse ikke skal kende til klasser i lavere lag på trods af at den måske bruger dem aktivt, dette skal fungerer via et interface i samme lag, som så bliver implementeret af en klasse i et lavere lag der her udfører disse handlinger. Dette fik protokollen også indført med de mange interfaces der her kunne sørge for at alt afhængighed kom nedefra. Protocol klassen kender f.eks. ikke den XmlMarshaller der finder den korrekte marshaller at bruge, den har et IProtocolMarshaller interface som XmlMarshaller implementere. Det samme for XmlMarshaller der ikke kender til de enkelte marshallers men derimod arbejder med ICmdMarshaller som de forskellige marshallers så har implementeret.\\
+
+Herunder på figur \ref{fig:overklasseSL} ses et overordnet klassediagram for protokollen i \gls{SL} som designet endte ud, og hvor det tydeligt ses hvordan de forskellige interfaces muliggøre kommunikation på tværs af lag.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Systemdesign/SharedLib/Images/SharedLib_Overordnet.png}
+	\caption{Klassediagram over \gls{SL}'s protokol}
+	\label{fig:overklasseSL}
+\end{figure}
 
 
 \input{Systemdesign/SharedLib/Models}
 \input{Systemdesign/SharedLib/Protocol}
+\input{Systemdesign/SharedLib/XmlBuffer}
 \input{Systemdesign/SharedLib/Commands}
+\input{Systemdesign/SharedLib/XmlMarshaller}
 \input{Systemdesign/SharedLib/Marshallers}
 \input{Systemdesign/SharedLib/Threading}
 \input{Systemdesign/SharedLib/Sockets}
