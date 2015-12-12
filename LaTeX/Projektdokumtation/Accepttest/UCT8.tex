@@ -1,0 +1,20 @@
+\subsection{Accepttest for UC7: Rediger produktkategori}
+
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+\hline
+\multicolumn{5}{|l|}{\textbf{Use case under test:} 7 - Rediger produktkategori} \\\hline
+\multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Forbindelse til \gls{CS} er oprettet. Der er oprettet en "Kategori 1".} \\\hline
+Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+1 & \gls{SB} trykker på kategori "Kategori 1" på listen over kategorier & "Kategori 1" er er markeret på listen over kategorier. & & \\\hline
+2 & \gls{SB} trykker på knappen til at redigere produkt & Et vindue åbner med kategoriens nuværende navn & & \\\hline
+3 & \gls{SB} redigerer navnet på kategorien til "Kategori 123" og trykker på knappen til at gemme ændringen & Vinduet lukker. & & \\\hline
+4 & \gls{SB} observerer kategorilisten, for at se, at ændringen er foretaget & "Kategori 1" skifter navn til "Kategori 123" &\\
+\hline
+\end{tabularx}
+\caption{Accepttest 7: Rediger produktkategori}
+\label{tab:ATrpk}
+\end{table}

@@ -1,0 +1,47 @@
+\subsection{Commands}\label{COMMAND}
+Fælles for alle systemerne i dette projekt er at de kommunikere ved hjælp af kommandoer. 
+
+Der skelnes imellem tre typer af kommandoer:
+
+\begin{itemize}
+\item \textbf{Generelle kommandoer} 
+\item \textbf{Produkt kommandoer} 
+\item \textbf{Produktkategori kommandoer}
+\end{itemize}
+
+\textbf{Generelle kommandoer} er kommandoer der ikke er specifikke for hverken Product eller ProductCategory klasserne, og dækker mere overfladiske behov som f.eks. "send mig kataloget med produkter" (GetCatalogueCmd).
+
+På figur \ref{fig:overklasseGen} ses en oversigt over de forskellige generelle kommando klasser der nedarver fra Command klassen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Systemdesign/SharedLib/Images/Commands/GeneralCommands.png}
+    \caption{Oversigt over generelle kommandoer der nedarver fra Command klassen}
+    \label{fig:overklasseGen}
+\end{figure}
+
+\textbf{Produkt kommandoer} er kommando klasser der er specifikke for Product klassen og medfører ændringer i et givet produkt. Et eksempel på dette kunne være CreateProductCmd, som beder om et produkt skal oprettes i databasen.
+
+På figur \ref{fig:overklassePrd} ses en oversigt over de forskellige produkt kommandoer der nedarver fra Command klassen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Systemdesign/SharedLib/Images/Commands/ProductCommands.png}
+    \caption{Oversigt over produktspecifikke kommandoer der nedarver fra Command klassen}
+    \label{fig:overklassePrd}
+\end{figure}
+
+\textbf{Produktkategori kommadoer} er kommando klasser der er specifikke for ProductCategory klassen og disse medfører ændringer i den produktkategori der refereres. Et eksempel herpå kunne være DeleteProductCategoryCmd, der beder \gls{CS} om at slette den givne produktkategori fra databasen.
+
+På figur \ref{fig:overklassePrdCat} ses en oversigt over de forskellige produktkategori kommandoer der nedarver fra Command klassen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Systemdesign/SharedLib/Images/Commands/ProductCategoryCommands.png}
+    \caption{Oversigt over produktkategori-specifikke kommandoer der nedarver fra Command klassen}
+    \label{fig:overklassePrdCat}
+\end{figure}
+
+
+
+\input{Systemdesign/SharedLib/Klassebeskrivelser/CommandKlassebeskrivelser}

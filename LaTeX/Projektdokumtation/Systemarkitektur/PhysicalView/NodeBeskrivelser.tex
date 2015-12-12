@@ -1,0 +1,13 @@
+\subsection{Node Beskrivelser}
+
+\subsubsection{Kasseapparat}
+\gls{KA} kommunikerer med \gls{CS} gennem en TCP/IP forbindelse. Forbindelsen benyttes til at hente produktkataloget samt at registrere køb.
+
+\subsubsection{Administrationssystem}
+\gls{AS} kommunikerer med \gls{CS} gennem en TCP/IP forbindelse. Forbindelsen benyttes til at hente produktkataloget samt at oprette, redigere og slette \gls{PD} og \gls{PDK}.
+
+\subsubsection{CentralServer}
+\gls{CS} stiller en server til rådighed, som \gls{KA} og \gls{AS} kan forbinde til (beskrevet ovenfor). \gls{CS} foretager også alt den nødvendige interaktion med Database.
+
+\subsubsection{Database}
+Interageres med af \gls{CS}.

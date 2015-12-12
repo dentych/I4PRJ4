@@ -20,7 +20,7 @@ namespace Backend.ViewModels
         public IEventAggregator Aggregator;
         public BackendProductCategoryList Categories { get; set; }
         public IModelHandler ModelHandler { get; set; }
-        private int SelectedIndex { get; set; } // Den der skal slettes (INDEX!!!)
+        public int SelectedIndex { get; set; } // Den der skal slettes (INDEX!!!)
         public int MoveToCategoryId { get; set; } // den der skal flyttes til, index bindex til den her.
         #endregion
 

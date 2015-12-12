@@ -1,0 +1,57 @@
+\subsection{Accepttest for UC8: Slet produktkategori}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+\hline
+\multicolumn{5}{|l|}{\textbf{Use Case under test:} 8 - Slet \gls{PDK}} \\\hline
+\multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er forbindelse til \glossary{CS}, Testkategori 1 og Testkategori 2 eksisterer i systemet og Testprodukt 1 er oprettet og placeret i Testkategori 1} \\\hline
+Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+1 & \gls{SB} vælger "Testkategori 1" i kategorilisten & Testkategori 1 markeres. & Markeres & OK \\\hline
+2 & \gls{SB} trykker på knappen til Slet Kategori & En dialogboks åbnes der informerer \gls{SB} om at der er produkter i kategorien, og \gls{SB} kan vælge en anden kategori de skal flyttes til. & Vindue åbner, der bliver ikke informeret om at der er produkter, men sletknappen er grå, og eneste mulighed er at trykke flyt eller annuller & OK\\\hline
+3 & \gls{SB} Vælger testkategori 2 og trykker på flyt & Efter kort tid bliver knappen slet synlig & Knappen blev synlig, dog først efter aktiv tryk på gui med musemarkør & EJ OK \\\hline
+5 & \gls{SB} Trykker på slet & Vinduet lukker & Vinduet lukker & OK\\\hline
+6 & \gls{SB} observerer kategorilisten & Testkategori 1 forsvinder fra listen & Kategorien forsvinder & OK \\\hline
+7 & \gls{SB} vælger Testkategori 2 i kategorilisten og observerer produktlisten & produktlisten indeholder Testprodukt 1 & Produktlisten indeholder produktet & OK\\ 
+\hline
+\end{tabularx}
+\caption{Accepttest 8: Slet produktkategori}
+\label{tab:ATspk}
+\end{table}
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+\hline
+\multicolumn{5}{|l|}{\textbf{Use case under test:} 8 - Slet produktkategori} \\\hline
+\multicolumn{5}{|l|}{\textbf{Scenarie:} Ext. 1 Der er ingen produkter i kategorien} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er forbindelse til \gls{CS}, Testkategori 1 eksisterer og er tom} \\\hline
+Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+1 & \gls{SB} vælger Testkategori 1 i kategorilisten & Testkategori 1 markeres. & Den markeres & OK \\\hline
+2 & \gls{SB} trykker på knappen til Slet Kategori & En dialogboks åbnes hvori Testkategori vises  & Kategorien vises & OK \\\hline
+3 & \gls{SB} trykker på knappen til Slet & Vinduet til slet produkter og information lukkes  &  Vinduet lukkes & OK \\
+4 & \gls{SB} observerer kategorilisten & Testkategori 1 forsvinder fra listen & Kategorien forsvinder & OK \\\hline 
+\hline
+\end{tabularx}
+\caption{Accepttest 8: Slet produktkategori, extension 2}
+\label{tab:ATspk}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+		\hline
+		\multicolumn{5}{|l|}{\textbf{Use case under test:} 8 - Slet produktkategori} \\\hline
+		\multicolumn{5}{|l|}{\textbf{Scenarie:} Ext. 2 \gls{SB} trykker annuller} \\\hline
+		\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der er forbindelse til \gls{CS}, Testkategori 1 eksisterer, Testprodukt 1 er oprettet og placeret i Testkategori 1} \\\hline
+		Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+		1 & \gls{SB} vælger Testkategori 1 i kategorilisten & Testkategori 1 markeres. & Markeres & OK \\\hline
+		2 & \gls{SB} trykker på knappen til Slet Kategori & En dialogboks åbnes der informerer superbruger om at der er produkter i kategorien, og \gls{SB} kan vælge en anden kategori de skal flyttes til. & Vindue åbner, der bliver ikke informeret om at der er produkter, men sletknappen er grå, og eneste mulighed er at trykke flyt eller annuller & OK \\\hline
+		3 & \gls{SB} trykker på knappen til Annuller & Vinduet til slet produkter og information lukkes  & Den lukkes & OK \\\hline
+		4 & \gls{SB} observerer kategorilisten & Testkategori 1 forsvinder IKKE fra listen af produkter & Forsvinder ikke & OK \\
+		\hline
+	\end{tabularx}
+	\caption{Accepttest 8: Slet produktkategori, extension 1}
+	\label{tab:ATspk}
+\end{table}

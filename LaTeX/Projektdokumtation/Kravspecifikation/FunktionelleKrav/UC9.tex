@@ -1,0 +1,40 @@
+\subsection{Use case 8: Slet produktkategori}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Navn}					& Slet produktkategori \\\hline
+\textbf{Formål}					& At slette en produktkategori \\\hline
+\textbf{Initialisering}			& \gls{SB} \\\hline
+\textbf{Aktører}				& \gls{SB} (Primær)\\\hline
+\textbf{Reference}				& Ingen \\\hline
+								
+\textbf{Samtidige forekomster}	& $\infty$ \\\hline
+\textbf{Prækondition}			& Forbindelse til \gls{CS} er oprettet \\\hline
+\textbf{Postkondition}			& Produktkategorien er slettet i systemet \\\hline
+
+\textbf{Hovedscenarie}			& 1. \gls{SB} trykker på den kategori der ønskes at slette i listen af kategorier. \\		
+								& 2. \gls{SB} trykker på knappen til slet kategori i hovedmenuen og der vises et vindue.\\
+								& 3. \gls{SB} vælger hvilken kategori eksisterende produkter ønskes flyttet til og trykker på knappen til at flytte.\\
+								& ~ [Ext 1: Der er ingen produkter i kategorien.]\\
+								& ~ [Ext 2: \gls{SB} annullerer sletningen]\\
+								& 4. Produkterne flyttes til den nye kategori.\\
+								& 5. \gls{SB} trykker på knappen til at slette kategori.\\
+								& 6. Vinduet lukker og kategorien bliver slettet fra listen over kategorier.\\
+								& ~ [Ext 3: \gls{CS} melder fejl]\\
+								& 7. \gls{AS} opdaterer kategorilisten \\\hline
+
+\textbf{Extensions}							
+  								& [Ext 1: Der er ingen produkter i den valgte kategori.] \\
+  								& ~ 1. Knappen til Flyt er grå, og kan ikke aktiveres.\\
+  								& ~ 2. Use Casen fortsætter fra pkt. 5\\
+  								& [Ext 2: Brugeren annullerer sletningen]\\
+  								& ~ 2. Use Casen afsluttes \\
+								
+								& [Ext 3: \gls{CS} melder fejl]\\
+								& ~ 1. Beskedboks informerer \gls{SB} om fejl.\\
+								& ~ 2. Use Casen afsluttes.\\\hline
+\end{tabularx}
+\caption{Use Case 8: Slet produktkategori}
+\label{tab:UCspk}
+\end{table}

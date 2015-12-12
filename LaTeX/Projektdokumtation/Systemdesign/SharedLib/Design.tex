@@ -1,0 +1,42 @@
+\subsection{Design og Implementering}
+
+Da \gls{SL} skulle designes blev det i første iteration klart at der ville opstå et væld af klasser i dette bibliotek. Det blev derfor besluttet at disse skulle være tilgængelige via en .dll fil som alle systemer fik adgang til og disse klasser blev efter grundige overvejelser indkapslet i de pakker som ses på figur \ref{fig:oversigtSL}. Pakkerne blev herefter udviklet efter nødvendighed igennem de forskellige iterationer, Hvilket satte SOLID designprincipperne på noget af en prøve.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{Systemdesign/SharedLib/Images/SharedLib_Package.png}
+    \caption{Oversigt over alle pakker i SharedLib}
+    \label{fig:oversigtSL}
+\end{figure}
+
+Herunder ses en kort beskrivelse af de forskellige pakker, og hvad de indeholder.
+
+\begin{itemize}
+\item \textbf{Models} indeholder datamodeller der i de forskellige systemer bruges som skabeloner. 
+\item \textbf{Threading} \textbf{Bonjy WRITE STUFFSS!!. NO JAKOB DOES DISS!!!!} 
+\item \textbf{Sockets} indeholder klasser til asynkron forbindelse til \gls{CS} samt de events der bliver raised a \gls{CS}.
+\item \textbf{Protocol} indeholder hele protokollen og er denne der bruges til kommunikation mellem alle delsystemer.
+\item \textbf{ProtocolMarshallers} indeholder de kodesprog der kan kommunikeres med.
+\item \textbf{Commands} indeholder de forskellige kommandoer der bruges til at sende information over protokollen.
+\item \textbf{ProductCommands} indeholder kommandoer der er specifikke for produkter.
+\item \textbf{ProductCategoryCommands} indeholder kommandoer der er specifikke for produktkategorier.
+\item \textbf{CmdMarshallers} indeholder marshallers som har til opgave at parse de forskellige kommandoer til og fra XML.
+\item \textbf{ProductMarshallers} indeholder marshallers der er specifikke for produkter.
+\item \textbf{ProductCategoryMarshallers} indeholder marshallers der er specifikke for produktkategorier.
+\end{itemize}
+
+\textbf{Funktionalitet}\\
+
+\gls{SL}'s hovedformål var fra starten at sørge for at udviklerne på de forskellige delsystemer ikke skulle tænke over at parse deres data til XML og tilbage til brugbar data. Derfor blev det besluttet at ligge alt denne funktionalitet et sted. Denne funktionalitet blev siden udvidet til datamodeller hvis nødvendighed opstod da alle delsystemer på denne måde kunne håndtere informationer om f.eks. produkter, på samme måde.\\
+
+Protokollen for \gls{SL} fungerer ved at et givet delsystem f.eks. laver et produkt objekt de gerne vil sende til \gls{CS}, dette pakkes herefter ind i et kommando objekt, Som derefter bliver sendt med som parameter i protokol objektets encode funktion. denne sørger for at produktinformationerne inde i kommando objektet bliver parset til XML og at dette bliver gemt i en string som bliver sendt via socket objektet. For yderligere informationer omkring protokollen, se da afsnit\ref{PROTOKOL}\\
+
+FORTÆL HER NOGLE OVERVEJELSER VED SOLID!!!\\
+
+
+\input{Systemdesign/SharedLib/Models}
+\input{Systemdesign/SharedLib/Protocol}
+\input{Systemdesign/SharedLib/Commands}
+\input{Systemdesign/SharedLib/Marshallers}
+\input{Systemdesign/SharedLib/Threading}
+\input{Systemdesign/SharedLib/Sockets}

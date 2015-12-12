@@ -1,0 +1,36 @@
+\subsection{Accepttest for UC4: Rediger \gls{PD}}
+
+
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+\hline
+\multicolumn{5}{|l|}{\textbf{Use case under test:} 4 - Rediger \gls{PD}} \\\hline
+\multicolumn{5}{|l|}{\textbf{Scenarie:} Hovedscenarie} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} \gls{AS} har forbindelse til centralserver, og der er et test\gls{PD} med navn "Test\gls{PD} 1" og pris "100" samt er i kategorien "Testkategori 1" og "Testkategori 2" i systemet.} \\\hline
+Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+1 & \gls{SB} vælger "Test\gls{PD} 1" & Test\gls{PD} 1 markeres i \gls{PD}listen & & \\\hline
+2 & \gls{SB} trykker på knappen til rediger \gls{PD} & Et nyt vindue præsenteres for \gls{SB}, som viser hhv. pris, navn og nuværende \gls{PDK} for det markerede "Testpodukt 1" & & \\\hline
+3 & \gls{SB} ændrer navnet til Test\gls{PD} 1a, prisen til 150 samt \gls{PDK} til \gls{PDK} 2, hvorefter han trykker på knappen til gem. & \gls{SB}"Rediger \gls{PD}"-vinduet bliver lukket & & \\\hline
+4 & \gls{SB} observerer \gls{PD}listen. & Test\gls{PD} 1 ændres til Test\gls{PD} 2, prisen til 150 og kategorien til Testkategori 2, automatisk & & \\
+\hline
+\end{tabularx}
+\caption{Accepttest 4: Rediger \gls{PD}}
+\label{tab:ATrp}
+\end{table}
+
+\begin{table}[H]
+\begin{tabularx}{\textwidth}{|p{0.5cm}|X|X|X|p{1.5cm}|}
+\hline
+\multicolumn{5}{|l|}{\textbf{Use case under test:} 4 - Rediger \gls{PD}} \\\hline
+\multicolumn{5}{|l|}{\textbf{Scenarie:} Ext. 1 - \gls{SB} vælger at annullere} \\\hline
+\multicolumn{5}{|p{0.97\linewidth}|}{\textbf{Prækondition:} Der skal være forbindelse til centralserver, "Test\gls{PD} 1" er oprettet samt "Testkategori 1" eksisterer.} \\\hline
+Step & Handling & Forventet resultat & Observation & Vurdering (OK/fejl) \\\hline
+1 & \gls{SB} vælger "Test\gls{PD} 1" & Test\gls{PD} 1 markeres i \gls{PD}listen & & \\\hline
+2 & \gls{SB} trykker på knappen til rediger \gls{PD} & Et nyt vindue præsenteres for \gls{SB}, som viser hhv. pris, navn og nuværende \gls{PDK} for det markerede "Testpodukt 1" & & \\\hline
+3 & \gls{SB} trykker på knappen til Annuller & Vinduet til rediger \gls{PD} lukkes & \\
+\hline
+\end{tabularx}
+\caption{Accepttest 4: Rediger \gls{PD}, ext. 1}
+\label{tab:ATrp}
+\end{table}
