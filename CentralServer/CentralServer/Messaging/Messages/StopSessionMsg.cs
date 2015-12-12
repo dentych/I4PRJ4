@@ -7,7 +7,7 @@ namespace CentralServer.Messaging.Messages
      * Sender: SocketClient
      * Reciever: Controller
      */
-    class StopSessionMsg : Message
+    public class StopSessionMsg : Message
     {
         private long _sessionId;
         public long SessionId { get { return _sessionId; } }

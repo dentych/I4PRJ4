@@ -77,6 +77,9 @@
     <Compile Include="Messaging\IMessageQueue.cs" />
     <Compile Include="Messaging\IMessageReceiver.cs" />
     <Compile Include="Messaging\MessageReceiver.cs" />
+    <Compile Include="RequisitionReceipt\IRequisitionReceipt.cs" />
+    <Compile Include="RequisitionReceipt\RequisitionReceipt.cs" />
+    <Compile Include="Server\ISocketConnection.cs" />
     <Compile Include="Sessions\ISessionControl.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Log.cs" />

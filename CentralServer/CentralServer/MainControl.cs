@@ -15,7 +15,7 @@ namespace CentralServer
         // A known clients requests to be unregistered
         public const long E_STOP_SESSION = 2;
         // A command was recieved from a known client
-        public const long E_COMMAND_RECIEVED = 3;
+        public const long E_COMMAND_RECEIVED = 3;
 
         private readonly ILog _log;
         private readonly ISessionControl _sessions;
@@ -48,7 +48,7 @@ namespace CentralServer
                                "Recieved E_STOP_SESSION");
                     HandleStopSession((StopSessionMsg)msg);
                     break;
-                case E_COMMAND_RECIEVED:
+                case E_COMMAND_RECEIVED:
                     _log.Write("MainControl", Log.DEBUG,
                                "Recieved E_COMMAND_RECIEVED");
                     HandleCommandReieved((CommandRecievedMsg)msg);

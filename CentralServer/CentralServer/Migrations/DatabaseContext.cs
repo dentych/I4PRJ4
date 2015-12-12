@@ -14,22 +14,6 @@ namespace CentralServer.Database
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
 
-
-        public Product CreateProduct(string name, string productNumber, decimal price, int categoryId)
-        {
-            var product = new Product()
-            {
-                Name = name,
-                ProductNumber = productNumber,
-                Price = price,
-                ProductCategoryId = categoryId,
-            };
-
-            Products.Add(product);
-
-            return product;
-        }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>()

@@ -2,7 +2,7 @@
 
 namespace CentralServer.Messaging.Messages
 {
-    class CommandRecievedMsg : Message
+    public class CommandRecievedMsg : Message
     {
         private long _sessionId;
         private Command _command;

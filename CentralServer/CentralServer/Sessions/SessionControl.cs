@@ -4,23 +4,13 @@ using CentralServer.Messaging;
 
 namespace CentralServer.Sessions
 {
-    class SessionControl : ISessionControl
+    public class SessionControl : ISessionControl
     {
         private readonly Dictionary<long, IMessageReceiver> _sessions =
             new Dictionary<long, IMessageReceiver>();
 
         private long _lastSessionId = 0;
 
-
-        /*
-         * Retrieves next available (unique) Session ID
-         */
-        private long GetNextSessionId()
-        {
-            while (_sessions.ContainsKey(++_lastSessionId));
-
-            return _lastSessionId;
-        }
 
         /*
          * Registers a client. Clients must be unique.
@@ -30,9 +20,11 @@ namespace CentralServer.Sessions
             if (_sessions.ContainsValue(client))
                 throw new Exception("Dublicate client");
 
-            var sessionId = GetNextSessionId();
-            _sessions[sessionId] = client;
-            return sessionId;
+            // Get next available session ID
+            while (_sessions.ContainsKey(++_lastSessionId));
+
+            _sessions[_lastSessionId] = client;
+            return _lastSessionId;
         }
 
         /*
@@ -56,14 +48,18 @@ namespace CentralServer.Sessions
 
             return _sessions[sessionId];
         }
-
+        
         /*
          * Iterate over all known clients
          */
-        public IEnumerable<IMessageReceiver> GetClients()
+        public IList<IMessageReceiver> GetClients()
         {
+            var clients = new List<IMessageReceiver>();
+
             foreach (var client in _sessions.Values)
-                yield return client;
+                clients.Add(client);
+
+            return clients;
         }
     }
 }

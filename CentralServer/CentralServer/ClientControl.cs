@@ -9,27 +9,29 @@ using System;
 
 namespace CentralServer
 {
-    class ClientControl : IMessageHandler
+    public class ClientControl : IMessageHandler
     {
         // Client has been registered
         public const long E_WELCOME = 1;
         // Recieved (raw) data from socket connection
-        public const long E_DATA_RECIEVED = 2;
+        public const long E_DATA_RECEIVED = 2;
         // Main control requests to send a command to client
         public const long E_SEND_COMMAND = 3;
 
         private ILog _log;
         private IMessageReceiver _main;
-        private SocketConnection _connection;
-        private Protocol _protocol = new Protocol();
+        private ISocketConnection _connection;
+        private IProtocol _protocol = new Protocol();
         private long _sessionId;
 
 
-        public ClientControl(ILog log, IMessageReceiver main, SocketConnection conn)
+        public ClientControl(ILog log, IMessageReceiver main, ISocketConnection conn, IProtocol protocol)
         {
             _log = log;
             _main = main;
             _connection = conn;
+            _protocol = protocol;
+
             _connection.OnDataRecieved += HandleDataRecieved;
             _connection.OnDisconnect += HandleConnectionClosed;
         }
@@ -48,10 +50,6 @@ namespace CentralServer
                 case E_SEND_COMMAND:
                     _log.Write("ClientControl", Log.DEBUG, "Recieved E_SEND_COMMAND");
                     HandleSendCommand((SendCommandMsg)msg);
-                    break;
-                default:
-                    _log.Write("ClientControl", Log.DEBUG,
-                               "Recieved unknown event ID: " + id);
                     break;
             }
         }
@@ -79,7 +77,7 @@ namespace CentralServer
                 foreach (var cmd in commands)
                 {
                     var cmsg = new CommandRecievedMsg(_sessionId, cmd);
-                    _main.Send(MainControl.E_COMMAND_RECIEVED, cmsg);
+                    _main.Send(MainControl.E_COMMAND_RECEIVED, cmsg);
                 }
             }
             catch (Exception e)

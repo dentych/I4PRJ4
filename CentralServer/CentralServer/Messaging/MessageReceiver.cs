@@ -3,7 +3,7 @@ using CentralServer.Threading;
 
 namespace CentralServer.Messaging
 {
-    class MessageReceiver : IThreadRunner, IMessageReceiver
+    public class MessageReceiver : IThreadRunner, IMessageReceiver
     {
         private readonly IMessageHandler _handler;
         private readonly IMessageQueue _queue;

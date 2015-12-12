@@ -8,6 +8,6 @@ namespace CentralServer.Sessions
         long Register(IMessageReceiver client);
         void Unregister(long sessionId);
         IMessageReceiver GetClient(long sessionId);
-        IEnumerable<IMessageReceiver> GetClients();
+        IList<IMessageReceiver> GetClients();
     }
 }

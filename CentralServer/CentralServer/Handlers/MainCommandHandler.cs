@@ -5,6 +5,7 @@ using CentralServer.Logging;
 using CentralServer.Sessions;
 using CentralServer.Messaging.Messages;
 using CentralServer.Database;
+using CentralServer.RequisitionReceipt;
 using SharedLib.Protocol.Commands;
 using SharedLib.Protocol;
 using SharedLib.Models;
@@ -16,12 +17,14 @@ namespace CentralServer.Handlers
     {
         private readonly ILog _log;
         private readonly ISessionControl _sessions;
+        private readonly IRequisitionReceipt _receipt;
 
 
-        public MainCommandHandler(ILog log, ISessionControl sessions)
+        public MainCommandHandler(ILog log, ISessionControl sessions, IRequisitionReceipt receipt)
         {
             _log = log;
             _sessions = sessions;
+            _receipt = receipt;
         }
 
 
@@ -218,6 +221,8 @@ namespace CentralServer.Handlers
 
                 ctx.Purchases.Add(purchase);
                 ctx.SaveChanges();
+
+                _receipt.Write(purchase);
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace CentralServer.Messaging.Messages
 {
-    class SendCommandMsg : Message
+    public class SendCommandMsg : Message
     {
         private Command _command;
 

@@ -8,7 +8,7 @@ namespace CentralServer.Messaging.Messages
      * Sender: Controller
      * Reciever: SocketClient
      */
-    class WelcomeMsg : Message
+    public class WelcomeMsg : Message
     {
         private long _sessionId;
         public long SessionId { get { return _sessionId; } }
