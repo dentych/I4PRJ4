@@ -1,9 +1,7 @@
 \section{Systemarkitektur}
-
-Systemet er opbygget af tre forskellige delsystemer samt et delt kodebibliotek. De tre delsystemer, Administrationssystem, Kasseapparat og CentralServer, benytter alle delt funktionalitet i kodebiblioteket SharedLib.\\
+Systemet er opbygget af tre forskellige delsystemer samt et delt kodebibliotek iht. ovenstående afsnit "Specifikation og Analyse." De tre delsystemer, Administrationssystem, Kasseapparat og CentralServer, benytter alle delt funktionalitet i kodebiblioteket SharedLib.\\
 
 Mellem de tre delsystemer kommunikeres via en TCP/IP socket-forbindelse.
-
 
 \begin{figure}[H]
     \centering
@@ -13,25 +11,23 @@ Mellem de tre delsystemer kommunikeres via en TCP/IP socket-forbindelse.
 \end{figure}
 
 
-
-\subsection{SharedLib}
+\textbf{SharedLib}\\
 SharedLib indeholder den funktionalitet, som er delt på tværs af de andre tre delsystemer. Denne funktionalitet compiles til en DLL-fil, som kan inkluderes i de andre projekter.\\
 
-SharedLib indeholder kommunikationsprotokol, datamodeller samt en klasse til at implementere en asynkron socket-klient.
+SharedLib indeholder kommunikationsprotokol, datamodeller samt en klasse til at implementere en asynkron socket-klient.\\
 
+\textbf{Administrationssystem}\\
+Administationssystemet er lidt noget crap der er lavet af 2 noobs\\
 
-\subsection{Administrationssystem}
-nigger
+\textbf{Kasseapparat}\\
+Kasseapparatet er den del af systemet som er repræsenteret i selve butikken. Det er igennem kasseapparatet Ekspedienten, håndtere salg og returneringer. \\
 
+\textbf{CentralServer}\\
+CentralServer er bindeleddet mellem Administrationssystem, Kasseapparat og Database. Den stiller en socket-server til rådighed, hvor en eller flere klienter kan forbindes til (og kommunikere med) asynkront.\\
 
-\subsection{Kasseapparat}
-nigger
+CentralServer er det eneste delsystem, der kommunikerer direkte med Database. Administrationssystem og Kasseapparat kommunikerer derfor indirekte med Database gennem CentralServer.\\
 
+CentralServer sørger for at transmittere opdateringer når det er nødvendigt. Eksempelvis får alle forbundne klienter besked når der oprettes et nye produkt.\\
 
-\subsection{CentralServer}
-CentralServer er bindeleddet mellem Administrationssystem, Kasseapparat og Database. Den stiller en socket-server til rådighed, hvor en eller flere klienter kan forbindes til på samme tid.\\
-
-CentralServer er det eneste delsystem, der kommunikerer direkte med Database. Administrationssystem og Kasseapparat kommunikerer derfor indirekte med Database gennem CentralServer.
-
-\subsection{Database}
+\textbf{Database}\\
 I projektet benyttes en MS SQL server til at opbevare persistent data.
