@@ -1,5 +1,5 @@
 \subsection{XmlBuffer}
-Protokollen indeholder en buffer klasse, dette var for at tage hensyn til et scenarie hvor en fuld kommando ikke var blevet modtaget og programmet eventuelt terminerede eller lignende. I dette tilfælde ville programmet ved næste opstart kunne modtage resterende del af kommandoen. Dette betyder at der fra Protocol klassen indimellem kaldes på bufferen for at se om der er nogle indkomne kommandoer og hvis dette er tilfældet, så håndteres disse, og på den mådes undgås fejl med ukomplette beskeder.
+XmlBuffer har til ansvar at tage imod en strøm af data fra en socketforbindelse og opdele XML-dokumenter. Den fungerer ved, at når en klient har modtaget data fra en socket tilføjes dette data til bufferen via AddData(). Herefter kaldes GetDocuments(), som returnerer en liste over de komplette XML-dokumenter, bufferen indeholder. De returnerede dokumenter fjernes derefter fra bufferen.\\
 
 Der blev derudover oprettet et interface, IProtocolBuffer, dette var i tilfælde af at systemet senere skulle udvides med flere buffere, så systemet ville kunne kommunikere med flere/andre kodesprog.
 
