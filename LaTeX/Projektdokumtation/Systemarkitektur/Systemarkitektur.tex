@@ -1,8 +1,7 @@
 \chapter{Systemarkitektur}
+Herunder vil systemet blive beskrevet overordnet med fokus på at skabe en forståelse for den store helhed. Ved at læse systemarkitekturen igennem vil/burde læseren få en forståelse for, hvordan systemet fungerer, samt de overdnede byggeblokke. For at forstå selve byggeblokkene, skal læseren se i systemdesignet. Her vil de implementeringsspecifikke detaljer være beskrevet.\\
 
-Herunder vil systemet blive beskrevet overordnet med fokus på at skabe en forståelse for den store helhed. Ved at læse systemarkitekturen igennem vil/ burde læseren få en meget bedre forståelse for hvad systemet indebærer samt de store byggeblokke. For at forstå selve byggeelementerne samt hvordan de er sat sammen, skal læseren se i systemdesignet. Her vil mere implementeringsspecifikke detaljer være beskrevet. \\
-For at give et overblik over systemet blev domænemodellen på Figur \ref{fig:system_domain} opsat. \\
-\\
+For at give et overblik over systemet blev domænemodellen på Figur \ref{fig:system_domain} opsat.\\
 
 \textbf{Domænemodel}
 \begin{figure}[H]
@@ -12,9 +11,11 @@ For at give et overblik over systemet blev domænemodellen på Figur \ref{fig:sy
 	\label{fig:system_domain}
 \end{figure}
 
-Domænemodellen på figur \ref{fig:system_domain} viser systemets overordnede dele. En \textit{kunde} vil købe et \textit{produkt}. Dette \textit{produkt} ligger gemt i \textit{databasen}. \\ 
-En \textit{ekspedient} betjener et \textit{kasseapparat}. Informationer om de \textit{produkter} der er til rådighed samt deres pris hentes fra \textit{CentralServeren}. Når en \textit{kunde} ønsker at købe et \textit{produkt}, så tilføjer \textit{ekspedienten} \textit{produktet}  til en \textit{indkøbskurv}. Når salget gennemføres gemmes salget i \textit{CentralServeren}. \\
-Produkt informationer tilføjes, redigeres eller slettes af en \textit{superbruger} i \textit{administrationssystemet}. Disse ændringer afspejler \textit{CentralServeren} så i databasen.
+En \textit{kunde} vil købe et \textit{produkt}. Dette \textit{produkt} ligger gemt i \textit{databasen}. \\
+
+En \textit{Ekspedient} betjener et \textit{Kasseapparat}. Informationer om de \textit{produkter} der er til rådighed samt deres pris hentes fra \textit{CentralServer}. Når en \textit{Kunde} ønsker at købe et \textit{produkt}, så tilføjer \textit{Ekspedient} \textit{produktet}  til en \textit{indkøbskurv}. Når salget gennemføres sendes salget til \textit{CentralServer}. \\
+
+Produktinformationer tilføjes, redigeres eller slettes af \textit{Superbruger} i \textit{Administrationssystem}. Disse ændringer afspejler \textit{CentralServer} så i databasen.
 
 \newpage
 
