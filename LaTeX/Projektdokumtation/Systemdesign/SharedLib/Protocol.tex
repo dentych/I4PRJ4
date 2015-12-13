@@ -8,6 +8,18 @@ Protokollen til systemet blev tidligt besluttet at skulle fungere ved at sende s
 \item \textbf{Marshallers} Der skulle ligge noget logik "bagved" protocol objektet, som her skulle sørge for den reelle ændring fra det XML til Data og omvendt. Det blev derfor nødvendigt at lave en Marshaller for hver Command som protocol objektet kunne kalde på.
 \end{itemize}
 
+For at "legemligøre" denne protocol blev der udarbejdet en protocol klasse. Denne vil på sigt kunne sætte sin egen marshaller attribut, og dermed vælge hvilket sprog der parses om til. Men da der i dette projekt som udgangspunkt kun bruges XML, sættes Protocol klassens marshaller attribut altid til XmlMarshal klassen.
+
+Protocol klassen vil udover kommandoer være det eneste der bliver stiftet bekendtskab med når der skal parses. Udviklere vil på den måde ikke skulle rode med marshallers og interfaces længere nede i lagene og på den måde kan alt funktionalitet omkring systemets protokol forholdsvis simpelt tilgås fra et højere abstraktionsniveau.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Systemdesign/SharedLib/Images/Klasser/Protocol.png}
+	\caption{Protocol klassen}
+	\label{fig:klasseProtocol}
+\end{figure}
+
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\textwidth]{Systemdesign/SharedLib/Images/Protokol/Protocol_Sek.png}
