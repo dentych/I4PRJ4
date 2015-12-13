@@ -1,6 +1,6 @@
 \section{Systemarkitektur}
 
-Systemet er opbygget af tre forskellige delsystemer samt et delt kodebibliotek. De tre delsystemer, Administrationssystem, Kasseapparat og CentralServer, benytter alle delt funktionalitet i kodebiblioteket SharedLib.\\
+Systemet er opbygget af tre forskellige delsystemer samt et delt kodebibliotek iht. ovenstående afsnit "Specifikation og Analyse." De tre delsystemer, Administrationssystem, Kasseapparat og CentralServer, benytter alle delt funktionalitet i kodebiblioteket SharedLib.\\
 
 Mellem de tre delsystemer kommunikeres via en TCP/IP socket-forbindelse.
 
@@ -29,9 +29,11 @@ nigger
 
 
 \subsection{CentralServer}
-CentralServer er bindeleddet mellem Administrationssystem, Kasseapparat og Database. Den stiller en socket-server til rådighed, hvor en eller flere klienter kan forbindes til på samme tid.\\
+CentralServer er bindeleddet mellem Administrationssystem, Kasseapparat og Database. Den stiller en socket-server til rådighed, hvor en eller flere klienter kan forbindes til (og kommunikere med) asynkront.\\
 
-CentralServer er det eneste delsystem, der kommunikerer direkte med Database. Administrationssystem og Kasseapparat kommunikerer derfor indirekte med Database gennem CentralServer.
+CentralServer er det eneste delsystem, der kommunikerer direkte med Database. Administrationssystem og Kasseapparat kommunikerer derfor indirekte med Database gennem CentralServer.\\
+
+CentralServer sørger for at transmittere opdateringer når det er nødvendigt. Eksempelvis får alle forbundne klienter besked når der oprettes et nye produkt.
 
 \subsection{Database}
 I projektet benyttes en MS SQL server til at opbevare persistent data.
