@@ -1,0 +1,12 @@
+\subsection{Socket server}
+Kernen af CentralServer’s funktionalitet er en socket server, som lytter efter og accepterer forbindelser fra klienter. Når serveren modtager en ny forbindelse fra en klient bliver der oprettet en ny instans af ClientControl, som håndterer kommunikationen med klienten. Denne instans af ClientControl bliver sendt til MainControl, som overtager alle referencer til klienten. SocketServer kender derfor ikke til åbne forbindelser.\\
+
+Figur \ref{fig:CSSocketServer} viser UML-digram for SocketServer.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Systemdesign/CentralServer/Images/SocketServer.png}
+    \caption{UML-diagram for SocketServer}
+    \label{fig:CSSocketServer}
+\end{figure}
