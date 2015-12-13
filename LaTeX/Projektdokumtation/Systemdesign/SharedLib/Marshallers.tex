@@ -1,5 +1,20 @@
-\subsection{Marshallers}
+\subsection{Marshallers} \label{MARSHALLER}
 
-Marshaller tekst her, wooow
+Protokollens hovedfunktionalitet ligger i det der her i systemet kaldes "Marshallers", Hver enkelt kommando klasse har en tilsvarende marshaller der er skræddersyet til at håndtere de attributter der er specifikke for netop den klasse. Derfor skelnes der på samme måde som kommandoer imellem tre typer af marshallers:
+
+\begin{itemize}
+	\item \textbf{Generelle marshallers} 
+	\item \textbf{Produkt marshallers} 
+	\item \textbf{Produktkategori marshallers}
+\end{itemize}
+
+Alle tre typer af marshallers implementerer interfacet ICmdMarshaller, og indeholder derfor kun to funktioner.
+
+\begin{itemize}
+	\item \textbf{Encode()} 
+	\item \textbf{Decode()} 
+\end{itemize}
+
+Selve implementeringen af disse funktioner er dog så forskellig at det har været nødvendigt at lave marshallers for hver kommando. Denne design beslutning gav dog også systemet den fordel at det designmæssigt er klart til eventuelle udvidelser uden at skulle ændre i eksisterende funktionalitet og dermed overholder Open-Closed princippet.
 
 \input{Systemdesign/SharedLib/Klassebeskrivelser/MarshalKlassebeskrivelser}

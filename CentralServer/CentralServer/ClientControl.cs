@@ -11,10 +11,8 @@ namespace CentralServer
     {
         // Client has been registered
         public const long E_WELCOME = 1;
-        // Recieved (raw) data from socket connection
-        public const long E_DATA_RECEIVED = 2;
         // Main control requests to send a command to client
-        public const long E_SEND_COMMAND = 3;
+        public const long E_SEND_COMMAND = 2;
 
         private ILog _log;
         private IMessageReceiver _main;

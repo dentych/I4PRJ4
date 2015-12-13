@@ -1,4 +1,4 @@
-\subsection{Socketforbindelse}
+\subsection{Socketforbindelse} \label{SOCKET}
 \textbf{SocketConnection}
 SocketConnection klassen implementerer asynkron læsning fra en socketforbindelse, samt synkron sending af data. Når der er oprettet forbindelse til en server (\gls{CS} i dette system) vil SocketConnection begynde at læse asynkront. Når der modtages data kaldes en handler, som kalder invoke på et "Data modtage" event. Dette event bruges af \textit{CommandListener}, som er beskrevet nedenfor.\\
 Da læsning foregår asynkront vil resten af programmet ikke blive blokeret, hvilket er den optimale løsning, da der altid skal lyttes på socket forbindelsen efter nye kommandoer.\\
