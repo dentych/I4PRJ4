@@ -1,0 +1,27 @@
+\subsubsection{Presentation Layer}
+
+Det første der blev opsat til kasseapparatet var grænsefladen. Dette kan virke lidt bagvendt, men det var fra starten et fokus at skabe et anderledes kasseapparat der var nemt at benytte sig af. Med dette menes der et program med en klar vej fra start til slut. Der måtte gerne være flere måder at gennemfære salg på, men brugeren måtte ikke være tvunget til at benytte sig af allesammen.
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{Projektbeskrivelse/DesignOgImplementering/pics/KasseMockup}
+	\caption{Første skitse af kasseapparatet}
+	\label{fig:sub1}
+\end{figure}%
+
+
+Først blev der opsat en skitse, se figur \ref*{fig:sub1}, hvor kasseapparatet var delt op i 3 segmenter. Her var idéen at produkterne skulle være i segmentet på venstre side, indkøbskurven i midten, og knapperne til brug i betalingen på højre side. Derved ville et salg gå fra højre i mod venstre i det at man først ville tilføje et produkter i venstre side. Disse ville komme frem i midten, og til sidst ville betalingen blive gennemført i højre side af kasseapparatet. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{Projektbeskrivelse/DesignOgImplementering/pics/GUI}
+	\caption{Endelig Implementering}
+	\label{fig:sub2}
+\end{figure}
+
+Som man kan se på figur \ref*{fig:sub2} så blev grænsefladen udviklet relativt tæt på skitsen, dog med nogle flere knapper i betalingssegmentet. For at sikre at der var mange måder at tilføje produkter på, blev det lavet sådan at man kunne tilføje et produkt ved at klikke gentagne gange på hver produkt. Samtidig kan man trykke et et tilføjet produkt, skrive et antal i betalingsdelen og trykke på mængde. Så vil den angivne mængde af produkter blive tilføjet. \\
+
+\textbf{Knapper og sideskift} \\
+Noget der er lagt meget tid i, er knappeskift. Dette blev implementeret ved at oprette et kontrolobjekt til knapper\footnote{ProductButtonControl}. Dette objekt indeholder en liste der inderholder liste af 12 knapper. Derved kan der nemt skiftes side af knapper bare ved at ændre den liste der vises på kasseapparatet.
