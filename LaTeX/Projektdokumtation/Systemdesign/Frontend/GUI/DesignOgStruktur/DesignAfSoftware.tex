@@ -55,20 +55,30 @@ Sekvensdiagrammet på figur \ref{fig:SekvensRegisterSale} viser registrering af 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{Systemdesign/Frontend/GUI/DesignOgStruktur/Pics/OpstartSystem}
+	\includegraphics[width=1\textwidth]{Systemdesign/Frontend/GUI/DesignOgStruktur/Pics/OpstartSystem2}
 	\caption{Sekvensdiagram over opstart system}
 	\label{fig:SekvensOpstart}
 \end{figure}
 
-stuff to be written
+Sekvensdiagrammet på figur \ref{fig:SekvensOpstart} viser hvad der sker når programmet påbegyndes i henhold oprettelse af produktknapper samt kategori knappen. Først oprettes CategoriesMenu som i sin konstruktor kalder metoden Update. Denne metode kalder så update på ProductCategoryList\footnote{Se figur \ref{fig:SekvensUpdatePCL} samt tilhørende forklaring}. Dernæst oprettes listen totalList, som indeholder alle produkter uanset kategori. Denne liste bliver brugt ved oprettelsen af den første MenuCategory hvilket gør så den første kategori er en kategori med alle produkter. \\
+For at sikre at der er produkter vist i produktknapperne ved opstart kaldes MenuCategoriens command Execute, der opdaterer ProductButtonControl med dens tilknyttede produktliste, her totalList \footnote{Se figur \ref{fig:SekvensUpdatePBC} samt tilhørende forklaring}. Nu tilføjes MenuCategorien til ContextMenuen, som er en menu der er tilknyttet en menuknappen i grænsefladen. Derefter oprettes der en MenuCategory for hver eksisterende kategori, og hver af disse tilføjes i ContextMenuen.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{Systemdesign/Frontend/GUI/DesignOgStruktur/Pics/UpdateProductCategoryList}
-	\caption{Sekvensdiagram over Update System}
-	\label{fig:SekvensUpdate}
+	\caption{Sekvensdiagram over Update ProductCategoryList}
+	\label{fig:SekvensUpdatePCL}
 \end{figure}
 
-More stuff to be written
+Sekvensdiagrammet på figur \ref{fig:SekvensUpdatePCL} viser hvordan ProductCategoryList bliver opdateret med produkterne i databasen. ProductCategoryList bliver kaldt ved Update, og denne starter så med at kalde \textit{Clear()}. Derefter Kaldes \textit{GetProducts()} i DbControl. Denne klasse opretter så forbindelse til CentralServer ved et kald til Connection og beder herefter om at få tilsendt produktkataloget. Når produktkataloget er modtaget afsluttes forbindelsen og den modtagede data returneres til DbControl. Til sidst tilføjes hver af produkterne fra produktkataloget til ProductCategoryLists interne produktliste.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Systemdesign/Frontend/GUI/DesignOgStruktur/Pics/UpdateProductButtonControl}
+	\caption{Sekvensdiagram over Update ProductButtonControl}
+	\label{fig:SekvensUpdatePBC}
+\end{figure}
+
+Sekvensdiagrammet på figur \ref{fig:SekvensUpdatePBC} viser hvordan ProductButtonControl opretter PageList som er de sider af produktknapper som kan vises i brugergrænsefladen. ProductButtonControl bliver kaldt ved update med en liste af produkter som parameter. Denne liste bruges så til at udregne den totale mængde af sider ved et kald til metoden \textit{CalculateTotalPage()}. Derefter kaldes \textit{CreatePageList()}. Denne metode starter med at rydde sit indhold, og herefter opretter den en ny liste pr. 12 produkter. Dernæst itererer den over produktlisten og opretter en knap pr. eksisterende produkt.
 
 \newpage

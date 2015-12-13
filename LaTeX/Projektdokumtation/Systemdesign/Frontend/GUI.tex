@@ -2,7 +2,7 @@
 \subsection{Presentation Layer}
 
 \subsubsection{Introduktion}
-Præsentationslaget i kasseapparatet er opbygget med XML i WPF. Selve laget blev først designet ved brug af skitsen på figur \ref{fig:KasseMockup} og derefter implementeret i visual studios WPF designer som set på figur \ref{fig:EndeligeGUI}. Da Grænsefladen var sat op så blev yderligere underliggende funktionalitet tilføjet såsom viewmodels og der blev opsat sekvensdiagrammer til disse for at forbedre forståelsen af den kommunikation der skulle løbe igennem systemet. Et godt eksempel er sekvensdiagrammet på figur \ref{fig:SekvensViewModel} som er opsat på baggrund af Use Case 1 - Tilføj produkt. Dette sekvensdiagram er også opsat hvor kommunikationen igennem de andre lag er med. Dette diagram kan findes på bilag ?. Til sidst til dette afsnit er der medtaget klassebeskrivelser der kort fortæller om hver klasse og dennes ansvar. \\
+Præsentationslaget i kasseapparatet er bygget med XML i WPF. Selve laget blev først designet ved brug af skitsen på figur \ref{fig:KasseMockup} og derefter implementeret med visual studios WPF designer som set på figur \ref{fig:EndeligeGUI}. Præsentationslaget er opsat i henhold til MVVM som sikrer at vores Præsentations- og Business Logic Lag er ordentligt adskilt.Til sidst til afsnittet er medtaget klassebeskrivelser der kort fortæller om hver klasse og dennes ansvar. \\
 
 \subsubsection{Brugergrænsefladen}
 
@@ -13,7 +13,7 @@ Præsentationslaget i kasseapparatet er opbygget med XML i WPF. Selve laget blev
 	\label{fig:KasseMockup}
 \end{figure}
 
-Denne skitse implementerede vi så.
+Den ovenstående skitse, var den første skitse af kasseapparatets brugergrænseflade som blev opsat. Denne skitse er tegnet i paint. Idéen bag grænsefladen var, at man skulle tænke fra højre mod venstre. Først vælges et produkt. Dette tilføjes til listen i midten. Når alle produkter er tilføjet færdiggøres salget i højre side af grænsefladen.
 
 \begin{figure}[H]
 	\centering
@@ -22,7 +22,9 @@ Denne skitse implementerede vi så.
 	\label{fig:EndeligeGUI}
 \end{figure}
 
-Som man kan se på de ovenstående figurer blev implementeringen af grænsefladen udført relativt tæt op af skitsen. Mere implementeringspecifikke deltaljer kommer herunder.
+Som man kan se på de ovenstående figurer blev selve implementeringen af grænsefladen udført relativt tæt op af skitsen. Mere implementeringspecifikke deltaljer kommer herunder.
+
+\newpage
 
 \input{Systemdesign/Frontend/GUI/View}
 \input{Systemdesign/Frontend/GUI/ViewModels}
