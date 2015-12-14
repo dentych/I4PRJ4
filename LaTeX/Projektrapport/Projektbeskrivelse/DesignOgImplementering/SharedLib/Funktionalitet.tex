@@ -1,0 +1,6 @@
+\subsection{Funktionalitet}
+SharedLib's primære funktion i dette projekt har været at håndtere kommunikationsprotokollen. hovedformålet med at ligge denne i et fælles bibliotek var at gøre kommunikationen imellem systemerne mere overskuelig, ved at der kun skal tages stilling til højniveau objekter.
+
+Da systemets kommunikation foregår over TCP/IP forbindelser og med brugen af XML er det protokollen reelt gør enten at omdanne et givent kommando objekt til en string af XML så denne kan sendes, eller også tager den en string af XML der er modtaget og genskaber et kommando objekt ud fra de indeholdende data.
+
+Dette betyder at så længe delsystemerne bruger de standardiserede modeller i SharedLib så kan der ved hjælp af et simpelt funktionskald parses direkte til og fra XML. 
