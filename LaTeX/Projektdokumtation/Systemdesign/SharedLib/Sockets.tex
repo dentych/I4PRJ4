@@ -1,6 +1,6 @@
 \subsection{Socketforbindelse} \label{SOCKET}
 \textbf{SocketConnection}
-SocketConnection klassen implementerer asynkron læsning fra en socketforbindelse, samt synkron sending af data. Når der er oprettet forbindelse til en server (\gls{CS} i dette system) vil SocketConnection begynde at læse asynkront. Når der modtages data kaldes en handler, som kalder invoke på et "Data modtage" event. Dette event bruges af \textit{CommandListener}, som er beskrevet nedenfor.\\
+SocketConnection klassen implementerer asynkron læsning fra en socketforbindelse, samt synkron skrivning af data. Når der er oprettet forbindelse til en server (\gls{CS} i dette system) vil SocketConnection begynde at læse asynkront. Når der modtages data kaldes en handler, som kalder invoke på et "Data modtage" event. Dette event bruges af \textit{CommandListener}, som er beskrevet nedenfor.\\
 Da læsning foregår asynkront vil resten af programmet ikke blive blokeret, hvilket er den optimale løsning, da der altid skal lyttes på socket forbindelsen efter nye kommandoer.\\
 Klassen har også funktionalitet til at sende data. Dette gøres synkront. Der er ingen events relateret til at sende data.\\
 SocketConnection implementerer også en række andre events, som bliver invoket når der er oprettet forbindelse, når forbindelsen bliver afbrudt og når der forekommer fejl.\\\\
@@ -21,7 +21,7 @@ Der findes events for de følgende begivenheder:
 	\item Produkt er modificeret.
 \end{itemize}
 
-Selve kommandoen bliver sendt med, således brugeren selv kan håndtere denne.\\
+Selve kommandoen bliver sendt med, således brugeren selv kan håndtere denne.
 På denne måde opnås en lav kobling. \textit{CommandListener} har ikke viden om, hvem der er subscribed på dens events, den raiser dem bare.
 
 \begin{figure}[H]
