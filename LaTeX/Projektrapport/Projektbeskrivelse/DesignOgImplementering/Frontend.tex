@@ -2,6 +2,11 @@
 
 Kasseapparatet blev bygget ved brug af 3 layers. Presentation-, Business logic- og Data Access Layer. Disse vil blive beskrevet herunder.
 
+\subsection{Designovervejelser}
+Designet af Kasseapparatet startede ud med at der blev tegnet en skitse af hvordan selve brugergrænsefladen skulle blive opbygget.
+Det var vigtigt at der en klar opdeling af de forskellige lag. Dette betød at der mellem præsentations- og business logic laget blev benyttet MVVM. MVVM er et pattern, der sikrer at kommunikationen mellem grænsefladen er håndteret ordentligt. \\
+Det første der blev implementeret til Kasseapparatet er grænsefladen samt de underliggende viewmodels. Disse havde en klar forbindelse til de elements de ligger i grænsefladen igennem commands. Og da der ikke var tilknyttet funktionalitet kunne disse klasser opsættes uden yderligere design, der kom dog Viewmodels senere, der stod for at styre knapperne og disse blev der selvfølgelig lavet sekvensdiagrammer for.l
+
 \input{Projektbeskrivelse/DesignOgImplementering/Frontend/Presentation}
 \input{Projektbeskrivelse/DesignOgImplementering/Frontend/BusinessLogic}
 \input{Projektbeskrivelse/DesignOgImplementering/Frontend/DataAccess}
