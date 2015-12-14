@@ -9,11 +9,11 @@ Systemet er herunder beskrevet ved følgende pakkediagram for at give et hurtigt
 	\label{fig:EndeligeGUI}
 \end{figure}
 
-Som man kan se på det ovenstående pakkediagram består \gls{KS} primært af grænsefladen og et data access lag. Dette er fordi \gls{KS} ikke har som ansvar at kunne oprette/ redigere og slette produkter, men bare at afspejle produkterne i databasen. 
+Som man kan se på det ovenstående pakkediagram består \gls{KA} primært af grænsefladen og et data access lag. Dette er fordi \gls{KA} ikke har som ansvar at kunne oprette/ redigere og slette produkter, men bare at afspejle produkterne i databasen. 
 
 \begin{itemize}
 	\item \textbf{View} Views indeholder vores præsentationslagslogik. Det er skrevet i XML og er direkte med til at style vores grænseflade.
-	\item \textbf{ViewModel} Er en mediator mellem modellaget og grænsefladen. Viewmodels sikrer at \gls{KS} grænsefladen afspejler ændringer der sker i systemet, samt kommunikerer grænsefladens ændringer til de lavere lag. Indholdet af denne bliver beskrevet nærmere i afsnit ?? om præsentationslaget.
+	\item \textbf{ViewModel} Er en mediator mellem modellaget og grænsefladen. Viewmodels sikrer at \gls{KA} grænsefladen afspejler ændringer der sker i systemet, samt kommunikerer grænsefladens ændringer til de lavere lag. Indholdet af denne bliver beskrevet nærmere i afsnit ?? om præsentationslaget.
 	\item \textbf{Dependencies} Indeholder sourcekode der gør det nemmere at arbejde med commands.
 	\item \textbf{Model} Indeholder business logic. Dette er der ikke særligt meget af, da de fleste models findes i \gls{SL}
 	\item \textbf{DAL} Indeholder logik til at kommunikere med \gls{CS} og derved \gls{DB}. Dette lag vil blive beskrevet nærmere i afsnittet ?? om Data Access Laget.
