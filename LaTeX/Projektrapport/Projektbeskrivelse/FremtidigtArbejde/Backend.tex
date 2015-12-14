@@ -1,0 +1,24 @@
+\subsubsection{Administrationssystem}
+
+I forbindelse med udviklingen af Administrationssystem er der gjort overvejelser om hvordan det kunne blive bedre. Disse overvejelser er beskrevet i følgende afsnit.\\
+ 
+ 
+\textbf{View-based navigation}\\
+Frem for at et nyt vindue præsenteres for brugeren når et menuvalg vælges, ville det være at foretrække at det foregik i samme vindue, men at indholdet bare blev skiftet ud.\\
+Dette kan sammenlignes med at sidde i en browser. Dette kan bl.a. løses vha. PRISM.\\\\
+
+ 
+\textbf{PRISM biblioteket}\\
+På trods af at der er benyttet PRISM til kommunikation af viewmodels, ville det være rart at få gjort mere brugt af dette. PRISM er generelt behageligt at udvikle med, og gør vedligeholdes nemmere.\\
+Dette skyldes at PRISM er meget vel dokumenteret, og benyttes ofte ifm. MVVM. Bl.a. til commands ville det være godt at få implementeret, da det er væsentligt nemmere at både forstå, men også vedligeholde.\\\\
+ 
+ 
+\textbf{Backend-Datamodels}\\
+For at få den grafiske brugerflade til at opdatere dynamisk, har det været nødvendigt at implementere egne datamodeller, som arver fra SharedLib. Dette ønskes selvfølgelig at gøres bedre, og i det mindste få undersøgt nærmere hvornår der skal bruges SharedLib's datamodel, eller Administrationssystemets egen.\\\\
+ 
+\textbf{Tråde}\\
+Der er desuden set udfordringer ifm. flere tråde der arbejder på samme collection. På trods af at der er implementeret en Async collection, som virker efter formålet, ligger denne i en risikogruppe. Der skal generelt kigges dybere i trådsikkerhed.\\\\
+ 
+ 
+\textbf{Grafisk arbejde}\\
+Selve brugerfladen burde blive opdateret med en pænere grafiske brugerflade.
