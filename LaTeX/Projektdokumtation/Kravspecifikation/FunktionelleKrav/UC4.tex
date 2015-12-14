@@ -1,13 +1,13 @@
-\subsection{Use case 3: Opret \gls{PD}} \label{prodkat}
-At oprette en \gls{PD}er til systemet.
+\subsection{Use case 3: Opret produkt} \label{prodkat}
+At oprette et produkt til systemet.
 
 
 
 \begin{table}[H]
 \begin{tabularx}{\textwidth}{|l|X|}
 \hline
-\textbf{Navn}					& Opret \gls{PD} \\\hline
-\textbf{Formål}					& \gls{SB} opretter \gls{PD} . \\\hline
+\textbf{Navn}					& Opret produkt \\\hline
+\textbf{Formål}					& \gls{SB} opretter produkt. \\\hline
 \textbf{Initialisering}			& \gls{SB} \\\hline
 \textbf{Aktører}				& \gls{SB} (Primær)\\\hline
 \textbf{Reference}				& Ingen \\\hline
@@ -15,25 +15,25 @@ At oprette en \gls{PD}er til systemet.
 \textbf{Samtidige forekomster}	& $\infty$ \\\hline
 \textbf{Prækondition}			& Der er oprettet forbindelse til \gls{CS}.
 \\\hline
-\textbf{Postkondition}			& Der er oprettet et nyt, tidligere ubenyttet \gls{PD} i systemet.
+\textbf{Postkondition}			& Der er oprettet et nyt, tidligere ubenyttet produkt i systemet.
 \\\hline
-\textbf{Hovedscenarie}			& 1. \gls{SB} trykker på opret \gls{PD} på i \gls{AS}.\\												& 2. Et pop up vindue åbnes i \gls{GUI}, hvori der indtastes informationer om \gls{PD}et.\\
+\textbf{Hovedscenarie}			& 1. \gls{SB} trykker på opret produkt på i \gls{AS}.\\												& 2. Et pop up vindue åbnes i \gls{GUI}, hvori der indtastes informationer om produktet.\\
 								& 3. \gls{SB} trykker på gem.\\
-								& ~ [Ext 1: \gls{PD} eksisterer allerede] \\
+								& ~ [Ext 1: Produkt eksisterer allerede] \\
 								& 2. Systemet sender kommando til \gls{CS}.\\
 								& ~ [Ext 2: \gls{CS} melder fejl.\\
-								& 3. \gls{AS} modtager opdatering om nyt \gls{PD}. \\
-								& 4. \gls{AS} opdaterer \gls{PD}listen \\\hline
+								& 3. \gls{AS} modtager opdatering om nyt produkt. \\
+								& 4. \gls{AS} opdaterer produktlisten \\\hline
 
 \textbf{Extensions}						
-								& [Ext 1: \gls{PD}et eksisterer allerede] \\
-								& ~ 1. Beskedboks informerer \gls{SB} om at \gls{PD} allerede eksisterer.\\
+								& [Ext 1: produktet eksisterer allerede] \\
+								& ~ 1. Beskedboks informerer \gls{SB} om at produktet allerede eksisterer.\\
 								& ~ 2. Der fortsættes fra punkt 1.\\
 									
 								& [Ext 2: \gls{CS} melder fejl] \\
 								& ~ 1. Beskedboks informerer \gls{SB} om fejl. \\
 								& ~ 2. Usecasen afsluttes \\\hline
 \end{tabularx}
-\caption{Use case 3: Usecase for opret \gls{PD} }
+\caption{Use case 3: Usecase for opret produkt} }
 \label{tab:UCop}
 \end{table}
