@@ -1,8 +1,9 @@
 \subsubsection{Business Logic Layer}
-Kasseapparatets Business Logic Layer, består af 2 overordnede dele. ProductCategoryLsit og ShoppingList. \\
+Kasseapparatets Business Logic Layer, består af 2 overordnede dele. ProductCategoryList og ShoppingList. \\
 
-ProductCategoryList er implementeret med henblik på at indeholde produkt kategorier, hentet fra den central server, og dermed produkterne. \\
+ProductCategoryList er implementeret med henblik på at indeholde produkt kategorier, hentet fra den central server, og dermed produkterne. ProductCategoryList er implementeret som ObservableCollection~\cite{ObsCol}, så de ViewModels som benytter denne, kan håndtere den som en liste.\\
 
 ShoppingList er implementeret som en ViewModel fra MVVM. Modelen til ShoppingList er PurchaseProduct som findes i SharedLib. Viewet som præsentere ShoppingList er MainWindow. \\
-ShoppingList indkorporer ObservableCollection~\cite{ObsCol}, hvilket medføre at ShoppingList kan håndteres som en liste af PurchaseProducts. ShoppingList har desuden en række commands\footnote{RelayCommands~\cite{RelayC}}, som bindes til midter segmentets knapper samt annuller knappen i det højre segment.
-Til ShoppingList anvendes der også view code som kalder funktioner  i ShoppingList med information fra displayet.
+ShoppingList indkorporer ObservableCollection~\cite{ObsCol}, for at ShoppingList kan håndteres som en liste af PurchaseProducts. \\
+ShoppingList har desuden en række commands\footnote{RelayCommands~\cite{RelayC}}, som bindes til midter segmentets knapper samt annuller knappen i det højre segment. Disse commands er også valgt for at der fra ShoppingList kan kontrolleres hvornår disse knapper er enabled/disabled.\\
+Til ShoppingList høre der også view code som kalder funktioner i ShoppingList med information fra displayet, dette være sig vare antal eller betalingssum.\\
