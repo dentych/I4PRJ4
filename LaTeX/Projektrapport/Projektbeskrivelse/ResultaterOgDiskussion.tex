@@ -11,7 +11,9 @@ Der er brugt meget tid på at udvikle et produkt der nemt kan skaleres med flere
 I Administrationssystem er der hovedsagelig lagt vægt på funktionalitet, hvilket betyder at det visuelle design har været sekundær prioritet. Administrationssystem gør i prototypen blot brug af det standard design der ligger i Windows.\\
 
 \textbf{CentralServer}\\
-CentralServer kan kommunikere med både Administrationssystem og Kasseapparat. CentralServer har også funktionalitet til at oprette, redigere og slette produkter og kategorier på kommando fra Administrationssystem.\\
+CentralServer kom til at fungere efter hensigten og opfylder de Use Cases, som var en del af kravene. Den kan opretholde forbindelse til vilkårligt mange klienter ad gangen og håndtere kommunikationen med dem uden det giver problemer.\\
+
+Men på trods af, at CentralSever fungerer efter hensigten, har udvikleren (Jakob) været igennem en lærerig process, og ville have bygget dele af systemet anderledes, hvis det skulle implementeres forefra. Herunder kan nævnes, at måden tråde kommunikerer med hinanden, samt måden, hvorpå der læses fra sockets.\\
 
 \textbf{SharedLib}\\
 Alle tre systemer gør brug af et fælles bibliotek, kaldet SharedLib, hvor funktionalitet til at encode og decode kommandoer til XML ligger. Dette samler funktionaliteten, så delsystemerne ikke selv skal implementere den samme funktionalitet flere gange.\\
