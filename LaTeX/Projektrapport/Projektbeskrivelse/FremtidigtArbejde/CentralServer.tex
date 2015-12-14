@@ -1,0 +1,8 @@
+\subsubsection{CentralServer}
+I forbindelse med udviklingen af CentralServer er der gjort overvejelser om hvordan det kunne blive bedre. Disse overvejelser er beskrevet i følgende afsnit.\\
+
+\textbf{Kommunikation mellem tråde}\\
+For at mindske kobling mellem objekter kan/bør CentralServer implementere et besked distrubueringssystem, som består af en kombination af Mediator Pattern og Observer Pattern.\\
+
+\textbf{Læsning fra sockets}\\
+For at undgå, at CentralServer har for mange tråde ad gangen bør der ikke være en levende tråd for hver eneste klient, som er forbundet til serveren. Det er muligt at implementere én tråd, som læser fra (og blokerer på) samtlige sockets på én gang. Dette ville betyde væsentligt mindre overhead ifm. context-skifte når der er mange klienter forbundet på samme tid.
