@@ -1,5 +1,5 @@
 \subsubsection{Data Access Layer}
-Data Access Layer består af tre dele. Den første består af at modtage produktoversigter fra CentralServer. Den anden består af at sende information om gennemførte køb til CentralServer. Den tredje består af at denne salgskvitteringer efter køb er blevet gennemført
+Data Access Layer består af tre dele. Den første del består i at modtage produktoversigter fra CentralServer. Den anden del består i at sende information om gennemførte køb til CentralServer. Den tredje del består i at denne salgskvitteringer efter køb er blevet gennemført.
 
 \begin{figure}[H]
 	\centering
@@ -10,5 +10,3 @@ Data Access Layer består af tre dele. Den første består af at modtage produkt
 
 Figur \ref{fig:KAtCS} viser et generelt eksempel på hvordan kommunikationen til CentralServer fungere. Ekspedienten gennemføre f.eks. et køb i brugergrænsefladen, herefter laves et kommando objekt, som encodes til en XML-streng ved hjælp af SharedLib. Denne XML streng sendes til CentralServer. Forventes et svar modtages dette i form af en XML string, denne decodes til kommando objekt, som inderholder informationen.\\
 Oprettelse af salgskvitteringer foregår ved at der oprettes en tekst fil, navngivet efter tidspunkt for købet.
-
-
