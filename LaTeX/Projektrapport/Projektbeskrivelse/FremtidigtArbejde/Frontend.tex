@@ -1,0 +1,36 @@
+\subsubsection{Kasseapparat}
+
+\textbf{Generelt} 
+…
+
+\textbf{ShoppingList} \\
+Denne klasse er blevet lidt en monolit og kunne med fordel få sit ansvar delt i forskellige klasser, for at overholde SOLID principperne.\\ 
+
+
+\textbf{ProductCategoryList} \\
+... \\
+
+\textbf{Connection \& DBcontrol} \\
+
+Disse klasser burde køre i deres egentråd, evt med en kø til ting der ønskes sendt til CentralServer. \\
+
+\textbf{FilePrinter} \\
+Denne klasse skal printe kvitteringer ud, når der bliver koblet en kvitteringsprinter til systemet. Denne klasse burde også køre i sin egentråd, så det næste salg kan påbegyndes, mens en kvittering udskrives. \\
+
+\textbf{ProductButtonControl} \\
+Denne klasse holder øje med knapperne og opretter knapper pr. den mængde af sider der er i viewet. Fremtidigt arbejde kunne være at sikre at denne klasse kunne kommunikere med en anden klasse der stod for at holde øje med skærm størrelsen. Derpå kunne klassen bestemme hvor mange knapper der var plads til og indsætte disse. \\
+
+\textbf{ButtonContent} \\
+Fremtidigt arbejde for klassen buttoncontent kunne være at gøre så denne klasse nedarver fra Button i WPF frameworket og derved kunne det være muligt at indsætte knappen dynamisk direkte i grænsefladen. \\
+
+\textbf{ProductButtonList}\\
+Denne klasse er næsten tom og står lige nu bare for hver knappeside. Grunden til at denne klasse overhovedet eksisterer er for at sikre, at der kunne være mulighed for at redigere i funktionaliteten for knappesiderne i fremtiden. Fremtidigt arbejde i denne klasse er derved udefinerbart.\\
+
+\textbf{CategoryMenu}\\
+CategoryMenu står for at oprette Kategori menuen. Denne klasse er der ikke noget fremtidigt arbejde i pt. Dog kunne det måske være rart at forbinde denne til et sorteringsobjekt. Derved kan kategorien der vises på produktknapperne sorteres.\\
+
+\textbf{MenuCategories}\\
+Det kunne være rart hvis den valgte kategori blev mat og at det ikke var muligt at trykke på den. \\
+
+\textbf{ButtonStyle.xaml} \\
+Denne burde også sætte border cornerradius for at få afrundet knapper.\\
