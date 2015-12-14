@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace SharedLib.Protocol
 {
+    /// <summary>
+    /// An abstract class which all commands inherit from to gain the CmdName attribute.
+    /// </summary>
     public class Command
     {
+        /// <summary>
+        /// Command name used to identify command
+        /// </summary>
         public string CmdName
         {
             get

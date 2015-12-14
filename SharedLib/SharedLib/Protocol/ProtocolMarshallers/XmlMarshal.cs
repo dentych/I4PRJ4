@@ -6,11 +6,20 @@ using SharedLib.Protocol.CmdMarshallers;
 
 namespace SharedLib.Protocol.ProtocolMarshallers
 {
+    /// <summary>
+    /// Implements the IProtocolMarshaller and is responsible for finding the correct marshaller for a specific command.
+    /// </summary>
     public class XmlMarshal : IProtocolMarshal
     {
+        /// <summary>
+        /// Adds postfix "Marshal" to command name, Searches for a classt with the specific name, if class doesnt exist, throws exception.
+        /// Then creates an instance of the specific marshal class needed to encode, casts the interface ICmdMarshal to the variable to use the properties generically.
+        /// </summary>
+        /// <param name="cmd">Command to be parsed</param>
+        /// <returns>string from the encode call from the correct marshaller</returns>
         public string Encode(Command cmd)
         {
-            // Add postfix "Cmd" to command name
+            // Add postfix "Marshal" to command name
             string fullname = cmd.CmdName.ToString() + "Marshal";
 
             // Searches for a class with the specific name
@@ -32,6 +41,14 @@ namespace SharedLib.Protocol.ProtocolMarshallers
             return cmdtype.Encode(cmd);
         }
 
+        /// <summary>
+        ///  Create XmlReader to find command name, then read to the "Command" node, and save the Name attribute into a cmdName variable.
+        ///  Adds a postfix "Marshal" and searches for a class with that specific name.
+        ///  if class doesnt exist, throw exception.
+        ///  Creates instance of the specific type of marshaller and casts ICmdMarshal interface to it.
+        /// </summary>
+        /// <param name="data">XML string to be parsed</param>
+        /// <returns>Command object from the decode call from the correct marshaller</returns>
         public Command Decode(string data)
         {
             string cmdName;

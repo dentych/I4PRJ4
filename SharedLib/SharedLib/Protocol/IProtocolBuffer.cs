@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharedLib.Protocol
 {
+    /// <summary>
+    /// Interface for the protocol buffer.
+    /// </summary>
     interface IProtocolBuffer
     {
         void AddData(string data);
