@@ -1,6 +1,6 @@
 \subsection{Design og struktur}
 Kasseapparatet er designet med MVVM~\cite{MVVM}, og dertil også med stor fokus på adskilelse af Forretningslag og Præsentationslaget. Dette er sikret ved brug af viewmodels der står for at styre logikken i grænsefladen samt kommunikere ned i de nedre lag. Disse bliver forklaret nærmere længere nede i kapitel ?.
-Vores system er herunder beskrevet ved følgende pakkediagram for at give et hurtigt overblik.	
+Systemet er herunder beskrevet ved følgende pakkediagram for at give et hurtigt overblik.	
 
 \begin{figure}[H]
 	\centering
@@ -15,7 +15,7 @@ Som man kan se på det ovenstående pakkediagram består kasseapparatet primært
 	\item \textbf{View} Views indeholder vores præsentationslagslogik. Det er skrevet i XML og er direkte med til at style vores grænseflade.
 	\item \textbf{ViewModel} Er en mediator mellem modellaget og grænsefladen. Viewmodels sikrer at kasseapparatets grænseflade afspejler ændringer der sker nede i systemet, samt kommunikerer grænsefladens ændringer til de lavere lag. Indholdet af denne bliver beskrevet nærmere i afsnit ? om præsentationslaget.
 	\item \textbf{Dependencies} Indeholder sourcekode der gør det nemmere at arbejde med commands.
-	\item \textbf{Model} Indeholder business logic. Dette er der ikke særligt meget af, da det meste business logic er styret fra administrationssystemet samt SharedLib. Dog vil den tilknytte funktionalitet blive nærmere beskrevet i afsnit ? om Business Logic Laget.
+	\item \textbf{Model} Indeholder business logic. Dette er der ikke særligt meget af, da de fleste models findes i SharedLib
 	\item \textbf{DAL} Indeholder logik til at kommunikere med CentralServeren og derved Databasen. Dette lag vil blive beskrevet nærmere i afsnittet ? om Data Access Laget.
 \end{itemize}
 
