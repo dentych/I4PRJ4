@@ -1,5 +1,5 @@
 \subsection{Design og struktur}
-\gls{KA} er designet med MVVM~\cite{MVVM}, og dertil også med stor fokus på adskillelse af Business Logic- og Præsentationslaget. Dette er sikret ved brug af viewmodels der står for at styre logikken i grænsefladen samt kommunikere ned i de nedre lag. Disse bliver forklaret nærmere længere nede, i kapital ??.
+\gls{KA} er designet med MVVM~\cite{MVVM}, og dertil også med stor fokus på adskillelse af Business Logic- og Præsentationslaget. Dette er sikret ved brug af viewmodels der står for at styre logikken i grænsefladen samt kommunikere med de nedre lag. Disse bliver forklaret nærmere længere i kapitel \ref{VIEWMODELS}.
 Systemet er herunder beskrevet ved følgende pakkediagram for at give et hurtigt overblik.	
 
 \begin{figure}[H]
@@ -15,8 +15,8 @@ Som man kan se på det ovenstående pakkediagram består \gls{KA} primært af gr
 	\item \textbf{View} Views indeholder vores præsentationslagslogik. Det er skrevet i XML og er direkte med til at style vores grænseflade.
 	\item \textbf{ViewModel} Er en mediator mellem modellaget og grænsefladen. Viewmodels sikrer at \gls{KA} grænsefladen afspejler ændringer der sker i systemet, samt kommunikerer grænsefladens ændringer til de lavere lag. Indholdet af denne bliver beskrevet nærmere i afsnit ?? om præsentationslaget.
 	\item \textbf{Dependencies} Indeholder sourcekode der gør det nemmere at arbejde med commands.
-	\item \textbf{Model} Indeholder business logic. Dette er der ikke særligt meget af, da de fleste models findes i \gls{SL}
-	\item \textbf{DAL} Indeholder logik til at kommunikere med \gls{CS} og derved \gls{DB}. Dette lag vil blive beskrevet nærmere i afsnittet ?? om Data Access Laget.
+	\item \textbf{Model} Indeholder business logic. Dette er der ikke særligt meget af, da de fleste models findes i \gls{SL} samt håndteres i Administrationssystem.
+	\item \textbf{DAL} Indeholder logik til at kommunikere med \gls{CS} og derved \gls{DB}. Dette lag vil blive beskrevet nærmere i afsnittet \ref{DAL} om Data Access Laget.
 \end{itemize}
 
 
