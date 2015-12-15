@@ -10,8 +10,16 @@ using SharedLib.Protocol.Commands;
 
 namespace SharedLib.Protocol.CmdMarshallers
 {
+    /// <summary>
+    /// Marshaller for the DeleteProductCmd, Implements the ICmdMarshal interface.
+    /// </summary>
     public class DeleteProductMarshal: ICmdMarshal
     {
+        /// <summary>
+        /// Casts DeleteProductCmd to the parameter cmd, then creates an XML string with the Product attributes.
+        /// </summary>
+        /// <param name="cmd">Command which is to be parsed, in this instance a DeleteProductCmd</param>
+        /// <returns>XML string</returns>
         public string Encode(Command cmd)
         {
             // Cast to DeleteProductCmd
@@ -38,6 +46,11 @@ namespace SharedLib.Protocol.CmdMarshallers
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Creates a new Product and reads the XML node named "Product" and its attributes into the product, then uses the product object to create a new DeleteProductCmd.
+        /// </summary>
+        /// <param name="data">XML string to be parsed</param>
+        /// <returns>DeleteProductCmd object</returns>
         public Command Decode(string data)
         {
             // Create new product

@@ -10,8 +10,16 @@ using SharedLib.Protocol.Commands.ProductCategoryCommands;
 
 namespace SharedLib.Protocol.CmdMarshallers
 {
+    /// <summary>
+    /// Marshaller for the ProductCategoryEditedCmd, Implements the ICmdMarshal interface.
+    /// </summary>
     public class ProductCategoryEditedMarshal: ICmdMarshal
     {
+        /// <summary>
+        /// Casts ProductCategoryEditedCmd to the parameter cmd, then creates an XML string with the ProductCategory attributes and inserts every "Product" node into the list of products in ProductCategory.
+        /// </summary>
+        /// <param name="cmd">Command which is to be parsed, in this instance a ProductCategoryEditedCmd</param>
+        /// <returns>XML string</returns>
         public string Encode(Command cmd)
         {
             // Cast to ProductCategoryEditedCmd
@@ -49,6 +57,11 @@ namespace SharedLib.Protocol.CmdMarshallers
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Creates a list of Products and reads each XML node named "Product" and its attributes into the list, and then uses the list, the Name and ProductCategoryID attributes of the ProductCategory as parameters to create a new ProductCategoryEditedCmd.
+        /// </summary>
+        /// <param name="data">XML string to be parsed</param>
+        /// <returns>ProductCategoryEditedCmd object</returns>
         public Command Decode(string data)
         {
             // Create new productList

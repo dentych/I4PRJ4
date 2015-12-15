@@ -10,8 +10,16 @@ using SharedLib.Protocol.Commands;
 
 namespace SharedLib.Protocol.CmdMarshallers
 {
+    /// <summary>
+    /// Marshaller used for testing. Implements the ICmdMarshal interface.
+    /// </summary>
     public class FakeMarshal: ICmdMarshal
     {
+        /// <summary>
+        /// Used to test if the Encode command is called.
+        /// </summary>
+        /// <param name="cmd">Command which is to be parsed.</param>
+        /// <returns>XML string</returns>
         public string Encode(Command cmd)
         {
             var fkcmd = (FakeCmd)cmd;
@@ -32,6 +40,11 @@ namespace SharedLib.Protocol.CmdMarshallers
            return sb.ToString();
         }
 
+        /// <summary>
+        /// Used to test if the Decode command is called.
+        /// </summary>
+        /// <param name="data">Xml string that is to be parsed.</param>
+        /// <returns>FakeCmd object.</returns>
         public Command Decode(string data)
         {
             var fkcmd = new FakeCmd(true);

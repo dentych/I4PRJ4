@@ -9,8 +9,16 @@ using SharedLib.Protocol.Commands;
 
 namespace SharedLib.Protocol.CmdMarshallers
 {
+    /// <summary>
+    /// Marshaller for the GetCatalogueCmd, Implements the ICmdMarshal interface.
+    /// </summary>
     public class GetCatalogueMarshal: ICmdMarshal
     {
+        /// <summary>
+        /// Casts GetCatalogueCmd to the parameter cmd, then creates an XML string with the cmd name.
+        /// </summary>
+        /// <param name="cmd">Command which is to be parse, in this instance a GetCatalogueCmd</param>
+        /// <returns>XML string</returns>
         public string Encode(Command cmd)
         {
             // Cast to GetCatalogueCmd
@@ -29,6 +37,11 @@ namespace SharedLib.Protocol.CmdMarshallers
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Returns a GetCatalogueCmd
+        /// </summary>
+        /// <param name="data">XML string to be parsed</param>
+        /// <returns>GetCatalogueCmd object</returns>
         public Command Decode(string data)
         {
             // return new GetCatalogueCmd 

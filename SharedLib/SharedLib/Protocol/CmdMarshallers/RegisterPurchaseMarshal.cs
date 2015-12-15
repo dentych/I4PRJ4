@@ -10,8 +10,17 @@ using SharedLib.Protocol.Commands;
 
 namespace SharedLib.Protocol.CmdMarshallers
 {
+    /// <summary>
+    /// Marshaller for the RegisterPurchaseCmd, Implements the ICmdMarshal interface.
+    /// </summary>
     public class RegisterPurchaseMarshal: ICmdMarshal
     {
+
+        /// <summary>
+        /// Casts RegisterPurchaseCmd to the parameter cmd, then creates an XML string with the list of PurchasedProducts.
+        /// </summary>
+        /// <param name="cmd">Command which is to be parse, in this instance a RegisterPurchaseCmd</param>
+        /// <returns>XML string</returns>
         public string Encode(Command cmd)
         {
             // Cast to RegisterPurchaseCmd
@@ -46,6 +55,11 @@ namespace SharedLib.Protocol.CmdMarshallers
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Creates a purchase which has a list of PurchasedProducts and reads each XML node named "PurchasedProduct" and its attributes into the list, and then uses the purchase as a parameter to create a new RegisterPurchaseCmd.
+        /// </summary>
+        /// <param name="data">XML string to be parsed</param>
+        /// <returns>CatalogueDetailsCmd object</returns>
         public Command Decode(string data)
         {
             // Create new Purchase

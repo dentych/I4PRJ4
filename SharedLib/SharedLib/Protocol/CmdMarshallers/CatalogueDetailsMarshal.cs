@@ -10,8 +10,16 @@ using SharedLib.Protocol.Commands;
 
 namespace SharedLib.Protocol.CmdMarshallers
 {
+    /// <summary>
+    /// Marshaller for the CatalogueDetailsCmd, Implements the ICmdMarshal interface.
+    /// </summary>
     public class CatalogueDetailsMarshal : ICmdMarshal
     {
+        /// <summary>
+        /// Casts CatalogueDetailCmd to the parameter cmd, then creates an XML string with the list of ProductCategories and each with a list of Products.
+        /// </summary>
+        /// <param name="cmd">Command which is to be parse, in this instance a CatalogueDetailsCmd</param>
+        /// <returns>XML string</returns>
         public string Encode(Command cmd)
         {
             // Cast to CatalogueDetailsCmd
@@ -58,6 +66,11 @@ namespace SharedLib.Protocol.CmdMarshallers
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Creates a list with ProductCategories and reads each XML node named "ProductCategory" and its attributes into the list, and then uses the list as a parameter to create a new CatalogueDetailsCmd.
+        /// </summary>
+        /// <param name="data">XML string to be parsed</param>
+        /// <returns>CatalogueDetailsCmd object</returns>
         public Command Decode(string data)
         {
             // Create new categoryList
