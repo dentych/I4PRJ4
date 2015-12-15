@@ -41,7 +41,7 @@ For at forstå kommunikationen mellem de forskellige klasser/pakker er de følge
 	\label{fig:SekvensUC1}
 \end{figure}
 
-På figur \ref{fig:SekvensUC1} er der opsat et sekvensdiagram over Use Case 1 - Gennemfør køb. Her kan man se hvad der sker når en ekspedient starter et salg ved at vælge et produkt i grænsefladen. Når knappen bliver trykket ned, så kalder viewet AddItemCommand i ViewModellen ButtonContent. Dette command tjekker så om der allerede er tilføjet et produkt i shoppinglist. Hvis der er, inkrementeres produktet. Hvis ikke så tilføjes det. Herefter notifier shoppinglist på at der er ændret på totalprice og den nye værdi hentes derefter af viewet. \\
+På figur \ref{fig:SekvensUC1} er der opsat et sekvensdiagram over Use Case 1 - Gennemfør køb. Her kan man se hvad der sker når en ekspedient starter et salg ved at vælge et produkt i grænsefladen. Når knappen bliver trykket ned, så kalder viewet AddItemCommand i ViewModellen ButtonContent. Dette command tjekker så om der allerede er tilføjet et produkt i shoppinglist. Hvis der er, inkrementeres produktet. Hvis ikke så tilføjes det. Herefter notifier shoppinglist på at der er ændret på totalprice og den nye værdi hentes af viewet. \\
 Nu da produktet er tilføjet til shoppinglist kan ekspedienten tage imod penge fra kunden, trykke beløbet ind og så til sidst trykke på kontant. Herefter bliver der kaldt EndPurchase over i shoppinglist. Resten af sekvensen er vist ved sekvensdiagrammet på figur \ref{fig:SekvensRegisterSale}. Dette diagram er lagt for sig selv for at gøre det ovenstående sekvensdiagram mere overskueligt. Det første sekvensdiagram viser indtastning af produkter og det næste viser registrering af salg.
 
 \begin{figure}[H]
