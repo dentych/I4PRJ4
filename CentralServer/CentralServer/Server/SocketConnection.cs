@@ -6,6 +6,9 @@ using CentralServer.Messaging.Messages;
 
 namespace CentralServer.Server
 {
+    /// <summary>
+    /// Enables asyncronous reading to a socket connection.
+    /// </summary>
     public class SocketConnection : ISocketConnection
     {
         private ILog _log;
@@ -24,6 +27,10 @@ namespace CentralServer.Server
             _handle = handle;
         }
 
+        /// <summary>
+        /// Send data to the socket
+        /// </summary>
+        /// <param name="data">Raw data</param>
         public void Send(string data)
         {
             _log.Write("SocketConnection", Log.DEBUG,
@@ -32,11 +39,17 @@ namespace CentralServer.Server
             _handle.Send(bytes);
         }
 
+        /// <summary>
+        /// Start receiving data from the socket
+        /// </summary>
         public void StartRecieving()
         {
             BeginAsyncRead();
         }
 
+        /// <summary>
+        /// Begin an asyncronous reading from the socket
+        /// </summary>
         private void BeginAsyncRead()
         {
             var callback = new AsyncCallback(ReadCallback);
@@ -52,6 +65,10 @@ namespace CentralServer.Server
             }
         }
 
+        /// <summary>
+        /// Invoked when an asyncronous reading has completed
+        /// </summary>
+        /// <param name="ar"></param>
         private void ReadCallback(IAsyncResult ar)
         {
             int bytesRead;
@@ -75,6 +92,11 @@ namespace CentralServer.Server
             }
         }
 
+        /// <summary>
+        /// Invoked when new data has been received
+        /// </summary>
+        /// <param name="data">Raw data array</param>
+        /// <param name="length">Amount of bytes read</param>
         private void HandleDataRecieved(byte[] data, int length)
         {
             var dataStr = Encoding.Unicode.GetString(_buffer, 0, length);
@@ -82,6 +104,9 @@ namespace CentralServer.Server
             OnDataRecieved?.Invoke(dataStr);
         }
 
+        /// <summary>
+        /// Invoked when client closed the connection
+        /// </summary>
         private void HandleConnectionClosed()
         {
             _log.Write("SocketConnection", Log.DEBUG, "Closing connection");

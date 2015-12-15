@@ -29,11 +29,12 @@ namespace CentralServer
             _handler = handler;
         }
 
-
-        /*
-         * Invoked when this thread recieves a new message.
-         * Messages propagate to specific event handlers.
-         */
+         /// <summary>
+         /// Invoked when this thread recieves a new message.
+         /// Messages propagate to specific event handlers.
+         /// </summary>
+         /// <param name="id">Event ID</param>
+         /// <param name="msg">Message object</param>
         public void Dispatch(long id, Message msg)
         {
             switch (id)
@@ -60,11 +61,11 @@ namespace CentralServer
             }
         }
 
-
-        /*
-         * Invoked when MainControl accepts a client.
-         * Register a new session and respond with Session ID to the client.
-         */
+        /// <summary>
+        /// Invoked when MainControl accepts a client.
+        /// Register a new session and respond with Session ID to the client.
+        /// </summary>
+        /// <param name="msg"></param>
         private void HandleStartSession(StartSessionMsg msg)
         {
             var client = msg.Client;
@@ -77,20 +78,20 @@ namespace CentralServer
             client.Send(ClientControl.E_WELCOME, response);
         }
 
-
-        /*
-         * Invoked when a client has disconnected.
-         * In this case its session must be unregistered.
-         */
+        /// <summary>
+        /// Invoked when a client has disconnected.
+        /// In this case its session must be unregistered.
+        /// </summary>
+        /// <param name="msg"></param>
         private void HandleStopSession(StopSessionMsg msg)
         {
             _sessions.Unregister(msg.SessionId);
         }
 
-
-        /*
-         * Invoked whenever a clients sends a command to the server.
-         */
+        /// <summary>
+        /// Invoked whenever a clients sends a command to the server.
+        /// </summary>
+        /// <param name="msg"></param>
         private void HandleCommandReieved(CommandRecievedMsg msg)
         {
             var cmd = msg.Command;

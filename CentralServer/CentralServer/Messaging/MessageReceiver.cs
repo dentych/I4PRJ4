@@ -3,6 +3,9 @@ using CentralServer.Threading;
 
 namespace CentralServer.Messaging
 {
+    /// <summary>
+    /// Implements a thread that can receive messages.
+    /// </summary>
     public class MessageReceiver : IThreadRunner, IMessageReceiver
     {
         private readonly IMessageHandler _handler;
@@ -15,6 +18,9 @@ namespace CentralServer.Messaging
             _queue = queue;
         }
 
+        /// <summary>
+        /// Invoke to run the thread
+        /// </summary>
         public void RunThread()
         {
             while (true)
@@ -29,6 +35,11 @@ namespace CentralServer.Messaging
             }
         }
 
+        /// <summary>
+        /// Send a message to this thread
+        /// </summary>
+        /// <param name="id">Event ID</param>
+        /// <param name="msg">Message to put in queue (optional)</param>
         public void Send(long id, Message msg = null)
         {
             _queue.Send(id, msg);

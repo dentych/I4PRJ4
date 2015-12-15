@@ -5,9 +5,16 @@ using SharedLib.Models;
 
 namespace CentralServer.RequisitionReceipt
 {
+    /// <summary>
+    /// Enables to write details about a purchase to a file.
+    /// The file chosen to write to is named according to the current date.
+    /// </summary>
     public class RequisitionReceipt : IRequisitionReceipt
     {
-
+        /// <summary>
+        /// Write details about a purchase to the requisition receipt
+        /// </summary>
+        /// <param name="purchase">The purchase to get details from</param>
         public void Write(Purchase purchase)
         {
             var fp = GetFilePath();
@@ -29,6 +36,10 @@ namespace CentralServer.RequisitionReceipt
             File.AppendAllText(fp, "\r\n");
         }
 
+        /// <summary>
+        /// Gets path to file to write to according to current date.
+        /// </summary>
+        /// <returns>Filepath</returns>
         private string GetFilePath()
         {
             var today = DateTime.Now;

@@ -8,6 +8,10 @@ using SharedLib.Protocol;
 
 namespace CentralServer.Server
 {
+    /// <summary>
+    /// Implements a socket server, which listens for incoming connections
+    /// and accepts them.
+    /// </summary>
     class SocketServer : IThreadRunner
     {
         private ILog _log;
@@ -27,6 +31,9 @@ namespace CentralServer.Server
             _port = port;
         }
 
+        /// <summary>
+        /// Run the server
+        /// </summary>
         public void RunThread()
         {
             IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Any, _port);
@@ -41,6 +48,11 @@ namespace CentralServer.Server
                 SpawnClient(_listener.Accept());
         }
 
+        /// <summary>
+        /// Invoked when a new connection has been accepted.
+        /// Spawns a new ClientControl object and registers the client with MainControl.
+        /// </summary>
+        /// <param name="handle">The Socket object</param>
         private void SpawnClient(Socket handle)
         {
             _log.Write("SocketServer", Log.DEBUG,
@@ -56,6 +68,10 @@ namespace CentralServer.Server
             RegisterClient(clientReceiver);
         }
 
+        /// <summary>
+        /// Registers a ClientControl with MainControl
+        /// </summary>
+        /// <param name="client">The ClientControl object</param>
         private void RegisterClient(IMessageReceiver client)
         {
             var registerMsg = new StartSessionMsg(client);

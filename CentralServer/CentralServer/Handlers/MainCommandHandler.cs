@@ -13,6 +13,9 @@ using SharedLib.Protocol.Commands.ProductCategoryCommands;
 
 namespace CentralServer.Handlers
 {
+    /// <summary>
+    /// Contains eventhandlers to handle commands received by clients.
+    /// </summary>
     public class MainCommandHandler : ICommandHandler
     {
         private readonly ILog _log;
@@ -27,11 +30,12 @@ namespace CentralServer.Handlers
             _receipt = receipt;
         }
 
-
-        /*
-         * A client requests to recieve the entire product catalogue.
-         * Respond with a CatalogueDetails command.
-         */
+        /// <summary>
+        /// A client requests to recieve the entire product catalogue. 
+        /// Respond with a CatalogueDetails command.
+        /// </summary>
+        /// <param name="client">The client who send the command</param>
+        /// <param name="cmd">The command</param>
         public void HandleGetCatalogue(IMessageReceiver client, GetCatalogueCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -68,11 +72,12 @@ namespace CentralServer.Handlers
             client.Send(ClientControl.E_SEND_COMMAND, response);
         }
 
-
-        /*
-         * A client requests to create a new product.
-         * Create the product in database and notify all connected clients.
-         */
+        /// <summary>
+        /// A client requests to create a new product. 
+        /// Create the product in database and broadcast a ProductCreatedCmd command.
+        /// </summary>
+        /// <param name="client">The client who send the command</param>
+        /// <param name="cmd">The command</param>
         public void HandleCreateProduct(IMessageReceiver client, CreateProductCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -97,7 +102,12 @@ namespace CentralServer.Handlers
             Broadcast(new ProductCreatedCmd(product));
         }
 
-
+        /// <summary>
+        /// A client requests to edit product details. 
+        /// Save the details and broadcast a ProductEditedCmd command.
+        /// </summary>
+        /// <param name="client">The client who send the command</param>
+        /// <param name="cmd">The command</param>
         public void HandleEditProduct(IMessageReceiver client, EditProductCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -123,7 +133,12 @@ namespace CentralServer.Handlers
             }
         }
 
-
+        /// <summary>
+        /// A client requests to delete a product. 
+        /// Delete the product and broadcast a ProductDeletedCmd command.
+        /// </summary>
+        /// <param name="client">The client who send the command</param>
+        /// <param name="cmd">The command</param>
         public void HandleDeleteProduct(IMessageReceiver client, DeleteProductCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -143,7 +158,12 @@ namespace CentralServer.Handlers
             }
         }
 
-
+        /// <summary>
+        /// A client requests to create a new product category. 
+        /// Create the product category in database and broadcast a ProductCategoryCreatedCmd command.
+        /// </summary>
+        /// <param name="client">The client who send the command</param>
+        /// <param name="cmd">The command</param>
         public void HandleCreateProductCategory(IMessageReceiver client, CreateProductCategoryCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -163,7 +183,12 @@ namespace CentralServer.Handlers
             Broadcast(new ProductCategoryCreatedCmd(cat));
         }
 
-
+        /// <summary>
+        /// A client requests to edit product category details. 
+        /// Save the details and broadcast a ProductCategoryEditedCmd command.
+        /// </summary>
+        /// <param name="client">The client who send the command</param>
+        /// <param name="cmd">The command</param>
         public void HandleEditProductCategory(IMessageReceiver client, EditProductCategoryCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -183,7 +208,12 @@ namespace CentralServer.Handlers
             }
         }
 
-
+        /// <summary>
+        /// A client requests to delete a product category. 
+        /// Delete the product and broadcast a ProductCategoryDeletedCmd command.
+        /// </summary>
+        /// <param name="client">The client who send the command</param>
+        /// <param name="cmd">The command</param>
         public void HandleDeleteProductCategory(IMessageReceiver client, DeleteProductCategoryCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -203,10 +233,11 @@ namespace CentralServer.Handlers
             }
         }
 
-
-        /*
-         * Invoked when a clients wants to register a purchase
-         */
+        /// <summary>
+        /// A client registers a new purchase. 
+        /// </summary>
+        /// <param name="client">The client who send the command</param>
+        /// <param name="cmd">The command</param>
         public void HandleRegisterPurchase(IMessageReceiver client, RegisterPurchaseCmd cmd)
         {
             _log.Write("MainControl", Log.NOTICE,
@@ -226,10 +257,10 @@ namespace CentralServer.Handlers
             }
         }
 
-
-        /*
-         * Broadcast a command to all connected clients
-         */
+        /// <summary>
+        /// Broadcast a command to all connected clients
+        /// </summary>
+        /// <param name="cmd">The command to broadcast</param>
         private void Broadcast(Command cmd)
         {
             foreach (var c in _sessions.GetClients())
