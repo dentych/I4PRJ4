@@ -35,7 +35,7 @@ Med disse begreber på plads kunne SOLID's designprincipper pludseligt defineres
 
 \textbf{S}, Single Responsibility, blev overholdt i og med hver enkelt kommando ville få sin egen klasse, der skulle håndtere denne. Denne kommando ville samtidig have sin egen specifikke marshaller, hvis eneste formål var at parse netop den type af kommando.\\
 
-\textbf{O}, Open-Closed princippet, blev også overholdt da alle kommandoer og alle marshallers hver havde implementeret det samme interface. Dette betyder at hvis en ny kommando skal tilføjes skal den nye kommando blot implementere den abstrakte klasse Command og derefter skal der oprettes en marshallers der implementere marshaller interfacet, og på den måde vil en ny kommando ikke have nogen indflydelse på den allerede eksisterende kode.\\
+\textbf{O}, Open-Closed princippet, blev også overholdt da alle kommandoer og alle marshallers hver havde implementeret hver deres interface. Dette betyder at hvis en ny kommando skal tilføjes skal den nye kommando blot implementere den abstrakte klasse Command og derefter skal der oprettes en marshallers der implementerer marshaller interfacet, og på den måde vil en ny kommando ikke have nogen indflydelse på den allerede eksisterende kode.\\
 
 \textbf{L}, Liskov's substitutions princip, fortæller at en superklasse skal kunne byttes ud med dens subklasse uden at dette ændre funktionaliteten i programmet. Dette havde ikke den store indflydelse på protokollen da der kun blev nedarvet fra Command klassen og da denne kun indeholder attributter blev der ikke brudt med dette princip.\\
 
