@@ -1,5 +1,5 @@
 \subsubsection{Design af elementer}
-Herunder vil designet af en stor del af kommunikationen i grænsefladen blive beskrevet, både med klassediagrammer og sekvensdiagrammer.\\
+Herunder vil designet af en stor del af kommunikationen i \gls{KA}tet blive beskrevet, både med klassediagrammer og sekvensdiagrammer.\\
 
 \textbf{Klassediagrammer}\\
 
@@ -10,8 +10,8 @@ Herunder vil designet af en stor del af kommunikationen i grænsefladen blive be
 	\label{fig:KasseKlasse}
 \end{figure}
 
-På figur \ref{fig:KasseKlasse} kan man se hele kasseapparatets software vist ved dens klasser og funktioner. Dog er ViewModels delt op i 2 pakker. Dette er bestemt, da det ville give mere mening at gøre det på denne måde, når man skulle forklare klasserne og deres indbyrdes forhold. Disse forhold vil blive nærmere beskrevet ved figur \ref{fig:ButtonModel} og \ref{fig:CategoryControl} \\
-Klassediagrammet er delt op i 3 lag, der skal symbolisere henholdsvis Presentation-, Business Logic- og Data Access Layer.
+På figur \ref{fig:KasseKlasse} kan man se hele kasseapparatets software vist ved dens klasser og funktioner. Dog er ViewModels delt op i 2 pakker, hhv. ButtonModel og CategoryControl. Dette er bestemt, da det ville give mere mening at gøre det på denne måde, når man skulle forklare klasserne og deres indbyrdes forhold. Disse forhold vil blive nærmere beskrevet ved figur \ref{fig:ButtonModel} og \ref{fig:CategoryControl} \\
+Klassediagrammet er delt op i 3 lag, der skal symbolisere henholdsvis Presentation-, Business Logic- og Data Access Layer. Den øverste række af klasser, repræsenteret ved MainWindow, er presentationlayer. Den midterste række er business logic, repræsenteret ved ShoppingList. Den nederste række er data access layer, repræsenteret ved Connection.
 
 \begin{figure}[H]
 	\centering
@@ -20,7 +20,7 @@ Klassediagrammet er delt op i 3 lag, der skal symbolisere henholdsvis Presentati
 	\label{fig:ButtonModel}
 \end{figure}
 
-På figur \ref{fig:ButtonModel} ser man ViewModel pakken buttonmodel, der står for produktknapperne i grænsefladen. Disse objekter sikrer at man kan skifte produktside og ved tryk på en knap kan et produkt tilføjes til shoppinglist som er indkøbskurven på \gls{KA}tet. For at opsætte denne pakke blev der først opsat et sekvensdiagram set på figur ??.
+På figur \ref{fig:ButtonModel} ser man ViewModel pakken buttonmodel, der står for produktknapperne i grænsefladen. Disse objekter sikrer at man kan skifte produktside og ved tryk på en knap kan et produkt tilføjes til shoppinglist som er indkøbskurven på \gls{KA}tet. For at opsætte denne pakke blev der først opsat et sekvensdiagram set på figur \ref{fig:SekvensUpdatePCL}. Sekvensdiagrammet viser hvordan knapperne bliver oprettet.
 
 \begin{figure}[H]
 	\centering
