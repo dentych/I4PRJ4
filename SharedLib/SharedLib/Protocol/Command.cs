@@ -12,7 +12,7 @@ namespace SharedLib.Protocol
     public class Command
     {
         /// <summary>
-        /// Command name used to identify command
+        /// Command name used to identify command, when get is called ,postfix "Cmd" is removed before CmdName is returned.
         /// </summary>
         public string CmdName
         {

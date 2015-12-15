@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SharedLib.Models
 {
     /// <summary>
-    /// Datamodel for the Product
+    /// Datamodel for the products
     /// </summary>
     public class Product
     {   
