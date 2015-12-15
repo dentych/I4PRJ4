@@ -11,7 +11,9 @@ namespace SharedLib.Sockets
     public delegate void ConnectionErrorHandler(SocketException err);
     public delegate void DataRecievedHandler(string data);
 
-
+    /// <summary>
+    /// An interface for create an asynchronous socket client
+    /// </summary>
     public interface ISocketConnection
     {
         event ConnectionOpenedHandler OnConnectionOpened;
@@ -22,7 +24,9 @@ namespace SharedLib.Sockets
         void Send(string data);
     }
 
-
+    /// <summary>
+    /// Implements an asynchronous socket client.
+    /// </summary>
     public class SocketConnection : ISocketConnection
     {
         private readonly Socket _handle;
@@ -44,6 +48,11 @@ namespace SharedLib.Sockets
                     SocketType.Stream, ProtocolType.Tcp);
         }
 
+        /// <summary>
+        /// Connect to a server
+        /// </summary>
+        /// <param name="ip">IP to connect to</param>
+        /// <param name="port">Port to connect to</param>
         public void Connect(string ip, int port)
         {
             var address = IPAddress.Parse(ip);
@@ -53,17 +62,27 @@ namespace SharedLib.Sockets
             _handle.BeginConnect(endPoint, callback, _handle);
         }
 
+        /// <summary>
+        /// Invoked when a connection has been established
+        /// </summary>
         private void HandleConnected(IAsyncResult ar)
         {
             OnConnectionOpened?.Invoke();
             BeginAsyncRead();
         }
 
+        /// <summary>
+        /// Invoked when the connection has been closed.
+        /// </summary>
         private void HandleDisconnect()
         {
             OnConnectionClosed?.Invoke();
         }
 
+        /// <summary>
+        /// Invoked when data has been read from the server.
+        /// </summary>
+        /// <param name="length">Amount of bytes read</param>
         private void HandleDataRecieved(int length)
         {
             // FIXME: Handle decoding errors
@@ -74,6 +93,10 @@ namespace SharedLib.Sockets
             OnDataRecieved?.Invoke(dataStr);
         }
 
+        /// <summary>
+        /// Send data to the server
+        /// </summary>
+        /// <param name="data">Raw data string</param>
         public void Send(string data)
         {
             // FIXME: Handle encoding errors
@@ -82,6 +105,9 @@ namespace SharedLib.Sockets
             _handle.Send(bytes);
         }
 
+        /// <summary>
+        /// Begin asynchronous reading from the server
+        /// </summary>
         private void BeginAsyncRead()
         {
             var callback = new AsyncCallback(ReadCallback);
@@ -95,6 +121,9 @@ namespace SharedLib.Sockets
             }
         }
 
+        /// <summary>
+        /// Invoked when an asynchronous reading has completed
+        /// </summary>
         private void ReadCallback(IAsyncResult ar)
         {
             int bytesRead;
