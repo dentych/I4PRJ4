@@ -10,6 +10,11 @@ namespace SharedLib.Protocol
      * The buffer takes a stream of XML-documents and seperates
      * documents. Recognizes end of documents by "</command>".
      */
+
+
+    /// <summary>
+    /// XmlBuffer specific buffer which implements the IProtocolBuffer interface.
+    /// </summary>
     public class XmlBuffer : IProtocolBuffer
     {
         private StringBuilder _buffer = new StringBuilder();
@@ -17,12 +22,19 @@ namespace SharedLib.Protocol
                 @"(</Command>|<Command\s+Name=""([^""]*)""\s/>)+",
                 RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-
+        /// <summary>
+        /// Add the incoming data from a transmission into a buffer collection
+        /// </summary>
+        /// <param name="data">recieved data</param>
         public void AddData(string data)
         {
             _buffer.Append(data);
         }
 
+        /// <summary>
+        /// Get all the fully transferred commands from the buffer collection 
+        /// </summary>
+        /// <returns>Enumerable with commands</returns>
         public IEnumerable<string> GetDocuments()
         {
             var data = _buffer.ToString();

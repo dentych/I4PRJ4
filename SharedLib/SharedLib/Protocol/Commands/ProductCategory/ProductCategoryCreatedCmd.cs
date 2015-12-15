@@ -7,15 +7,33 @@ using SharedLib.Models;
 
 namespace SharedLib.Protocol.Commands.ProductCategoryCommands
 {
+    /// <summary>
+    /// Information that a new ProductCategory has been created.
+    /// </summary>
     public class ProductCategoryCreatedCmd: Command
     {
         private readonly string _name;
         private readonly int _productCategoryId;
-        public readonly List<Product> Products = new List<Product>(); 
 
-        public string Name { get { return _name; }}
+        /// <summary>
+        /// List of Product objects in the ProductCategory.
+        /// </summary>
+        public readonly List<Product> Products = new List<Product>();
+
+        /// <summary>
+        /// Name of the ProductCategory
+        /// </summary>
+        public string Name { get { return _name; } }
+
+        /// <summary>
+        /// ProductCategoryId of the ProductCategory.
+        /// </summary>
         public int ProductCategoryId { get { return _productCategoryId; } }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="productCategory">ProductCategory which attributes is to be copied into the command.</param>
         public ProductCategoryCreatedCmd(ProductCategory productCategory)
         {
             _name = productCategory.Name;
@@ -27,6 +45,12 @@ namespace SharedLib.Protocol.Commands.ProductCategoryCommands
             }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name">Name of the ProductCategory</param>
+        /// <param name="productCategoryId">ProductCategoryId of the ProductCategory</param>
+        /// <param name="products">List of Product objects which is to be copied into a list in the ProductCategory.</param>
         public ProductCategoryCreatedCmd(string name, int productCategoryId, List<Product> products)
         {
             _name = name;
