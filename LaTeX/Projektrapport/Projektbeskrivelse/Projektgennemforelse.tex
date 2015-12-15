@@ -10,3 +10,73 @@ Herefter begyndte gruppen i fællesskab at designe systemarkitekturen, herunder 
 Opdelingen blev som følgende: Benjamin og Dennis udviklede på Administrationssystem, Martin og Kasper udviklede på Kasseapparat, Andreas udviklede på SharedLib og Jakob udviklede på CentralServer
 
 Ovenstående opdeling varede hovedsageligt hele projektet igennem, da der var forskellige problemstillinger i hvert system og det derfor gav mest mening at lade folk arbejde med det som de havde opnået erfaring med i løbet af de forskellige sprints.
+\newpage
+\subsection{Arbejdsfordelings Liste}
+
+Oversigt over hvem der har været med til at implementere de forskellige dele
+
+\begin{table}[H]
+	\begin{tabular}{lll}
+		
+		\hline
+		\multicolumn{3}{|l|}{{\color{lblue} \textbf{Generelt}}}                                                                                        \\ \hline
+		\multicolumn{1}{|l|}{\textbf{Opgave}}           & \multicolumn{1}{l|}{\textbf{Primær}}                       & \multicolumn{1}{l|}{\textbf{Sekundær}} \\ \hline
+		\multicolumn{1}{|l|}{Kravspecifikation}         & \multicolumn{1}{l|}{Alle}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		\multicolumn{1}{|l|}{Accepttestspecifikation}   & \multicolumn{1}{l|}{Alle}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		& & \\& & \\ \hline                                                    
+		
+		
+		\multicolumn{3}{|l|}{\color{lblue} \textbf{Kasseapparat}}                                                                                                               \\ \hline
+		\multicolumn{1}{|l|}{\textbf{Opgave}}           & \multicolumn{1}{l|}{\textbf{Primær}}                       & \multicolumn{1}{l|}{\textbf{Sekundær}} \\ \hline
+		\multicolumn{1}{|l|}{MainWindow (XAML)}         & \multicolumn{1}{l|}{Martin}                                  &
+		\multicolumn{1}{l|}{Kasper}                  \\ \hline
+		\multicolumn{1}{|l|}{MainWindow}         & \multicolumn{1}{l|}{Kasper og Martin}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{ButtonStyle (XAML)}         & \multicolumn{1}{l|}{Kasper}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{CategoriesMenu}         & \multicolumn{1}{l|}{Martin}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{MenuCategory}         & \multicolumn{1}{l|}{Martin}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{ProductButtonControl}         & \multicolumn{1}{l|}{Martin}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{ProductButtonList}         & \multicolumn{1}{l|}{Martin}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{ShoppingList}         & \multicolumn{1}{l|}{Kasper}                                  & \multicolumn{1}{l|}{Martin}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{ProductCategoryList}         & \multicolumn{1}{l|}{Kasper}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{DBControl}         & \multicolumn{1}{l|}{Kasper}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{FilePrinter}         & \multicolumn{1}{l|}{Kasper}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		\multicolumn{1}{|l|}{Connection}         & \multicolumn{1}{l|}{Kasper}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		& & \\& & \\ \hline                                           
+		
+		
+		\multicolumn{3}{|l|}{\color{lblue} \textbf{Administrationssystem}}                                                                                                               \\ \hline
+		\multicolumn{1}{|l|}{\textbf{Opgave}}           & \multicolumn{1}{l|}{\textbf{Primær}}                       & \multicolumn{1}{l|}{\textbf{Sekundær}} \\ \hline
+		\multicolumn{1}{|l|}{Alt}         & \multicolumn{1}{l|}{Benjamin og Dennis}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		& & \\& & \\ \hline 
+		
+		
+		\multicolumn{3}{|l|}{\color{lblue} \textbf{CentralServer}}                                                                                                               \\ \hline
+		\multicolumn{1}{|l|}{\textbf{Opgave}}           & \multicolumn{1}{l|}{\textbf{Primær}}                       & \multicolumn{1}{l|}{\textbf{Sekundær}} \\ \hline
+		\multicolumn{1}{|l|}{Alt}         & \multicolumn{1}{l|}{Jakob}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		& & \\& & \\ \hline 
+		
+		
+		\multicolumn{3}{|l|}{\color{lblue} \textbf{SharedLib}}                                                                                                               \\ \hline
+		\multicolumn{1}{|l|}{\textbf{Opgave}}           & \multicolumn{1}{l|}{\textbf{Primær}}                       & \multicolumn{1}{l|}{\textbf{Sekundær}} \\ \hline
+		\multicolumn{1}{|l|}{Protocol}         & \multicolumn{1}{l|}{Andreas}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		\multicolumn{1}{|l|}{Models}         & \multicolumn{1}{l|}{Andreas}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		\multicolumn{1}{|l|}{Commands}         & \multicolumn{1}{l|}{Andreas}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		\multicolumn{1}{|l|}{Marshallers}         & \multicolumn{1}{l|}{Andreas}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		\multicolumn{1}{|l|}{SocketConnection}         & \multicolumn{1}{l|}{Jakob og Benjamin}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		\multicolumn{1}{|l|}{CommandListener}         & \multicolumn{1}{l|}{Jakob og Benjamin}                                  & \multicolumn{1}{l|}{}                  \\ \hline
+		
+		
+		
+	\end{tabular}
+\end{table}
