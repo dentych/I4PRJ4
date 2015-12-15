@@ -1,55 +1,57 @@
+\subsection{MoSCoW}
+
 \subsubsection*{Systemet \textit{skal} kunne}
 
 \begin{itemize}
-
-\item Systemet skal have et Administrationssystem, hvor en Superbruger kan oprette, redigere og slette produktkategori og produkt i databasen
-\item Systemet skal indeholde et Kasseapparat, hvor …:
-\begin{itemize}
-\item Ekspedient kan sælge produkter til kunder
-\item Kunde kan returnere varer til Ekspedient
-\end{itemize}
-\item Kasseapparat skal …:
-\begin{itemize}
-\item Kunne tage imod kontant betaling
-\item Danne en salgskvittering
-\item Danne en rekvisionskvittering
-\end{itemize}
-\item Systemet skal indeholde en database, som indeholder et produktkatalog
-\item Systemet skal have en CentralServer der står for at kommunikere med Kasseapparat og Administrationssystem
-
+	
+	\item Systemet skal have et administrationssystem, hvor en superbruger kan oprette, redigere og slette produkter og produktkategorier i en database.
+	\item Systemet skal indeholde et kasseapparat, hvor …:
+	\begin{itemize}
+		\item En ekspedient kan sælge produkter til kunder
+		\item En kunde kan returnere varer til en ekspedient
+	\end{itemize}
+	\item \gls{KA} skal …:
+	\begin{itemize}
+		\item Kunne tage imod kontant betaling
+		\item Danne en salgskvittering
+		\item Danne en rekvisionskvittering
+	\end{itemize}
+	\item Indeholde en database, som indeholder et produktkatalog
+	\item Indeholde kommunikation mellem \gls{AS} og \gls{KA}
+	
 \end{itemize}
 
 
 \subsubsection*{Systemet \textit{bør} kunne}
 
 \begin{itemize}
-
-\item Understøtte brugerlogin i flere niveauer
-\begin{itemize}
-\item Superbruger, der kan tilgå Administrationssystem\\
-\item Ekspedient, der kan tilgå Kasseapparat
-\end{itemize}
-\item Ekspeditioner kan parkeres midlertidigt
-\item Benytte variabel momssats per produkt
-\item Understøtte flere forskellige instanser af Kasseapparat på samme tid
-\item Understøtte tilbudskampagner
-\item Have kontrol af lagerbeholdningen i Administrationssystem
-\item Ekspedient kan afskrive et produkt, hvis den f.eks. er gået i stykker
-\item Vise salgsstatistik i Administrationssystem
-\item Udskrive en salgskvittering via Kasseapparat
-\item Kasseapparat bør kunne tage imod dankort betaling
-
+	
+	\item Understøtte brugerlogin i flere niveauer
+	\begin{itemize}
+		\item  \gls{SB}, der kan tilgå \gls{AS}\\
+		\item  \gls{Eks}, der kan tilgå \gls{KA}
+	\end{itemize}
+	\item Ekspeditioner kan parkeres midlertidigt
+	\item Benytte variabel momssats per produkt
+	\item Understøtte flere forskellige instanser af \gls{KA} på samme tid
+	\item Understøtte tilbudskampagner
+	\item Have kontrol af lagerbeholdningen i \gls{AS}
+	\item \gls{Eks} kan afskrive et produkt, hvis den f.eks. er gået i stykker
+	\item Vise salgsstatistik i \gls{AS}
+	\item Udskrive en salgskvittering via \gls{KA}
+	\item \gls{KA} bør kunne tage imod dankort betaling
+	
 \end{itemize}
 
 
 \subsubsection*{Systemet \textit{kunne} evt.}
 
 \begin{itemize}
-
-\item Understøtte stregkodescanner
-\item Understøtte betaling med forskellige slags valuta
-\item Have mulighed for, at kunder, som har en konto, kan få rabat
-\item Tage imod betaling fra en mobilapplikation
-\item VIP Medlemmer skal kunne modtage en email med deres salgskvittering
-
+	
+	\item Understøtte stregkodescanner
+	\item Understøtte betaling med forskellige slags valuta
+	\item Have mulighed for, at kunder, som har en konto, kan få rabat
+	\item Tage imod betaling fra en mobilapplikation
+	\item VIP\footnote{Very Important Person} Medlemmer skal kunne modtage en email med deres salgskvittering
+	
 \end{itemize}
