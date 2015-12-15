@@ -13,7 +13,7 @@ Som man kan se på det ovenstående pakkediagram består \gls{KA} primært af gr
 
 \begin{itemize}
 	\item \textbf{View} Views indeholder vores præsentationslagslogik. Det er skrevet i XML og er direkte med til at style vores grænseflade.
-	\item \textbf{ViewModel} Er en mediator mellem modellaget og grænsefladen. Viewmodels sikrer at \gls{KA} grænsefladen afspejler ændringer der sker i systemet, samt kommunikerer grænsefladens ændringer til de lavere lag. Indholdet af denne bliver beskrevet nærmere i afsnit ?? om præsentationslaget.
+	\item \textbf{ViewModel} Er en mediator mellem modellaget og grænsefladen. Viewmodels sikrer at \gls{KA} grænsefladen afspejler ændringer der sker i systemet, samt kommunikerer grænsefladens ændringer til de lavere lag. Indholdet af denne bliver beskrevet nærmere i afsnit \ref{VIEWMODELS}, side \pageref{VIEWMODELS} om præsentationslaget.
 	\item \textbf{Dependencies} Indeholder sourcekode der gør det nemmere at arbejde med commands.
 	\item \textbf{Model} Indeholder business logic. Dette er der ikke særligt meget af, da de fleste models findes i \gls{SL} samt håndteres i Administrationssystem.
 	\item \textbf{DAL} Indeholder logik til at kommunikere med \gls{CS} og derved \gls{DB}. Dette lag vil blive beskrevet nærmere i afsnittet \ref{DAL} om Data Access Laget.
