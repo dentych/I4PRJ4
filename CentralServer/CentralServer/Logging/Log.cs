@@ -18,6 +18,12 @@ namespace CentralServer.Logging
             _level = level;
         }
 
+        /// <summary>
+        /// Write to the log.
+        /// </summary>
+        /// <param name="sender">Name of the class which writes to the log</param>
+        /// <param name="category">The level of logging applied</param>
+        /// <param name="text">Logging text</param>
         public void Write(string sender, int category, string text)
         {
             if (category >= _level)

@@ -4,6 +4,9 @@ using CentralServer.Messaging;
 
 namespace CentralServer.Sessions
 {
+    /// <summary>
+    /// Implements functionality to register clients and get unique session IDs.
+    /// </summary>
     public class SessionControl : ISessionControl
     {
         private readonly Dictionary<long, IMessageReceiver> _sessions =
@@ -12,9 +15,11 @@ namespace CentralServer.Sessions
         private long _lastSessionId = 0;
 
 
-        /*
-         * Registers a client. Clients must be unique.
-         */
+        /// <summary>
+        /// Registers a client. Clients must be unique.
+        /// </summary>
+        /// <param name="client">The client to register</param>
+        /// <returns>A unique session ID</returns>
         public long Register(IMessageReceiver client)
         {
             if (_sessions.ContainsValue(client))
@@ -27,9 +32,10 @@ namespace CentralServer.Sessions
             return _lastSessionId;
         }
 
-        /*
-         * Unregisters a client
-         */
+        /// <summary>
+        /// Unregisters a client
+        /// </summary>
+        /// <param name="sessionId">The session ID to unregister</param>
         public void Unregister(long sessionId)
         {
             if(!_sessions.ContainsKey(sessionId))
@@ -38,9 +44,11 @@ namespace CentralServer.Sessions
             _sessions.Remove(sessionId);
         }
 
-        /*
-         * Retrieves a client by Session ID
-         */
+        /// <summary>
+        /// Retrieves a client by Session ID
+        /// </summary>
+        /// <param name="sessionId">Session ID to retrieve client from</param>
+        /// <returns>Client object</returns>
         public IMessageReceiver GetClient(long sessionId)
         {
             if (!_sessions.ContainsKey(sessionId))
@@ -48,10 +56,11 @@ namespace CentralServer.Sessions
 
             return _sessions[sessionId];
         }
-        
-        /*
-         * Iterate over all known clients
-         */
+
+        /// <summary>
+        /// Iterate over all known clients
+        /// </summary>
+        /// <returns>A list of all clients</returns>
         public IList<IMessageReceiver> GetClients()
         {
             var clients = new List<IMessageReceiver>();

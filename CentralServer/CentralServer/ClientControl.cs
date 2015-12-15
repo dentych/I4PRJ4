@@ -7,6 +7,9 @@ using System;
 
 namespace CentralServer
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ClientControl : IMessageHandler
     {
         // Client has been registered
@@ -32,6 +35,11 @@ namespace CentralServer
             _connection.OnDisconnect += HandleConnectionClosed;
         }
 
+        /// <summary>
+        /// Dispatch an incoming message to the appropriate handler
+        /// </summary>
+        /// <param name="id">Event ID</param>
+        /// <param name="msg">Message object</param>
         public void Dispatch(long id, Message msg)
         {
             if (_connection == null)
@@ -50,6 +58,9 @@ namespace CentralServer
             }
         }
 
+        /// <summary>
+        /// Invoked when the client closes the connection
+        /// </summary>
         private void HandleConnectionClosed()
         {
             _connection = null;
@@ -60,6 +71,10 @@ namespace CentralServer
             _main.Send(MainControl.E_STOP_SESSION, unregisterMsg);
         }
 
+        /// <summary>
+        /// Invoked when data has been received by the client
+        /// </summary>
+        /// <param name="data">Raw data string</param>
         private void HandleDataRecieved(string data)
         {
             _log.Write("ClientControl", Log.DEBUG, "Parsing data");
@@ -84,12 +99,20 @@ namespace CentralServer
             }
         }
 
+        /// <summary>
+        /// Invoked when this client has been registered with MainControl
+        /// </summary>
+        /// <param name="msg">Welcome message</param>
         private void HandleWelcome(WelcomeMsg msg)
         {
             _sessionId = msg.SessionId;
             _connection.StartRecieving();
         }
 
+        /// <summary>
+        /// Invoked when MainControl wants to send a command to this client
+        /// </summary>
+        /// <param name="msg">Message containing the command to send</param>
         private void HandleSendCommand(SendCommandMsg msg)
         {
             if (_connection != null)
