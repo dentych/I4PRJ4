@@ -1,9 +1,9 @@
 \subsubsection{ViewModels}
-Herunder vil vi kort forklare de brugte viewmodels, i systemet.
+Herunder vil de brugte viewmodels kort blivet forklaret.
 
 \subsubsection{Klassebeskrivelser}
 \textbf{MainWindow}\\
-I MainWindow er der oprettet en række Button.Click.Events, som har ansvar for logic som er afhængig af displayet i inputs segmentet. Disse events er skrevet for at adskille ShoppingList fra selve view(xaml) delen og implementere dermed en view(code) del, som laver funktionens kald ned til ShoppingList. 
+I MainWindow er der oprettet en række Button.Click.Events, som har ansvar for logic som er afhængig af displayet i inputs segmentet. Disse events er skrevet for at adskille ShoppingList fra selve view(xaml) delen og implementerer dermed en view(code) del, som laver funktionens kald ned til ShoppingList. 
 
 \begin{figure}[H]
 	\centering
@@ -13,7 +13,7 @@ I MainWindow er der oprettet en række Button.Click.Events, som har ansvar for l
 \end{figure}
 
 \textbf{CategoriesMenu}\\
-CategoriesMenu er en menu med categorier. Denne klasse står for at kende alle kategorier. Ved et tryk på den categoryknappen vil CategoriesMenu oprette en menu med alle kategorier der eksisterer i systemet. Til hver menuitem vil den også tilknytte en liste af produkter. Derved kan der, ved tryk på menuitem, oprettes knapper med præcis de produkter der er ønsket. 
+CategoriesMenu er en menu med categorier. Denne klasse står for at kende alle kategorier. Ved et tryk på "Categories" knappen, vil CategoriesMenu oprette en menu med alle kategorier der eksisterer i systemet. Til hver MenuItem vil den også tilknytte en liste af produkter. Derved kan der, ved tryk på menuitem, oprettes knapper med præcis de produkter der er ønsket. 
 
 \begin{figure}[H]
 	\centering
@@ -23,7 +23,7 @@ CategoriesMenu er en menu med categorier. Denne klasse står for at kende alle k
 \end{figure}
 
 \textbf{MenuCategory}\\
-MenuCategory er en kategory i menuen. Den arver fra MenuItem som er et WPF element. Ved at oprette klassen på denne måde er det muligt at styre klassen direkte fra code behind. Derved kan der tilknyttes commands, og det muliggør dynamisk oprettelse af MenuItems.
+MenuCategory er en kategori i menuen. Den arver fra MenuItem som er et WPF element. Ved at oprette klassen på denne måde er det muligt at styre klassen direkte fra codebehind. Derved kan der tilknyttes commands, og det muliggør dynamisk oprettelse af MenuItems.
 
 
 \begin{figure}[H]
@@ -55,7 +55,7 @@ ProductButtonList indeholder lister af knapper. Derved kan hver knappeliste symb
 \end{figure}
 
 \textbf{ProductButtonContent} \\
-ProductButtonContent har indholdet af 1 knap på grænsefladen, samt produktinformationer og commands til at oprette produkter på shoppinglist ved tryk. Når man skifter side i grænsefladen produktbuttoncontent være forbundet til hver knap.
+ProductButtonContent har indholdet af 1 knap på grænsefladen, samt produktinformationer og commands til at oprette produkter på ShoppingList ved tryk. Når man skifter side i grænsefladen vil ProductButtonContent være forbundet til hver knap.
 
 \begin{figure}[H]
 	\centering

@@ -1,11 +1,11 @@
 \subsection{Kasseapparat}
 
-Kasseapparatet blev bygget ved brug af 3 layers. Presentation-, Business logic- og Data Access Layer. Disse vil blive beskrevet herunder.
+Kasseapparatet blev opbygget med tre lags strukturen: Presentation-, Business logic- og Data Access Layer. Disse lag vil blive beskrevet i nedenstående afsnit.
 
-\subsection{Designovervejelser}
-Designet af Kasseapparatet startede ud med at der blev tegnet en skitse af hvordan selve brugergrænsefladen skulle blive opbygget.
-Det var vigtigt at der en klar opdeling af de forskellige lag. Dette betød at der mellem præsentations- og business logic laget blev benyttet MVVM. MVVM er et pattern, der sikrer at kommunikationen mellem grænsefladen er håndteret ordentligt. \\
-Det første der blev implementeret til Kasseapparatet er grænsefladen samt de underliggende viewmodels. Disse havde en klar forbindelse til de elements de ligger i grænsefladen igennem commands. Og da der ikke var tilknyttet funktionalitet kunne disse klasser opsættes uden yderligere design, der kom dog Viewmodels senere, der stod for at styre knapperne og disse blev der selvfølgelig lavet sekvensdiagrammer for.l
+\subsubsection{Designovervejelser}
+Designet af Kasseapparatet blev startet ved at der blev tegnet en skitse for hvordan selve brugergrænsefladen skulle ende med at se ud.
+Det var vigtigt at der en klar opdeling af de forskellige lag. Dette betød at der mellem præsentations- og business logic laget blev benyttet MVVM. MVVM er et pattern, der sikrer at kommunikationen mellem grænsefladen og underliggende Viewmodels er håndteret ordentligt. \\
+Det første der blev implementeret til Kasseapparatet var selve grænsefladen. Grænsefladen blev opstillet med knapper uden nogen funktionalitet. Herefter begyndte funktionaliteten at blive implementeret. Funktionaliteten startede ud som en klasse der kunne indholde de tilgængelige produkter, samt en fake af database connectionen, som kunne fylde denne liste med dummie produkter, hvilket lettede videre udvikling da der allerede kunne testes med produkter. Herefter kunne arbejdet deles i repræsentation af produkter i gui'en, og håndtering af indkøbskurven samt egentlige forbindelse til CentralServer
 
 \input{Projektbeskrivelse/DesignOgImplementering/Frontend/Presentation}
 \input{Projektbeskrivelse/DesignOgImplementering/Frontend/BusinessLogic}

@@ -1,6 +1,6 @@
-\subsection{Design og Implementering}
+\subsection{Design og implementering}
 
-Da \gls{SL} skulle designes blev det i første iteration klart at der ville opstå et væld af klasser i dette bibliotek. Det blev derfor besluttet at disse skulle være tilgængelige via en .dll fil som alle systemer fik adgang til og disse klasser blev efter grundige overvejelser indkapslet i de pakker som ses på figur \ref{fig:oversigtSL}. Pakkerne blev herefter udviklet efter nødvendighed igennem de forskellige iterationer, Hvilket satte SOLID designprincipperne på noget af en prøve.
+Da \gls{SL} skulle designes blev det i første iteration klart at der ville opstå et væld af klasser i dette bibliotek. Det blev derfor besluttet at disse skulle være tilgængelige via en .dll\footnote{Dynamic Link Library} fil som alle systemer fik adgang til og disse klasser blev efter grundige overvejelser indkapslet i de pakker som ses på figur \ref{fig:oversigtSL}. Pakkerne blev herefter udviklet efter nødvendighed igennem de forskellige iterationer.
 
 \begin{figure}[!h]
     \centering
@@ -13,10 +13,10 @@ Herunder ses en kort beskrivelse af de forskellige pakker, og hvad de indeholder
 
 \begin{itemize}
 \item \textbf{Models} indeholder datamodeller der i de forskellige systemer bruges som skabeloner. 
-\item \textbf{Sockets} indeholder klasser til asynkron forbindelse til \gls{CS} samt de events der bliver raised a \gls{CS}.
+\item \textbf{Sockets} indeholder klasser til asynkron forbindelse til \gls{CS} samt de events der bliver raised af \gls{CS}.
 \item \textbf{Protocol} indeholder hele protokollen og er denne der bruges til kommunikation mellem alle delsystemer.
-\item \textbf{ProtocolMarshallers} indeholder de kodesprog der kan kommunikeres med.
-\item \textbf{Commands} indeholder de forskellige kommandoer der bruges til at sende information over protokollen.
+\item \textbf{ProtocolMarshallers} indeholder de dataformater der kan kommunikeres med.
+\item \textbf{Commands} indeholder de forskellige kommandoer der bruges til at indkapsulere informationen igennem protokollen.
 \item \textbf{ProductCommands} indeholder kommandoer der er specifikke for produkter.
 \item \textbf{ProductCategoryCommands} indeholder kommandoer der er specifikke for produktkategorier.
 \item \textbf{CmdMarshallers} indeholder marshallers som har til opgave at parse de forskellige kommandoer til og fra XML.
@@ -26,24 +26,24 @@ Herunder ses en kort beskrivelse af de forskellige pakker, og hvad de indeholder
 
 \textbf{Funktionalitet}\\
 
-\gls{SL}'s hovedformål var fra starten at sørge for at udviklerne på de forskellige delsystemer ikke skulle tænke over at parse deres data til XML og tilbage til brugbar data. Derfor blev det besluttet at ligge alt denne funktionalitet et sted. Denne funktionalitet blev siden udvidet til datamodeller hvis nødvendighed opstod da alle delsystemer på denne måde kunne håndtere informationer om f.eks. produkter, på samme måde.\\
+\gls{SL}'s hovedformål var fra starten at sørge for at udviklerne på de forskellige delsystemer ikke skulle tænke over at parse deres data til XML og tilbage til brugbar data. Derfor blev det besluttet at ligge al denne funktionalitet et sted. Denne funktionalitet blev siden udvidet til datamodeller hvis nødvendighed opstod, da alle delsystemer på denne måde kunne håndtere informationer om f.eks. produkter, på samme måde.\\
 
-Protokollen for \gls{SL} fungerer ved at et givet delsystem f.eks. laver et produkt objekt de gerne vil sende til \gls{CS}, dette pakkes herefter ind i et kommando objekt, Som derefter bliver sendt med som parameter i protokol objektets encode funktion. denne sørger for at produktinformationerne inde i kommando objektet bliver parset til XML og at dette bliver gemt i en string som bliver sendt via socket objektet. For yderligere informationer omkring protokollen, se da afsnit\ref{PROTOKOL}\\
+Protokollen i \gls{SL} fungerer ved at et givet delsystem f.eks. laver et produkt objekt de gerne vil sende til \gls{CS}, dette pakkes herefter ind i et kommando objekt, som derefter bliver sendt med som parameter i protokol objektets encode funktion. Denne sørger for at produktinformationerne inde i kommando objektet bliver parset til XML~\cite{XML} og at dette bliver gemt i en string som bliver sendt via socket objektet. For yderligere informationer omkring protokollen, se da afsnit\ref{PROTOKOL}\\
 
 
 \textbf{Design}\\
 
-Da Design arbejdet af protokollen langsomt begyndte at tage form, kom udfordringen med hvordan der kunne udarbejdes en sekvens af handlinger som så enkelt som muligt kunne tilføje funktionalitet til systemet, men som samtidigt ikke ville sætte det ud af spil eller kræve store revideringer, i og med protokollen var sådan en central del af systemet. Blikket blev hurtigt kastet mod SOLID design principperne da disse kunne gøre netop dette for systemet.
+Da arbejdet af protokollen begyndte at tage form, kom udfordringen med hvordan man kunne designe denne således at de resterende delsystemer kunne benytte denne allerede nu, men at der stadig ville være mulighed for den nødvendige viderudvikling. Blikket blev da hurtigt kastet mod SOLID design principperne, da disse kunne gøre netop dette for systemet.
 
-Det første punkt var S, Single responsibility, og her blev udarbejdet ideen om det der senere skulle blive commands og marshallers, det at hver commando skulle have sin egen klasse og sin egen parser og at disse kun skulle have det ene ansvar, netop at videre bringe information og at parse denne.
+Det første punkt var S, Single Responsibility, og her blev udarbejdet ideen om det der senere skulle blive commands og marshallers, det at hver kommando skulle have sin egen klasse og sin egen parser og at disse kun skulle have det ene ansvar, netop at viderebringe information og at parse denne.
 
 Næste punkt O, Open-Closed princippet, der ligger op til at systemet skal være åben for tilføjelser men lukket for ændringer, blev også overholdt ved teorien omkring commands og marshallers, da der pludseligt kunne opstå et behov for ny funktionalitet, og at man her ved hjælp af et interface kunne lave en ny implementering og hermed en ny kommando uden af ændre det eksiterende.
 
-L'et i SOLID er Liskov's substitutions princip og dette siger at du skal kunne bytte rundt på en subklasse og den klasse denne arver fra, uden at programmet bemærker dette. Dette er i \gls{SL} også tilfældet. Det eneste sted der er arv, er fra Command klassen og til de forskellige kommandoer men da disse kun indeholder attributter og det der arves ligeledes er en attribut, så er Liskovs' substitutions princip ikke relevant for systemet, dog skal det nævnes at princippet ikke er brudt.
+L'et i SOLID er Liskov's Substitutions Princip og dette siger at du skal kunne bytte rundt på en subklasse og den klasse denne arver fra, uden at programmet bemærker dette. Dette er i \gls{SL} også tilfældet. Det eneste sted der er arv, er fra Command klassen og til de forskellige kommandoer men da disse kun indeholder attributter og det der arves ligeledes er en attribut, så er Liskovs' substitutions princip ikke relevant for systemet, dog skal det nævnes at princippet ikke er brudt.
 
-I'et var Interface Segregation og betød at hvis der ønskes en specifik funktion i et større system, som bør der så vidt muligt være interfaces der sørger for at den ønskede funktionalitet kan tilgås uden at være tvunget til at tage stilling til og håndtere unødvendige funktioner. Dette opnådede protokollen også da der blev indført interfaces for alle klasser på nær Commands som derimod blev en abstrakt klasse der blev nedarvet fra.
+I'et var Interface Segregation og betød at hvis der ønskes en specifik funktion i et større system, så bør der så vidt muligt være interfaces der sørger for at den ønskede funktionalitet kan tilgås uden at være tvunget til at tage stilling til og håndtere unødvendige funktioner. Dette opnådede protokollen også da der blev indført interfaces for alle klasser på nær commands som derimod blev en abstrakt klasse der blev nedarvet fra.
 
-D'et og det sidste punkt i SOLID er Dependency inversion og kræver at afhængigheder skal komme nede fra og op. Ment som at en superklasse ikke skal kende til klasser i lavere lag på trods af at den måske bruger dem aktivt, dette skal fungerer via et interface i samme lag, som så bliver implementeret af en klasse i et lavere lag der her udfører disse handlinger. Dette fik protokollen også indført med de mange interfaces der her kunne sørge for at alt afhængighed kom nedefra. Protocol klassen kender f.eks. ikke den XmlMarshaller der finder den korrekte marshaller at bruge, den har et IProtocolMarshaller interface som XmlMarshaller implementere. Det samme for XmlMarshaller der ikke kender til de enkelte marshallers men derimod arbejder med ICmdMarshaller som de forskellige marshallers så har implementeret.\\
+D'et og det sidste punkt i SOLID er Dependency inversion og kræver at afhængigheder skal komme nede fra og op. Ment som at en superklasse ikke skal kende til klasser i lavere lag på trods af at den måske bruger dem aktivt, dette skal fungerer via et interface i samme lag, som så bliver implementeret af en klasse i et lavere lag der her udfører disse handlinger. Dette fik protokollen også indført med de mange interfaces der her kunne sørge for at alt afhængighed kom nedefra. Protocol klassen kender f.eks. ikke den XmlMarshaller der finder den korrekte marshaller at bruge, den har et IProtocolMarshaller interface som XmlMarshaller implementerer. Det samme for XmlMarshaller der ikke kender til de enkelte marshallers men derimod arbejder med ICmdMarshaller som de forskellige marshallers så har implementeret.\\
 
 Herunder på figur \ref{fig:overklasseSL} ses et overordnet klassediagram for protokollen i \gls{SL} som designet endte ud, og hvor det tydeligt ses hvordan de forskellige interfaces muliggøre kommunikation på tværs af lag.
 
